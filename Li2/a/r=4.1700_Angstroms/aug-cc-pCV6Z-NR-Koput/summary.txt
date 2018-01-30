@@ -1,0 +1,78 @@
+2014 CODATA: 1 Angstrom  = 1/0.529,177,210,67(12)  Bohr (4.17 Ang = 7.880,157,943,159,143  Bohr)
+MOLPRO:      1 Angstrom  = 1/0.529,177,209         Bohr (4.17 Ang = 7.880,157,968,027,6825 Bohr)
+MRCC:        1 Angstrom  = 1/0.529,177,20859       Bohr (4.17 Ang = 7.880,157,974,133,132  Bohr)     
+CFOUR:       1 Angstrom  = 1/0.529,177,249         Bohr (4.17 Ang = 7.880,157,372,374,11   Bohr)     
+=====================================================================================================
+2014 CODATA: 1 Hartree   = 219474.6313702(13) cm-1
+=====================================================================================================
+
+aug-cc-pCV6Z-NR:
+=================
+ATOMIC:
+=================
+CCSDT-CFOUR: 
+FCI-MRCC:    
+FCI-MOLPRO:  
+=================
+MOLECULAR:
+=================
+ROHF/CFOUR            -14.864 019 538 041 (XFORM_TOL=18, but still says "Integrals less than  0.10E-13 are neglected", scf_conv=7)
+ROHF/MRCC (semi-can)  -14.864 019 536 409 (itol=1e-18, scftol=13)
+ROHF/MRCC (canonical) -14.864 019 536 410 (itol=1e-18, scftol=13)
+ROHF/MOLPRO           -14.864,012,797,578 (used for FCIQMC, default itol, 1e-13 and default scftol)
+ROHF/MOLPRO           -14.864,012,797,989 (itol=1d-18, scftol=1e-16, 0.31 nano-Hartree lower)
+------------------------------------ All agree to within 2 nano-Hartree, but CFOUR is 1.6 nano-Hartree lower
+RCISD/CFOUR            running            /project1/ayerslab/nike/Li2_5Z
+RCISD/MRCC             running
+RCISD/MRCC             running            /work/nike/Li2/CFOUR/nr/CCSDTQ-aug-cc-pCV5Z-NR/rest=2/betterHF/canonical/easierHR/betterHF/cisd
+RCISD/MOLPRO          -14.955,120,369,310 (used for FCIQMC, default itol, scftol, and cctol)
+RCISD/MOLPRO          -14.955,120,325,808 (itol=1d-18, scftol=1e-16, cctol=1e-16 surprisingly higher than with default settings) BUT 0.04 micro-Hartree = 0.008cm-1 
+------------------------------------ 
+CCSD/CFOUR            -14.956,239,082,231 (XFORM_TOL=18, but still says ints below 1e-13 neglected, scftol=1e-16, cctol=1e-16)
+CCSD/MRCC             -14.956,239,235,626 (used for CCSDTQ, default itol, 1e-13 and default scftol)
+CCSD/MRCC             -14.956,239,235,634 (itol=1d-18, scftol=1e-13, 8 pico-Hartree lower)
+CCSD/MRCC             -14.956,239,235,624 (itol=1d-18, scftol=1e-13, 8 pico-Hartree lower)
+UCCSD/MOLPRO          -14.956,238,759,397 (used for FCIQMC, default itol, 1e-13, scftol, and cctol, 0.0707cm-1 too high, but ccsd is still changing in the 0.1 or 1 micro-Hartree digit)
+UCCSD/MOLPRO          -14.956,239,078,607 (used for FCIQMC, default itol, 1e-13, scftol, but with cctol=1e-16)
+UCCSD/MOLPRO          -14.956,239,081,374 (itol=1d-18, scftol=1e-16, cctol=1e-16)
+------------------------------------ MRCC is 0.153 micro-Hartree (0.0336cm-1) lower than CFOUR and MOLPRO 
+CCSD(T)/CFOUR         -14.956,364,490,584 with default settings, re-running with XFORM_TOL=18
+CCSD(T)/MRCC          -14.956,364,644,050 (used for CCSDTQ, default itol, 1e-13 and default scftol)
+CCSD(T)/MRCC           running with better itol 
+UCCSD(T)/MOLPRO       -14.956,364,172,625 (used for FCIQMC, default itol, 1e-13, scftol, and cctol, 0.0696cm-1 too high, but ccsd was still changing in the 0.1 or 1 micro-Hartree digit)
+UCCSD/MOLPRO          -14.956,364,488,403 (used for FCIQMC, default itol, 1e-13, scftol, but with cctol=1e-16)
+UCCSD(T)/MOLPRO       -14.956,364,489,765 (itol=1d-18, scftol=1e-16, cctol=1e-16)
+------------------------------------ MRCC is 0.153 micro-Hartree (0.0337cm-1) lower than CFOUR and MOLPRO
+CCSDT/CFOUR           -14.956,384,221,664 (XFORM_TOL=18, but still says ints below 1e-13 neglected, scfitol=1e-10, last digit still changing), running again with more cycles
+CCSDT/MRCC-CFOUR      -14.956,384,212,115 (used CFOUR with default settings, such as itol=1e-13, to do ROHF and AO -> MO)  
+CCSDT/MRCC            -14.956,384,374,501 (used for CCSDTQ, default itol, 1e-13 and default scftol)
+CCSDT/MRCC            running with itol=18
+------------------------------------ MRCC is 0.153 micro-Hartree (0.0335cm-1)
+CCSDT(Q)/A/MRCC-CFOUR do when CCSDT finishes
+CCSDT(Q)/B/MRCC-CFOUR do when CCSDT finishes
+CCSDT(Q)/A/MRCC       -14.956,385,126,463 (used for CCSDTQ, default itol, 1e-13 and default scftol)
+CCSDT(Q)/B/MRCC       -14.956,385,136,054 (3 days with 69GB of RAM)
+CCSDT(Q)/A/MRCC (better itol, do when CCSDT finishes)
+CCSDT(Q)/B/MRCC (better itol, do when CCSDT finishes)
+------------------------------------ 
+CCSDTQ/MRCC-CFOUR 
+CCSDTQ/MRCC       -14.956,385,25
+FCIQMC/MOLPRO     -14.956,385,085(3)
+------------------------------------ MRCC is 0.165 micro-Hartree (0.0362cm-1) 
+
+
+aCV7Z
+15 14 12 10 8 6 4 2
+25 17 12 10 8 6 4 2
+
+aCV6Z  --------------- WHY p only goes up by 2, whereas it goes up by THREE between 4Z and 5Z ???
+13 12 10 8 6 4 2
+22 15 10 8 6 4 2
+
+aCV5Z
+11 10 8 6 4 2
+19 13 8 6 4 2
+
+aCV4Z
+ 9  8 6 4 2
+16 10 6 4 2
