@@ -1,0 +1,905 @@
+ **********************************************************************
+                          MRCC program system
+ **********************************************************************
+ 
+                              Written by
+    Mihaly Kallay, Zoltan Rolik, Jozsef Csontos, Istvan Ladjanszki,
+       Lorant Szegedy, Bence Ladoczki, Gyula Samu, Klara Petrov,
+        Mate Farkas, Peter Nagy, David Mester, and Bence Hegely
+ 
+        Department of Physical Chemistry and Materials Science
+            Budapest University of Technology and Economics
+                  Budapest P.O.Box 91, H-1521 Hungary
+ 
+                              www.mrcc.hu
+
+ ************************ 2017-11-11 22:34:47 *************************
+ Executing minp...
+
+ Reading input from MINP...
+ 
+ Input file:
+ 
+# TITLE
+basis=atomtype
+Li:aCV6Z-KOPUT
+H:aV6Z-EMSL
+uncontract=off
+#iface=cfour
+itol=18
+scftol=13
+cctol=9
+calc=CC(4)
+mem=22GB
+core=corr
+ccmaxit=999
+scfmaxit=9999
+scftype=RHF
+
+scfiguess=ao
+rohftype=standard
+mult=1
+charge=0
+rest=2
+
+unit=bohr
+geom
+Li
+H 1 R
+
+R=3.0152359721231985   # converted from Coxon using 2014 CODATA:  1.59559416124/0.52917721067
+
+
+ 
+ 
+ Checking keyword combinations...
+ 
+ Keywords:
+ 
+ active=none
+ agrid=ld0006-ld0590
+ basis=atomtype
+ basopt=off
+ bpcompo=0.985
+ bpcompv=0.98
+ bpdfo=0.985
+ bpocc=0.985
+ bppdo=0.985
+ bppdv=0.98
+ bpedo=0.985
+ bpedv=0.98
+ calc=cc(4)
+ ccmaxit=999
+ ccprog=mrcc
+ cctol=9
+ charge=0
+ cialg=disk
+ ciguess=off
+ cmpgrp=auto
+ core=corr
+ corembed=off
+ dboc=off
+ dendec=cholesky
+ dens=0
+ dfalg=invsqrt
+ dfbasis_cor=none
+ dfbasis_scf=none
+ dfintran=ovirt
+ dft=off
+ diag=david
+ domrad=10.d0
+ drpaalg=fit
+ ecp=auto
+ edisp=off
+ embed=off
+ epert=none
+ eps=0.975
+ excrad=0.d0
+ excrad_fin=0.000000000D+00
+ freq=off
+ gauss=spher
+ geom=zmat
+ gopt=off
+ ghost=none
+ gtol=7
+ grtol=10
+ hamilton=dc
+ iface=none
+ intalg=auto
+ itol=18
+ lcorthr=loose
+ lccrest=off
+ lmp2dens=on
+ lnoepso=3e-5
+ lnoepsv=1e-6
+ localcc=off
+ locintrf=disk
+ maxact=off
+ maxex=0
+ bfbasis=none
+ mem=22gb
+ molden=on
+ mulmet=0
+ mult=1
+ nacto=0
+ nactv=0
+ naf_cor=off
+ naf_scf=off
+ nafalg=albe
+ naftyp=
+ nchol=auto
+ ndeps=1e-3
+ nstate=1
+ nsing=0
+ ntrip=0
+ occ=
+ optalg=
+ optmaxit=50
+ optetol=1e-6
+ optgtol=1e-4
+ optstol=1e-3
+ orblocc=off
+ orbloco=off
+ orblocv=off
+ osveps=1e-3
+ ovirt=off
+ ovosnorb=80.0
+ ptfreq=0.0
+ popul=off
+ pressure=100000
+ qmmm=off
+ refdet=none
+ rest=2
+ rgrid=log3
+ rohftype=standard
+ scspe=1.d0
+ scsps=1.2d0
+ scspt=0.33333333333333
+ scfalg=auto
+ scfdamp=off
+ scfdiis=on
+ scfdiis_end=9999
+ scfdiis_start=1
+ scfdiis_step=1
+ scfdtol=17
+ scfext=10
+ scfiguess=ao
+ scflshift=off
+ scfmaxit=9999
+ scftype=rhf
+ scftol=13
+ spairtol=1e-4
+ symm=
+ talg=occ
+ temp=298.15
+ test=off
+ tprint=off
+ uncontract=off
+ unit=bohr
+ verbosity=2
+ wpairtol=0.100000000E-05
+
+ ************************ 2017-11-11 22:34:48 *************************
+ Executing integ...
+
+ Allocation of 22.0 Gbytes of memory...
+ 
+ Number of atoms:            2
+ Charge:                     0
+ Number of electrons:        4
+ Number of core electrons:   2
+ Spin multiplicity:          1
+ 
+                 Cartesian coordinates [bohr]      Atomic mass [AMU]  Z
+   1  Li    0.00000000    0.00000000    0.00000000     7.016003       3
+   2  H     3.01523597    0.00000000    0.00000000     1.007825       1
+ 
+ This molecule is linear.
+ 
+ Rotational constants [cm-1]: 
+      7.513777398918
+ 
+ Point group: Cxv 
+ Computational point group: C2v 
+ 
+ Cartesian coordinates in standard orientation [bohr]
+   1  Li    0.00000000    0.00000000   -0.37872575
+   2  H     0.00000000    0.00000000    2.63651022
+ 
+ Nuclear repulsion energy [au]:          0.994947005056
+ 
+ 
+ Basis set information:
+ 
+ Maximum angular momentum: i
+ Maximum number of contracted Gaussians:   13
+ Maximum number of primitive Gaussians:    22
+ Spherical harmonic GTOs are used.
+ 
+    1  Li acv6z-koput [ 22s 15p 10d 8f 6g 4h 2i | 13s 12p 10d 8f 6g 4h 2i ]
+    2  H  av6z-emsl [ 11s 6p 5d 4f 3g 2h | 7s 6p 5d 4f 3g 2h ]
+ 
+ Total number of basis functions:   406
+ 
+ 
+ Character table for point group C2v:
+ 
+          E  C2  Qh  Qv  
+    A1    1   1   1   1
+    B1    1  -1   1  -1
+    B2    1  -1  -1   1
+    A2    1   1  -1  -1
+ 
+ Number of basis functions per irrep:
+    A1    145
+    B1     99
+    B2     99
+    A2     63
+ 
+ 
+ Calculation of overlap integrals...
+ CPU time [min]:     0.103                   Wall time [min]:     0.037
+ Calculation of kinetic energy integrals...
+ CPU time [min]:     0.144                   Wall time [min]:     0.038
+ Calculation of nuclear attraction integrals...
+ CPU time [min]:     0.215                   Wall time [min]:     0.041
+ 
+ Calculation of prescreening integrals...
+ CPU time [min]:     5.895                   Wall time [min]:     0.727
+ 
+ Calculation of two-electron integrals...
+   2% done.
+  15% done.
+  31% done.
+  43% done.
+  60% done.
+  80% done.
+ 100% done.
+ CPU time [min]:   241.964                   Wall time [min]:    22.481
+
+ ************************ 2017-11-11 22:57:19 *************************
+ Executing scf...
+
+ Allocation of 22.0 Gbytes of memory...
+ ======================================================================
+ ITERATION STEP   1
+ CPU time [min]:     0.077                   Wall time [min]:     0.024
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP   1 IS      -8.6558179685616228 [AU]
+ ======================================================================
+ ITERATION STEP   2
+ CPU time [min]:     0.555                   Wall time [min]:     0.612
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP   2 IS      -7.9372865757681925 [AU]
+ ======================================================================
+ ITERATION STEP   3
+ CPU time [min]:     1.056                   Wall time [min]:     0.960
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP   3 IS      -7.9843224186531856 [AU]
+ ======================================================================
+ ITERATION STEP   4
+ CPU time [min]:     1.535                   Wall time [min]:     1.307
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP   4 IS      -7.9870825288952965 [AU]
+ ======================================================================
+ ITERATION STEP   5
+ CPU time [min]:     2.009                   Wall time [min]:     1.656
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP   5 IS      -7.9873306699996958 [AU]
+ ======================================================================
+ ITERATION STEP   6
+ CPU time [min]:     2.499                   Wall time [min]:     2.004
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP   6 IS      -7.9873487298751673 [AU]
+ ======================================================================
+ ITERATION STEP   7
+ CPU time [min]:     2.988                   Wall time [min]:     2.354
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP   7 IS      -7.9873502538610195 [AU]
+ ======================================================================
+ ITERATION STEP   8
+ CPU time [min]:     3.464                   Wall time [min]:     2.703
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP   8 IS      -7.9873502837836163 [AU]
+ ======================================================================
+ ITERATION STEP   9
+ CPU time [min]:     3.949                   Wall time [min]:     3.052
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP   9 IS      -7.9873502841634796 [AU]
+ ======================================================================
+ ITERATION STEP  10
+ CPU time [min]:     4.441                   Wall time [min]:     3.411
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  10 IS      -7.9873502841679738 [AU]
+ ======================================================================
+ ITERATION STEP  11
+ CPU time [min]:     4.924                   Wall time [min]:     3.766
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  11 IS      -7.9873502841679116 [AU]
+ ======================================================================
+ ITERATION STEP  12
+ CPU time [min]:     5.378                   Wall time [min]:     4.120
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  12 IS      -7.9873502841681789 [AU]
+ ======================================================================
+ ITERATION STEP  13
+ CPU time [min]:     5.873                   Wall time [min]:     4.474
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  13 IS      -7.9873502841682598 [AU]
+ ======================================================================
+ ITERATION STEP  14
+ CPU time [min]:     6.369                   Wall time [min]:     4.827
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  14 IS      -7.9873502841682740 [AU]
+ ======================================================================
+ ITERATION STEP  15
+ CPU time [min]:     6.861                   Wall time [min]:     5.181
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  15 IS      -7.9873502841683592 [AU]
+ ======================================================================
+ ITERATION STEP  16
+ CPU time [min]:     7.357                   Wall time [min]:     5.534
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  16 IS      -7.9873502841678103 [AU]
+ ======================================================================
+ ITERATION STEP  17
+ CPU time [min]:     7.842                   Wall time [min]:     5.882
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  17 IS      -7.9873502841680146 [AU]
+ ======================================================================
+ ITERATION STEP  18
+ CPU time [min]:     8.320                   Wall time [min]:     6.238
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  18 IS      -7.9873502841684179 [AU]
+ ======================================================================
+ ITERATION STEP  19
+ CPU time [min]:     8.806                   Wall time [min]:     6.592
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  19 IS      -7.9873502841679755 [AU]
+ ======================================================================
+ ITERATION STEP  20
+ CPU time [min]:     9.285                   Wall time [min]:     6.940
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  20 IS      -7.9873502841683708 [AU]
+ ======================================================================
+ ITERATION STEP  21
+ CPU time [min]:     9.767                   Wall time [min]:     7.289
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  21 IS      -7.9873502841682074 [AU]
+ ======================================================================
+ ITERATION STEP  22
+ CPU time [min]:    10.248                   Wall time [min]:     7.636
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  22 IS      -7.9873502841677730 [AU]
+ ======================================================================
+ ITERATION STEP  23
+ CPU time [min]:    10.716                   Wall time [min]:     7.984
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  23 IS      -7.9873502841678796 [AU]
+ ======================================================================
+ ITERATION STEP  24
+ CPU time [min]:    11.174                   Wall time [min]:     8.332
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  24 IS      -7.9873502841679977 [AU]
+ ======================================================================
+ ITERATION STEP  25
+ CPU time [min]:    11.665                   Wall time [min]:     8.680
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  25 IS      -7.9873502841680519 [AU]
+ ======================================================================
+ ITERATION STEP  26
+ CPU time [min]:    12.174                   Wall time [min]:     9.031
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  26 IS      -7.9873502841676309 [AU]
+ ======================================================================
+ ITERATION STEP  27
+ CPU time [min]:    12.680                   Wall time [min]:     9.381
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  27 IS      -7.9873502841682669 [AU]
+ ======================================================================
+ ITERATION STEP  28
+ CPU time [min]:    13.150                   Wall time [min]:     9.729
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  28 IS      -7.9873502841680430 [AU]
+ ======================================================================
+ ITERATION STEP  29
+ CPU time [min]:    13.599                   Wall time [min]:    10.076
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  29 IS      -7.9873502841679063 [AU]
+ ======================================================================
+ ITERATION STEP  30
+ CPU time [min]:    14.090                   Wall time [min]:    10.424
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  30 IS      -7.9873502841678601 [AU]
+ ======================================================================
+ ITERATION STEP  31
+ CPU time [min]:    14.570                   Wall time [min]:    10.772
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  31 IS      -7.9873502841679525 [AU]
+ ======================================================================
+ ITERATION STEP  32
+ CPU time [min]:    15.026                   Wall time [min]:    11.121
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  32 IS      -7.9873502841682509 [AU]
+ ======================================================================
+ ITERATION STEP  33
+ CPU time [min]:    15.500                   Wall time [min]:    11.469
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  33 IS      -7.9873502841679267 [AU]
+ ======================================================================
+ ITERATION STEP  34
+ CPU time [min]:    15.958                   Wall time [min]:    11.817
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  34 IS      -7.9873502841678246 [AU]
+ ======================================================================
+ ITERATION STEP  35
+ CPU time [min]:    16.448                   Wall time [min]:    12.165
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  35 IS      -7.9873502841685191 [AU]
+ ======================================================================
+ ITERATION STEP  36
+ CPU time [min]:    16.929                   Wall time [min]:    12.515
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  36 IS      -7.9873502841681763 [AU]
+ ======================================================================
+ ITERATION STEP  37
+ CPU time [min]:    17.407                   Wall time [min]:    12.873
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  37 IS      -7.9873502841679027 [AU]
+ ======================================================================
+ ITERATION STEP  38
+ CPU time [min]:    17.871                   Wall time [min]:    13.227
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  38 IS      -7.9873502841681550 [AU]
+ ======================================================================
+ ITERATION STEP  39
+ CPU time [min]:    18.330                   Wall time [min]:    13.581
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  39 IS      -7.9873502841679205 [AU]
+ ======================================================================
+ ITERATION STEP  40
+ CPU time [min]:    18.780                   Wall time [min]:    13.935
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  40 IS      -7.9873502841683832 [AU]
+ ======================================================================
+ ITERATION STEP  41
+ CPU time [min]:    19.271                   Wall time [min]:    14.290
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  41 IS      -7.9873502841682864 [AU]
+ ======================================================================
+ ITERATION STEP  42
+ CPU time [min]:    19.740                   Wall time [min]:    14.643
+ 
+ ALPHA OCC:   2   0   0   0
+ BETA  OCC:   2   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  42 IS      -7.9873502841682154 [AU]
+ ======================================================================
+ 
+ SUCCESS...
+ THE SCF ITERATION HAS CONVERGED!
+ 
+                   A1  B1  B2  A2  
+ FINAL ALPHA OCC:   2   0   0   0
+ FINAL BETA  OCC:   2   0   0   0
+ 
+ ***FINAL HARTREE-FOCK ENERGY:     -7.9873502841682154 [AU]
+ 
+ RETURNING FROM SCF ALGORITHM
+ ======================================================================
+
+ ************************ 2017-11-11 23:12:23 *************************
+ Executing ovirt...
+
+ ovirt, the routine of orbital optimization and integral transformation 
+Sat Nov 11 23:12:24 EST 2017
+ Allocated memory:                   22528  Mb
+ RHF calculation! 
+ integral transforamtion: AOs ------ MOs
+ # of basis functions, # of int. blocks   406    10
+ 10 % 
+ 20 % 
+ 30 % 
+ 40 % 
+ 50 % 
+ 60 % 
+ 70 % 
+ 80 % 
+ 90 % 
+100 % 
+ second part
+ 10 %
+ 20 %
+ 30 %
+ 40 %
+ 50 %
+ 60 %
+ 70 %
+ 80 %
+ 90 %
+100 %
+ integral transformation is completed! 
+CPU and WC time       35779.90       44191.59     AOs -> MOs 
+Integrals are written to fort.55
+Sun Nov 12 16:46:19 EST 2017
+  ovirt terminated normally 
+
+ ************************ 2017-11-12 16:46:23 *************************
+ Executing goldstone...
+
+ Generation of CC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.3585E+15
+ Probable CPU time per iteration step (hours):  13584.87
+ Required memory (Mbytes): 3459191.3
+ Number of intermediates:                                 106
+ Number of intermediates to be stored:                     43
+ Length of intermediate file (Mbytes):  111505.9
+
+ ************************ 2017-11-12 16:46:27 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ CC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   812
+ Number of alpha electrons:                        2
+ Number of beta electrons:                         2
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-09
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    572
+ Number of                     2 -fold excitations:                 219696
+ Number of                     3 -fold excitations:               33366344
+ Number of                     4 -fold excitations:             1661235436
+ Total number of configurations:             1694822049
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):   83529.5
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    3304172.7772   3358840.6248
+ Integer:        11.8047
+ Total:     3304184.5819   3358852.4295
+ 
+
+ ************************ 2017-11-12 16:46:29 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   3.8486E+14
+ Probable CPU time per iteration step (hours):   3848.59
+ Required memory (Mbytes): 3459191.3
+ Number of intermediates:                                 424
+ Number of intermediates to be stored:                    160
+ Length of intermediate file (Mbytes):  241049.8
+
+ ************************ 2017-11-12 16:46:40 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   812
+ Number of alpha electrons:                        2
+ Number of beta electrons:                         2
+ Number of active particles:                   404
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-09
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    572
+ Number of                     2 -fold excitations:                 219696
+ Number of                     3 -fold excitations:               33366344
+ Number of                     4 -fold excitations:             1661235436
+ Total number of configurations:             1694822049
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  327554.4
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:     411048.5278    602413.8351
+ Integer:        16.0455
+ Total:      411064.5733    602429.8806
+ 
+
+ ************************ 2017-11-12 16:46:41 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   3.8823E+14
+ Probable CPU time per iteration step (hours):   3882.28
+ Required memory (Mbytes): 3459191.3
+ Number of intermediates:                                 420
+ Number of intermediates to be stored:                    161
+ Length of intermediate file (Mbytes):  241338.4
+
+ ************************ 2017-11-12 16:46:52 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   812
+ Number of alpha electrons:                        2
+ Number of beta electrons:                         2
+ Number of active particles:                   402
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-09
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    572
+ Number of                     2 -fold excitations:                 219696
+ Number of                     3 -fold excitations:               33366344
+ Number of                     4 -fold excitations:             1661235436
+ Total number of configurations:             1694822049
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  326686.8
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:     415073.1067    606252.3291
+ Integer:        16.0243
+ Total:      415089.1310    606268.3534
+ 
+
+ ************************ 2017-11-12 16:46:54 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   3.8150E+14
+ Probable CPU time per iteration step (hours):   3815.04
+ Required memory (Mbytes): 3459191.3
+ Number of intermediates:                                 420
+ Number of intermediates to be stored:                    161
+ Length of intermediate file (Mbytes):  240012.7
+
+ ************************ 2017-11-12 16:47:05 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   812
+ Number of alpha electrons:                        2
+ Number of beta electrons:                         2
+ Number of active particles:                   406
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-09
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    572
+ Number of                     2 -fold excitations:                 219696
+ Number of                     3 -fold excitations:               33366344
+ Number of                     4 -fold excitations:             1661235436
+ Total number of configurations:             1694822049
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  327469.0
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:     414883.4402    606071.2937
+ Integer:        16.0243
+ Total:      414899.4645    606087.3180
+ 
+
+ ************************ 2017-11-12 16:47:07 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     60
+ Number of restricted diagrams in T^2 equations:    438
+ Number of restricted diagrams in T^3 equations:   1112
+ Number of restricted diagrams in T^4 equations:   1629
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   3.2857E+14
+ Probable CPU time per iteration step (hours):   3285.75
+ Required memory (Mbytes): 3459191.3
+ Number of intermediates:                                1067
+ Number of intermediates to be stored:                    390
+ Length of intermediate file (Mbytes):  216536.2
+
+ ************************ 2017-11-12 16:47:34 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   812
+ Number of alpha electrons:                        2
+ Number of beta electrons:                         2
+ Number of active particles:                   404
+ Number of active holes:                         2
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-09
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    572
+ Number of                     2 -fold excitations:                 219696
+ Number of                     3 -fold excitations:               33366344
+ Number of                     4 -fold excitations:             1661235436
+ Total number of configurations:             1694822049
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  299596.4
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:     108308.0698    306048.4965
+ Integer:        38.2539
+ Total:      108346.3238    306086.7505
+ 
+ Unable to optimize memory usage: Insufficient memory!
+ 
+ ************************ 2017-11-12 16:47:37 *************************
+                   Error at the termination of mrcc.
+ **********************************************************************
+--- SharcNET Job Epilogue ---
+Job returned with status 1.
+               jobid: 1490387
+               resid: 2971642
+         exit status: 1
+      allocated time: 65571.5
+           user time: 52248.2
+         system time: 15948
+peak rss=32178122752; peak vsz=32193142784 (bytes)
+atime=65571.5; utime=52248.2; stime=15948; exit=1

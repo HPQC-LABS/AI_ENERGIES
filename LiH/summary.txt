@@ -1,0 +1,114 @@
+LiH(X) R=3.0152359721231985   # converted from Coxon using 2014 CODATA: 1.59559416124/0.52917721067
+===================================================================================================
+MRCC:   itol=18,scftol=14,cctol=11 (or better)
+MOLPRO: gthresh,oneint=1e-18,twoint=1e-18,THRESH,ENERGY=1d-16
+
+2Z (scftol=13, cctol=9, redo?) 
+============================================================================================
+RHF-MRCC:                            -7.984410 032291
+RHF-MOLPRO:                          -7.984410 032291 (Perfect!)
+MP2-MRCC:                            -8.038107 929631
+RMP2-MOLPRO:                         -8.038107 929632 (Perfect!)
+Total CCSD energy [au]:              -8.051834 762559
+UCCSD-MOLPRO:                        -8.051834 762558 (Perfect!)
+Total CCSD(T) energy [au]:           -8.051890 068199
+UCCSD(T)-MOLPRO:                     -8.051890 068199 (Perfect!)
+Total CCSDT energy [au]:             -8.051898 493603
+Total CCSDT(Q) energy [au]:          -8.051898 673820 (0.003 0 micro-Hartree TOO LOW Perfect!!) 
+Total CCSDTQ energy [au]:            -8.051898 670815
+FCI-MOLPRO:                          -8.051898 670775 (0.000 04 micro-artree TOO HIGH Perfect!), maybe need to control tolerance for FCI)
+
+3Z
+============================================================================================
+RHF:                                 -7.986925 850981
+RHF-MOLPRO:                          -7.986925 850982 (Perfect!)
+MP2:                                 -8.052770 996115                   
+RMP2-MOLPRO:                         -8.052770 996116 (Perfect!)
+Total CCSD energy [au]:              -8.065102 887040
+UCCSD-MOLPRO:                        -8.065102 887032 (8 pico-hartree too high)
+Total CCSD(T) energy [au]:           -8.065220 446610
+UCCSD(T)-MOLPRO:                     -8.065220 446602 (8 pico-hartree too high)
+Total CCSDT energy [au]:             -8.065238 994446 (0.70 micro-Hartree higher than FCI, 0.14cm-1)
+Total CCSDT(Q) energy [au]:          -8.065239 694365 (0.08 micro-Hartree higher than FCI, 0.02cm-1)
+Total CCSDTQ energy [au]:            -8.065239 767535 
+FCI-MOLPRO                           -8.065239 767481 (54 pico-hartree too high)
+
+4Z (scftol=13, cctol=9, redo?) 
+============================================================================================
+RHF:                                 -7.987243 982079
+RHF-MOLPRO:                          -7.987243 982079 (Perfect!)
+MP2:                                 -8.056781 492435
+RMP2-MOLPRO:                         -8.056781 492436 (Perfect!)
+Total CCSD energy [au]:              -8.068157 585405
+UCCSD-MOLPRO:                        -8.068157 585326 (79 pico-Hartree too high)
+Total CCSD(T) energy [au]:           -8.068308 738865
+UCCSD(T)-MOLPRO:                     -8.068308 738786 (79 pico-Hartree too high)
+Total CCSDT energy [au]:             -8.068330 768097
+Total CCSDT(Q) energy [au]:          -8.068331 702406 (0.10 micro-Hartree higher than FCI)
+Total CCSDTQ energy [au]:            -8.068331 802925 
+FCI/MOLPRO                           -8.068331 80     (2 days wasn't long enough to finish)
+
+5Z (scftol=14, cctol=9)
+============================================================================================
+RHF:                                 -7.987339 530746
+RHF-MOLPRO:                          -7.987339 530747 (Perfect!)
+MP2:                                 -8.058680 496186
+RMP2-MOLPRO:                         -8.058680 496186 (Perfect!)
+Total CCSD energy [au]:              -8.069515 554705
+UCCSD-MOLPRO:                        -8.069515 554718 (13 pico-Hartree lower than MRCC)
+Total CCSD(T) energy [au]:           -8.069676 203691
+UCCSD(T)-MOLPRO:                     -8.069676 203704 (13 pico-Hartree lower than MRCC)
+Total CCSDT energy [au]:             -8.069697 678990
+Total CCSDT(Q) energy [au]:          -8.069698 698811 (0.95 micro-Hartree higher than FCI)
+Total CCSDTQ energy [au]:            -8.069698 794170 
+FCI/MOLPRO                           -8.069698 71     but still changing. 30 days is not enough 
+
+6Z
+============================================================================================
+RHF:                                 -7.987350 284168 
+RHF-MOLPRO:                          -7.987350 345073 (0.609 micro-Hartree lower than MRCC)
+RMP2-MOLPRO:                         -8.059350 563754 
+Total CCSD energy [au]:              -8.069907 606988
+UCCSD-MOLPRO:                        -8.069907 805055 (0.198 micro-Hartree lower than MRCC)
+Total CCSD(T) energy [au]:           -8.070073 116175
+UCCSD(T)-MOLPRO:                     -8.070073 314521 (0.198 micro-Hartree lower than MRCC)
+Total CCSDT energy [au]:             -8.070093 834132
+Total CCSDT(Q) energy [au]:          -8.070094 889135 (0.10 micro-Hartree higher than FCI)
+Total CCSDTQ energy [au]:            -8.070094 98
+FCI/MOLPRO running on wobbie.                         30 days with 560GB for single core, no iterations.
+
+7Z (400GB for MRCC)
+============================================================================================
+RHF-MOLPRO(noK):                     -7.987351 978036 
+RHF-MOLPRO(noK,20s):                 -7.987352 161144 (0.19 micro-Hartree lower)
+RMP2-MOLPRO(noK):                    -8.059665 183010
+RMP2-MOLPRO(noK,20s):                -8.059664 780408 (0.4 micro-Hartree too high)
+UCCSD-MOLPRO(noK):                   -8.070078 825399
+UCCSD-MOLPRO(noK,20s):               -8.070078 604917 (0.22 micro-Hartree too high)
+UCCSD(T)-MOLPRO(noK):                -8.070245 702191
+UCCSD(T)-MOLPRO(noK,20s):            -8.070245 481354 (0.22 micro-Hartree too high)
+-8.06199410 after 2nd iteration for CCSD on 29 December. fort.* still changing on 31 January but no change to .out file)
+FCIest.                              -8.070267 14683  From: -8.070245481354+(-8.07009498--8.070073314521)
+
+8Z(i)
+============================================================================================
+RHF-MOLPRO:                          -7.987352 449545 
+RMP2-MOLPRO:                         -8.059742 538413
+UCCSD-MOLPRO:                        -8.070130 526395 
+RCCSD-MOLPRO:                        -8.070130 526475
+UCCSD(T)-MOLPRO:                     -8.070298 017965
+RCCSD(T)-MOLRPO:                     -8.070298 018048
+FCIest.                              -8.070319 683440 From: -8.070298017965+(-8.07009498--8.070073314521)
+
+ECG:
+===========================================================================================
+      Tung 2011     Cenek 2000
+75   −8.068 104 2   −8.066 975
+150  −8.069 654 1   −8.069 481
+300  −8.070 336 2   −8.070 221
+600  −8.070 494 9   −8.070 452
+1200 −8.070 529 4   −8.070 512
+2400 −8.070 547 3   −8.070 538
+Estimated in Cenek: −8.070 548
+ 
+Tung optimized all parameters simultaneously while Cenek did one-by-one
