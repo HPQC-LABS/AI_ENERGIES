@@ -6,13 +6,17 @@ CFOUR:       1 Angstrom  = 1/0.529,177,249         Bohr (4.17 Ang = 7.880,157,37
 2014 CODATA: 1 Hartree   = 219474.6313702(13) cm-1
 =====================================================================================================
 
+In the results below, MRCC is significantly higher for both the atomic and molecular energies. Energy differences should be done carefully.
+
 aug-cc-pCV6Z-NR:
 =================
 ATOMIC:
 =================
 CCSDT-CFOUR: 
-FCI-MRCC:    
-FCI-MOLPRO:  
+CCSDT-MRCC:   -7.477 717 944 712 (default settings)
+FCI-MRCC:                        (itol=18,scftol=13)
+FCI-MOLPRO:   -7.477 718 152 339 (default settings)
+FCI-MOLRPO:   -7.477 718 152 187 (surprisingly higher with itol=1d-18,scftol=-16, but this is 0.2 pico-Harteree)
 =================
 MOLECULAR:
 =================
@@ -21,16 +25,16 @@ ROHF/MRCC (semi-can)  -14.864 019 536 409 (itol=1e-18, scftol=13)
 ROHF/MRCC (canonical) -14.864 019 536 410 (itol=1e-18, scftol=13)
 ROHF/MOLPRO           -14.864 019 661 198 (used for FCIQMC, default itol, 1e-13 and default scftol)
 ROHF/MOLPRO           -14.864 019 661 611 (itol=1d-18, scftol=1e-16, 0.4 nano-Hartree lower)
------------------------------------- All agree to within 2 nano-Hartree, but CFOUR is 1.6 nano-Hartree lower
+------------------------------------ All agree to within 200 nano-Hartree, but MOLPRO is 130 nano-Hartree lower
 RCISD/CFOUR        
 RCISD/MOLPRO          -14.955 685 387 559 
-RCISD/MOLPRO                              (itol=1d-18, scftol=1e-16, cctol=1e-16) 
+RCISD/MOLPRO          -14.955 685 346 242 (surprisngly higher with itol=1d-18, scftol=1e-16, cctol=1e-16, but only 40 nano-Hartree) 
 ------------------------------------ 
 CCSD/CFOUR                                (XFORM_TOL=18, but still says ints below 1e-13 neglected, scf_conv=7)
 CCSD/MRCC-CFOUR       -14.956 808 418 226 (XFORM_TOL=18, but still says ints below 1e-13 neglected, scf_conv=7, cctol=7)
 UCCSD/MOLPRO          -14.956 808 495 107 (used for FCIQMC, default itol, 1e-13, scftol, and cctol)
 UCCSD/MOLPRO                              (used for FCIQMC, default itol, 1e-13, scftol, but with cctol=1e-16)
-UCCSD/MOLPRO                              (itol=1d-18, scftol=1e-16, cctol=1e-16)
+UCCSD/MOLPRO          -14.956 808 83      (itol=1d-18, scftol=1e-16, cctol=1e-16)
 ------------------------------------ MRCC is  micro-Hartree (cm-1) lower than CFOUR and MOLPRO 
 CCSD(T)/CFOUR                             
 CCSD(T)/MRCC-CFOUR    -14.956 937 267 989 (XFORM_TOL=18, but still says ints below 1e-13 neglected, scf_conv=7, cctol=7) 
