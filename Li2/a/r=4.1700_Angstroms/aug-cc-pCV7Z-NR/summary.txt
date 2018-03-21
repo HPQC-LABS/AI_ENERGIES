@@ -10,62 +10,62 @@ aug-cc-pCV7Z(i)-NR:
 =================
 ATOMIC:
 =================
-UHF-CFOUR             
-ROHF-CFOUR         
-ROHF-MRCC (semi-can)  
-ROHF-MRCC (canonical) 
-ROHF-MOLRPO     
-ROHF-MOLRPO    
+UHF/CFOUR                   running
+UHF/MOLPRO                 -7.432 750 677 645 (itol=18,scftol=16)
+
+ROHF/CFOUR                 -7.249 079 549 860 (XFORM_TOL=18, scf_conv=10) ????
+ROHF/MRCC (canonical)      -7.432 726 687 163 (default settings)
+ROHF/MRCC (semi-can)       -7.432 726 687 162 (itol=18,scftol=14) 
+ROHF/MRCC (canonical)      -7.432 726 687 162 (itol=18,scftol=14)
+ROHF/MOLRPO                -7.432 726 687 139 (default settings) 
+ROHF/MOLRPO                -7.432 726 687 159 (itol=18,scftol=16)
 --------------------------------------
-CCSDT-CFOUR:         
-CCSDT-MRCC:         
-CCSDT-MRCC:           
-CCSDT-CFOUR-MRCC      
-FCI-MOLPRO:          
-FCI-MOLRPO:           
+CCSDT/CFOUR:                running
+CCSDT/CFOUR-MRCC      
+FCI/MRCC:                  -7.477 799 002 041 (default settings, with k-function)     
+FCI/MRCC:                  -7.477 798 995 569 (default settings, without k-function. Same as CISD though!)
+FCI/MRCC:                   running           (itol=18,scftol=16, with k-function)
+FCI/MOLPRO:                -7.477 845 565 348 (default settings) 
+FCI/MOLRPO:           
 =================
 MOLECULAR:
 =================
-UHF/CFOUR             -14.864 067 539 058 [754 functions] (default settings)
-UHF/MRCC               
-UHF/MOLPRO             running 
-UHF?/CFOUR            -14.864 067 539 055 [754 functions] (default settings)
-UHF?/CFOUR            -14.864 067 539 058 [754 functions] (default functions, simply a dfferent run, 3 pHartree floating-point error)
-UHF?/CFOUR            -14.864 067 539 054 [754 functions] (XFORM_TOL=18 "Integrals less than  0.10E-13 are neglected", scf_conv=9), on wobbie
+UHF/CFOUR                  -14.864 067 539 058 [754 functions] (default settings)
+UHF/CFOUR                  -14.864 067 539 055 [754 functions] (default functions, simply a dfferent run, 3 pHartree floating-point error)
+UHF/CFOUR                  -14.864 067 539 054 [754 functions] (XFORM_TOL=18 "Integrals less than  0.10E-13 are neglected", scf_conv=9), on wobbie
+UHF/MRCC                    
+UHF/MOLPRO                  running 
 
-ROHF/CFOUR            -14.864 020 699 355 [754 functions] (XFORM_TOL=18 "Integrals less than  0.10E-13 are neglected", scf_conv=7), on cedar (used for CCSDT/CFOUR)
-ROHF/CFOUR/bohr       -14.864 020 697 748 [754 functions] (XFORM_TOL=18 "Integrals less than  0.10E-13 are neglected", scf_conv=?), on cedar (used for CCSDT(Q)/MRCC)
-ROHF/MRCC (semi-can)  -14.864 020 697 720 [754 functions] (default settings)
-ROHF/MRCC (canonical) -14.864 020 697 720 [754 functions] (default settings)
-ROHF/MOLPRO           -14.864 020 697 335 [754 functions] (default settings) - looks similar to ROHF/CFOUR but CFOUR's nHartree digit is 9 instead of 7. The 355 is not a typo.         
-ROHF/MOLPRO            running
------------------------------------- All agree to within 200 nano-Hartree, but MOLPRO is 130 nano-Hartree lower
+ROHF/CFOUR                 -14.864 020 699 355 [754 functions] (XFORM_TOL=18 "Integrals less than  0.10E-13 are neglected", scf_conv=7), on cedar (used for CCSDT/CFOUR)
+ROHF/CFOUR/bohr            -14.864 020 697 748 [754 functions] (XFORM_TOL=18 "Integrals less than  0.10E-13 are neglected", scf_conv=?), on cedar (used for CCSDT(Q)/MRCC)
+ROHF/MRCC (semi-can)       -14.864 020 697 720 [754 functions] (default settings)
+ROHF/MRCC (canonical)      -14.864 020 697 720 [754 functions] (default settings)
+ROHF/MOLPRO                -14.864 020 697 335 [754 functions] (default settings) - looks similar to ROHF/CFOUR but CFOUR's nHartree digit is 9 instead of 7. The 355 is not a typo.         
+ROHF/MOLPRO                running
+------------------------------------ 
 RCISD/CFOUR/bohr        
 RCISD/MOLPRO        
 RCISD/MOLPRO        
 ------------------------------------ 
 CCSD/CFOUR/bohr      
-CCSD/MRCC-CFOUR      
+CCSD/MRCC-CFOUR/bohr      
 UCCSD/MOLPRO         
 UCCSD/MOLPRO         
 UCCSD/MOLPRO         
------------------------------------- MRCC is  micro-Hartree (cm-1) lower than CFOUR and MOLPRO 
-CCSD(T)/CFOUR/bohr                          
-CCSD(T)/MRCC-CFOUR    
-UCCSD(T)/MOLPRO       
-UCCSD(T)/MOLPRO       
-UCCSD(T)/MOLPRO       
------------------------------------- MRCC is  micro-Hartree (cm-1) lower than CFOUR and MOLPRO
-CCSDT/CFOUR/UHF       
-CCSDT/CFOUR/ROHF?      -14.957 141 010 744 (XFORM_TOL=18, but still says ints below 1e-13 neglected, scf_conv=7, sub-nHartree convergence achieved) 
-CCSDT/CFOUR/bohr                          (XFORM_TOL=18, but still says ints below 1e-13 neglected, scf_conv=7, cctol=?) 
-CCSDT/MRCC-CFOUR       running! (XFORM_TOL=18, but still says ints below 1e-13 neglected, scf_conv=7, cctol=15) 
------------------------------------- MRCC is  micro-Hartree 
-CCSDT(Q)/A/MRCC-CFOUR -14.956 957 129 722 (XFORM_TOL=18, but still says ints below 1e-13 neglected, scf_conv=7, cctol=15) 
-CCSDT(Q)/B/MRCC-CFOUR -14.956 957 139 395 (XFORM_TOL=18, but still says ints below 1e-13 neglected, scf_conv=7, cctol=15) 
 ------------------------------------ 
-CCSDTQ/MRCC-CFOUR 
-FCIQMC/MOLPRO         -14.956 957(1)
+CCSD(T)/CFOUR/bohr                          
+CCSD(T)/MRCC-CFOUR/bohr   
+UCCSD(T)/MOLPRO       
+UCCSD(T)/MOLPRO       
+UCCSD(T)/MOLPRO       
+------------------------------------ 
+CCSDT/CFOUR/UHF            -14.957 211 341 106
+CCSDT/CFOUR/ROHF           -14.957 141 010 744 
+CCSDT/CFOUR/bohr                          
+CCSDT/MRCC-CFOUR/bohr running! (XFORM_TOL=18, but still says ints below 1e-13 neglected, scf_conv=7, cctol=15) 
+------------------------------------ 
+CCSDT(Q)/A/MRCC-CFOUR/bohr  running!
+CCSDT(Q)/B/MRCC-CFOUR/bohr  running!
 ------------------------------------ 
 
 aCV7Z
