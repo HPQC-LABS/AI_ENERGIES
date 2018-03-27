@@ -20,23 +20,23 @@ ROHF/MRCC (semi-can)       -7.432 726 687 162 [377 functions] (itol=18,scftol=14
 ROHF/MRCC (canonical)      -7.432 726 687 162 [377 functions] (itol=18,scftol=14) MRCC internal error of 3 pHartree!
 ROHF/MOLRPO                -7.432 726 687 139 [377 functions] (default settings) 
 ROHF/MOLRPO                -7.432 726 687 159 [377 functions] (itol=18,scftol=16)
---------------------------------------
-CCSDT/CFOUR:                running
-CCSDT/CFOUR-MRCC      
+-------------------------------------------------------------------------------------------------------------------------
+CCSDT/CFOUR:               -7.477 845 564 128 
+CCSDT/CFOUR-MRCC            running in /gwork/nike/Li/nr/S/7Z/noK/actually3electrons/CFOUR/MRCCinterface
 FCI/MRCC:                  -7.477 799 002 041 (default settings, with k-function)     
 FCI/MRCC:                  -7.477 798 995 569 (default settings, without k-function. CISDT was same as CISD though!)
-FCI/MRCC:                   running           (itol=18,scftol=16, with k-function)
+FCI/MRCC:                   /gwork/nike/Li/nr/S/7Z/ccBased           (itol=18,scftol=16, with k-function)
 FCI/MOLPRO:                -7.477 845 565 348 (default settings, without k-function) 
-FCI/MOLRPO:                -7.477 845 563 857 (itol=18,scftol=16, without k-function)
+FCI/MOLRPO:                -7.477 845 563 857 (itol=18,scftol=16, without k-function), why 0.3 nH above CFOUR?
 =================
 MOLECULAR:
 =================
 UHF/CFOUR                  -14.864 067 539 058 [754 functions] (default settings)
 UHF/CFOUR                  -14.864 067 539 055 [754 functions] (default functions, simply a dfferent run, 3 pHartree floating-point error)
 UHF/CFOUR                  -14.864 067 539 054 [754 functions] (XFORM_TOL=18 "Integrals less than  0.10E-13 are neglected", scf_conv=9), on wobbie
-UHF/MRCC                    
-UHF/MOLPRO                 -12.667804979177 ??
-
+UHF/MRCC                                                       
+UHF/MOLPRO                 -12.667804979177 ??                 
+                                                               
 ROHF/CFOUR                 -14.864 020 699 355 [754 functions] (XFORM_TOL=18 "Integrals less than  0.10E-13 are neglected", scf_conv=7), on cedar (used for CCSDT/CFOUR)
 ROHF/CFOUR                 -14.864 020 699 355 [754 functions] (XFORM_TOL=18 "Integrals less than  0.10E-13 are neglected", scf_conv=6), different version of CFOUR
 ROHF/CFOUR/bohr            -14.864 020 697 748 [754 functions] (XFORM_TOL=18 "Integrals less than  0.10E-13 are neglected", scf_conv=?), on cedar (used for CCSDT(Q)/MRCC)
@@ -44,32 +44,28 @@ ROHF/MRCC (semi-can)       -14.864 020 697 720 [754 functions] (default settings
 ROHF/MRCC (canonical)      -14.864 020 697 720 [754 functions] (default settings)
 ROHF/MOLPRO                -14.864 020 697 335 [754 functions] (default settings) - looks similar to ROHF/CFOUR but CFOUR's nHartree digit is 9 instead of 7. The 355 is not a typo.         
 ROHF/MOLPRO                -14.864 020 697 748 [754 functions] (itol=18,scftol=16)
------------------------------------- 
-RCISD/CFOUR/bohr        
-RCISD/MOLPRO        
-RCISD/MOLPRO        
------------------------------------- 
-CCSD/CFOUR/bohr      
-CCSD/MRCC-CFOUR/bohr      
-UCCSD/MOLPRO         
-UCCSD/MOLPRO         
-UCCSD/MOLPRO         
------------------------------------- 
-CCSD(T)/CFOUR/bohr                          
-CCSD(T)/MRCC-CFOUR/bohr   
-UCCSD(T)/MOLPRO       
-UCCSD(T)/MOLPRO       
-UCCSD(T)/MOLPRO       
------------------------------------- 
-CCSDT/CFOUR/UHF            -14.957 211 341 106
-CCSDT/CFOUR/ROHF           -14.957 141 010 744 
-CCSDT/CFOUR/ROHF           -14.957 211 357 355 (different version of CFOUR)
-CCSDT/CFOUR/bohr                          
-CCSDT/MRCC-CFOUR/bohr running! (XFORM_TOL=18, but still says ints below 1e-13 neglected, scf_conv=7, cctol=15) 
------------------------------------- 
-CCSDT(Q)/A/MRCC-CFOUR/bohr  running!
-CCSDT(Q)/B/MRCC-CFOUR/bohr  running!
------------------------------------- 
+-------------------------------------------------------------------------------------------------------------------------
+RCISD/CFOUR/bohr                               [754 functions]  
+RCISD/MOLPRO                                   [754 functions] 
+RCISD/MOLPRO                                   [754 functions] 
+-------------------------------------------------------------------------------------------------------------------------
+CCSD/CFOUR/bohr                                [754 functions] (XFORM_TOL=18,SCF_CONV=9,CC_CONV=10)                 
+CCSD/MRCC-CFOUR/bohr                           [754 functions] 
+UCCSD/MOLPRO                                   [754 functions] (itol=18,scftol=16,cctol=16)
+-------------------------------------------------------------------------------------------------------------------------
+CCSD(T)/CFOUR/bohr                             [754 functions] (XFORM_TOL=18,SCF_CONV=9,CC_CONV=10)                                 
+CCSD(T)/MRCC-CFOUR/bohr                        [754 functions]                 
+UCCSD(T)/MOLPRO                                [754 functions] (itol=18,scftol=16,cctol=16)
+-------------------------------------------------------------------------------------------------------------------------
+CCSDT/CFOUR/UHF            -14.957 211 341 106 [754 functions] 
+CCSDT/CFOUR/ROHF           -14.957 141 010 744 [754 functions] 
+CCSDT/CFOUR/ROHF           -14.957 211 357 355 [754 functions] (different version of CFOUR)
+CCSDT/CFOUR/bohr                               
+CCSDT/MRCC-CFOUR/bohr running cedar! (XFORM_TOL=18, but still says ints below 1e-13 neglected, scf_conv=7, cctol=15) 
+-------------------------------------------------------------------------------------------------------------------------
+CCSDT(Q)/A/MRCC-CFOUR/bohr  running cedar!
+CCSDT(Q)/B/MRCC-CFOUR/bohr  running cedar!
+-------------------------------------------------------------------------------------------------------------------------
 
 aCV7Z
 15 14 12 10 8 6 4 2
