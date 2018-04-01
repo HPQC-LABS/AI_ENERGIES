@@ -8,8 +8,18 @@ aug-cc-pCV7Z-NR -14.864020697748 -14.957211357355 (CCSDT + avg. of FCI-CCSDT in 
 aug-cc-pCV7Z-NR -14.864020697748 -14.957212191106 (UHF-CCSDT + avg. of FCI-ROHF/CCSDT in other basis sets, which is 850(60) nH)
 
 5Z: (-14.956385096+2*7.477431653828)*219474.6313705 = -333.9939358233644
-6Z: (-14.956957423+2*7.477718152187)*219474.6313705 = -333.8469497121553 (MOLPRO)
-6Z: (-14.956957423+2*7.477717944710)*219474.6313705 = -333.93802158835194 (MRCC) - re-running CFOUR atomic on wobbie
+6Z: (-14.956957680+2*7.477718152465)*219474.6313705 = -333.9032326645789
 7Z: (-14.957211357355+2*7.477845563857)*219474.6313705 = -333.65184005712 (ROHF-based)
 7Z: (-14.957212191106+2*7.477845563857)*219474.6313705 = -333.8348272506497 (UHF-based)
 7Z: (-14.957212191106+2*7.477845563857)*219474.6313705 = -333.8348272506497 (UHF-based, with MRCC atomic)
+
+Adding non-Schroedinger effects:
+All calculations include an X2C+SFDC+Breit correction of = +0.255cm-1.
+
+2Z:                           333.65-317.30 = 16.349999999999966                      
+3Z:                           333.65-339.85 = 6.2000000000000455
+4Z:                           333.65-332.77 = 0.8799999999999955
+5Z: 
+6Z: -333.903232664578+0.255 = 333.6603 - 333.6476 = 0.0127cm-1                     
+[Unceratinty in FCIest for 6Z is 0.0012cm-1 from the conservative estimate of 60nH from CCSDT vs FCI in other basis sets. Really closer to 17nH from CCSDT(Q) vs FCI. Smaller unc. than in 5Z because used CFOUR-MRCC rather than pure MRCC, so no correction necessary for the ovirt.f error.]
+
