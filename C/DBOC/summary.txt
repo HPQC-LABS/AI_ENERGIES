@@ -62,10 +62,10 @@ UHF-CC(n)/aCV(X)Z-NR/CFOUR-MRCC/12C:
 (4,4) (0.0017120271 - 0.0017109763)*219474.6313702 =  0.23062394264378239   CFOUR   MRCC
 
 (5,2) (0.0017109876 - 0.0017104762)*219474.6313702 =  0.1122393264827314    CFOUR   CFOUR
-(5,3) (crashed with 512GB -             )*219474.6313702 =  CFOUR   MRCC (trying C+ with 32G and C with 768G
+(5,3) (crashed with 512GB - 0.0017110312)*219474.6313702 =  CFOUR   MRCC (trying C+ worked with 32G !!! and C with 768G (still queued!)
 
-(6,2) (crashed with 32GB 
-(6,3) (crashed.
+(6,2) (crashed with 32GB .  128G was not enough for C+, what? maybe there was something else wrong. Actually the problem might be that we only gave it 40G for CFOUR portion, it crashed right after allocating that. Trying with 32cores now.
+(6,3) (crashed.          .  128G was not enough for C+.
 (6,4) 
 
 (7,2)
@@ -106,7 +106,20 @@ All Electrons vs. Frozen Core [dboc(C) - dboc(C+)]:
                                                 
 (5,2)   0.1122393264827314 -0.146718791071000=-0.0344794645882686
 (5,3)   crashed            -0.251364295308295=
-(5,4)                      -0.258168008880807=
+(5,4)   0.27? 0.245?       -0.258168008880807= (0.27 comes from AE(4,4) - 0.04 from (3,4). 0.245 come from AE-FC (4,4) +FC(5,4) .. BUT (4,2) to (5,2) AE-FC changed by 0.1 non-monotonically!
 
-Estimated AE:
+(6,2)                      -0.147223582723126=
+(6,3)                      -0.252220246370646=
+(6,4)                      -0.259045907406254=
 
+(7,2)                      -0.146455421513306=
+(7,3)                      -0.251495980087115=
+
+
+the difference between (5,3) and (6,3) in my table below, is only 0.001cm-1, so (8,3) shouldn't be much different from  0.254 cm-1. Then looking at (5,4) vs (5,3), and (4,4) vs (4,3), and (3,4) vs (3,3), we get a difference of about 0.007cm-1 almost every time, so I think (8,4) would be around 0.261cm-1
+
+Then comparing to the all-electron calculations, we see that the all-electron calculations with the biggest basis sets are between 0.01 to 0.03 cm-1 lower than the frozen core values. This would bring us down to between 0.23 cm-1 to 0.25 cm-1
+
+In any case, your (8,4) value of 0.2729cm-1 should match what I get, which looks like it will be around 0.261cm-1, 
+
+Report 0.25(2)? It encompasses Michal's (crude and needs to be looked at more deeply, but still a good result) and the lowet etimate I have.
