@@ -24,7 +24,7 @@ UHF-CC(n)-FC/aV(X)Z-NR/CFOUR-MRCC/11B:
 (5,2) (0.0012075399 - 0.0012087605)*219474.6313702 = -0.2678907350504913   CFOUR   MRCC
 (5,3) (0.0012079356 - 0.0012087605)*219474.6313702 = -0.1810446234172898   CFOUR   MRCC
 
-(6,2) (0.0012075465 - running slowly (sorting integrals)            
+(6,2) (0.0012075465 - running slowly (executing out-of-core algorithm, finished both CC and CI)            
 (6,3) (0.0012079422 - same as CCSD           
 
 (7,2) (need to remove k-functions from GENBAS.
@@ -44,25 +44,27 @@ UHF-CC(n)/aCV(X)Z-NR/CFOUR-MRCC/11B:
 (2,2) (0.0012342858 - 0.0012368780)*219474.6313702 = -0.568922139437857    CFOUR   MRCC
 (2,3) (0.0012345705 - 0.0012368367)*219474.6313702 = -0.497373409611188    CFOUR   MRCC
 (2,4) (0.0012345785 - 0.0012368379)*219474.6313702 = -0.495880982117837    CFOUR   MRCC
-(2,5) (crashed try FCI instead of CCSDTQP ? - 0.0012368379)
-(2,F) (FCI running  - 0.0012368379)
+(2,5) (crashed      - 0.0012368379)*219474.6313702                         CFOUR   MRCC
+(2,F) (0.0012345786 - 0.0012368379)*219474.6313702 = -0.495859034654693    CFOUR   MRCC
                                                                        
 (3,2) (0.0012407395 - 0.0012423766)*219474.6313702 = -0.359301919016179    CFOUR   MRCC
 (3,3) (0.0012412474 - 0.0012425074)*219474.6313702 = -0.276538035526475    CFOUR   MRCC
 (3,4) (0.0012412608 - 0.0012425087)*219474.6313702 = -0.273882392486895    CFOUR   MRCC                          
-(3,5) (             - 0.0012425087)*219474.6313702 =                       CFOUR   MRCC                          
+(3,5) (             -
+(3,F) (0.0012412609 - 0.0012425087)*219474.6313702 = -0.273860445023750    CFOUR   MRCC                           
                                                                        
 (4,2) (0.0012416588 - 0.0012430007)*219474.6313702 = -0.294513007835685    CFOUR   MRCC
 (4,3) (0.0012422108 - 0.0012431932)*219474.6313702 = -0.215611877858081    CFOUR   MRCC
 (4,4) (0.0012422256 - 0.0012431947)*219474.6313702 = -0.212692865260862    CFOUR   MRCC       
 (4,5) (             - 0.0012431947)*219474.6313702 =            
+(4,F) (running, not sure if 32GB is enough, not even done 1 iteration of FCI
 
 (5,2) (0.0012075542 - 0.0012087605)*219474.6313702 = -0.26475224782187423  CFOUR   MRCC
 (5,3) (0.0012422866 - 0.0012432317)*219474.6313702 = -0.20742547410798914  CFOUR   MRCC       
-(5,4) (running      - 0.0012432317)*219474.6313702 =                       CFOUR   MRCC       
+(5,4) (running with128 - running with 1core and 128GB ram, only done SCF )*219474.6313702 =                       CFOUR   MRCC       
 
-(6,2) (seems to be frozen, last output was: executing out-of-core algorithm
-(6,3) (also at executing-out-of-core algorithm, but not frozen yet. only 32GB though, clearly not enough.       
+(6,2) (seems to be frozen, last output was: executing out-of-core algorithm, this has been the case for a week. can't ssh into wob114. Disk is an issue. B+ is not frozen though because I'm using 128G!
+(6,3) (after CCSDT and CI, there was a seg fault. Only 32GB though. B+ is running with 128GB, super slow though.      
 (6,4) 
 
 (7,2)
@@ -103,8 +105,9 @@ All Electrons vs. Frozen Core [dboc(B) - dboc(B+)]:
                                   
 (5,2) -0.264752247821874--0.2678907350504913= 0.0031384872286173
 (5,3) -0.207425474107989--0.1810446234172898=-0.0263808506906992
-(5,4)  
+(5,4)                                        -0.023?
 
+(6,4) -0.203?            -0.178?            
 
 After (AE-FC) correction
 
