@@ -38,10 +38,10 @@ UHF-CC(n)-FC/aV(X)Zi-NR/CFOUR-MRCC/12C:
 (7,2) (0.0016709636 - 0.0016702963)*219474.6313702 = 0.1464554215133061 
 (7,3) (0.0016718241 - 0.0016706782)*219474.6313702 = 0.2514959800871148
 
-(8,2) (running! C+ crashed with 128GB, 24 cores)
-(8,3) (running!)
+(8,2) (running! C+ crashed with 128GB, 24 cores, C is running still as of 22 May.. executing out-of-core algorithm)
+(8,3) (running!) crashed for C... not sure about C+
 
-(9,2) (running!
+(9,2) (running! still running as of 22 May, executing out-of-core algorithm
 (9,3) 
 
 
@@ -62,18 +62,15 @@ UHF-CC(n)/aCV(X)Z-NR/CFOUR-MRCC/12C:
 (4,4) (0.0017120271 - 0.0017109763)*219474.6313702 =  0.23062394264378239   CFOUR   MRCC
 
 (5,2) (0.0017109876 - 0.0017104762)*219474.6313702 =  0.1122393264827314    CFOUR   CFOUR
-<<<<<<< HEAD
-(5,3) (crashed with - 0.0017110312)*219474.6313702 =  CFOUR   MRCC (C+ worked with 32G in just 2 days!) trying  C with 768G, finish CC and CI in just less than a daya. Only 100 more walltime minutes than C+!)
-(5,4) (trying again with 768, maybe previous just crashed due to hardware).
+(5,3) (0.0017120556 - 0.0017110312)*219474.6313702 =  0.2248298123756321    CFOUR   MRCC (C+ worked with 32G in just 2 days!) 
+(5,4) (trying again with 768, maybe previous just crashed due to hardware, still on CC iterations but running, as of 21 May).
 
 (6,2) (crashed with 32GB, C+ took 2 days to finish CC and CI on 32G. maybe should try 128G).
 (6,3) (crashed. C+ also crashed even with 128G. But it was right after allocating RAM for CFOUR, so maybe the 40G for CFOUR wasn't enough.
-=======
 (5,3) (crashed with 512GB - 0.0017110312)*219474.6313702 =  CFOUR   MRCC (trying C+ worked with 32G !!! and C with 768G (still queued!)
 
 (6,2) (crashed with 32GB .  128G was not enough for C+, what? maybe there was something else wrong. Actually the problem might be that we only gave it 40G for CFOUR portion, it crashed right after allocating that. Trying with 32cores now.
 (6,3) (crashed.          .  128G was not enough for C+.
->>>>>>> d18c269e9742868fd7328a81bfd2de80b7e4d6ac
 (6,4) 
 
 (7,2)
@@ -113,7 +110,7 @@ All Electrons vs. Frozen Core [dboc(C) - dboc(C+)]:
 (4,4)   0.23062394264378239-0.244209422325614=-0.013585479681831603
                                                 
 (5,2)   0.1122393264827314 -0.146718791071000=-0.0344794645882686
-(5,3)   crashed            -0.251364295308295=
+(5,3)   0.2248298123756321 -0.251364295308295=-0.026534482932662917
 (5,4)   0.27? 0.245?       -0.258168008880807= (0.27 comes from AE(4,4) - 0.04 from (3,4). 0.245 come from AE-FC (4,4) +FC(5,4) .. BUT (4,2) to (5,2) AE-FC changed by 0.1 non-monotonically!
 
 (6,2)                      -0.147223582723126=
