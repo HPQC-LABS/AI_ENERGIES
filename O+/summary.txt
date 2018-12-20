@@ -1,9 +1,9 @@
            ROHF               FCI
 aCV2Z-NR -73.001562919849633--73.125878051230 CC(7), but even CC(5) is converged.
-aCV3Z-NR -73.179090670166943-
-aCV4Z-NR -73.253915938883296- 
+aCV3Z-NR -73.179090670166943-                 CC(4) finished but not converged even to 1mH. (4)(5) running.. needed to start from scratch
+aCV4Z-NR -73.253915938883296-                 CC(5) being atatempted on node110 with 12 cores (seems to have failed already).
 aCV5Z-NR -73.278581032190331- 
-aCV6Z-NR  
+aCV6Z-NR  need to build basis set!
 aCV7Z-NR  
 
 aCV2Z-UNC 
@@ -15,7 +15,42 @@ aCV7Z-UNC                                   (lowest eigenvalue of metric = 2.9e-
 
 aV2Z-NR   -74.349155489278289--74.762815763219 
 aV3Z-NR   -74.366252573413746--74.840255923901 
-aV4Z-NR   
+aV4Z-NR                                      CC(5) running on node116 but not on local disks because not really needed here.
 aV5Z-NR   -74.372454509058912 
 aV6Z-NR   
 
+AE/2Z
+CCS energy [au]:              -73.007 165 319 676
+CCSD energy [au]:             -73.133 054 424 555 (how to know a priori when CCSD overshoots limit like this?)
+CCSDT energy [au]:            -73.125 344 107 298
+CCSDTQ energy [au]:           -73.125 869 987 514
+CCSDTQP energy [au]:          -73.125 878 052 110
+CC(6) energy [au]:            -73.125 878 052 155
+CC(7) energy [au]:            -73.125 878 051 230
+
+AE/3Z
+CCS energy [au]:              -73.184 916 927 067
+CCSD energy [au]:             -73.347 630 239 458
+CCSDT energy [au]:            -73.343 413 756 773
+CCSDTQ energy [au]:           -73.344 328 878 427
+
+FC/2Z
+CCS energy [au]:              -74.625 908 203 453
+CCSD energy [au]:             -74.761 809 903 401 (here it didn't overshoot!)
+CCSDT energy [au]:            -74.762 868 981 987 (now it overshoots!)
+CCSDTQ energy [au]:           -74.762 821 214 859
+CCSDTQP energy [au]:          -74.762 815 763 219 = FCI since O+ has 7e- & 2 are frozen. Maybe worth it to look at CC(4)(5).
+
+FC/3Z
+CCS energy [au]:              -74.665 978 187 151
+CCSD energy [au]:             -74.836 707 505 153
+CCSDT energy [au]:            -74.840 306 726 223
+CCSDTQ energy [au]:           -74.840 261 715 985
+CCSDTQP energy [au]:          -74.840 255 923 901
+
+FC/4Z
+CCS energy [au]:              -74.689 135 029 445
+CCSD energy [au]:             -74.869 791 008 466
+CCSDT energy [au]:            -74.873 948 873 461
+CCSDTQ energy [au]:           -74.873 931 891 802
+CC(5) after 3 iterations:     -74.873 928 03 
