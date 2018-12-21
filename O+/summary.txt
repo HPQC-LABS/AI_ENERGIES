@@ -1,8 +1,8 @@
            ROHF               FCI
 aCV2Z-NR -73.001562919849633--73.125878051230 CC(7), but even CC(5) is converged.
-aCV3Z-NR -73.179090670166943-                 CC(4) finished but not converged even to 1mH. (4)(5) running.. started from scratch CC(7) on nod107
-aCV4Z-NR -73.253915938883296-                 CC(5) being attempted on node110 with 12 cores (seems to have failed already). queued for CC(4)(5) on nod110
-aCV5Z-NR -73.278581032190331-                 CC(4)(5) being attempted at nod144
+aCV3Z-NR -73.179090670166943-                 CC(7) in progress but still on CC(5). CC(5)(6) should be done on 21 December. CC(6) who knows.
+aCV4Z-NR -73.253915938883296-                 CC(5) failed on nod110 with 12 cores, CC(4)(5) now being done, will finish on 21 December.
+aCV5Z-NR -73.278581032190331-                 CC(4) being attempted at nod144, will be done by end of 21 December. C(4)(5) seems to need more RAM. segfault when constructing graphs.
 aCV6Z-NR  need to build basis set!
 aCV7Z-NR  
 
@@ -13,45 +13,68 @@ aCV5Z-UNC
 aCV6Z-UNC                                   (lowest eigenvalue of metric = 2.8e-9)
 aCV7Z-UNC                                   (lowest eigenvalue of metric = 2.9e-10, highest non-orthonormality = 1.4e-7)
 
-aV2Z-NR   -74.349155489278289--74.762815763219 
-aV3Z-NR   -74.366252573413746--74.840255923901 
-aV4Z-NR                                      CC(5) running on nod125
-aV5Z-NR   -74.372454509058912 
-aV6Z-NR   
+aV2Z-NR   -74.349155489278--74.762815763219 
+aV3Z-NR   -74.366252573414--74.840255923901 
+aV4Z-NR   -74.371248022912--74.498689870148  
+aV5Z-NR   -74.372454509059--74.502725222186
+aV6Z-NR    nod146, 15 cores.
+
+
+
+
 
 AE/2Z
-CCS energy [au]:              -73.007 165 319 676
-CCSD energy [au]:             -73.133 054 424 555 (how to know a priori when CCSD overshoots limit like this?)
-CCSDT energy [au]:            -73.125 344 107 298
-CCSDTQ energy [au]:           -73.125 869 987 514
-CCSDTQP energy [au]:          -73.125 878 052 110
-CC(6) energy [au]:            -73.125 878 052 155
-CC(7) energy [au]:            -73.125 878 051 230
+CCS                           -73.007 165 319 676
+CCSD                          -73.133 054 424 555 (how to know a priori when CCSD overshoots limit like this?)
+CCSDT                         -73.125 344 107 298
+CCSDTQ                        -73.125 869 987 514
+CCSDTQP                       -73.125 878 052 110
+CC(6)                         -73.125 878 052 155
+CC(7)                         -73.125 878 051 230
 
 AE/3Z
-CCS energy [au]:              -73.184 916 927 067
-CCSD energy [au]:             -73.347 630 239 458
-CCSDT energy [au]:            -73.343 413 756 773
-CCSDTQ energy [au]:           -73.344 328 878 427
+CCS                           -73.184 916 927 067
+CCSD                          -73.347 630 239 458
+CCSDT                         -73.343 413 756 773
+CCSDTQ                        -73.344 328 878 427
 CCSDTQP                       -73.344 329 31 (ended with signal 1, but micro-Hartree digit (9) is probably right.)
 
 FC/2Z
-CCS energy [au]:              -74.625 908 203 453
-CCSD energy [au]:             -74.761 809 903 401 (here it didn't overshoot!)
-CCSDT energy [au]:            -74.762 868 981 987 (now it overshoots!)
-CCSDTQ energy [au]:           -74.762 821 214 859
-CCSDTQP energy [au]:          -74.762 815 763 219 = FCI since O+ has 7e- & 2 are frozen. Maybe worth it to look at CC(4)(5).
+CCS                           -74.625 908 203 453
+CCSD                          -74.761 809 903 401 (here it didn't overshoot!)
+CCSDT                         -74.762 868 981 987 (now it overshoots!)
+CCSDTQ                        -74.762 821 214 859
+CCSDTQP                       -74.762 815 763 219 = FCI since O+ has 7e- & 2 are frozen. Maybe worth it to look at CC(4)(5).
 
 FC/3Z
-CCS energy [au]:              -74.665 978 187 151
-CCSD energy [au]:             -74.836 707 505 153
-CCSDT energy [au]:            -74.840 306 726 223
-CCSDTQ energy [au]:           -74.840 261 715 985
-CCSDTQP energy [au]:          -74.840 255 923 901
+CCS                           -74.665 978 187 151
+CCSD                          -74.836 707 505 153
+CCSDT                         -74.840 306 726 223
+CCSDTQ                        -74.840 261 715 985
+CCSDTQP                       -74.840 255 923 901
 
 FC/4Z
-CCS energy [au]:              -74.689 135 029 445
-CCSD energy [au]:             -74.869 791 008 466
-CCSDT energy [au]:            -74.873 948 873 461
-CCSDTQ energy [au]:           -74.873 931 891 802
-CC(5) after 3 iterations:     -74.873 928 03 
+CCSD                          -74.496 452 901 880
+CCSD(T)                       -74.498 457 641 518
+CCSDT                         -74.498 661 920 379
+CCSDT(Q)/B                    -74.498 687 310 557
+CCSDTQ                        -74.498 689 806 268
+CCSDTQ(P)/B                   -74.498 689 760 944
+CCSDTQP=FCI                   -74.498 689 870 148 why did the CC sequence converge so much faster at 5Z ?
+
+FC/5Z
+CCS                           -74.689 135 029 445
+CCSD                          -74.869 791 008 466
+CCSDT                         -74.873 948 873 461
+CCSDTQ                        -74.873 931 891 802
+CC(5)                         -74.873 928 03  ???
+
+FC/5Z
+CCSD                          -74.500 383 747 784
+CCSD(T)                       -74.502 510 065 230
+CCSDT                         -74.502 697 093 228
+CCSDT(Q)/B                    -74.502 722 899 413
+CCSDTQ                        -74.502 725 156 871
+CCSDTQ(P)/B                   -74.502 725 108 267
+CCSDTQP                       -74.502 725 222 186
+
