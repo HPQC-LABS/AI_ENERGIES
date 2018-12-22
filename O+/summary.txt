@@ -2,7 +2,7 @@
 aCV2Z-NR -73.001562919849633--73.125878051230 CC(7), but even CC(5) is converged.
 aCV3Z-NR -73.179090670166943-                 CC(7) in progress but still on CC(5). CC(5)(6) should be done on 21 December. CC(6) who knows.
 aCV4Z-NR -73.253915938883296-                 CC(5) failed on nod110 with 12 cores, CC(4)(5) now being done, will finish on 21 December.
-aCV5Z-NR -73.278581032190331-                 CC(4) being attempted at nod144, will be done by end of 21 December. C(4)(5) seems to need more RAM. segfault when constructing graphs.
+aCV5Z-NR -73.278581032190331-                 C(4)(5) seems to need more RAM. segfault when constructing graphs. Try with bigger node.
 aCV6Z-NR  need to build basis set!
 aCV7Z-NR  
 
@@ -24,57 +24,70 @@ aV6Z-NR    nod146, 15 cores.
 
 
 AE/2Z
-CCS                           -73.007 165 319 676
-CCSD                          -73.133 054 424 555 (how to know a priori when CCSD overshoots limit like this?)
-CCSDT                         -73.125 344 107 298
-CCSDTQ                        -73.125 869 987 514
-CCSDTQP                       -73.125 878 052 110
-CC(6)                         -73.125 878 052 155
-CC(7)                         -73.125 878 051 230
+CCS                           -73.007165 319676
+CCSD                          -73.133054 424555 (how to know a priori when CCSD overshoots limit like this?)
+CCSDT                         -73.125344 107298
+CCSDTQ                        -73.125869 987514
+CCSDTQP                       -73.125878 052110
+CC(6)                         -73.125878 052155
+CC(7)                         -73.125878 051230
 
 AE/3Z
-CCS                           -73.184 916 927 067
-CCSD                          -73.347 630 239 458
-CCSDT                         -73.343 413 756 773
-CCSDTQ                        -73.344 328 878 427
-CCSDTQP                       -73.344 329 31 (ended with signal 1, but micro-Hartree digit (9) is probably right.)
+CCS                           -73.184916 927067
+CCSD                          -73.347630 239458
+CCSDT                         -73.343413 756773
+CCSDTQ                        -73.344328 878427
+CCSDTQP                       -73.344329 31 ended with signal 1, but micro-Hartree digit (9) is probably right.)
+
+AE/5Z
+CCSD                          -74.560782 866671
+CCSD(T)                       -74.563172 292638
+CCSDT                         -74.563355 448084
+CCSDT(Q)/B                    -74.563389 412694
+CCSDTQ                        -74.563391 620839 2 mH difference.
 
 FC/2Z
-CCS                           -74.625 908 203 453
-CCSD                          -74.761 809 903 401 (here it didn't overshoot!)
-CCSDT                         -74.762 868 981 987 (now it overshoots!)
-CCSDTQ                        -74.762 821 214 859
-CCSDTQP                       -74.762 815 763 219 = FCI since O+ has 7e- & 2 are frozen. Maybe worth it to look at CC(4)(5).
+CCS                           -74.625908 203453
+CCSD                          -74.761809 903401 (here it didn't overshoot!)
+CCSDT                         -74.762868 981987 (now it overshoots!)
+CCSDTQ                        -74.762821 214859
+CCSDTQP                       -74.762815 763219 = FCI since O+ has 7e- & 2 are frozen. Maybe worth it to look at CC(4)(5).
 
 FC/3Z
-CCS                           -74.665 978 187 151
-CCSD                          -74.836 707 505 153
-CCSDT                         -74.840 306 726 223
-CCSDTQ                        -74.840 261 715 985
-CCSDTQP                       -74.840 255 923 901
+CCS                           -74.665978 187151
+CCSD                          -74.836707 505153
+CCSDT                         -74.840306 726223
+CCSDTQ                        -74.840261 715985
+CCSDTQP                       -74.840255 923901
 
 FC/4Z
-CCSD                          -74.496 452 901 880
-CCSD(T)                       -74.498 457 641 518
-CCSDT                         -74.498 661 920 379
-CCSDT(Q)/B                    -74.498 687 310 557
-CCSDTQ                        -74.498 689 806 268
-CCSDTQ(P)/B                   -74.498 689 760 944
-CCSDTQP=FCI                   -74.498 689 870 148 why did the CC sequence converge so much faster at 5Z ?
+CCSD                          -74.496452 901880
+CCSD(T)                       -74.498457 641518
+CCSDT                         -74.498661 920379
+CCSDT(Q)/B                    -74.498687 310557
+CCSDTQ                        -74.498689 806268
+CCSDTQ(P)/B                   -74.498689 760944
+CCSDTQP=FCI                   -74.498689 870148 why did the CC sequence converge so much faster at 5Z ?
 
 FC/5Z
-CCS                           -74.689 135 029 445
-CCSD                          -74.869 791 008 466
-CCSDT                         -74.873 948 873 461
-CCSDTQ                        -74.873 931 891 802
-CC(5)                         -74.873 928 03  ???
+CCS                           -74.689135 029445
+CCSD                          -74.869791 008466
+CCSDT                         -74.873948 873461
+CCSDTQ                        -74.873931 891802
+CC(5)                         -74.873928 03 ???
 
 FC/5Z
-CCSD                          -74.500 383 747 784
-CCSD(T)                       -74.502 510 065 230
-CCSDT                         -74.502 697 093 228
-CCSDT(Q)/B                    -74.502 722 899 413
-CCSDTQ                        -74.502 725 156 871
-CCSDTQ(P)/B                   -74.502 725 108 267
-CCSDTQP                       -74.502 725 222 186
+CCSD                          -74.500383 747784
+CCSD(T)                       -74.502510 065230
+CCSDT                         -74.502697 093228
+CCSDT(Q)/B                    -74.502722 899413
+CCSDTQ                        -74.502725 156871
+CCSDTQ(P)/B                   -74.502725 108267
+CCSDTQP                       -74.502725 222186
+
+
+
+
+
+
 
