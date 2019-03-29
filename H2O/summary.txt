@@ -2,11 +2,11 @@ V2Z:
  Total CCSD energy [au]:             -76.237998 098328
  Total CCSD(T) energy [au]:          -76.241033 589161
  Total CCSDT energy [au]:            -76.241195 716162
- Total CCSDT(Q) energy [au]:         -76.241679 906973
+ Total CCSDT(Q) energy [au]:         -76.241679 906973 below variational
  Total CCSDTQ energy [au]:           -76.241650 576158
- Total CCSDTQ(P) energy [au]:        -76.241664 996933
+ Total CCSDTQ(P) energy [au]:        -76.241664 996933 = converged to cm-1
  Total CCSDTQP energy [au]:          -76.241665 920554
- Total CC(5)(6) energy [au]:         -76.241667 984650 = converged
+ Total CC(5)(6) energy [au]:         -76.241667 984650 = converged to uH
  Total CC(6) energy [au]:            -76.241668 322870 
  Total CC(6)(7) energy [au]:         -76.241668 375804
  Total CC(7) energy [au]:            -76.241668 428886
@@ -20,7 +20,71 @@ aV2Z:
  Total CCSDT(Q) energy [au]:         -76.274492 294547
  Total CCSDTQ energy [au]:           -76.274443 457064
  Total CCSDTQ(P) energy [au]:        -76.274446 114125
- Total CCSDTQP energy [au]:          -76.274455 436484
- Total CC(5)(6) energy [au]:         -76.274456 426677
+ Total CCSDTQP energy [au]:          -76.274455 436484 = converged to cm-1
+ Total CC(5)(6) energy [au]:         -76.274456 426677 
+ Total CC(6) energy [au]:            -76.274658 510843 = converged to uH ?
+ Total CC(6)(7) energy [au]:         -76.274658 623651
+(7)(8) running on nod127. Needs 126G for 8 cores.
 
-V3Z: CC(8) might be possible with 1 core since 10 cores could be done with 220GB
+V3Z: CC(8) might be possible with 1 core since 10 cores could be done with 220GB, but (H) takes 150 days with one 32G core
+ Total CCSD energy [au]:             -76.324545 751462
+ Total CCSD(T) energy [au]:          -76.332192 234725
+ Total CCSDT energy [au]:            -76.332268 493868
+ Total CCSDT(Q) energy [au]:         -76.332623 494489 below variatioanl
+ Total CCSDTQ energy [au]:           -76.332587 702888
+ Total CCSDTQ(P) energy [au]:        -76.332602 772730
+ Total CCSDTQP energy [au]:          -76.332606 224178
+ CC(5)(6) is on nod141. 2 spin caes, total 3b excitations. Should be done on 31 March?
+ CC(6)    is on nod141
+ CC(6)(7) is on nod141
+
+V4Z:
+ Total CCSD energy [au]:             -76.350800 612072
+ Total CCSD(T) energy [au]:          -76.359793 961356
+ Total CCSDT energy [au]:            -76.359807 238313
+ Total CCSDT energy [au]:            -76.359621 367718 (rest=1 didn't work, 12 iterations and got higher energy!) 
+ Total CCSDT(Q) energy [au]:         -76.360067 218851 (but with bad CCSDT)
+ Total CCSDTQ energy [au]:           -76.359989 734023 (but rest=1 from bad CCSDT(Q) .. but CCSDTQ is only 812 minutes)
+ Total CCSDTQ(P) energy [au]:        -76.359995 100515 (but rest=1 from previous CCSDTQ, took 8 days)
+ Total CCSDTQP energy [au]:           5 days per iteration on nod148
+CC(5)(6) can be done with 580G, 17b CC(5) and 230b (H) in 2 spin cases, with 3 cores.
+CC(5)    running on nod149 with 3 cores and 511G, but only need 48G
+CC(5)    running on nod146 with 8 cores and 127G, but only needs 103G 
+ 
+V5Z:
+ Total CCSD energy [au]:             -76.359518 949973
+ Total CCSD(T) energy [au]:          -76.369041 176778
+ Total CCSDT energy [au]:            -76.368996 804217
+ Total CCSDT energy [au]:            -76.369079 030704 Exact same problem as with V4Z! 12 iterations for CCSDT instead of 10 
+ Total CCSDT(Q) energy [au]:         -76.369565 386269 with bad CCSDT (took only 2000 minutes)
+Started from scratch, got original (good) CCSDT value, will take maybe until 3 April to finish CC(Q) because of different active space. This calc will go up to (4)(5). The (5) part will likely take a long time!
+
+V6Z:
+ Total CCSD energy [au]:             -76.362322 628836
+ Total CCSD(T) energy [au]:          -76.372018 863288
+ Total CCSDT energy [au]:            -76.371941 437375
+ Total CCSDT(Q) energy [au]:         -76.372383 660958 (took 7.4 days)
+ CCSDTQ: 14.5 days per iteration, and iteration 1 was just same as CCSD! (10 cores, 299G)
+ CCSDTQ: with 686G and 10 cores is possible
+ CCSDTQ (from scratch) running on nod148 with 511G and 8 cores
+
+out.1660350:  Iteration         Total Energy            Largest Density Difference
+out.1661356: Iteration  1  CC energy:   -76.36261213  Energy decrease:   0.29523618
+out.1661356: Iteration  2  CC energy:   -76.35630745  Energy decrease:   0.00630468
+out.1661356: Iteration  3  CC energy:   -76.36158710  Energy decrease:   0.00527965
+out.1661356: Iteration  4  CC energy:   -76.36243754  Energy decrease:   0.00085044
+out.1661356: Iteration  5  CC energy:   -76.36233338  Energy decrease:   0.00010415
+out.1661356: Iteration  6  CC energy:   -76.36232143  Energy decrease:   0.00001196
+out.1661356: Iteration  7  CC energy:   -76.36232338  Energy decrease:   0.00000196
+out.1661356: Iteration  8  CC energy:   -76.36232261  Energy decrease:   0.00000078
+out.1661356: Iteration  9  CC energy:   -76.36232262  Energy decrease:   0.00000002
+out.1661356: Iteration  1  CC energy:   -76.36232262  Energy decrease:   0.00000001
+out.1661356: Iteration  2  CC energy:   -76.37030546  Energy decrease:   0.00798285
+out.1661356: Iteration  3  CC energy:   -76.37177005  Energy decrease:   0.00146459
+out.1661356: Iteration  4  CC energy:   -76.37185656  Energy decrease:   0.00008651
+out.1661356: Iteration  5  CC energy:   -76.37194151  Energy decrease:   0.00008495
+out.1661356: Iteration  6  CC energy:   -76.37194447  Energy decrease:   0.00000296
+out.1661356: Iteration  7  CC energy:   -76.37193999  Energy decrease:   0.00000448
+out.1661356: Iteration  8  CC energy:   -76.37194112  Energy decrease:   0.00000113
+out.1661356: Iteration  9  CC energy:   -76.37194164  Energy decrease:   0.00000052
+out.1662598: Iteration  1  CC energy:   -76.36261213  Energy decrease:   0.29523618
