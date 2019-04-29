@@ -41,6 +41,17 @@ CC(5)(6)/B energy [au]:      -127.965585 392550
 CC(6) running with rest=1
 CC(6)(7) running with rest=1
 
+Ne+/ae/3z
+CCSD energy [au]:            -128.085769 613309
+CCSD(T) energy [au]:         -128.088982 955311
+CCSDT energy [au]:           -128.089098 984926
+CCSDT(Q)/B energy [au]:      -128.089137 579091
+CCSDTQ energy [au]:          -128.089138 394430
+CCSDTQ(P)/B energy [au]:     -128.089136 200128
+CCSDTQP energy [au]:         -128.089137 386717 still 1 uH lower than the previous, and 1 uH higher than the previous to that
+CC(5) only took 9400 minutes with 2 cores with 31G, CC(6) only requires 264G with 2 cores, so 4 cores 512G might be possible in 3 days to catch up to where we were.
+CC(6)(7) can also be done with 2 cores and 99G, but not sure how efficient. 10 cores and < 500G seems appealing though
+
 Ne+/fc/2z
 CCSD                         -127.920365 036864
 CCSD(T)                      -127.922038 789272
@@ -68,11 +79,16 @@ CC(6)(7)/B energy [au]:      -128.024093 648320
 CC(7)                        -128.024093 647069
 
 Ne+/fc/4z
-CCSD                         -128.052822 453727
-CCSD(T)                      -128.056083 769658
-CCSDT                        -128.056195 060171
-CCSDT(Q)/B                   -128.056233 347186
-CCSDTQ                       -128.056234 759012 0.6 uH difference.
+CCSD energy [au]:            -128.052822 453727
+CCSD(T) energy [au]:         -128.056083 769658  
+CCSDT energy [au]:           -128.056195 060171  
+CCSDT(Q)/B energy [au]:      -128.056233 347186  
+CCSDTQ energy [au]:          -128.056234 759012 0.6 uH difference 
+CCSDTQ(P)/B energy [au]:     -128.056232 729998 2.0 uH difference 
+CCSDTQP energy [au]:         -128.056233 947578 1.2 uH difference (converged)
+CCSDTQP energy [au]:         -128.056233 947606 funny how active space changed (at least working mem did) but convged in 1!   
+CC(5)(6)/B energy [au]:      -128.056233 890470  
+CC(6) energy [au]:           -128.056233 908137  
 
 Ne+/fc/5z
 CCSD                         -128.063843 875339
@@ -80,5 +96,13 @@ CCSD(T)                      -128.067331 425778
 CCSDT                        -128.067425 800301
 CCSDT(Q)/B                   -128.067464 473935
 CCSDTQ                       -128.067465 748052 0.7 uH difference.
-CCSDTQ(P)/B                  -128.067463 743532   2 uH difference.
+CCSDTQ(P)/B                  -128.067463 743532 2.0 uH difference.
 
+Ne+/fc/6z
+CCSD energy [au]:            -128.067382 929832
+CCSD(T) energy [au]:         -128.070944 843061
+CCSDT energy [au]:           -128.071027 088508
+CCSDT(Q)/B energy [au]:      -128.071067 031791
+CCSDTQ energy [au]:          -128.071068 220969 0.8 uH difference.
+CCSDTQ(P)/B energy [au]:     -128.071066 200020   2 uH difference.
+CC(5) taking 13 days per iteration, should take 4 more iteraitons (52 more days) to converge barely enough, 143 days for full

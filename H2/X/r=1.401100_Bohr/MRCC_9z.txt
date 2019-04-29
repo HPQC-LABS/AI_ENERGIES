@@ -1,0 +1,651 @@
+ **********************************************************************
+                          MRCC program system
+ **********************************************************************
+ 
+                              Written by
+    Mihaly Kallay, Zoltan Rolik, Jozsef Csontos, Istvan Ladjanszki,
+       Lorant Szegedy, Bence Ladoczki, Gyula Samu, Klara Petrov,
+        Mate Farkas, Peter Nagy, David Mester, and Bence Hegely
+ 
+        Department of Physical Chemistry and Materials Science
+            Budapest University of Technology and Economics
+                  Budapest P.O.Box 91, H-1521 Hungary
+ 
+                              www.mrcc.hu
+
+ ************************ 2019-03-02 01:49:25 *************************
+ Executing minp...
+
+ Reading input from MINP...
+ 
+ Input file:
+ 
+# TITLE
+basis=aV9Z-FELLER
+uncontract=off
+#iface=cfour
+itol=18
+scftol=12
+cctol=7
+calc=FCI
+mem=22GB
+core=corr
+ccmaxit=999
+scfmaxit=9999
+scftype=RHF
+
+scfiguess=ao
+rohftype=standard
+mult=1
+charge=+0
+rest=2
+
+unit=bohr
+geom
+H
+H 1 R
+
+R=1.401100  # ! from Puchalsi2017, au.
+
+
+ 
+ 
+ Checking keyword combinations...
+ 
+ Keywords:
+ 
+ active=none
+ agrid=ld0006-ld0590
+ basis=av9z-feller
+ basopt=off
+ bpcompo=0.985
+ bpcompv=0.98
+ bpdfo=0.985
+ bpocc=0.985
+ bppdo=0.985
+ bppdv=0.98
+ bpedo=0.985
+ bpedv=0.98
+ calc=fci
+ ccmaxit=999
+ ccprog=mrcc
+ cctol=7
+ charge=+0
+ cialg=disk
+ ciguess=off
+ cmpgrp=auto
+ core=corr
+ corembed=off
+ dboc=off
+ dendec=cholesky
+ dens=0
+ dfalg=invsqrt
+ dfbasis_cor=none
+ dfbasis_scf=none
+ dfintran=ovirt
+ dft=off
+ diag=david
+ domrad=10.d0
+ drpaalg=fit
+ ecp=auto
+ edisp=off
+ embed=off
+ epert=none
+ eps=0.975
+ excrad=0.d0
+ excrad_fin=0.000000000D+00
+ freq=off
+ gauss=spher
+ geom=zmat
+ gopt=off
+ ghost=none
+ gtol=7
+ grtol=10
+ hamilton=dc
+ iface=none
+ intalg=auto
+ itol=18
+ lcorthr=loose
+ lccrest=off
+ lmp2dens=on
+ lnoepso=3e-5
+ lnoepsv=1e-6
+ localcc=off
+ locintrf=disk
+ maxact=off
+ maxex=0
+ bfbasis=none
+ mem=22gb
+ molden=on
+ mulmet=0
+ mult=1
+ nacto=0
+ nactv=0
+ naf_cor=off
+ naf_scf=off
+ nafalg=albe
+ naftyp=
+ nchol=auto
+ ndeps=1e-3
+ nstate=1
+ nsing=0
+ ntrip=0
+ occ=
+ optalg=
+ optmaxit=50
+ optetol=1e-6
+ optgtol=1e-4
+ optstol=1e-3
+ orblocc=off
+ orbloco=off
+ orblocv=off
+ osveps=1e-3
+ ovirt=off
+ ovosnorb=80.0
+ ptfreq=0.0
+ popul=off
+ pressure=100000
+ qmmm=off
+ refdet=none
+ rest=2
+ rgrid=log3
+ rohftype=standard
+ scspe=1.d0
+ scsps=1.2d0
+ scspt=0.33333333333333
+ scfalg=auto
+ scfdamp=off
+ scfdiis=on
+ scfdiis_end=9999
+ scfdiis_start=1
+ scfdiis_step=1
+ scfdtol=16
+ scfext=10
+ scfiguess=ao
+ scflshift=off
+ scfmaxit=9999
+ scftype=rhf
+ scftol=12
+ spairtol=1e-4
+ symm=
+ talg=occ
+ temp=298.15
+ test=off
+ tprint=off
+ uncontract=off
+ unit=bohr
+ verbosity=2
+ wpairtol=0.100000000E-05
+
+ ************************ 2019-03-02 01:49:26 *************************
+ Executing integ...
+
+ Allocation of 22.0 Gbytes of memory...
+ 
+ Number of atoms:            2
+ Charge:                     0
+ Number of electrons:        2
+ Number of core electrons:   0
+ Spin multiplicity:          1
+ 
+                 Cartesian coordinates [bohr]      Atomic mass [AMU]  Z
+   1  H     0.00000000    0.00000000    0.00000000     1.007825       1
+   2  H     1.40110000    0.00000000    0.00000000     1.007825       1
+ 
+ This molecule is linear.
+ 
+ Rotational constants [cm-1]: 
+     60.855637897504
+ 
+ Point group: Dxh 
+ Computational point group: D2h 
+ 
+ Cartesian coordinates in standard orientation [bohr]
+   1  H     0.00000000    0.00000000   -0.70055000
+   2  H     0.00000000    0.00000000    0.70055000
+ 
+ Nuclear repulsion energy [au]:          0.713724930412
+ 
+ 
+ Basis set information:
+ 
+ Maximum angular momentum: l
+ Maximum number of contracted Gaussians:   11
+ Maximum number of primitive Gaussians:    18
+ Spherical harmonic GTOs are used.
+ 
+    1  H  av9z-feller [ 18s 9p 8d 7f 6g 5h 4i 3k 2l | 11s 9p 8d 7f 6g 5h 4i 3k 2
+ l ]
+    2  H  av9z-feller [ 18s 9p 8d 7f 6g 5h 4i 3k 2l | 11s 9p 8d 7f 6g 5h 4i 3k 2
+ l ]
+ 
+ Total number of basis functions:   734
+ 
+ 
+ Character table for point group D2h:
+ 
+          E  C2z C2y C2x  i  Qxy Qxz Qyz 
+    Ag    1   1   1   1   1   1   1   1
+    B1g   1   1  -1  -1   1   1  -1  -1
+    B2g   1  -1   1  -1   1  -1   1  -1
+    B3g   1  -1  -1   1   1  -1  -1   1
+    Au    1   1   1   1  -1  -1  -1  -1
+    B1u   1   1  -1  -1  -1  -1   1   1
+    B2u   1  -1   1  -1  -1   1  -1   1
+    B3u   1  -1  -1   1  -1   1   1  -1
+ 
+ Number of basis functions per irrep:
+    Ag    121
+    B1g    66
+    B2g    90
+    B3g    90
+    Au     66
+    B1u   121
+    B2u    90
+    B3u    90
+ 
+ 
+ Calculation of overlap integrals...
+ CPU time [min]:     0.053                   Wall time [min]:     0.021
+ Calculation of kinetic energy integrals...
+ CPU time [min]:     0.066                   Wall time [min]:     0.023
+ Calculation of nuclear attraction integrals...
+ CPU time [min]:     0.117                   Wall time [min]:     0.029
+ 
+ Calculation of prescreening integrals...
+ CPU time [min]:    14.066                   Wall time [min]:     3.704
+ 
+ Calculation of two-electron integrals...
+   1% done.
+  14% done.
+  31% done.
+  46% done.
+  63% done.
+  83% done.
+ 100% done.
+ CPU time [min]:  1220.503                   Wall time [min]:   273.894
+
+ ************************ 2019-03-02 06:23:23 *************************
+ Executing scf...
+
+ Allocation of 22.0 Gbytes of memory...
+ ======================================================================
+ ITERATION STEP   1
+ CPU time [min]:     0.059                   Wall time [min]:     0.013
+ 
+ ALPHA OCC:   1   0   0   0   0   0   0   0
+ BETA  OCC:   1   0   0   0   0   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP   1 IS      54.2909679010940991 [AU]
+ ======================================================================
+ ITERATION STEP   2
+ CPU time [min]:     5.727                   Wall time [min]:    22.611
+ 
+ ALPHA OCC:   1   0   0   0   0   0   0   0
+ BETA  OCC:   1   0   0   0   0   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP   2 IS       0.3876566645518620 [AU]
+ ======================================================================
+ ITERATION STEP   3
+ CPU time [min]:    11.762                   Wall time [min]:    45.066
+ 
+ ALPHA OCC:   1   0   0   0   0   0   0   0
+ BETA  OCC:   1   0   0   0   0   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP   3 IS      -1.0771893226242724 [AU]
+ ======================================================================
+ ITERATION STEP   4
+ CPU time [min]:    17.799                   Wall time [min]:    67.569
+ 
+ ALPHA OCC:   1   0   0   0   0   0   0   0
+ BETA  OCC:   1   0   0   0   0   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP   4 IS      -1.1063911518862239 [AU]
+ ======================================================================
+ ITERATION STEP   5
+ CPU time [min]:    23.827                   Wall time [min]:    90.011
+ 
+ ALPHA OCC:   1   0   0   0   0   0   0   0
+ BETA  OCC:   1   0   0   0   0   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP   5 IS      -1.1331038430098028 [AU]
+ ======================================================================
+ ITERATION STEP   6
+ CPU time [min]:    29.494                   Wall time [min]:   112.237
+ 
+ ALPHA OCC:   1   0   0   0   0   0   0   0
+ BETA  OCC:   1   0   0   0   0   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP   6 IS      -1.1336207461397696 [AU]
+ ======================================================================
+ ITERATION STEP   7
+ CPU time [min]:    35.481                   Wall time [min]:   134.562
+ 
+ ALPHA OCC:   1   0   0   0   0   0   0   0
+ BETA  OCC:   1   0   0   0   0   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP   7 IS      -1.1336232597545801 [AU]
+ ======================================================================
+ ITERATION STEP   8
+ CPU time [min]:    41.465                   Wall time [min]:   156.965
+ 
+ ALPHA OCC:   1   0   0   0   0   0   0   0
+ BETA  OCC:   1   0   0   0   0   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP   8 IS      -1.1336232833766244 [AU]
+ ======================================================================
+ ITERATION STEP   9
+ CPU time [min]:    47.167                   Wall time [min]:   179.198
+ 
+ ALPHA OCC:   1   0   0   0   0   0   0   0
+ BETA  OCC:   1   0   0   0   0   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP   9 IS      -1.1336232834315749 [AU]
+ ======================================================================
+ ITERATION STEP  10
+ CPU time [min]:    52.843                   Wall time [min]:   201.347
+ 
+ ALPHA OCC:   1   0   0   0   0   0   0   0
+ BETA  OCC:   1   0   0   0   0   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  10 IS      -1.1336232834316764 [AU]
+ ======================================================================
+ ITERATION STEP  11
+ CPU time [min]:    58.819                   Wall time [min]:   223.564
+ 
+ ALPHA OCC:   1   0   0   0   0   0   0   0
+ BETA  OCC:   1   0   0   0   0   0   0   0
+ ***HARTREE-FOCK ENERGY IN STEP  11 IS      -1.1336232834316635 [AU]
+ ======================================================================
+ 
+ SUCCESS...
+ THE SCF ITERATION HAS CONVERGED!
+ 
+                   Ag  B1g B2g B3g Au  B1u B2u B3u 
+ FINAL ALPHA OCC:   1   0   0   0   0   0   0   0
+ FINAL BETA  OCC:   1   0   0   0   0   0   0   0
+ 
+ ***FINAL HARTREE-FOCK ENERGY:     -1.1336232834316635 [AU]
+ 
+ RETURNING FROM SCF ALGORITHM
+ ======================================================================
+
+ ************************ 2019-03-02 10:29:20 *************************
+ Executing ovirt...
+
+ ovirt, the routine of orbital optimization and integral transformation 
+Sat Mar  2 10:29:21 EST 2019
+ Allocated memory:                   22528  Mb
+ RHF calculation! 
+ integral transforamtion: AOs ------ MOs
+ # of basis functions, # of int. blocks   734   136
+  0 % 
+  1 % 
+  2 % 
+  2 % 
+  3 % 
+  4 % 
+  5 % 
+  5 % 
+  6 % 
+  7 % 
+  8 % 
+  8 % 
+  9 % 
+ 10 % 
+ 11 % 
+ 11 % 
+ 12 % 
+ 13 % 
+ 13 % 
+ 14 % 
+ 15 % 
+ 16 % 
+ 16 % 
+ 17 % 
+ 18 % 
+ 19 % 
+ 19 % 
+ 20 % 
+ 21 % 
+ 22 % 
+ 22 % 
+ 23 % 
+ 24 % 
+ 25 % 
+ 25 % 
+ 26 % 
+ 27 % 
+ 27 % 
+ 28 % 
+ 29 % 
+ 30 % 
+ 30 % 
+ 31 % 
+ 32 % 
+ 33 % 
+ 33 % 
+ 34 % 
+ 35 % 
+ 36 % 
+ 36 % 
+ 37 % 
+ 38 % 
+ 38 % 
+ 39 % 
+ 40 % 
+ 41 % 
+ 41 % 
+ 42 % 
+ 43 % 
+ 44 % 
+ 44 % 
+ 45 % 
+ 46 % 
+ 47 % 
+ 47 % 
+ 48 % 
+ 49 % 
+ 50 % 
+ 50 % 
+ 51 % 
+ 52 % 
+ 52 % 
+ 53 % 
+ 54 % 
+ 55 % 
+ 55 % 
+ 56 % 
+ 57 % 
+ 58 % 
+ 58 % 
+ 59 % 
+ 60 % 
+ 61 % 
+ 61 % 
+ 62 % 
+ 63 % 
+ 63 % 
+ 64 % 
+ 65 % 
+ 66 % 
+ 66 % 
+ 67 % 
+ 68 % 
+ 69 % 
+ 69 % 
+ 70 % 
+ 71 % 
+ 72 % 
+ 72 % 
+ 73 % 
+ 74 % 
+ 75 % 
+ 75 % 
+ 76 % 
+ 77 % 
+ 77 % 
+ 78 % 
+ 79 % 
+ 80 % 
+ 80 % 
+ 81 % 
+ 82 % 
+ 83 % 
+ 83 % 
+ 84 % 
+ 85 % 
+ 86 % 
+ 86 % 
+ 87 % 
+ 88 % 
+ 88 % 
+ 89 % 
+ 90 % 
+ 91 % 
+ 91 % 
+ 92 % 
+ 93 % 
+ 94 % 
+ 94 % 
+ 95 % 
+ 96 % 
+ 97 % 
+ 97 % 
+ 98 % 
+ 99 % 
+100 % 
+ second part
+  0 %
+  1 %
+  2 %
+  2 %
+  3 %
+  4 %
+  5 %
+  5 %
+  6 %
+  7 %
+  8 %
+  8 %
+  9 %
+ 10 %
+ 11 %
+ 11 %
+ 12 %
+ 13 %
+ 13 %
+ 14 %
+ 15 %
+ 16 %
+ 16 %
+ 17 %
+ 18 %
+ 19 %
+ 19 %
+ 20 %
+ 21 %
+ 22 %
+ 22 %
+ 23 %
+ 24 %
+ 25 %
+ 25 %
+ 26 %
+ 27 %
+ 27 %
+ 28 %
+ 29 %
+ 30 %
+ 30 %
+ 31 %
+ 32 %
+ 33 %
+ 33 %
+ 34 %
+ 35 %
+ 36 %
+ 36 %
+ 37 %
+ 38 %
+ 38 %
+ 39 %
+ 40 %
+ 41 %
+ 41 %
+ 42 %
+ 43 %
+ 44 %
+ 44 %
+ 45 %
+ 46 %
+ 47 %
+ 47 %
+ 48 %
+ 49 %
+ 50 %
+ 50 %
+ 51 %
+ 52 %
+ 52 %
+ 53 %
+ 54 %
+ 55 %
+ 55 %
+ 56 %
+ 57 %
+ 58 %
+ 58 %
+ 59 %
+ 60 %
+ 61 %
+ 61 %
+ 62 %
+ 63 %
+ 63 %
+ 64 %
+ 65 %
+ 66 %
+ 66 %
+ 67 %
+ 68 %
+ 69 %
+ 69 %
+ 70 %
+ 71 %
+ 72 %
+ 72 %
+ 73 %
+ 74 %
+ 75 %
+ 75 %
+ 76 %
+ 77 %
+ 77 %
+ 78 %
+ 79 %
+ 80 %
+ 80 %
+ 81 %
+ 82 %
+ 83 %
+ 83 %
+ 84 %
+ 85 %
+ 86 %
+ 86 %
+ 87 %
+ 88 %
+ 88 %
+ 89 %
+ 90 %
+ 91 %
+forrtl: No space left on device
+forrtl: severe (38): error during write, unit 131, file /tmp/nike/9z/fort.131
+ 
+ Fatal error in ovirt.
+ Program will stop.
+ 
+ ************************ 2019-03-08 20:49:26 *************************
+                   Error at the termination of mrcc.
+ **********************************************************************
+--- SharcNET Job Epilogue ---
+Job returned with status 1.
+               jobid: 1662565
+               resid: 3138308
+         exit status: 1
+      allocated time: 586803
+           user time: 638729
+         system time: 31025.1
+peak rss=23622320128; peak vsz=23760850944 (bytes)
+atime=586803; utime=638729; stime=31025.1; exit=1
