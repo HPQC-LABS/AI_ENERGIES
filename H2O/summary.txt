@@ -115,12 +115,22 @@ aCV2Z
  Total CC(6) energy [au]:            -76.282882 205616
  Total CC(6)(7) energy [au]:         -76.282882 264937 (only 2 days for 38 spin cases .. probably can do CC(7)(8) with more RAM)
 
+aCV3Z
+ Total CCSD energy [au]:             -76.381541 376237
+ Total CCSD(T) energy [au]:          -76.389780 228725
+ Total CCSDT energy [au]:            -76.389844 916072
+ Total CCSDT(Q) energy [au]:         -76.390220 840516
+ Total CCSDTQ energy [au]:           -76.390184 672041
+ Total CCSDTQ(P) energy [au]:        -76.390199 504485 
+ Total CCSDTQP energy [au]:          -76.390203 732451 3.2 uH difference! (cctol only 5 though!)
+ CC(5)(6) could be possible, but not easy. 7 CPUs took 57 days for CC(5). active space was highly reduced and required 154 spin cases for CC(4)(5).
+
 aCV5Z (103 spin cases, very good for studying # of dets in spin case vs. time it takes)
  Total CCSD energy [au]:             -76.421047 384972
  Total CCSD(T) energy [au]:          -76.431049 558642
  Total CCSDT energy [au]:            -76.431007 236254
  Total CCSDT(Q) energy [au]:         -76.431467 702397 (103 spin cases over 18 days!). Interesting when comapred to CCSD & T
- CCSDTQ taking 19d/iteration(??? or was 18 of those days from the (Q)?) with 3 CPUs and 103G. 15 CPUs and 512G might take 5d/iter.
+ CCSDTQ taking 19d/iteration(??? or was 18 of those days from the (Q)?) with 3 CPUs and 103G. 15 CPUs and 512G might take 5d/iter, but risky due to uncertain refactorization.
 
 out.1660350:  Iteration         Total Energy            Largest Density Difference
 out.1661356: Iteration  1  CC energy:   -76.36261213  Energy decrease:   0.29523618
