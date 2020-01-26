@@ -11,7 +11,27 @@ V2Z:
  Total CC(6)(7) energy [au]:         -76.241668 375804
  Total CC(7) energy [au]:            -76.241668 428886
  Total CC(7)(8) energy [au]:         -76.241668 431747
- Total CC(8) energy [au]:            -76.241668 450338 = FCI
+ Total CC(8) energy [au]:            -76.241668 450338    = FCI
+
+ARROW E_var,eps1=5e-5                -76.241553 876606    => 114063 nH too high
+ARROW E_var,eps1=1e-5                -76.241652 325097    => 15614 nH too high
+ARROW E_var,eps1=5e-6                -76.241662 195977    => 5743 nH too high 
+ARROW E_var,eps1=2.5e-6              -76.241666 207649    => 1732 nH too high
+ARROW E_var,eps1=1e-6                -76.241667 939164    => 511 nH too high 
+ARROW E_var,eps1=5e-7                -76.241668 294316    => 244 nH too high
+ARROW E_var,eps1=2.5e-7              -76.241668 407602    => 43 nH too high
+ARROW E_var,eps1=1e-8                -76.241668 456370    => 6 nH too low
+
+ARROW E_tot,eps1=5e-5                -76.241670 965(49)   => 2565 nH too low (2559 nH worse than ARROW's own FCI value)
+ARROW E_tot,eps1=2.5e-5              -76.241669 512(44)   => 1063 nH too low (1057 nH worse than ARROW's own FCI value)
+ARROW E_tot,eps1=1e-5                -76.241668 678(25)   => 228 nH too low (221 nH worse than ARROW's own FCI value)
+ARROW E_tot,eps1=5e-6                -76.241668 526072    => 76 nH too low (70 nH worse than ARROW's own FCI value)
+ARROW E_tot,eps1=2.5e-6              -76.241668 472298    => 22 nH too low (16 nH worse than ARROW's own FCI value)
+ARROW E_tot,eps1=1e-6                -76.241668 462(2)    => 12 nH too high (6 nH worse than ARROW's own FCI value)
+ARROW E_tot,eps1=5e-7                -76.241668 457492    => 7 nH too low (1 nH worse than ARROW's own FCI value)
+ARROW E_tot,eps1=2.5e-7              -76.241668 456841    => 6 nH too low
+ARROW E_tot,eps1=1e-8                -76.241668 456457(0) => 6 nH too low
+Clearly ARROW thinks the FCI energy is 6 nH lower than MRCC thinks. So integrals must be different.
 
 aV2Z:
  Total CCSD energy [au]:             -76.268545 479606
