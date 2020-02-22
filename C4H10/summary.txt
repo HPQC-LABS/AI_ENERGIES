@@ -1,0 +1,38 @@
+ANO-L-VDZP[3s2p1d]/[2s1p] with 1s core frozen (22e,82o)
+
+FCIDUMP_RHF (C1)
+Energy of reference determinant [au]:    -154.962 582 161745
+Total CCSD energy [au]:                  -155.533 150 047438
+Total CCSD(T) energy [au]:               -155.555 003 029325
+Total CCSDT energy [au]:                 -155.555 959 625129
+Total CCSDT(Q) energy [au]:              -155.557 557 188404
+Total CCSDTQ energy [au]:                -155.557 430 417405, but only 1 iteration?
+
+CCSDTQ seems to be right because here's how it progresses from CCSDT:
+out.1: Iteration  1  CC energy:  -155.55595964  Energy decrease:   0.00000002
+out.1: Iteration  2  CC energy:  -155.55620468  Energy decrease:   0.00024503
+out.1: Iteration  3  CC energy:  -155.55699685  Energy decrease:   0.00079217
+out.1: Iteration  4  CC energy:  -155.55729955  Energy decrease:   0.00030270
+out.1: Iteration  5  CC energy:  -155.55737011  Energy decrease:   0.00007055
+out.1: Iteration  6  CC energy:  -155.55742538  Energy decrease:   0.00005527
+out.2: Iteration  1  CC energy:  -155.55742337  Energy decrease:   0.00000201
+out.2: Iteration  2  CC energy:  -155.55742361  Energy decrease:   0.00000024
+out.2: Iteration  3  CC energy:  -155.55742655  Energy decrease:   0.00000294
+out.2: Iteration  4  CC energy:  -155.55742848  Energy decrease:   0.00000194
+out.3: Iteration  1  CC energy:  -155.55742976  Energy decrease:   0.00000128
+out.3: Iteration  2  CC energy:  -155.55742998  Energy decrease:   0.00000022
+out.3: Iteration  3  CC energy:  -155.55743055  Energy decrease:   0.00000057
+out.3: Iteration  4  CC energy:  -155.55743049  Energy decrease:   0.00000006
+
+
+CC(4)    requires 751G for 20 core, 
+CC(4)(5) requires 616G for  8 cores (can probably use 10 cores and stay under 768G) ... 8 cores is almost exactly same speed as 20 cores up to CCSDT at least.
+CC(5)    requires 2.4T for  4 cores (can probably use  8 cores and stay under 3T) has 781605786195 (781 billion) excitaitons
+
+FCIDUMP_Sandeep (C2h)
+Energy of reference determinant [au]:    -154.959 368 338634
+Total CCSD energy [au]:                  -155.532 803 433515
+Total CCSD(T) energy [au]:               -155.552 546 031959
+
+
+

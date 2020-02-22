@@ -1,0 +1,2533 @@
+ **********************************************************************
+                          MRCC program system
+ **********************************************************************
+ 
+                              Written by
+  Mihaly Kallay, Zoltan Rolik, Jozsef Csontos, Peter Nagy, Gyula Samu,
+    David Mester, Istvan Ladjanszki, Lorant Szegedy, Bence Ladoczki,
+              Klara Petrov, Mate Farkas, and Bence Hegely
+ 
+        Department of Physical Chemistry and Materials Science
+            Budapest University of Technology and Economics
+                  Budapest P.O.Box 91, H-1521 Hungary
+ 
+                              www.mrcc.hu
+ 
+                      Release date: April 12, 2017
+
+ ************************ 2018-01-26 09:54:13 *************************
+ Executing minp...
+
+ Reading input from MINP...
+ 
+ Input file:
+ 
+# TITLE
+basis=VDZ-EMSL
+uncontract=off
+#iface=cfour
+itol=18
+scftol=14
+cctol=7
+calc=CC(4)
+mem=492GB
+core=frozen
+ccmaxit=999
+scfmaxit=9999
+scftype=RHF
+
+scfiguess=ao
+rohftype=standard
+mult=1
+charge=+0
+rest=2
+
+# in Angstroms, CCSD(T)/cc-pVQZ geometry from https://arxiv.org/pdf/1605.03398.pdf
+unit=angs
+geom
+C
+H 1  rCH
+C 1  rCC 2 A
+H 3  rCH 1 A 2  D2
+C 3  rCC 1 A 4  D1
+H 5  rCH 3 A 4  D2
+C 5  rCC 3 A 6  D1
+H 7  rCH 5 A 6  D2
+C 7  rCC 5 A 8  D1
+H 9  rCH 7 A 8  D2
+C 9  rCC 7 A 10 D1
+H 11 rCH 9 A 10 D2
+
+rCC=1.39498
+rCH=1.08260	
+A=120
+D1=180
+D2=0
+
+ 
+ 
+ Checking keyword combinations...
+ 
+ Keywords:
+ 
+ active=none
+ agrid=ld0006-ld0590
+ basis=vdz-emsl
+ basopt=off
+ bpcompo=0.985
+ bpcompv=0.98
+ bpdfo=0.985
+ bpocc=0.985
+ bppdo=0.985
+ bppdv=0.98
+ bpedo=0.985
+ bpedv=0.98
+ calc=cc(4)
+ ccmaxit=999
+ ccprog=mrcc
+ cctol=7
+ charge=+0
+ cialg=disk
+ ciguess=off
+ cmpgrp=auto
+ core=frozen
+ corembed=off
+ dboc=off
+ dendec=cholesky
+ dens=0
+ dfalg=invsqrt
+ dfbasis_cor=none
+ dfbasis_scf=none
+ dfintran=ovirt
+ dft=off
+ diag=david
+ domrad=10.d0
+ drpaalg=fit
+ ecp=auto
+ edisp=off
+ embed=off
+ epert=none
+ eps=0.975
+ excrad=0.d0
+ excrad_fin=0.000000000D+00
+ freq=off
+ gauss=spher
+ geom=zmat
+ gopt=off
+ ghost=none
+ gtol=7
+ grdens=off
+ grtol=10
+ hamilton=dc
+ iface=none
+ intalg=auto
+ itol=18
+ laptol=1.d-2
+ lcorthr=loose
+ lccrest=off
+ lmp2dens=on
+ lnoepso=3e-5
+ lnoepsv=1e-6
+ localcc=off
+ locintrf=disk
+ maxact=off
+ maxex=0
+ bfbasis=none
+ mem=492gb
+ molden=on
+ mulmet=0
+ mult=1
+ nacto=0
+ nactv=0
+ naf_cor=off
+ naf_scf=off
+ nafalg=albe
+ naftyp=
+ nchol=auto
+ ndeps=1e-3
+ nstate=1
+ nsing=0
+ ntrip=0
+ occ=
+ optalg=
+ optmaxit=50
+ optetol=1e-6
+ optgtol=1e-4
+ optstol=1e-3
+ orblocc=off
+ orbloco=off
+ orblocv=off
+ osveps=1e-3
+ ovirt=off
+ ovosnorb=80.0
+ ptfreq=0.0
+ popul=off
+ pressure=100000
+ qmmm=off
+ refdet=none
+ rest=2
+ rgrid=log3
+ rohftype=standard
+ scfalg=auto
+ scfdamp=off
+ scfdiis=on
+ scfdiis_end=9999
+ scfdiis_start=1
+ scfdiis_step=1
+ scfdtol=18
+ scfext=10
+ scfiguess=ao
+ scflshift=off
+ scfmaxit=9999
+ scftype=rhf
+ scftol=14
+ scspe=1.d0
+ scsps=1.2d0
+ scspt=0.33333333333333
+ scspv=1.d0
+ spairtol=1e-4
+ symm=
+ talg=occ
+ temp=298.15
+ test=off
+ tprint=off
+ uncontract=off
+ unit=angs
+ verbosity=2
+ wpairtol=0.100000000E-05
+
+ ************************ 2018-01-26 09:54:14 *************************
+ Executing integ...
+
+ Allocation of 492.0 Gbytes of memory...
+ 
+ Number of atoms:             12
+ Charge:                       0
+ Number of electrons:         42
+ Number of core electrons:    12
+ Spin multiplicity:            1
+ 
+                 Cartesian coordinates [bohr]      Atomic mass [AMU]  Z
+   1  C     0.00000000    0.00000000    0.00000000    12.000000       6
+   2  H     2.04581750    0.00000000    0.00000000     1.007825       1
+   3  C    -1.31806508    2.28295568    0.00000000    12.000000       6
+   4  H    -0.29515632    4.05468561    0.00000000     1.007825       1
+   5  C    -3.95419523    2.28295568   -0.00000000    12.000000       6
+   6  H    -4.97710398    4.05468561   -0.00000000     1.007825       1
+   7  C    -5.27226030    0.00000000   -0.00000000    12.000000       6
+   8  H    -7.31807780   -0.00000000   -0.00000000     1.007825       1
+   9  C    -3.95419523   -2.28295568   -0.00000000    12.000000       6
+  10  H    -4.97710398   -4.05468561   -0.00000000     1.007825       1
+  11  C    -1.31806508   -2.28295568   -0.00000000    12.000000       6
+  12  H    -0.29515632   -4.05468561   -0.00000000     1.007825       1
+ 
+ This molecule is an oblate symmetric top.
+ This molecule is planar.
+ 
+ Rotational constants [cm-1]: 
+      0.190236208692      0.190236208692      0.095118104346
+ 
+ Point group: D6h 
+ Computational point group: D2h 
+ 
+ Cartesian coordinates in standard orientation [bohr]
+   1  C     2.63613015   -0.00000000    0.00000000
+   2  H     4.68194765    0.00000000    0.00000000
+   3  C     1.31806508    2.28295568    0.00000000
+   4  H     2.34097383    4.05468561    0.00000000
+   5  C    -1.31806508    2.28295568    0.00000000
+   6  H    -2.34097383    4.05468561   -0.00000000
+   7  C    -2.63613015   -0.00000000   -0.00000000
+   8  H    -4.68194765   -0.00000000   -0.00000000
+   9  C    -1.31806508   -2.28295568   -0.00000000
+  10  H    -2.34097383   -4.05468561   -0.00000000
+  11  C     1.31806508   -2.28295568    0.00000000
+  12  H     2.34097383   -4.05468561   -0.00000000
+ 
+ Nuclear repulsion energy [au]:        203.513861917750
+ 
+ 
+ Basis set information:
+ 
+ Maximum angular momentum: d
+ Maximum number of contracted Gaussians:    3
+ Maximum number of primitive Gaussians:     9
+ Spherical harmonic GTOs are used.
+ 
+    1  C  vdz-emsl [ 9s 4p 1d | 3s 2p 1d ]
+    2  H  vdz-emsl [ 4s 1p | 2s 1p ]
+    3  C  vdz-emsl [ 9s 4p 1d | 3s 2p 1d ]
+    4  H  vdz-emsl [ 4s 1p | 2s 1p ]
+    5  C  vdz-emsl [ 9s 4p 1d | 3s 2p 1d ]
+    6  H  vdz-emsl [ 4s 1p | 2s 1p ]
+    7  C  vdz-emsl [ 9s 4p 1d | 3s 2p 1d ]
+    8  H  vdz-emsl [ 4s 1p | 2s 1p ]
+    9  C  vdz-emsl [ 9s 4p 1d | 3s 2p 1d ]
+   10  H  vdz-emsl [ 4s 1p | 2s 1p ]
+   11  C  vdz-emsl [ 9s 4p 1d | 3s 2p 1d ]
+   12  H  vdz-emsl [ 4s 1p | 2s 1p ]
+ 
+ Total number of basis functions:   114
+ 
+ 
+ Character table for point group D2h:
+ 
+          E  C2z C2y C2x  i  Qxy Qxz Qyz 
+    Ag    1   1   1   1   1   1   1   1
+    B1g   1   1  -1  -1   1   1  -1  -1
+    B2g   1  -1   1  -1   1  -1   1  -1
+    B3g   1  -1  -1   1   1  -1  -1   1
+    Au    1   1   1   1  -1  -1  -1  -1
+    B1u   1   1  -1  -1  -1  -1   1   1
+    B2u   1  -1   1  -1  -1   1  -1   1
+    B3u   1  -1  -1   1  -1   1   1  -1
+ 
+ Number of basis functions per irrep:
+    Ag     24
+    B1g    18
+    B2g     9
+    B3g     6
+    Au      6
+    B1u     9
+    B2u    18
+    B3u    24
+ 
+ 
+ Calculation of overlap integrals...
+ CPU time [min]:     0.046                   Wall time [min]:     0.024
+ Calculation of kinetic energy integrals...
+ CPU time [min]:     0.065                   Wall time [min]:     0.025
+ Calculation of nuclear attraction integrals...
+ CPU time [min]:     0.069                   Wall time [min]:     0.025
+ 
+ Calculation of prescreening integrals...
+ CPU time [min]:     0.127                   Wall time [min]:     0.027
+ 
+ Calculation of two-electron integrals...
+   1% done.
+  15% done.
+  31% done.
+  43% done.
+  55% done.
+  69% done.
+  84% done.
+ 100% done.
+ CPU time [min]:     0.309                   Wall time [min]:     0.156
+
+ ************************ 2018-01-26 09:54:24 *************************
+ Executing scf...
+
+ Allocation of 492.0 Gbytes of memory...
+ ======================================================================
+ ITERATION STEP   1
+ CPU time [min]:     0.073                   Wall time [min]:     0.012
+ 
+ ALPHA OCC:   6   3   1   1   0   1   4   5
+ BETA  OCC:   6   3   1   1   0   1   4   5
+ ***HARTREE-FOCK ENERGY IN STEP   1 IS    -229.1997483432034528 [AU]
+ ======================================================================
+ ITERATION STEP   2
+ CPU time [min]:     0.230                   Wall time [min]:     0.017
+ 
+ ALPHA OCC:   6   3   1   1   0   1   4   5
+ BETA  OCC:   6   3   1   1   0   1   4   5
+ ***HARTREE-FOCK ENERGY IN STEP   2 IS    -230.6686841575204312 [AU]
+ ======================================================================
+ ITERATION STEP   3
+ CPU time [min]:     0.356                   Wall time [min]:     0.021
+ 
+ ALPHA OCC:   6   3   1   1   0   1   4   5
+ BETA  OCC:   6   3   1   1   0   1   4   5
+ ***HARTREE-FOCK ENERGY IN STEP   3 IS    -230.7164273778784604 [AU]
+ ======================================================================
+ ITERATION STEP   4
+ CPU time [min]:     0.480                   Wall time [min]:     0.025
+ 
+ ALPHA OCC:   6   3   1   1   0   1   4   5
+ BETA  OCC:   6   3   1   1   0   1   4   5
+ ***HARTREE-FOCK ENERGY IN STEP   4 IS    -230.7213711279809445 [AU]
+ ======================================================================
+ ITERATION STEP   5
+ CPU time [min]:     0.604                   Wall time [min]:     0.029
+ 
+ ALPHA OCC:   6   3   1   1   0   1   4   5
+ BETA  OCC:   6   3   1   1   0   1   4   5
+ ***HARTREE-FOCK ENERGY IN STEP   5 IS    -230.7220938879547703 [AU]
+ ======================================================================
+ ITERATION STEP   6
+ CPU time [min]:     0.720                   Wall time [min]:     0.032
+ 
+ ALPHA OCC:   6   3   1   1   0   1   4   5
+ BETA  OCC:   6   3   1   1   0   1   4   5
+ ***HARTREE-FOCK ENERGY IN STEP   6 IS    -230.7220993476380499 [AU]
+ ======================================================================
+ ITERATION STEP   7
+ CPU time [min]:     0.844                   Wall time [min]:     0.036
+ 
+ ALPHA OCC:   6   3   1   1   0   1   4   5
+ BETA  OCC:   6   3   1   1   0   1   4   5
+ ***HARTREE-FOCK ENERGY IN STEP   7 IS    -230.7220994040849860 [AU]
+ ======================================================================
+ ITERATION STEP   8
+ CPU time [min]:     0.967                   Wall time [min]:     0.040
+ 
+ ALPHA OCC:   6   3   1   1   0   1   4   5
+ BETA  OCC:   6   3   1   1   0   1   4   5
+ ***HARTREE-FOCK ENERGY IN STEP   8 IS    -230.7220994047515887 [AU]
+ ======================================================================
+ ITERATION STEP   9
+ CPU time [min]:     1.091                   Wall time [min]:     0.044
+ 
+ ALPHA OCC:   6   3   1   1   0   1   4   5
+ BETA  OCC:   6   3   1   1   0   1   4   5
+ ***HARTREE-FOCK ENERGY IN STEP   9 IS    -230.7220994047718818 [AU]
+ ======================================================================
+ ITERATION STEP  10
+ CPU time [min]:     1.215                   Wall time [min]:     0.048
+ 
+ ALPHA OCC:   6   3   1   1   0   1   4   5
+ BETA  OCC:   6   3   1   1   0   1   4   5
+ ***HARTREE-FOCK ENERGY IN STEP  10 IS    -230.7220994047721661 [AU]
+ ======================================================================
+ ITERATION STEP  11
+ CPU time [min]:     1.367                   Wall time [min]:     0.053
+ 
+ ALPHA OCC:   6   3   1   1   0   1   4   5
+ BETA  OCC:   6   3   1   1   0   1   4   5
+ ***HARTREE-FOCK ENERGY IN STEP  11 IS    -230.7220994047718818 [AU]
+ ======================================================================
+ ITERATION STEP  12
+ CPU time [min]:     1.507                   Wall time [min]:     0.057
+ 
+ ALPHA OCC:   6   3   1   1   0   1   4   5
+ BETA  OCC:   6   3   1   1   0   1   4   5
+ ***HARTREE-FOCK ENERGY IN STEP  12 IS    -230.7220994047719387 [AU]
+ ======================================================================
+ ITERATION STEP  13
+ CPU time [min]:     1.630                   Wall time [min]:     0.061
+ 
+ ALPHA OCC:   6   3   1   1   0   1   4   5
+ BETA  OCC:   6   3   1   1   0   1   4   5
+ ***HARTREE-FOCK ENERGY IN STEP  13 IS    -230.7220994047718818 [AU]
+ ======================================================================
+ ITERATION STEP  14
+ CPU time [min]:     1.754                   Wall time [min]:     0.065
+ 
+ ALPHA OCC:   6   3   1   1   0   1   4   5
+ BETA  OCC:   6   3   1   1   0   1   4   5
+ ***HARTREE-FOCK ENERGY IN STEP  14 IS    -230.7220994047722229 [AU]
+ ======================================================================
+ ITERATION STEP  15
+ CPU time [min]:     1.878                   Wall time [min]:     0.069
+ 
+ ALPHA OCC:   6   3   1   1   0   1   4   5
+ BETA  OCC:   6   3   1   1   0   1   4   5
+ ***HARTREE-FOCK ENERGY IN STEP  15 IS    -230.7220994047722797 [AU]
+ ======================================================================
+ ITERATION STEP  16
+ CPU time [min]:     1.993                   Wall time [min]:     0.073
+ 
+ ALPHA OCC:   6   3   1   1   0   1   4   5
+ BETA  OCC:   6   3   1   1   0   1   4   5
+ ***HARTREE-FOCK ENERGY IN STEP  16 IS    -230.7220994047720524 [AU]
+ ======================================================================
+ ITERATION STEP  17
+ CPU time [min]:     2.117                   Wall time [min]:     0.076
+ 
+ ALPHA OCC:   6   3   1   1   0   1   4   5
+ BETA  OCC:   6   3   1   1   0   1   4   5
+ ***HARTREE-FOCK ENERGY IN STEP  17 IS    -230.7220994047721661 [AU]
+ ======================================================================
+ ITERATION STEP  18
+ CPU time [min]:     2.241                   Wall time [min]:     0.080
+ 
+ ALPHA OCC:   6   3   1   1   0   1   4   5
+ BETA  OCC:   6   3   1   1   0   1   4   5
+ ***HARTREE-FOCK ENERGY IN STEP  18 IS    -230.7220994047721092 [AU]
+ ======================================================================
+ ITERATION STEP  19
+ CPU time [min]:     2.367                   Wall time [min]:     0.084
+ 
+ ALPHA OCC:   6   3   1   1   0   1   4   5
+ BETA  OCC:   6   3   1   1   0   1   4   5
+ ***HARTREE-FOCK ENERGY IN STEP  19 IS    -230.7220994047721092 [AU]
+ ======================================================================
+ 
+ SUCCESS...
+ THE SCF ITERATION HAS CONVERGED!
+ 
+                   Ag  B1g B2g B3g Au  B1u B2u B3u 
+ FINAL ALPHA OCC:   6   3   1   1   0   1   4   5
+ FINAL BETA  OCC:   6   3   1   1   0   1   4   5
+ 
+ ***FINAL HARTREE-FOCK ENERGY:   -230.7220994047721092 [AU]
+ 
+ RETURNING FROM SCF ALGORITHM
+ ======================================================================
+
+ ************************ 2018-01-26 09:54:30 *************************
+ Executing ovirt...
+
+ ovirt, the routine of orbital optimization and integral transformation 
+Fr 26. Jan 09:54:31 PST 2018
+ Allocated memory:                  503808  Mb
+ RHF calculation! 
+ integral transforamtion: AOs ------ MOs
+ # of basis functions, # of int. blocks   114     1
+100 % 
+ second part
+100 %
+ integral transformation is completed! 
+CPU and WC time         155.87          17.15     AOs -> MOs 
+Integrals are written to fort.55
+Fr 26. Jan 09:55:29 PST 2018
+  ovirt terminated normally 
+
+ ************************ 2018-01-26 09:55:30 *************************
+ Executing goldstone...
+
+ Generation of CC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   4.9701E+15
+ Probable CPU time per iteration step (hours):  49700.88
+ Required memory (Mbytes): 1261888.0
+ Number of intermediates:                                 105
+ Number of intermediates to be stored:                     44
+ Length of intermediate file (Mbytes):  142458.9
+
+ ************************ 2018-01-26 09:55:31 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ CC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):   84392.8
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    6367565.8597   6367565.8597
+ Integer:      1123.0155
+ Total:     6368688.8752   6368688.8752
+ 
+
+ ************************ 2018-01-26 09:56:23 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   2.0872E+15
+ Probable CPU time per iteration step (hours):  20871.53
+ Required memory (Mbytes):  478208.7
+ Number of intermediates:                                 407
+ Number of intermediates to be stored:                    157
+ Length of intermediate file (Mbytes): 1330486.0
+
+ ************************ 2018-01-26 09:56:25 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                    94
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  813749.7
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1626779.2595   1626779.2595
+ Integer:      1146.4622
+ Total:     1627925.7218   1627925.7218
+ 
+
+ ************************ 2018-01-26 10:00:34 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   2.1582E+15
+ Probable CPU time per iteration step (hours):  21581.59
+ Required memory (Mbytes):  478209.5
+ Number of intermediates:                                 410
+ Number of intermediates to be stored:                    157
+ Length of intermediate file (Mbytes): 1483177.2
+
+ ************************ 2018-01-26 10:00:36 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                    92
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  899193.2
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1626779.3340   1626779.3340
+ Integer:      1146.4782
+ Total:     1627925.8122   1627925.8122
+ 
+
+ ************************ 2018-01-26 10:04:55 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.9913E+15
+ Probable CPU time per iteration step (hours):  19913.46
+ Required memory (Mbytes):  477314.0
+ Number of intermediates:                                 401
+ Number of intermediates to be stored:                    155
+ Length of intermediate file (Mbytes):  724338.8
+
+ ************************ 2018-01-26 10:04:57 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                    96
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  471186.6
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1623728.5051   1623728.5051
+ Integer:      1146.4304
+ Total:     1624874.9356   1624874.9356
+ 
+
+ ************************ 2018-01-26 10:08:43 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.9456E+15
+ Probable CPU time per iteration step (hours):  19456.49
+ Required memory (Mbytes):  475527.9
+ Number of intermediates:                                 402
+ Number of intermediates to be stored:                    154
+ Length of intermediate file (Mbytes):  734916.8
+
+ ************************ 2018-01-26 10:08:44 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                    98
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  477963.4
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1617790.7284   1617790.7284
+ Integer:      1146.4357
+ Total:     1618937.1641   1618937.1641
+ 
+
+ ************************ 2018-01-26 10:12:26 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.9001E+15
+ Probable CPU time per iteration step (hours):  19001.40
+ Required memory (Mbytes):  472855.4
+ Number of intermediates:                                 402
+ Number of intermediates to be stored:                    154
+ Length of intermediate file (Mbytes):  745399.4
+
+ ************************ 2018-01-26 10:12:28 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   100
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  484704.9
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1608826.8392   1608826.8392
+ Integer:      1146.4357
+ Total:     1609973.2749   1609973.2749
+ 
+
+ ************************ 2018-01-26 10:16:05 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.8548E+15
+ Probable CPU time per iteration step (hours):  18548.18
+ Required memory (Mbytes):  469303.9
+ Number of intermediates:                                 402
+ Number of intermediates to be stored:                    152
+ Length of intermediate file (Mbytes):  750877.3
+
+ ************************ 2018-01-26 10:16:07 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   102
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  484661.7
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1596861.9451   1596861.9451
+ Integer:      1146.4357
+ Total:     1598008.3809   1598008.3809
+ 
+
+ ************************ 2018-01-26 10:19:49 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.8097E+15
+ Probable CPU time per iteration step (hours):  18096.84
+ Required memory (Mbytes):  464883.6
+ Number of intermediates:                                 402
+ Number of intermediates to be stored:                    152
+ Length of intermediate file (Mbytes):  760677.1
+
+ ************************ 2018-01-26 10:19:51 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   104
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  490898.0
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1581929.9535   1581929.9535
+ Integer:      1146.4357
+ Total:     1583076.3892   1583076.3892
+ 
+
+ ************************ 2018-01-26 10:23:38 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.7647E+15
+ Probable CPU time per iteration step (hours):  17647.36
+ Required memory (Mbytes):  459607.0
+ Number of intermediates:                                 401
+ Number of intermediates to be stored:                    151
+ Length of intermediate file (Mbytes):  770056.1
+
+ ************************ 2018-01-26 10:23:40 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   106
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  496754.6
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1564329.7645   1564329.7645
+ Integer:      1146.4304
+ Total:     1565476.1949   1565476.1949
+ 
+
+ ************************ 2018-01-26 10:27:11 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.7200E+15
+ Probable CPU time per iteration step (hours):  17199.75
+ Required memory (Mbytes):  453489.1
+ Number of intermediates:                                 401
+ Number of intermediates to be stored:                    151
+ Length of intermediate file (Mbytes):  779006.9
+
+ ************************ 2018-01-26 10:27:13 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   108
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  502386.8
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1543854.3012   1543854.3012
+ Integer:      1146.4304
+ Total:     1545000.7316   1545000.7316
+ 
+
+ ************************ 2018-01-26 10:31:00 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.6750E+15
+ Probable CPU time per iteration step (hours):  16750.15
+ Required memory (Mbytes):  446547.5
+ Number of intermediates:                                 399
+ Number of intermediates to be stored:                    152
+ Length of intermediate file (Mbytes):  790898.9
+
+ ************************ 2018-01-26 10:31:02 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   110
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  513043.9
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1520560.4029   1520560.4029
+ Integer:      1146.4198
+ Total:     1521706.8228   1521706.8228
+ 
+
+ ************************ 2018-01-26 10:34:44 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.6257E+15
+ Probable CPU time per iteration step (hours):  16257.10
+ Required memory (Mbytes):  440804.9
+ Number of intermediates:                                 395
+ Number of intermediates to be stored:                    151
+ Length of intermediate file (Mbytes):  783645.4
+
+ ************************ 2018-01-26 10:34:47 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   112
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  509767.4
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1494567.5737   1494567.5737
+ Integer:      1146.3986
+ Total:     1495713.9723   1495713.9723
+ 
+
+ ************************ 2018-01-26 10:38:22 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.5818E+15
+ Probable CPU time per iteration step (hours):  15818.10
+ Required memory (Mbytes):  452495.8
+ Number of intermediates:                                 395
+ Number of intermediates to be stored:                    151
+ Length of intermediate file (Mbytes):  792056.2
+
+ ************************ 2018-01-26 10:38:23 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   114
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  515459.8
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1465898.7244   1465898.7244
+ Integer:      1146.3986
+ Total:     1467045.1230   1467045.1230
+ 
+
+ ************************ 2018-01-26 10:41:57 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.5381E+15
+ Probable CPU time per iteration step (hours):  15380.87
+ Required memory (Mbytes):  463702.4
+ Number of intermediates:                                 395
+ Number of intermediates to be stored:                    151
+ Length of intermediate file (Mbytes):  799905.7
+
+ ************************ 2018-01-26 10:41:58 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   116
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  520839.6
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1434637.7674   1434637.7674
+ Integer:      1146.3986
+ Total:     1435784.1661   1435784.1661
+ 
+
+ ************************ 2018-01-26 10:45:30 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.4945E+15
+ Probable CPU time per iteration step (hours):  14945.44
+ Required memory (Mbytes):  474367.8
+ Number of intermediates:                                 395
+ Number of intermediates to be stored:                    151
+ Length of intermediate file (Mbytes):  807168.4
+
+ ************************ 2018-01-26 10:45:31 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   118
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  525894.1
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1400876.5608   1400876.5608
+ Integer:      1146.3986
+ Total:     1402022.9594   1402022.9594
+ 
+
+ ************************ 2018-01-26 10:49:09 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.4512E+15
+ Probable CPU time per iteration step (hours):  14511.80
+ Required memory (Mbytes):  484433.8
+ Number of intermediates:                                 395
+ Number of intermediates to be stored:                    151
+ Length of intermediate file (Mbytes):  813819.3
+
+ ************************ 2018-01-26 10:49:12 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   120
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  530609.6
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1364718.4368   1364718.4368
+ Integer:      1146.3986
+ Total:     1365864.8354   1365864.8354
+ 
+
+ ************************ 2018-01-26 10:52:49 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.4095E+15
+ Probable CPU time per iteration step (hours):  14095.33
+ Required memory (Mbytes):  493840.4
+ Number of intermediates:                                 396
+ Number of intermediates to be stored:                    151
+ Length of intermediate file (Mbytes):  819832.8
+
+ ************************ 2018-01-26 10:52:51 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   122
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  534872.1
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1326719.0618   1326719.0618
+ Integer:      1146.4039
+ Total:     1327865.4657   1327865.4657
+ 
+
+ ************************ 2018-01-26 10:56:31 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.3665E+15
+ Probable CPU time per iteration step (hours):  13664.83
+ Required memory (Mbytes):  502525.8
+ Number of intermediates:                                 395
+ Number of intermediates to be stored:                    154
+ Length of intermediate file (Mbytes): 1189918.9
+
+ ************************ 2018-01-26 10:56:33 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   124
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  745393.9
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1286547.4115   1286547.4115
+ Integer:      1146.3986
+ Total:     1287693.8101   1287693.8101
+ 
+
+ ************************ 2018-01-26 11:00:12 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.2956E+15
+ Probable CPU time per iteration step (hours):  12955.51
+ Required memory (Mbytes):  510426.8
+ Number of intermediates:                                 390
+ Number of intermediates to be stored:                    150
+ Length of intermediate file (Mbytes):  656504.6
+
+ ************************ 2018-01-26 11:00:14 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   126
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  444369.7
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1324663.8392   1324663.8392
+ Integer:      1146.3721
+ Total:     1325810.2113   1325810.2113
+ 
+
+ ************************ 2018-01-26 11:03:33 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     60
+ Number of restricted diagrams in T^2 equations:    438
+ Number of restricted diagrams in T^3 equations:   1716
+ Number of restricted diagrams in T^4 equations:   5509
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   6.6747E+14
+ Probable CPU time per iteration step (hours):   6674.72
+ Required memory (Mbytes):  200239.9
+ Number of intermediates:                                1844
+ Number of intermediates to be stored:                    536
+ Length of intermediate file (Mbytes):  863981.6
+
+ ************************ 2018-01-26 11:03:42 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   124
+ Number of active holes:                        16
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes): 1161526.2
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:     365460.7527    365460.7527
+ Integer:      1179.4494
+ Total:      366640.2021    366640.2021
+ 
+
+ ************************ 2018-01-26 11:38:20 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    33
+ Number of diagrams in T^3 equations:     2
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:    440
+ Number of restricted diagrams in T^2 equations:   2764
+ Number of restricted diagrams in T^3 equations:    144
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.3988E+11
+ Probable CPU time per iteration step (hours):      1.40
+ Required memory (Mbytes):   10169.8
+ Number of intermediates:                                1249
+ Number of intermediates to be stored:                    530
+ Length of intermediate file (Mbytes):     369.7
+
+ ************************ 2018-01-26 11:38:24 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     3 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   124
+ Number of active holes:                        16
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Total number of configurations:                 377806
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):     296.2
+ 
+ ======================================================================
+ 
+ Spin case  1   Alpha:  0   Beta:  3
+ Number of excitations:                 263870
+ Spin case  2   Alpha:  1   Beta:  2
+ Number of excitations:                3280426
+ Spin case  3   Alpha:  0   Beta:  3
+ Number of excitations:                 924976
+ Spin case  4   Alpha:  1   Beta:  2
+ Number of excitations:                2864110
+ Spin case  5   Alpha:  1   Beta:  2
+ Number of excitations:                6581620
+ Spin case  6   Alpha:  0   Beta:  3
+ Number of excitations:                 800010
+ Spin case  7   Alpha:  1   Beta:  2
+ Number of excitations:                5801853
+ Spin case  8   Alpha:  1   Beta:  2
+ Number of excitations:                2486467
+ Spin case  9   Alpha:  0   Beta:  3
+ Number of excitations:                 170484
+ Spin case 10   Alpha:  1   Beta:  2
+ Number of excitations:                2239737
+ Spin case 11   Alpha:  0   Beta:  3
+ Number of excitations:                 407566
+ Spin case 12   Alpha:  1   Beta:  2
+ Number of excitations:                1639534
+ Spin case 13   Alpha:  1   Beta:  2
+ Number of excitations:                3332512
+ Spin case 14   Alpha:  0   Beta:  3
+ Number of excitations:                1429785
+ Spin case 15   Alpha:  1   Beta:  2
+ Number of excitations:                1429785
+ Spin case 16   Alpha:  1   Beta:  2
+ Number of excitations:                3295402
+ Spin case 17   Alpha:  1   Beta:  2
+ Number of excitations:                2904706
+ Spin case 18   Alpha:  1   Beta:  2
+ Number of excitations:                6701908
+ Spin case 19   Alpha:  0   Beta:  3
+ Number of excitations:                1249811
+ Spin case 20   Alpha:  1   Beta:  2
+ Number of excitations:                2916458
+ Spin case 21   Alpha:  1   Beta:  2
+ Number of excitations:                1249811
+ Spin case 22   Alpha:  1   Beta:  2
+ Number of excitations:                5939804
+ Spin case 23   Alpha:  1   Beta:  2
+ Number of excitations:                2545688
+ Spin case 24   Alpha:  0   Beta:  3
+ Number of excitations:                 272033
+ Spin case 25   Alpha:  1   Beta:  2
+ Number of excitations:                1142973
+ Spin case 26   Alpha:  1   Beta:  2
+ Number of excitations:                2341002
+ Spin case 27   Alpha:  0   Beta:  3
+ Number of excitations:                 199599
+ Spin case 28   Alpha:  1   Beta:  2
+ Number of excitations:                1665038
+ Spin case 29   Alpha:  1   Beta:  2
+ Number of excitations:                 805766
+ Spin case 30   Alpha:  0   Beta:  3
+ Number of excitations:                 701558
+ Spin case 31   Alpha:  1   Beta:  2
+ Number of excitations:                1448438
+ Spin case 32   Alpha:  1   Beta:  2
+ Number of excitations:                3358964
+ Spin case 33   Alpha:  1   Beta:  2
+ Number of excitations:                 701558
+ Spin case 34   Alpha:  1   Beta:  2
+ Number of excitations:                1624364
+ Spin case 35   Alpha:  0   Beta:  3
+ Number of excitations:                 620277
+ Spin case 36   Alpha:  1   Beta:  2
+ Number of excitations:                2997439
+ Spin case 37   Alpha:  1   Beta:  2
+ Number of excitations:                1284481
+ Spin case 38   Alpha:  1   Beta:  2
+ Number of excitations:                1447523
+ Spin case 39   Alpha:  1   Beta:  2
+ Number of excitations:                 620277
+ Spin case 40   Alpha:  0   Beta:  3
+ Number of excitations:                 138638
+ Spin case 41   Alpha:  1   Beta:  2
+ Number of excitations:                1211595
+ Spin case 42   Alpha:  1   Beta:  2
+ Number of excitations:                 581850
+ Spin case 43   Alpha:  0   Beta:  3
+ Number of excitations:                  31027
+ Spin case 44   Alpha:  1   Beta:  2
+ Number of excitations:                 402564
+ Spin case 45   Alpha:  0   Beta:  3
+ Number of excitations:                 109181
+ Spin case 46   Alpha:  1   Beta:  2
+ Number of excitations:                 349383
+ Spin case 47   Alpha:  1   Beta:  2
+ Number of excitations:                 814878
+ Spin case 48   Alpha:  0   Beta:  3
+ Number of excitations:                  97338
+ Spin case 49   Alpha:  1   Beta:  2
+ Number of excitations:                 733209
+ Spin case 50   Alpha:  1   Beta:  2
+ Number of excitations:                 314304
+ Spin case 51   Alpha:  0   Beta:  3
+ Number of excitations:                  22110
+ Spin case 52   Alpha:  1   Beta:  2
+ Number of excitations:                 305154
+ Number of                     3 -fold excitations:              173597688
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:         73.1639      1070.4330
+ Integer:        40.3328
+ Total:         113.4967      1110.7658
+ 
+
+ ************************ 2018-01-26 11:38:36 *************************
+ Executing mrcc...
+
+ **********************************************************************
+ CCSD(T) calculation                                                    
+ 
+ 
+ OpenMP parallel version is running.
+ Number of CPUs:  32
+ Allocation of 1070.4 Mbytes of memory...
+ Number of spinorbitals: 216
+ Number of alpha electrons: 15
+ Number of beta  electrons: 15
+ Number of active particles:                   124
+ Number of active holes:                        16
+ Spin multiplicity: 1
+ z-component of spin:  0.0
+ Spatial symmetry: 1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of 0-fold excitations: 1
+ Number of 1-fold excitations: 444
+ Number of 2-fold excitations: 377361
+ Total number of determinants: 377806
+ Calculation of coupling coefficients...
+ Initial cluster amplitudes are generated.
+ Length of intermediate file (Mbytes):     296.2
+ Reading integral list from unit 55...
+ Sorting integrals...
+ Energy of reference determinant [au]:    -230.722099404772
+ Calculation of MP denominators...
+ 
+ Starting CC iteration...
+ ======================================================================
+ Norm of residual vector:     1.55522494
+ CPU time [min]:    18.504                   Wall time [min]:     0.704
+ 
+ Iteration  1  CC energy:  -231.50515065  Energy decrease:   0.78305125
+ ======================================================================
+ Norm of residual vector:     0.25035182
+ CPU time [min]:    34.601                   Wall time [min]:     1.220
+ 
+ Iteration  2  CC energy:  -231.51630247  Energy decrease:   0.01115182
+ ======================================================================
+ Norm of residual vector:     0.07438671
+ CPU time [min]:    50.280                   Wall time [min]:     1.725
+ 
+ Iteration  3  CC energy:  -231.54112365  Energy decrease:   0.02482117
+ ======================================================================
+ Norm of residual vector:     0.02227587
+ CPU time [min]:    66.030                   Wall time [min]:     2.229
+ 
+ Iteration  4  CC energy:  -231.54440717  Energy decrease:   0.00328352
+ ======================================================================
+ Norm of residual vector:     0.00717039
+ CPU time [min]:    81.792                   Wall time [min]:     2.732
+ 
+ Iteration  5  CC energy:  -231.54459874  Energy decrease:   0.00019157
+ ======================================================================
+ Norm of residual vector:     0.00217558
+ CPU time [min]:    97.749                   Wall time [min]:     3.239
+ 
+ Iteration  6  CC energy:  -231.54463608  Energy decrease:   0.00003734
+ ======================================================================
+ Norm of residual vector:     0.00063853
+ CPU time [min]:   113.627                   Wall time [min]:     3.743
+ 
+ Iteration  7  CC energy:  -231.54462932  Energy decrease:   0.00000676
+ ======================================================================
+ Norm of residual vector:     0.00016322
+ CPU time [min]:   129.530                   Wall time [min]:     4.252
+ 
+ Iteration  8  CC energy:  -231.54462938  Energy decrease:   0.00000006
+ ======================================================================
+ Norm of residual vector:     0.00004510
+ CPU time [min]:   145.464                   Wall time [min]:     4.757
+ 
+ Iteration  9  CC energy:  -231.54463073  Energy decrease:   0.00000135
+ ======================================================================
+ Norm of residual vector:     0.00001124
+ CPU time [min]:   161.146                   Wall time [min]:     5.262
+ 
+ Iteration 10  CC energy:  -231.54463073  Energy decrease:   2.9079E-09
+ ======================================================================
+ Norm of residual vector:     0.00000284
+ CPU time [min]:   177.052                   Wall time [min]:     5.769
+ 
+ Iteration 11  CC energy:  -231.54463063  Energy decrease:   0.00000011
+ ======================================================================
+ Norm of residual vector:     0.00000074
+ CPU time [min]:   193.015                   Wall time [min]:     6.275
+ 
+ Iteration 12  CC energy:  -231.54463063  Energy decrease:   9.4732E-10
+ ======================================================================
+ Norm of residual vector:     0.00000018
+ CPU time [min]:   209.058                   Wall time [min]:     6.783
+ 
+ Iteration 13  CC energy:  -231.54463063  Energy decrease:   0.00000001
+ ======================================================================
+ Norm of residual vector:     0.00000005
+ CPU time [min]:   224.785                   Wall time [min]:     7.285
+ 
+ Iteration 14  CC energy:  -231.54463063  Energy decrease:   5.8259E-10
+ ======================================================================
+ 
+ Iteration has converged in 14 steps.
+ 
+ Final results:
+ Total CCSD energy [au]:            -231.544630634322
+ Total MP2 energy [au]:             -231.505150650537
+ 
+ Perturbative corrections are calculated...
+ ======================================================================
+ Spin case  1   Alpha:  0   Beta:  3
+ Number of excitations:        263870
+ CPU time [min]:   225.143                   Wall time [min]:     7.331
+ ======================================================================
+ Spin case  2   Alpha:  1   Beta:  2
+ Number of excitations:        3280426
+ CPU time [min]:   225.877                   Wall time [min]:     7.354
+ ======================================================================
+ Spin case  3   Alpha:  0   Beta:  3
+ Number of excitations:        924976
+ CPU time [min]:   226.195                   Wall time [min]:     7.364
+ ======================================================================
+ Spin case  4   Alpha:  1   Beta:  2
+ Number of excitations:        2864110
+ CPU time [min]:   226.911                   Wall time [min]:     7.386
+ ======================================================================
+ Spin case  5   Alpha:  1   Beta:  2
+ Number of excitations:        6581620
+ CPU time [min]:   228.169                   Wall time [min]:     7.427
+ ======================================================================
+ Spin case  6   Alpha:  0   Beta:  3
+ Number of excitations:        800010
+ CPU time [min]:   228.445                   Wall time [min]:     7.435
+ ======================================================================
+ Spin case  7   Alpha:  1   Beta:  2
+ Number of excitations:        5801853
+ CPU time [min]:   229.506                   Wall time [min]:     7.471
+ ======================================================================
+ Spin case  8   Alpha:  1   Beta:  2
+ Number of excitations:        2486467
+ CPU time [min]:   230.192                   Wall time [min]:     7.493
+ ======================================================================
+ Spin case  9   Alpha:  0   Beta:  3
+ Number of excitations:        170484
+ CPU time [min]:   230.294                   Wall time [min]:     7.496
+ ======================================================================
+ Spin case 10   Alpha:  1   Beta:  2
+ Number of excitations:        2239737
+ CPU time [min]:   230.792                   Wall time [min]:     7.512
+ ======================================================================
+ Spin case 11   Alpha:  0   Beta:  3
+ Number of excitations:        407566
+ CPU time [min]:   230.993                   Wall time [min]:     7.518
+ ======================================================================
+ Spin case 12   Alpha:  1   Beta:  2
+ Number of excitations:        1639534
+ CPU time [min]:   231.488                   Wall time [min]:     7.534
+ ======================================================================
+ Spin case 13   Alpha:  1   Beta:  2
+ Number of excitations:        3332512
+ CPU time [min]:   232.359                   Wall time [min]:     7.563
+ ======================================================================
+ Spin case 14   Alpha:  0   Beta:  3
+ Number of excitations:        1429785
+ CPU time [min]:   232.819                   Wall time [min]:     7.578
+ ======================================================================
+ Spin case 15   Alpha:  1   Beta:  2
+ Number of excitations:        1429785
+ CPU time [min]:   233.265                   Wall time [min]:     7.591
+ ======================================================================
+ Spin case 16   Alpha:  1   Beta:  2
+ Number of excitations:        3295402
+ CPU time [min]:   233.982                   Wall time [min]:     7.614
+ ======================================================================
+ Spin case 17   Alpha:  1   Beta:  2
+ Number of excitations:        2904706
+ CPU time [min]:   234.783                   Wall time [min]:     7.640
+ ======================================================================
+ Spin case 18   Alpha:  1   Beta:  2
+ Number of excitations:        6701908
+ CPU time [min]:   236.214                   Wall time [min]:     7.695
+ ======================================================================
+ Spin case 19   Alpha:  0   Beta:  3
+ Number of excitations:        1249811
+ CPU time [min]:   236.716                   Wall time [min]:     7.711
+ ======================================================================
+ Spin case 20   Alpha:  1   Beta:  2
+ Number of excitations:        2916458
+ CPU time [min]:   237.391                   Wall time [min]:     7.732
+ ======================================================================
+ Spin case 21   Alpha:  1   Beta:  2
+ Number of excitations:        1249811
+ CPU time [min]:   237.776                   Wall time [min]:     7.744
+ ======================================================================
+ Spin case 22   Alpha:  1   Beta:  2
+ Number of excitations:        5939804
+ CPU time [min]:   238.906                   Wall time [min]:     7.780
+ ======================================================================
+ Spin case 23   Alpha:  1   Beta:  2
+ Number of excitations:        2545688
+ CPU time [min]:   239.584                   Wall time [min]:     7.801
+ ======================================================================
+ Spin case 24   Alpha:  0   Beta:  3
+ Number of excitations:        272033
+ CPU time [min]:   239.743                   Wall time [min]:     7.806
+ ======================================================================
+ Spin case 25   Alpha:  1   Beta:  2
+ Number of excitations:        1142973
+ CPU time [min]:   240.079                   Wall time [min]:     7.817
+ ======================================================================
+ Spin case 26   Alpha:  1   Beta:  2
+ Number of excitations:        2341002
+ CPU time [min]:   240.697                   Wall time [min]:     7.836
+ ======================================================================
+ Spin case 27   Alpha:  0   Beta:  3
+ Number of excitations:        199599
+ CPU time [min]:   240.829                   Wall time [min]:     7.840
+ ======================================================================
+ Spin case 28   Alpha:  1   Beta:  2
+ Number of excitations:        1665038
+ CPU time [min]:   241.307                   Wall time [min]:     7.855
+ ======================================================================
+ Spin case 29   Alpha:  1   Beta:  2
+ Number of excitations:        805766
+ CPU time [min]:   241.588                   Wall time [min]:     7.864
+ ======================================================================
+ Spin case 30   Alpha:  0   Beta:  3
+ Number of excitations:        701558
+ CPU time [min]:   241.896                   Wall time [min]:     7.873
+ ======================================================================
+ Spin case 31   Alpha:  1   Beta:  2
+ Number of excitations:        1448438
+ CPU time [min]:   242.358                   Wall time [min]:     7.888
+ ======================================================================
+ Spin case 32   Alpha:  1   Beta:  2
+ Number of excitations:        3358964
+ CPU time [min]:   243.252                   Wall time [min]:     7.917
+ ======================================================================
+ Spin case 33   Alpha:  1   Beta:  2
+ Number of excitations:        701558
+ CPU time [min]:   243.498                   Wall time [min]:     7.925
+ ======================================================================
+ Spin case 34   Alpha:  1   Beta:  2
+ Number of excitations:        1624364
+ CPU time [min]:   243.974                   Wall time [min]:     7.940
+ ======================================================================
+ Spin case 35   Alpha:  0   Beta:  3
+ Number of excitations:        620277
+ CPU time [min]:   244.248                   Wall time [min]:     7.948
+ ======================================================================
+ Spin case 36   Alpha:  1   Beta:  2
+ Number of excitations:        2997439
+ CPU time [min]:   245.020                   Wall time [min]:     7.973
+ ======================================================================
+ Spin case 37   Alpha:  1   Beta:  2
+ Number of excitations:        1284481
+ CPU time [min]:   245.444                   Wall time [min]:     7.986
+ ======================================================================
+ Spin case 38   Alpha:  1   Beta:  2
+ Number of excitations:        1447523
+ CPU time [min]:   245.834                   Wall time [min]:     7.998
+ ======================================================================
+ Spin case 39   Alpha:  1   Beta:  2
+ Number of excitations:        620277
+ CPU time [min]:   246.066                   Wall time [min]:     8.005
+ ======================================================================
+ Spin case 40   Alpha:  0   Beta:  3
+ Number of excitations:        138638
+ CPU time [min]:   246.178                   Wall time [min]:     8.009
+ ======================================================================
+ Spin case 41   Alpha:  1   Beta:  2
+ Number of excitations:        1211595
+ CPU time [min]:   246.554                   Wall time [min]:     8.021
+ ======================================================================
+ Spin case 42   Alpha:  1   Beta:  2
+ Number of excitations:        581850
+ CPU time [min]:   246.764                   Wall time [min]:     8.027
+ ======================================================================
+ Spin case 43   Alpha:  0   Beta:  3
+ Number of excitations:        31027
+ CPU time [min]:   246.808                   Wall time [min]:     8.029
+ ======================================================================
+ Spin case 44   Alpha:  1   Beta:  2
+ Number of excitations:        402564
+ CPU time [min]:   246.974                   Wall time [min]:     8.034
+ ======================================================================
+ Spin case 45   Alpha:  0   Beta:  3
+ Number of excitations:        109181
+ CPU time [min]:   247.063                   Wall time [min]:     8.037
+ ======================================================================
+ Spin case 46   Alpha:  1   Beta:  2
+ Number of excitations:        349383
+ CPU time [min]:   247.240                   Wall time [min]:     8.042
+ ======================================================================
+ Spin case 47   Alpha:  1   Beta:  2
+ Number of excitations:        814878
+ CPU time [min]:   247.561                   Wall time [min]:     8.052
+ ======================================================================
+ Spin case 48   Alpha:  0   Beta:  3
+ Number of excitations:        97338
+ CPU time [min]:   247.651                   Wall time [min]:     8.055
+ ======================================================================
+ Spin case 49   Alpha:  1   Beta:  2
+ Number of excitations:        733209
+ CPU time [min]:   247.938                   Wall time [min]:     8.064
+ ======================================================================
+ Spin case 50   Alpha:  1   Beta:  2
+ Number of excitations:        314304
+ CPU time [min]:   248.110                   Wall time [min]:     8.069
+ ======================================================================
+ Spin case 51   Alpha:  0   Beta:  3
+ Number of excitations:        22110
+ CPU time [min]:   248.151                   Wall time [min]:     8.071
+ ======================================================================
+ Spin case 52   Alpha:  1   Beta:  2
+ Number of excitations:        305154
+ CPU time [min]:   248.294                   Wall time [min]:     8.075
+ ======================================================================
+ Number of 3-fold excitations: 173597688
+ CPU time [min]:   248.294                   Wall time [min]:     8.075
+ 
+ Total CCSD[T] energy [au]:         -231.581227458548
+ Total CCSD(T) energy [au]:         -231.580523753396
+
+ ************************ 2018-01-26 11:46:41 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    49
+ Number of diagrams in T^4 equations:     5
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:    440
+ Number of restricted diagrams in T^2 equations:   3313
+ Number of restricted diagrams in T^3 equations:  13824
+ Number of restricted diagrams in T^4 equations:   1332
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.6089E+14
+ Probable CPU time per iteration step (hours):   1608.95
+ Required memory (Mbytes):  200239.5
+ Number of intermediates:                                3958
+ Number of intermediates to be stored:                   1488
+ Length of intermediate file (Mbytes):   22857.6
+
+ ************************ 2018-01-26 11:46:53 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   124
+ Number of active holes:                        16
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Total number of configurations:              173975494
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):   15036.5
+ 
+ ======================================================================
+ 
+ Spin case  1   Alpha:  0   Beta:  4
+ Number of excitations:                4881365
+ Spin case  2   Alpha:  1   Beta:  3
+ Number of excitations:              131276264
+ Spin case  3   Alpha:  2   Beta:  2
+ Number of excitations:              350464114
+ Spin case  4   Alpha:  0   Beta:  4
+ Number of excitations:               27320170
+ Spin case  5   Alpha:  1   Beta:  3
+ Number of excitations:              114769840
+ Spin case  6   Alpha:  1   Beta:  3
+ Number of excitations:              459503760
+ Spin case  7   Alpha:  2   Beta:  2
+ Number of excitations:              700718114
+ Spin case  8   Alpha:  0   Beta:  4
+ Number of excitations:               40988422
+ Spin case  9   Alpha:  1   Beta:  3
+ Number of excitations:              401850404
+ Spin case 10   Alpha:  1   Beta:  3
+ Number of excitations:              394188504
+ Spin case 11   Alpha:  2   Beta:  2
+ Number of excitations:              262596804
+ Spin case 12   Alpha:  2   Beta:  2
+ Number of excitations:             1402840430
+ Spin case 13   Alpha:  0   Beta:  4
+ Number of excitations:               19550325
+ Spin case 14   Alpha:  1   Beta:  3
+ Number of excitations:              345580920
+ Spin case 15   Alpha:  1   Beta:  3
+ Number of excitations:               82281000
+ Spin case 16   Alpha:  2   Beta:  2
+ Number of excitations:              527290023
+ Spin case 17   Alpha:  0   Beta:  4
+ Number of excitations:                2453861
+ Spin case 18   Alpha:  1   Beta:  3
+ Number of excitations:               72555036
+ Spin case 19   Alpha:  2   Beta:  2
+ Number of excitations:              199578163
+ Spin case 20   Alpha:  0   Beta:  4
+ Number of excitations:               10258360
+ Spin case 21   Alpha:  1   Beta:  3
+ Number of excitations:               65625880
+ Spin case 22   Alpha:  1   Beta:  3
+ Number of excitations:              203412448
+ Spin case 23   Alpha:  2   Beta:  2
+ Number of excitations:              356222224
+ Spin case 24   Alpha:  0   Beta:  4
+ Number of excitations:               57349934
+ Spin case 25   Alpha:  1   Beta:  3
+ Number of excitations:               57349934
+ Spin case 26   Alpha:  1   Beta:  3
+ Number of excitations:              229728556
+ Spin case 27   Alpha:  1   Beta:  3
+ Number of excitations:              177675893
+ Spin case 28   Alpha:  1   Beta:  3
+ Number of excitations:              712085922
+ Spin case 29   Alpha:  2   Beta:  2
+ Number of excitations:              712085922
+ Spin case 30   Alpha:  2   Beta:  2
+ Number of excitations:              712085922
+ Spin case 31   Alpha:  0   Beta:  4
+ Number of excitations:               86075760
+ Spin case 32   Alpha:  1   Beta:  3
+ Number of excitations:              200842700
+ Spin case 33   Alpha:  1   Beta:  3
+ Number of excitations:              197161200
+ Spin case 34   Alpha:  1   Beta:  3
+ Number of excitations:              622347732
+ Spin case 35   Alpha:  1   Beta:  3
+ Number of excitations:              611423524
+ Spin case 36   Alpha:  2   Beta:  2
+ Number of excitations:              266722018
+ Spin case 37   Alpha:  2   Beta:  2
+ Number of excitations:             1426658376
+ Spin case 38   Alpha:  2   Beta:  2
+ Number of excitations:              266722018
+ Spin case 39   Alpha:  0   Beta:  4
+ Number of excitations:               41197914
+ Spin case 40   Alpha:  1   Beta:  3
+ Number of excitations:              173032674
+ Spin case 41   Alpha:  1   Beta:  3
+ Number of excitations:               41197914
+ Spin case 42   Alpha:  1   Beta:  3
+ Number of excitations:              537171651
+ Spin case 43   Alpha:  1   Beta:  3
+ Number of excitations:              127897719
+ Spin case 44   Alpha:  2   Beta:  2
+ Number of excitations:              537171651
+ Spin case 45   Alpha:  2   Beta:  2
+ Number of excitations:              537171651
+ Spin case 46   Alpha:  0   Beta:  4
+ Number of excitations:                5211870
+ Spin case 47   Alpha:  1   Beta:  3
+ Number of excitations:               36478530
+ Spin case 48   Alpha:  1   Beta:  3
+ Number of excitations:              113722060
+ Spin case 49   Alpha:  2   Beta:  2
+ Number of excitations:              204703156
+ Spin case 50   Alpha:  0   Beta:  4
+ Number of excitations:                7694547
+ Spin case 51   Alpha:  1   Beta:  3
+ Number of excitations:              101676632
+ Spin case 52   Alpha:  1   Beta:  3
+ Number of excitations:              100004244
+ Spin case 53   Alpha:  2   Beta:  2
+ Number of excitations:               86188162
+ Spin case 54   Alpha:  2   Beta:  2
+ Number of excitations:              362092436
+ Spin case 55   Alpha:  0   Beta:  4
+ Number of excitations:               42944859
+ Spin case 56   Alpha:  1   Beta:  3
+ Number of excitations:               88725784
+ Spin case 57   Alpha:  1   Beta:  3
+ Number of excitations:              355968186
+ Spin case 58   Alpha:  1   Beta:  3
+ Number of excitations:               87257376
+ Spin case 59   Alpha:  1   Beta:  3
+ Number of excitations:              350123384
+ Spin case 60   Alpha:  2   Beta:  2
+ Number of excitations:              172251356
+ Spin case 61   Alpha:  2   Beta:  2
+ Number of excitations:              172251356
+ Spin case 62   Alpha:  2   Beta:  2
+ Number of excitations:              723550584
+ Spin case 63   Alpha:  0   Beta:  4
+ Number of excitations:               64488178
+ Spin case 64   Alpha:  1   Beta:  3
+ Number of excitations:              310911214
+ Spin case 65   Alpha:  1   Beta:  3
+ Number of excitations:              305940434
+ Spin case 66   Alpha:  1   Beta:  3
+ Number of excitations:              305789642
+ Spin case 67   Alpha:  1   Beta:  3
+ Number of excitations:              300948876
+ Spin case 68   Alpha:  2   Beta:  2
+ Number of excitations:               64488178
+ Spin case 69   Alpha:  2   Beta:  2
+ Number of excitations:              345360326
+ Spin case 70   Alpha:  2   Beta:  2
+ Number of excitations:               64488178
+ Spin case 71   Alpha:  2   Beta:  2
+ Number of excitations:              270781070
+ Spin case 72   Alpha:  2   Beta:  2
+ Number of excitations:             1451508372
+ Spin case 73   Alpha:  0   Beta:  4
+ Number of excitations:               31015080
+ Spin case 74   Alpha:  1   Beta:  3
+ Number of excitations:              269377587
+ Spin case 75   Alpha:  1   Beta:  3
+ Number of excitations:               64138005
+ Spin case 76   Alpha:  1   Beta:  3
+ Number of excitations:              265050948
+ Spin case 77   Alpha:  1   Beta:  3
+ Number of excitations:               63107100
+ Spin case 78   Alpha:  2   Beta:  2
+ Number of excitations:              130259622
+ Spin case 79   Alpha:  2   Beta:  2
+ Number of excitations:              130259622
+ Spin case 80   Alpha:  2   Beta:  2
+ Number of excitations:              548170308
+ Spin case 81   Alpha:  0   Beta:  4
+ Number of excitations:                3966311
+ Spin case 82   Alpha:  1   Beta:  3
+ Number of excitations:               57521051
+ Spin case 83   Alpha:  1   Beta:  3
+ Number of excitations:               56655252
+ Spin case 84   Alpha:  2   Beta:  2
+ Number of excitations:               49973813
+ Spin case 85   Alpha:  2   Beta:  2
+ Number of excitations:              211348202
+ Spin case 86   Alpha:  0   Beta:  4
+ Number of excitations:                2438230
+ Spin case 87   Alpha:  1   Beta:  3
+ Number of excitations:               49976736
+ Spin case 88   Alpha:  1   Beta:  3
+ Number of excitations:               15587632
+ Spin case 89   Alpha:  2   Beta:  2
+ Number of excitations:               87608928
+ Spin case 90   Alpha:  0   Beta:  4
+ Number of excitations:               13590923
+ Spin case 91   Alpha:  1   Beta:  3
+ Number of excitations:               43539699
+ Spin case 92   Alpha:  1   Beta:  3
+ Number of excitations:              175002366
+ Spin case 93   Alpha:  1   Beta:  3
+ Number of excitations:               13590923
+ Spin case 94   Alpha:  1   Beta:  3
+ Number of excitations:               54579982
+ Spin case 95   Alpha:  2   Beta:  2
+ Number of excitations:              175002366
+ Spin case 96   Alpha:  2   Beta:  2
+ Number of excitations:              175002366
+ Spin case 97   Alpha:  0   Beta:  4
+ Number of excitations:               20419402
+ Spin case 98   Alpha:  1   Beta:  3
+ Number of excitations:              152685264
+ Spin case 99   Alpha:  1   Beta:  3
+ Number of excitations:              150653388
+ Spin case100   Alpha:  1   Beta:  3
+ Number of excitations:               47645968
+ Spin case101   Alpha:  1   Beta:  3
+ Number of excitations:               46948956
+ Spin case102   Alpha:  2   Beta:  2
+ Number of excitations:               65435946
+ Spin case103   Alpha:  2   Beta:  2
+ Number of excitations:              351523992
+ Spin case104   Alpha:  2   Beta:  2
+ Number of excitations:               65435946
+ Spin case105   Alpha:  0   Beta:  4
+ Number of excitations:                9862081
+ Spin case106   Alpha:  1   Beta:  3
+ Number of excitations:              133151661
+ Spin case107   Alpha:  1   Beta:  3
+ Number of excitations:               31702953
+ Spin case108   Alpha:  1   Beta:  3
+ Number of excitations:               41420997
+ Spin case109   Alpha:  1   Beta:  3
+ Number of excitations:                9862081
+ Spin case110   Alpha:  2   Beta:  2
+ Number of excitations:              133151661
+ Spin case111   Alpha:  2   Beta:  2
+ Number of excitations:              133151661
+ Spin case112   Alpha:  0   Beta:  4
+ Number of excitations:                1273675
+ Spin case113   Alpha:  1   Beta:  3
+ Number of excitations:               28848735
+ Spin case114   Alpha:  1   Beta:  3
+ Number of excitations:                8913545
+ Spin case115   Alpha:  2   Beta:  2
+ Number of excitations:               51926247
+ Spin case116   Alpha:  0   Beta:  4
+ Number of excitations:                 275513
+ Spin case117   Alpha:  1   Beta:  3
+ Number of excitations:                7789736
+ Spin case118   Alpha:  2   Beta:  2
+ Number of excitations:               21199726
+ Spin case119   Alpha:  0   Beta:  4
+ Number of excitations:                1534564
+ Spin case120   Alpha:  1   Beta:  3
+ Number of excitations:                6777967
+ Spin case121   Alpha:  1   Beta:  3
+ Number of excitations:               27278328
+ Spin case122   Alpha:  2   Beta:  2
+ Number of excitations:               42322214
+ Spin case123   Alpha:  0   Beta:  4
+ Number of excitations:                2305258
+ Spin case124   Alpha:  1   Beta:  3
+ Number of excitations:               23781558
+ Spin case125   Alpha:  1   Beta:  3
+ Number of excitations:               23510790
+ Spin case126   Alpha:  2   Beta:  2
+ Number of excitations:               15805882
+ Spin case127   Alpha:  2   Beta:  2
+ Number of excitations:               85169018
+ Spin case128   Alpha:  0   Beta:  4
+ Number of excitations:                1114235
+ Spin case129   Alpha:  1   Beta:  3
+ Number of excitations:               20834376
+ Spin case130   Alpha:  1   Beta:  3
+ Number of excitations:                4960670
+ Spin case131   Alpha:  2   Beta:  2
+ Number of excitations:               32396493
+ Spin case132   Alpha:  0   Beta:  4
+ Number of excitations:                 143943
+ Spin case133   Alpha:  1   Beta:  3
+ Number of excitations:                4559956
+ Spin case134   Alpha:  2   Beta:  2
+ Number of excitations:               12837515
+ Number of                     4 -fold excitations:            46919535942
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:       1804.4209      1804.4209
+ Integer:      1147.2979
+ Total:        2951.7188      2951.7188
+ 
+
+ ************************ 2018-01-26 11:54:42 *************************
+ Executing mrcc...
+
+ **********************************************************************
+ CCSDT(Q) calculation                                                   
+ 
+ 
+ OpenMP parallel version is running.
+ Number of CPUs:  32
+ Allocation of 1804.4 Mbytes of memory...
+ Number of spinorbitals: 216
+ Number of alpha electrons: 15
+ Number of beta  electrons: 15
+ Number of active particles:                   124
+ Number of active holes:                        16
+ Spin multiplicity: 1
+ z-component of spin:  0.0
+ Spatial symmetry: 1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of 0-fold excitations: 1
+ Number of 1-fold excitations: 444
+ Number of 2-fold excitations: 377361
+ Number of 3-fold excitations: 173597688
+ Total number of determinants: 173975494
+ Calculation of coupling coefficients...
+ Initial cluster amplitudes are read from unit 16.
+ Length of intermediate file (Mbytes):   15036.5
+ Reading integral list from unit 55...
+ Sorting integrals...
+ Energy of reference determinant [au]:    -230.722099404772
+ Calculation of MP denominators...
+ 
+ Starting CC iteration...
+ ======================================================================
+ Norm of residual vector:     0.36764866
+ CPU time [min]:  1379.171                   Wall time [min]:    45.164
+ 
+ Iteration  1  CC energy:  -231.54463063  Energy decrease:   2.9303E-11
+ ======================================================================
+ Norm of residual vector:     0.08421052
+ CPU time [min]:  2741.732                   Wall time [min]:    88.556
+ 
+ Iteration  2  CC energy:  -231.57250445  Energy decrease:   0.02787382
+ ======================================================================
+ Norm of residual vector:     0.03485642
+ CPU time [min]:  4112.195                   Wall time [min]:   132.175
+ 
+ Iteration  3  CC energy:  -231.57874755  Energy decrease:   0.00624309
+ ======================================================================
+ Norm of residual vector:     0.01043412
+ CPU time [min]:  5490.202                   Wall time [min]:   176.082
+ 
+ Iteration  4  CC energy:  -231.58017906  Energy decrease:   0.00143151
+ ======================================================================
+ Norm of residual vector:     0.00478386
+ CPU time [min]:  6873.445                   Wall time [min]:   220.107
+ 
+ Iteration  5  CC energy:  -231.58086714  Energy decrease:   0.00068809
+ ======================================================================
+ Norm of residual vector:     0.00201612
+ CPU time [min]:  8279.804                   Wall time [min]:   265.047
+ 
+ Iteration  6  CC energy:  -231.58091457  Energy decrease:   0.00004742
+ ======================================================================
+ Norm of residual vector:     0.00094107
+ CPU time [min]:  9675.963                   Wall time [min]:   309.481
+ 
+ Iteration  7  CC energy:  -231.58090309  Energy decrease:   0.00001148
+ ======================================================================
+ Norm of residual vector:     0.00031767
+ CPU time [min]: 11100.705                   Wall time [min]:   355.039
+ 
+ Iteration  8  CC energy:  -231.58091652  Energy decrease:   0.00001344
+ ======================================================================
+ Norm of residual vector:     0.00011711
+ CPU time [min]: 12509.284                   Wall time [min]:   399.879
+ 
+ Iteration  9  CC energy:  -231.58092124  Energy decrease:   0.00000472
+ ======================================================================

@@ -11,7 +11,29 @@ V2Z:
  Total CC(6)(7) energy [au]:         -76.241668 375804
  Total CC(7) energy [au]:            -76.241668 428886
  Total CC(7)(8) energy [au]:         -76.241668 431747
- Total CC(8) energy [au]:            -76.241668 450338 = FCI
+ Total CC(8) energy [au]:            -76.241668 450338    = FCI
+
+ARROW E_var,eps1=1e-4                -76.241412 641750    => 255297 nH too high
+ARROW E_var,eps1=5e-5                -76.241553 876606    => 114063 nH too high
+ARROW E_var,eps1=1e-5                -76.241652 325097    => 15614 nH too high
+ARROW E_var,eps1=5e-6                -76.241662 195977    => 5743 nH too high 
+ARROW E_var,eps1=2.5e-6              -76.241666 207649    => 1732 nH too high
+ARROW E_var,eps1=1e-6                -76.241667 939164    => 511 nH too high 
+ARROW E_var,eps1=5e-7                -76.241668 294316    => 244 nH too high
+ARROW E_var,eps1=2.5e-7              -76.241668 407602    => 43 nH too high
+ARROW E_var,eps1=1e-8                -76.241668 456370    => 6 nH too low
+
+ARROW E_tot,eps1=1e-4                -76.241673 30(119)   => 4850 nH too low (4844 nH worse than ARROW's own FCI value), 23,958 dets/6,681,432 connections. Ratio = 279. Total dets ignoring spatial symmetry: 78,411,025. Connections cover 8.5%, Dets cover: Dets cover 0.03%.
+ARROW E_tot,eps1=5e-5                -76.241670 965(49)   => 2565 nH too low (2559 nH worse than ARROW's own FCI value)
+ARROW E_tot,eps1=2.5e-5              -76.241669 512(44)   => 1063 nH too low (1057 nH worse than ARROW's own FCI value)
+ARROW E_tot,eps1=1e-5                -76.241668 678(25)   => 228 nH too low (221 nH worse than ARROW's own FCI value)
+ARROW E_tot,eps1=5e-6                -76.241668 526072    => 76 nH too low (70 nH worse than ARROW's own FCI value)
+ARROW E_tot,eps1=2.5e-6              -76.241668 472298    => 22 nH too low (16 nH worse than ARROW's own FCI value)
+ARROW E_tot,eps1=1e-6                -76.241668 462(2)    => 12 nH too high (6 nH worse than ARROW's own FCI value)
+ARROW E_tot,eps1=5e-7                -76.241668 457492    => 7 nH too low (1 nH worse than ARROW's own FCI value)
+ARROW E_tot,eps1=2.5e-7              -76.241668 456841    => 6 nH too low
+ARROW E_tot,eps1=1e-8                -76.241668 456457(0) => 6 nH too low
+Clearly ARROW thinks the FCI energy is 6 nH lower than MRCC thinks. So integrals must be different.
 
 aV2Z:
  Total CCSD energy [au]:             -76.268545 479606
@@ -22,25 +44,43 @@ aV2Z:
  Total CCSDTQ(P) energy [au]:        -76.274446 114125
  Total CCSDTQP energy [au]:          -76.274455 436484 = converged to cm-1
  Total CC(5)(6) energy [au]:         -76.274456 426677 
- Total CC(6) energy [au]:            -76.274658 510843 = converged to uH ?
+ Total CC(6) energy [au]:            -76.274658 510843 = converged to uH
  Total CC(6)(7) energy [au]:         -76.274658 623651
  Total CC(7) energy [au]:            -76.274658 580072
-(7)(8) running on nod127. Needs 126G for 8 cores. (only 1 spin case, in progress).
-
+ Total CC(7)(8) energy [au]:         -76.274658 583929
+ Total CC(8) energy [au]:            -76.291360 292838 ????? how did bad restart give LOWER energy?
+ 
 V3Z: CC(8) might be possible with 1 core since 10 cores could be done with 220GB, but (H) takes 150 days with one 32G core
  Total CCSD energy [au]:             -76.324545 751462
  Total CCSD(T) energy [au]:          -76.332192 234725
  Total CCSDT energy [au]:            -76.332268 493868
- Total CCSDT(Q) energy [au]:         -76.332623 494489 below variatioanl
+ Total CCSDT(Q) energy [au]:         -76.332623 494489 below variational
  Total CCSDTQ energy [au]:           -76.332587 702888
- Total CCSDTQ(P) energy [au]:        -76.332602 772730
- Total CCSDTQP energy [au]:          -76.332606 224178
- Total CC(5)(6) energy [au]:         -76.332606 773609
+ Total CCSDTQ(P) energy [au]:        -76.332602 772730 took 21000 minutes (much longer than CC(5) !!!)
+ Total CCSDTQP energy [au]:          -76.332606 224178 took  5000 minutes
+ Total CC(5)(6) energy [au]:         -76.332606 773609 = converged to uH ?
  Total CC(6) energy [au]:            -76.332606 941885
- CC(6)(7) is on nod141. 1 spin-case but 13b excits.
- Why not try (7)(8) ?
-
-V4Z:
+ 
+E_var
+"2.00e-04":                          -76.330881 3054154
+"1.00e-04":                          -76.331706 1782500
+"5.00e-05":                          -76.332141 9412560
+"2.50e-05":                          -76.332372 4358698
+"1.00e-05":                          -76.332514 8320917
+"5.00e-06":                          -76.332562 3695959
+"2.50e-06":                          -76.332586 0357343
+"1.00e-06":                          -76.332599 6958784
+    
+E_tot
+"value":                             -76.332692 57(4)
+"value":                             -76.332646 0(2)
+"value":                             -76.332646 0(2)
+"value":                             -76.332627 14(7)
+"value":                             -76.332617 24(5) UNACCEPTABLE (5e-6).   4,484,748 dets/7,818,285,430 connections. Ratio=1743. Connections cover 5%, Dets cover 0.003%.
+"value":                             -76.332608 59(3) ACCEPTABLE   (2.5e-6). 8,619,713 dets/17,546,634,865 connections. Ratio=2035. Total dets ignoring spatial symmetry: 156,032,900,100. Connections cover 11%, Dets cover 0.006%.
+"value":                             -76.332607 74(2)
+ 
+V4Z: (8e,114o). Total dets ignoring spatial symmetry: 4.4527274111376 × 10^13
  Total CCSD energy [au]:             -76.350800 612072
  Total CCSD(T) energy [au]:          -76.359793 961356
  Total CCSDT energy [au]:            -76.359807 238313
@@ -52,10 +92,25 @@ V4Z:
  Total CCSDT(Q) energy [au]:         -76.360217 390432 (proper), below variational?
  Total CCSDTQ energy [au]:           -76.360183 007390
  Total CCSDTQ(P) energy [au]:        -76.360189 480385
-CC(5)(6) can be done with 580G, 17b CC(5) and 230b (H) in 2 spin cases, with 3 cores.
-CC(5)    running on nod149 with 3 cores and 511G, but only needs 48G,  3.75d/iteration .. interesting that 3cores is faster! 
-CC(5)    running on nod146 with 8 cores and 127G, but only needs 103G, 3.8d/iteration. Done by 14 May
-.. to decide which one to remove, we should know which one will make a restart possible, e.g. 511G might have got it working without any re-factorization.
+ Total CCSDTQP energy [au]:          -76.360198 468897 (17b dets!)
+CC(5)(6) can be done with 580G, 17b CC(5) and 230b (H) in 2 spin cases, with 3 cores. 
+CC(5)    finished on nod149 with 3 cores and 511G, but only needs 48G,  3.75d/iteration .. interesting that 3cores is faster! 
+CC(5)    almost finished nod146 with 8 cores and 127G, but only needs 103G, 3.8d/iteration. ran out of disk space
+.. to decide which one to remove, we should know which one will make a restart possible.  
+
+eps1=5e=-6: # of non-zero elements so far: 34,094,604,465 = 0.08% of all possible dets.
+
+                                               Linear Extrap. Wghtd. Linear  Quadratic Extrap. Wghted. Quadratic Cubic Cubic wghtd
+"2.00e-04": -76.357855970 -76.3603900(4)
+"1.00e-04": -76.358911286 -76.3602940(2)  -76.360178 705 
+"5.00e-05": -76.359507426 -76.3603800(1)   Skipped!                  
+"2.50e-05": -76.359830597 -76.36022225(5) -76.360189 4 -76.360193 22 *-76.360196 68 -76.360196 68* -> earliest that error is smaller than overall 9z/FCI error, but might have also been god at 5e-5 too.  
+"1.00e-05": -76.360042850 -76.36020818(5) -76.360192 6 -76.360197 55 -76.360197 46 -76.360198 36 *-76.360198 56* -> earliest that micro-Hartree digit (after all rounding) is correct.
+"5.00e-06": -76.360118863 -76.36020361(2) -76.360194 3 -76.360198 63 -76.360197 92 -76.360198 89 -76.360198 77 -76.360199 02
+"4.00e-06": -76.360134641 -76.36020269(2) -76.360195 2 -76.360198 77 -76.360198 13 -76.360198 95 -76.360198 82 -76.360199 04
+                                           Biggest source of error is clearly the model dependence!!!, not eps1 anymore!
+
+CCSDTQP seems to be more reliable than weighted quadratic fit at eps1=1e-5.
 
 V5Z: (8e,200o)
  Total CCSD energy [au]:             -76.359518 949973
@@ -64,18 +119,88 @@ V5Z: (8e,200o)
  Total CCSDT energy [au]:            -76.369079 030704 Exact same problem as with V4Z! 12 iterations for CCSDT instead of 10 
  Total CCSDT(Q) energy [au]:         -76.369565 386269 with bad CCSDT (took only 2000 minutes)
  Total CCSDT(Q) energy [au]:         -76.369430 922768 with good CCSDT (took 24000 minutes due to different active space!)
- CCSDTQ is taking 2 days per iteration. Should be done by May 1st. 
- CCSDTQ(P) has 306 billion excits over 22 spin cases with only 3 cores. Might take an eternity.
+ Total CCSDTQ energy [au]:           -76.369394 181793
+CCSDTQ(P) has 306 billion excits over 22 spin cases with only 3 cores. Might take an eternity. Crashed during spin case 2.
+CCSDTQP is possible with 497G and 6 cores. Maybe 10 or 11 cores if we allow 768G. These were attempted at wob142 and 149. 149 crashed for an unknown reason.
 
-V6Z:
+                                          Linear Extrap. Wghtd. Linear  Quadratic Extrap. Wghted. Quadratic Cubic Cubic wghtd
+"2.00e-04": -76.366798138 -76.4390110(40) 
+"1.00e-04": -76.367953817 -76.36952499(3) -76.367979 5 
+"5.00e-05": -76.368594954 -76.36946817(3) -76.368301 4 -76.369394 95 -76.369414 43
+"2.50e-05": -76.368963151 -76.36943884(4) -76.368530 0 -76.369402 49 -76.369411 63 -76.369409 64 -76.369406 58 (still at leat 5 uH spread)
+"2.00e-05": -76.369042755 -76.36943291(4) -76.368662 9 -76.369403 70 -76.369410 86 -76.369409 00 -76.369406 76 -76.369407 04 (maximum 5 uH spread if looking at -76.36940676 from 2e-5 and -76.36941163 from 2.5e-5). 
+"1.50e-05": -76.369125940 -76.36942688(5) -76.368758 6 -76.369405 25 -76.369410 32 -76.369408 31 -76.369406 98 -76.369407 40 (still 4 uH uncertainty).
+"1.00e-05": -76.369213410 -76.36942097(2) -76.368836 5 -76.369406 93 -76.369409 93 -76.369408 42 -76.369407 43 -76.369408 21 (last four are all within 3 uH of each other).
+"9.00e-06": -76.369231248
+"8.00e-06": -76.369249424
+
+"1.00e-05" weighted quadratic is not monotonic!
+
+V6Z: (8e,321o)
  Total CCSD energy [au]:             -76.362322 628836
  Total CCSD(T) energy [au]:          -76.372018 863288
  Total CCSDT energy [au]:            -76.371941 437375
  Total CCSDT(Q) energy [au]:         -76.372383 660958 (took 7.4 days)
- Total CCSDT(Q) energy [au]:         -76.372383 647182 (nod148, why different from the above?) .. 13nH curse?
  CCSDTQ: 14.5 days per iteration, and iteration 1 was just same as CCSD! (10 cores, 299G). It's because no rest=2 or 1!
  CCSDTQ: with 686G and 10 cores is possible
  CCSDTQ: 8.3 days per iteration on nod148 with 511G and 8 cores!! Also started with rest=2 so good energies! 15 June??
+
+on nod148:
+ Total CCSD energy [au]:             -76.362322 614910 don't know why these numbers are different from above ones.
+ Total CCSD(T) energy [au]:          -76.372018 849553
+ Total CCSDT energy [au]:            -76.371941 423597
+ Total CCSDT(Q) energy [au]:         -76.372383 647182
+ Total CCSDTQ energy [au]:           -76.372345 242757
+
+V7Z: (8e,484o)
+ Total CCSD energy [au]:             -76.363594 225380
+ Total CCSD xvcc(cfour):             -76.363594 2015    SCF largest density difference: 0.8462478496D-09
+ Total CCSD(T) energy [au]:          -76.373361 921771
+ Total CCSDT energy [au]:            -76.373263 907713
+ Total CCSDT xncc(cfour):            -76.373263 870109
+CCSDT(Q) has 188b excitations, 
+22 May, 7:27pm: 394G is being used for spin case 2, which has 34b excitations. Optimal RAM=418G (minimal=254G).
+CCSDTQ can be done with 700G (see nod145 output files), CCSDT(Q) needs 400G, might as well wait until we can move it all to nod141.
+
+V8Z: (8e,693o)
+ Total CCSD energy [au]:             -76.364295 523129
+ Total CCSD xvcc(cfour)[1]           -76.364295 477971 (0.01 uH is beyond limits of cc in  CFOUR)
+ Total CCSD xvcc(cfour)              -76.364295 458622  
+ Total CCSD xecc(cfour)              -76.364295 457009
+ Total CCSD(T) energy [au]:          -76.374100 298745
+ Total CCSD(T) xvcc(cfour)[1]        -76.374100 257824
+ Total CCSDT energy [au]:            -76.373990 119190
+
+V9Z: (8e,957o)
+
+aCV2Z
+ Total CCSD energy [au]:             -76.278963 979645
+ Total CCSD(T) energy [au]:          -76.282254 721577
+ Total CCSDT energy [au]:            -76.282402 901005
+ Total CCSDT(Q) energy [au]:         -76.282895 074173
+ Total CCSDTQ energy [au]:           -76.282863 373870
+ Total CCSDTQ(P) energy [au]:        -76.282878 920332
+ Total CCSDTQP energy [au]:          -76.282879 791180
+ Total CC(5)(6) energy [au]:         -76.282881 887480 converged to uH
+ Total CC(6) energy [au]:            -76.282882 205616
+ Total CC(6)(7) energy [au]:         -76.282882 264937 (only 2 days for 38 spin cases .. probably can do CC(7)(8) with more RAM)
+
+aCV3Z
+ Total CCSD energy [au]:             -76.381541 376237
+ Total CCSD(T) energy [au]:          -76.389780 228725
+ Total CCSDT energy [au]:            -76.389844 916072
+ Total CCSDT(Q) energy [au]:         -76.390220 840516
+ Total CCSDTQ energy [au]:           -76.390184 672041
+ Total CCSDTQ(P) energy [au]:        -76.390199 504485 
+ Total CCSDTQP energy [au]:          -76.390203 732451 3.2 uH difference! (cctol only 5 though!)
+ CC(5)(6) could be possible, but not easy. 7 CPUs took 57 days for CC(5). active space was highly reduced and required 154 spin cases for CC(4)(5).
+
+aCV5Z (103 spin cases, very good for studying # of dets in spin case vs. time it takes)
+ Total CCSD energy [au]:             -76.421047 384972
+ Total CCSD(T) energy [au]:          -76.431049 558642
+ Total CCSDT energy [au]:            -76.431007 236254
+ Total CCSDT(Q) energy [au]:         -76.431467 702397 (103 spin cases over 18 days!). Interesting when comapred to CCSD & T
+ CCSDTQ taking 19d/iteration(??? or was 18 of those days from the (Q)?) with 3 CPUs and 103G. 15 CPUs and 512G might take 5d/iter, but risky due to uncertain refactorization.
 
 out.1660350:  Iteration         Total Energy            Largest Density Difference
 out.1661356: Iteration  1  CC energy:   -76.36261213  Energy decrease:   0.29523618

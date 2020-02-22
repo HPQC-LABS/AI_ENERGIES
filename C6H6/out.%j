@@ -1,0 +1,1397 @@
+ **********************************************************************
+                          MRCC program system
+ **********************************************************************
+ 
+                              Written by
+  Mihaly Kallay, Zoltan Rolik, Jozsef Csontos, Peter Nagy, Gyula Samu,
+    David Mester, Istvan Ladjanszki, Lorant Szegedy, Bence Ladoczki,
+              Klara Petrov, Mate Farkas, and Bence Hegely
+ 
+        Department of Physical Chemistry and Materials Science
+            Budapest University of Technology and Economics
+                  Budapest P.O.Box 91, H-1521 Hungary
+ 
+                              www.mrcc.hu
+ 
+                      Release date: April 12, 2017
+
+ ************************ 2018-01-28 14:36:48 *************************
+ Executing minp...
+
+ Reading input from MINP...
+ 
+ Input file:
+ 
+# TITLE
+basis=VDZ-EMSL
+uncontract=off
+iface=cfour
+itol=18
+scftol=14
+cctol=7
+calc=CC(4)
+mem=492GB
+core=frozen
+ccmaxit=999
+scfmaxit=9999
+scftype=RHF
+
+scfiguess=ao
+rohftype=standard
+mult=1
+charge=+0
+rest=1
+
+# in Angstroms, CCSD(T)/cc-pVQZ geometry from https://arxiv.org/pdf/1605.03398.pdf
+unit=angs
+geom
+C
+H 1  rCH
+C 1  rCC 2 A
+H 3  rCH 1 A 2  D2
+C 3  rCC 1 A 4  D1
+H 5  rCH 3 A 4  D2
+C 5  rCC 3 A 6  D1
+H 7  rCH 5 A 6  D2
+C 7  rCC 5 A 8  D1
+H 9  rCH 7 A 8  D2
+C 9  rCC 7 A 10 D1
+H 11 rCH 9 A 10 D2
+
+rCC=1.39498
+rCH=1.08260	
+A=120
+D1=180
+D2=0
+
+ 
+ 
+ Checking keyword combinations...
+ 
+ Keywords:
+ 
+ active=none
+ agrid=ld0006-ld0590
+ basis=vdz-emsl
+ basopt=off
+ bpcompo=0.985
+ bpcompv=0.98
+ bpdfo=0.985
+ bpocc=0.985
+ bppdo=0.985
+ bppdv=0.98
+ bpedo=0.985
+ bpedv=0.98
+ calc=cc(4)
+ ccmaxit=999
+ ccprog=mrcc
+ cctol=7
+ charge=+0
+ cialg=disk
+ ciguess=off
+ cmpgrp=auto
+ core=frozen
+ corembed=off
+ dboc=off
+ dendec=cholesky
+ dens=0
+ dfalg=invsqrt
+ dfbasis_cor=none
+ dfbasis_scf=none
+ dfintran=ovirt
+ dft=off
+ diag=david
+ domrad=10.d0
+ drpaalg=fit
+ ecp=auto
+ edisp=off
+ embed=off
+ epert=none
+ eps=0.975
+ excrad=0.d0
+ excrad_fin=0.000000000D+00
+ freq=off
+ gauss=spher
+ geom=zmat
+ gopt=off
+ ghost=none
+ gtol=7
+ grdens=off
+ grtol=10
+ hamilton=dc
+ iface=cfour
+ intalg=auto
+ itol=18
+ laptol=1.d-2
+ lcorthr=loose
+ lccrest=off
+ lmp2dens=on
+ lnoepso=3e-5
+ lnoepsv=1e-6
+ localcc=off
+ locintrf=disk
+ maxact=off
+ maxex=0
+ bfbasis=none
+ mem=492gb
+ molden=on
+ mulmet=0
+ mult=1
+ nacto=0
+ nactv=0
+ naf_cor=off
+ naf_scf=off
+ nafalg=albe
+ naftyp=
+ nchol=auto
+ ndeps=1e-3
+ nstate=1
+ nsing=0
+ ntrip=0
+ occ=
+ optalg=
+ optmaxit=50
+ optetol=1e-6
+ optgtol=1e-4
+ optstol=1e-3
+ orblocc=off
+ orbloco=off
+ orblocv=off
+ osveps=1e-3
+ ovirt=off
+ ovosnorb=80.0
+ ptfreq=0.0
+ popul=off
+ pressure=100000
+ qmmm=off
+ refdet=none
+ rest=1
+ rgrid=log3
+ rohftype=standard
+ scfalg=auto
+ scfdamp=off
+ scfdiis=on
+ scfdiis_end=9999
+ scfdiis_start=1
+ scfdiis_step=1
+ scfdtol=18
+ scfext=10
+ scfiguess=ao
+ scflshift=off
+ scfmaxit=9999
+ scftype=rhf
+ scftol=14
+ scspe=1.d0
+ scsps=1.2d0
+ scspt=0.33333333333333
+ scspv=1.d0
+ spairtol=1e-4
+ symm=
+ talg=occ
+ temp=298.15
+ test=off
+ tprint=off
+ uncontract=off
+ unit=angs
+ verbosity=2
+ wpairtol=0.100000000E-05
+
+ ************************ 2018-01-28 14:36:50 *************************
+ Executing goldstone...
+
+ Generation of CC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   4.9701E+15
+ Probable CPU time per iteration step (hours):  49700.88
+ Required memory (Mbytes): 1261888.0
+ Number of intermediates:                                 105
+ Number of intermediates to be stored:                     44
+ Length of intermediate file (Mbytes):  142458.9
+
+ ************************ 2018-01-28 14:36:52 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ CC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):   84392.8
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    6367565.8597   6367565.8597
+ Integer:      1123.0155
+ Total:     6368688.8752   6368688.8752
+ 
+
+ ************************ 2018-01-28 14:37:43 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   2.0872E+15
+ Probable CPU time per iteration step (hours):  20871.53
+ Required memory (Mbytes):  478208.7
+ Number of intermediates:                                 407
+ Number of intermediates to be stored:                    157
+ Length of intermediate file (Mbytes): 1330486.0
+
+ ************************ 2018-01-28 14:37:45 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                    94
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  813749.7
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1626779.2595   1626779.2595
+ Integer:      1146.4622
+ Total:     1627925.7218   1627925.7218
+ 
+
+ ************************ 2018-01-28 14:41:38 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   2.1582E+15
+ Probable CPU time per iteration step (hours):  21581.59
+ Required memory (Mbytes):  478209.5
+ Number of intermediates:                                 410
+ Number of intermediates to be stored:                    157
+ Length of intermediate file (Mbytes): 1483177.2
+
+ ************************ 2018-01-28 14:41:40 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                    92
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  899193.2
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1626779.3340   1626779.3340
+ Integer:      1146.4782
+ Total:     1627925.8122   1627925.8122
+ 
+
+ ************************ 2018-01-28 14:45:56 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.9913E+15
+ Probable CPU time per iteration step (hours):  19913.46
+ Required memory (Mbytes):  477314.0
+ Number of intermediates:                                 401
+ Number of intermediates to be stored:                    155
+ Length of intermediate file (Mbytes):  724338.8
+
+ ************************ 2018-01-28 14:45:59 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                    96
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  471186.6
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1623728.5051   1623728.5051
+ Integer:      1146.4304
+ Total:     1624874.9356   1624874.9356
+ 
+
+ ************************ 2018-01-28 14:49:41 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.9456E+15
+ Probable CPU time per iteration step (hours):  19456.49
+ Required memory (Mbytes):  475527.9
+ Number of intermediates:                                 402
+ Number of intermediates to be stored:                    154
+ Length of intermediate file (Mbytes):  734916.8
+
+ ************************ 2018-01-28 14:49:43 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                    98
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  477963.4
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1617790.7284   1617790.7284
+ Integer:      1146.4357
+ Total:     1618937.1641   1618937.1641
+ 
+
+ ************************ 2018-01-28 14:53:28 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.9001E+15
+ Probable CPU time per iteration step (hours):  19001.40
+ Required memory (Mbytes):  472855.4
+ Number of intermediates:                                 402
+ Number of intermediates to be stored:                    154
+ Length of intermediate file (Mbytes):  745399.4
+
+ ************************ 2018-01-28 14:53:30 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   100
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  484704.9
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1608826.8392   1608826.8392
+ Integer:      1146.4357
+ Total:     1609973.2749   1609973.2749
+ 
+
+ ************************ 2018-01-28 14:57:15 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.8548E+15
+ Probable CPU time per iteration step (hours):  18548.18
+ Required memory (Mbytes):  469303.9
+ Number of intermediates:                                 402
+ Number of intermediates to be stored:                    152
+ Length of intermediate file (Mbytes):  750877.3
+
+ ************************ 2018-01-28 14:57:18 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   102
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  484661.7
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1596861.9451   1596861.9451
+ Integer:      1146.4357
+ Total:     1598008.3809   1598008.3809
+ 
+
+ ************************ 2018-01-28 15:00:58 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.8097E+15
+ Probable CPU time per iteration step (hours):  18096.84
+ Required memory (Mbytes):  464883.6
+ Number of intermediates:                                 402
+ Number of intermediates to be stored:                    152
+ Length of intermediate file (Mbytes):  760677.1
+
+ ************************ 2018-01-28 15:01:00 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   104
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  490898.0
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1581929.9535   1581929.9535
+ Integer:      1146.4357
+ Total:     1583076.3892   1583076.3892
+ 
+
+ ************************ 2018-01-28 15:04:40 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.7647E+15
+ Probable CPU time per iteration step (hours):  17647.36
+ Required memory (Mbytes):  459607.0
+ Number of intermediates:                                 401
+ Number of intermediates to be stored:                    151
+ Length of intermediate file (Mbytes):  770056.1
+
+ ************************ 2018-01-28 15:04:42 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   106
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  496754.6
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1564329.7645   1564329.7645
+ Integer:      1146.4304
+ Total:     1565476.1949   1565476.1949
+ 
+
+ ************************ 2018-01-28 15:08:23 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.7200E+15
+ Probable CPU time per iteration step (hours):  17199.75
+ Required memory (Mbytes):  453489.1
+ Number of intermediates:                                 401
+ Number of intermediates to be stored:                    151
+ Length of intermediate file (Mbytes):  779006.9
+
+ ************************ 2018-01-28 15:08:25 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   108
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  502386.8
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1543854.3012   1543854.3012
+ Integer:      1146.4304
+ Total:     1545000.7316   1545000.7316
+ 
+
+ ************************ 2018-01-28 15:12:12 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.6750E+15
+ Probable CPU time per iteration step (hours):  16750.15
+ Required memory (Mbytes):  446547.5
+ Number of intermediates:                                 399
+ Number of intermediates to be stored:                    152
+ Length of intermediate file (Mbytes):  790898.9
+
+ ************************ 2018-01-28 15:12:13 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   110
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  513043.9
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1520560.4029   1520560.4029
+ Integer:      1146.4198
+ Total:     1521706.8228   1521706.8228
+ 
+
+ ************************ 2018-01-28 15:15:55 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.6257E+15
+ Probable CPU time per iteration step (hours):  16257.10
+ Required memory (Mbytes):  440804.9
+ Number of intermediates:                                 395
+ Number of intermediates to be stored:                    151
+ Length of intermediate file (Mbytes):  783645.4
+
+ ************************ 2018-01-28 15:15:57 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   112
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  509767.4
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1494567.5737   1494567.5737
+ Integer:      1146.3986
+ Total:     1495713.9723   1495713.9723
+ 
+
+ ************************ 2018-01-28 15:19:33 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.5818E+15
+ Probable CPU time per iteration step (hours):  15818.10
+ Required memory (Mbytes):  452495.8
+ Number of intermediates:                                 395
+ Number of intermediates to be stored:                    151
+ Length of intermediate file (Mbytes):  792056.2
+
+ ************************ 2018-01-28 15:19:35 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   114
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  515459.8
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1465898.7244   1465898.7244
+ Integer:      1146.3986
+ Total:     1467045.1230   1467045.1230
+ 
+
+ ************************ 2018-01-28 15:23:11 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.5381E+15
+ Probable CPU time per iteration step (hours):  15380.87
+ Required memory (Mbytes):  463702.4
+ Number of intermediates:                                 395
+ Number of intermediates to be stored:                    151
+ Length of intermediate file (Mbytes):  799905.7
+
+ ************************ 2018-01-28 15:23:13 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   116
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  520839.6
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1434637.7674   1434637.7674
+ Integer:      1146.3986
+ Total:     1435784.1661   1435784.1661
+ 
+
+ ************************ 2018-01-28 15:26:47 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.4945E+15
+ Probable CPU time per iteration step (hours):  14945.44
+ Required memory (Mbytes):  474367.8
+ Number of intermediates:                                 395
+ Number of intermediates to be stored:                    151
+ Length of intermediate file (Mbytes):  807168.4
+
+ ************************ 2018-01-28 15:26:48 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   118
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  525894.1
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1400876.5608   1400876.5608
+ Integer:      1146.3986
+ Total:     1402022.9594   1402022.9594
+ 
+
+ ************************ 2018-01-28 15:30:27 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.4512E+15
+ Probable CPU time per iteration step (hours):  14511.80
+ Required memory (Mbytes):  484433.8
+ Number of intermediates:                                 395
+ Number of intermediates to be stored:                    151
+ Length of intermediate file (Mbytes):  813819.3
+
+ ************************ 2018-01-28 15:30:29 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   120
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  530609.6
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1364718.4368   1364718.4368
+ Integer:      1146.3986
+ Total:     1365864.8354   1365864.8354
+ 
+
+ ************************ 2018-01-28 15:34:02 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.4095E+15
+ Probable CPU time per iteration step (hours):  14095.33
+ Required memory (Mbytes):  493840.4
+ Number of intermediates:                                 396
+ Number of intermediates to be stored:                    151
+ Length of intermediate file (Mbytes):  819832.8
+
+ ************************ 2018-01-28 15:34:04 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   122
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  534872.1
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1326719.0618   1326719.0618
+ Integer:      1146.4039
+ Total:     1327865.4657   1327865.4657
+ 
+
+ ************************ 2018-01-28 15:37:34 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.3665E+15
+ Probable CPU time per iteration step (hours):  13664.83
+ Required memory (Mbytes):  502525.8
+ Number of intermediates:                                 395
+ Number of intermediates to be stored:                    154
+ Length of intermediate file (Mbytes): 1189918.9
+
+ ************************ 2018-01-28 15:37:36 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   124
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  745393.9
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1286547.4115   1286547.4115
+ Integer:      1146.3986
+ Total:     1287693.8101   1287693.8101
+ 
+
+ ************************ 2018-01-28 15:41:11 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     30
+ Number of restricted diagrams in T^2 equations:    129
+ Number of restricted diagrams in T^3 equations:    302
+ Number of restricted diagrams in T^4 equations:    633
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   1.2956E+15
+ Probable CPU time per iteration step (hours):  12955.51
+ Required memory (Mbytes):  510426.8
+ Number of intermediates:                                 390
+ Number of intermediates to be stored:                    150
+ Length of intermediate file (Mbytes):  656504.6
+
+ ************************ 2018-01-28 15:41:13 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   126
+ Number of active holes:                         0
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):  444369.7
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:    1324663.8392   1324663.8392
+ Integer:      1146.3721
+ Total:     1325810.2113   1325810.2113
+ 
+
+ ************************ 2018-01-28 15:44:30 *************************
+ Executing goldstone...
+
+ Generation of MRCC equations in terms of H and T...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:    15
+ Number of diagrams in T^2 equations:    38
+ Number of diagrams in T^3 equations:    53
+ Number of diagrams in T^4 equations:    74
+ Translation of diagrams to factorized equations...
+ Number of restricted diagrams in T^1 equations:     60
+ Number of restricted diagrams in T^2 equations:    438
+ Number of restricted diagrams in T^3 equations:   1716
+ Number of restricted diagrams in T^4 equations:   5509
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   6.6747E+14
+ Probable CPU time per iteration step (hours):   6674.72
+ Required memory (Mbytes):  200239.9
+ Number of intermediates:                                1844
+ Number of intermediates to be stored:                    536
+ Length of intermediate file (Mbytes):  863981.6
+
+ ************************ 2018-01-28 15:44:39 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ MRCC(                     4 ) calculation 
+ 
+ 
+ Allocation of****** Mbytes of memory...
+ Number of spinorbitals:                   216
+ Number of alpha electrons:                       15
+ Number of beta electrons:                        15
+ Number of active particles:                   124
+ Number of active holes:                        16
+ Spin multiplicity:                     1
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                    444
+ Number of                     2 -fold excitations:                 377361
+ Number of                     3 -fold excitations:              173597688
+ Number of                     4 -fold excitations:            46919535942
+ Total number of configurations:            47093511436
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes): 1161526.2
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:     365460.7527    365460.7527
+ Integer:      1179.4494
+ Total:      366640.2021    366640.2021
+ 
+ The number of active orbitals has been changed!
+ It is dangerous to restart the program!
+
+ ************************ 2018-01-28 16:19:13 *************************
+ Executing mrcc...
+
+ **********************************************************************
+ CCSDTQ calculation                                                     
+ 
+ 
+ OpenMP parallel version is running.
+ Number of CPUs:  32
+ Allocation of******* Mbytes of memory...
+ Number of spinorbitals: 216
+ Number of alpha electrons: 15
+ Number of beta  electrons: 15
+ Number of active particles:                   124
+ Number of active holes:                        16
+ Spin multiplicity: 1
+ z-component of spin:  0.0
+ Spatial symmetry: 1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of 0-fold excitations: 1
+ Number of 1-fold excitations: 444
+ Number of 2-fold excitations: 377361
+ Number of 3-fold excitations: 173597688
+ Number of 4-fold excitations: 46919535942
+ Total number of determinants: 47093511436
+ Calculation of coupling coefficients...
+ Initial cluster amplitudes are read from unit 16.
+ Length of intermediate file (Mbytes): 1161526.2
+ Reading integral list from unit 55...
+ Sorting integrals...
+ Energy of reference determinant [au]:    -230.722099404772
+ Calculation of MP denominators...
+ 
+ Starting CC iteration...
+ ======================================================================
+ 
+ Fatal error in mrcc.
+ Program will stop.
+ 
+ ************************ 2018-02-13 12:25:57 *************************
+                   Error at the termination of mrcc.
+ **********************************************************************
