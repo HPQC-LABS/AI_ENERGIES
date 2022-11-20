@@ -1,0 +1,1867 @@
+   This run of MOLCAS is using the pymolcas driver
+
+                             OPE
+                             OPE          NMOL  CASOP  ENMOLC A   SO
+                 OPE        NMOLC        AS  OP EN  MO LC     AS  OP
+                OPENM       OL CA        SO  PE NM  OL CA     SOP EN
+                OP EN      MO   LC       AS  OP ENMOL  CASO   PENMOL
+                OP  EN     MO   LC       AS  OP EN     MO     LC ASO
+               OP   E  NMOL  C  AS       OP  EN MO     LC     AS  OP
+               OP  E   NMO   LC AS        OPEN  MO     LCASOP EN   M
+               O  PEN   MO  LCA  SO
+            OPE   NMO   L   CAS    OP
+        OPENMOL  CASOP     ENMOL   CASOPE
+     OPENMOLCA   SOPENMOLCASOPEN   MOLCASOPE
+    OPENMOLCAS   OP           EN   MOL    CAS
+    OPENMOLCAS       OP  ENM        O     LCA
+    OPENMOLCAS    OPEN  MOLCASO     P  E  NMO
+    OPENMOLCAS     OP               E  N  MOL
+    OPENMOLCA   SO           PENM   O  L  CAS    OPEN    MO    LCAS
+    OPENMOLCA   SOP           ENM   O  L  CAS   OP  EN  MOLC  AS   O
+    OPENMOLCA   SOPE           NM      O  LCA   S      OP  EN MO
+    OPENMOLC                AS         O  PEN   M      OL  CA  SOPE
+    OPENMO        LCASOPE  NMOL        C  ASO   P      ENMOLC     AS
+    OPE     NMO      LCA  SO     P     E   NM   OL  CA SO  PE N   MO
+          OPENMOLCA            SOPE   NMO        LCAS  O    P  ENMO
+     OPENMOLCASOPENMOLCASOPENMOLCASOPENMOLCA
+        OPENMOLCASOPENMOLCASOPENMOLCASOPE
+            OPENMOLCASOPENMOLCASOPENM
+               OPENMOLCASOPENMOLCA        version: v20.10 ?
+                   OPENMOLCASO
+                       OPE                tag:
+
+ OpenMolcas is free software; you can redistribute it and/or modify it
+ under the terms of the GNU Lesser General Public License version 2.1.
+ OpenMolcas is distributed in the hope that it will be useful, but it
+ is provided "as is" and without any express or implied warranties.
+ For more details see the full text of the license in the file
+ LICENSE or in <http://www.gnu.org/licenses/>.
+
+                 Copyright (C) The OpenMolcas Authors
+           For the author list and the recommended citation,
+                   consult the file CONTRIBUTORS.md
+
+           *************************************************
+           * pymolcas version py2.13                       *
+           *   build 7d4e6aa3a62dfd03c2048a42281fd4ad      *
+           *   (after the EMIL interpreter by V. Veryazov) *
+           *************************************************
+
+configuration info
+------------------
+Host name: build-node.computecanada.ca (Linux)
+C Compiler ID: Intel
+C flags: -O2 -march=core-avx2 -axCore-AVX512 -ftz -fp-speculation=safe -fp-model source -std=gnu99 -qopenmp
+Fortran Compiler ID: Intel
+Fortran flags: -O2 -march=core-avx2 -axCore-AVX512 -ftz -fp-speculation=safe -fp-model source  -fpp -i8 -r8 -heap-arrays -qopenmp
+Definitions: _MOLCAS_;_I8_;_LINUX_;_GA_;_MOLCAS_MPP_;SCALAPACK;_MKL_;_FDE_
+Parallel: ON (GA=ON)
+
+
+   -----------------------------------------------------------------------------------------------------------------------------------
+  |
+  |           Project: H_aV9Z
+  |    Submitted from: /project/6004934/nike/atomic/H
+  |      Scratch area: /tmp/H_aV9Z
+  |   Save outputs to: /project/6004934/nike/atomic/H
+  |            Molcas: /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/openmolcas/20.10
+  |
+  | Scratch area is empty
+  |
+  |    MOLCAS_DRIVER = /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/openmolcas/20.10/sbin/pymolcas
+  |    MOLCAS_NPROCS = 1
+  |    MOLCAS_SOURCE = /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/openmolcas/20.10
+  | MOLCAS_STRUCTURE = 0
+  |
+   -----------------------------------------------------------------------------------------------------------------------------------
+
+++ ---------   Input file   ---------
+
+&SEWARD
+    NODElete
+    Symmetry
+    x y z
+    expert
+    basis set
+H   / inline
+      1.0 8
+    18     11
+            284997.23
+            13941.053
+            3471.4437
+            1903.1627
+            623.29320
+            290.36042
+            126.58232
+            44.692572
+            16.002336
+            6.0810380
+            2.4762650
+            1.0766620
+            0.4884070
+            0.2293090
+            0.1114810
+            0.0550120
+            0.0199860
+            0.00661
+ 0.00000013 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+ 0.00000289 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+ 0.00000572 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+ 0.00001753 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+ 0.00007214 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+ 0.00012056 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+ 0.00052484 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+ 0.00201573 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+ 0.00686535 1.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+ 0.00000000 0.0 1.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+ 0.00000000 0.0 0.0 1.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+ 0.00000000 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 0.0 0.0
+ 0.00000000 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 0.0
+ 0.00000000 0.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0
+ 0.00000000 0.0 0.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0
+ 0.00000000 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0
+ 0.00000000 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.0 0.0
+ 0.0000000  0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.0
+    9     9
+          21.701825
+          10.296109
+          4.8848364
+          2.3175382
+          1.0995216
+          0.5216517
+          0.2474899
+          0.1174179
+          0.04174
+1.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+0.0 1.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+0.0 0.0 1.0 0.0 0.0 0.0 0.0 0.0 0.0
+0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 0.0
+0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0
+0.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0
+0.0 0.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0
+0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.0 0.0
+0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.0
+    8     8
+          18.015632
+          9.1122145
+          4.6089116
+          2.3311639
+          1.1790908
+          0.5963781
+          0.3016450
+          0.10386
+1.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+0.0 1.0 0.0 0.0 0.0 0.0 0.0 0.0
+0.0 0.0 1.0 0.0 0.0 0.0 0.0 0.0
+0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0
+0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0
+0.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0
+0.0 0.0 0.0 0.0 0.0 0.0 1.0 0.0
+0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.0
+    7     7
+          15.107851
+          7.8761055
+          4.1060133
+          2.1405688
+          1.1159327
+          0.5817640
+          0.19957
+1.0 0.0 0.0 0.0 0.0 0.0 0.0
+0.0 1.0 0.0 0.0 0.0 0.0 0.0
+0.0 0.0 1.0 0.0 0.0 0.0 0.0
+0.0 0.0 0.0 1.0 0.0 0.0 0.0
+0.0 0.0 0.0 0.0 1.0 0.0 0.0
+0.0 0.0 0.0 0.0 0.0 1.0 0.0
+0.0 0.0 0.0 0.0 0.0 0.0 1.0
+    6     6
+          8.3774603
+          4.6929685
+          2.6289535
+          1.4727131
+          0.8249990
+          0.28657
+1.0 0.0 0.0 0.0 0.0 0.0
+0.0 1.0 0.0 0.0 0.0 0.0
+0.0 0.0 1.0 0.0 0.0 0.0
+0.0 0.0 0.0 1.0 0.0 0.0
+0.0 0.0 0.0 0.0 1.0 0.0
+0.0 0.0 0.0 0.0 0.0 1.0
+    5     5
+          7.1115284
+          4.0718537
+          2.3314247
+          1.3349058
+          0.45046
+1.0 0.0 0.0 0.0 0.0
+0.0 1.0 0.0 0.0 0.0
+0.0 0.0 1.0 0.0 0.0
+0.0 0.0 0.0 1.0 0.0
+0.0 0.0 0.0 0.0 1.0
+    4     4
+          6.0325318
+          3.0007400
+          1.4926470
+          0.56826
+1.0 0.0 0.0 0.0
+0.0 1.0 0.0 0.0
+0.0 0.0 1.0 0.0
+0.0 0.0 0.0 1.0
+    3     3
+          5.87400
+          2.94400
+          0.87987
+1.0 0.0 0.0
+0.0 1.0 0.0
+0.0 0.0 1.0
+    2     2
+          3.593434
+          1.10825
+1.0 0.0
+0.0 1.0
+H       0.000000     0.0 0.0 Angstrom
+    End Of Basis
+
+&SCF
+ UHF
+
+-- ----------------------------------
+
+--- Start Module: seward at Sun Nov 20 14:05:35 2022 ---
+ 
+()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()
+
+                                              &SEWARD
+
+                       only a single process is used, running in SERIAL mode
+                      available to each process: 2.0 GB of memory, 32 threads
+                                             pid: 19903
+()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()
+ 
+ ###############################################################################
+ ###############################################################################
+ ###                                                                         ###
+ ###                                                                         ###
+ ###    WARNING:  EXPERT option is ON!                                       ###
+ ###                                                                         ###
+ ###                                                                         ###
+ ###############################################################################
+ ###############################################################################
+ GuessOrb option turned off!
+               SEWARD will generate:
+                  Multipole Moment integrals up to order  2
+                  Kinetic Energy integrals
+                  Nuclear Attraction integrals (point charge)
+                  One-Electron Hamiltonian integrals
+                  Velocity integrals
+                  Orbital angular momentum around ( 0.0000  0.0000  0.0000 )
+                  Velocity quadrupole around ( 0.0000  0.0000  0.0000 )
+                  Two-Electron Repulsion integrals
+ 
+                   Integrals are discarded if absolute value <: 0.10E-13
+                   Integral cutoff threshold is set to       <: 0.10E-15
+ 
+++    Symmetry information:
+      ---------------------
+ 
+                    --- Group Generators ---
+                    Reflection in the yz-plane  
+                    Reflection in the xz-plane  
+                    Reflection in the xy-plane  
+ 
+                    Character Table for D2h
+ 
+                             E   s(yz) s(xz) C2(z) s(xy) C2(y) C2(x)   i  
+                    ag       1     1     1     1     1     1     1     1  
+                    b3u      1    -1     1    -1     1    -1     1    -1  x
+                    b2u      1     1    -1    -1     1     1    -1    -1  y
+                    b1g      1    -1    -1     1     1    -1    -1     1  xy, Rz
+                    b1u      1     1     1     1    -1    -1    -1    -1  z
+                    b2g      1    -1     1    -1    -1     1    -1     1  xz, Ry
+                    b3g      1     1    -1    -1    -1    -1     1     1  yz, Rx
+                    au       1    -1    -1     1    -1     1     1    -1  I
+--
+ 
+ 
+                    Unitary symmetry adaptation
+ 
+ 
+++    Basis set information:
+      ----------------------
+ 
+ 
+      Basis set label: H...............................................................................
+ 
+      Electronic valence basis set:
+      ------------------
+      Associated Effective Charge   1.000000 au
+      Associated Actual Charge      1.000000 au
+      Nuclear Model: Point charge
+ 
+      Shell  nPrim  nBasis  Cartesian Spherical Contaminant
+         s      18      11        X                  
+         p       9       9        X                  
+         d       8       8                 X         
+         f       7       7                 X         
+         g       6       6                 X         
+         h       5       5                 X         
+         i       4       4                 X         
+         k       3       3                 X         
+         l       2       2                 X         
+--
+ 
+ 
+++    Molecular structure info:
+      -------------------------
+ 
+                    ************************************************ 
+                    **** Cartesian Coordinates / Bohr, Angstrom **** 
+                    ************************************************ 
+ 
+     Center  Label                x              y              z                     x              y              z
+        1      H                0.000000       0.000000       0.000000              0.000000       0.000000       0.000000
+--
+ 
+ 
+            Nuclear Potential Energy              0.00000000 au
+ 
+ 
+      Basis set specifications :
+      Symmetry species         ag   b3u  b2u  b1g  b1u  b2g  b3g  au 
+      Basis functions           71   50   50   40   50   40   40   26
+ 
+ Sorry, Molden does not know how to handle
+ functions with angular momentum larger than g
+--- Stop Module: seward at Sun Nov 20 14:07:34 2022 /rc=_RC_ALL_IS_WELL_ ---
+*** files: H_aV9Z.GssOrb H_aV9Z.guessorb.h5 xmldump
+    saved to directory /project/6004934/nike/atomic/H
+--- Module seward spent 1 minute 59 seconds ---
+
+*** symbolic link created: INPORB -> H_aV9Z.GssOrb
+--- Start Module: scf at Sun Nov 20 14:07:34 2022 ---
+ 
+()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()
+
+                                                &SCF
+
+                       only a single process is used, running in SERIAL mode
+                      available to each process: 2.0 GB of memory, 32 threads
+                                             pid: 22546
+()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()
+ 
+++    Input section:
+      --------------
+ 
+      Header of the integral files:
+      
+       Integrals generated by Gateway/Seward, Sun Nov 20 14:05:36 2022
+ 
+ 
+      Cartesian coordinates in Angstrom:
+      -----------------------------------------------------
+      No.  Label        X            Y            Z        
+      -----------------------------------------------------
+       1   H          0.00000000   0.00000000   0.00000000
+      -----------------------------------------------------
+      Nuclear repulsion energy =    0.00000000
+--
+ 
+++    Orbital specifications:
+      -----------------------
+ 
+      Symmetry species               1   2   3   4   5   6   7   8
+                                    ag b3u b2u b1g b1u b2g b3g  au
+      Frozen orbitals                0   0   0   0   0   0   0   0
+      Start temperature = 0.500
+      End temperature   = 0.010
+      Temperature Factor= 0.460
+      Deleted orbitals               0   0   0   0   0   0   0   0
+      Total number of orbitals      71  50  50  40  50  40  40  26
+      Number of basis functions     71  50  50  40  50  40  40  26
+--
+ 
+      Molecular charge                           0.000
+ 
+++    Optimization specifications:
+      ----------------------------
+ 
+      SCF Algorithm: Conventional USCF
+      D(i)-D(i-1) density differences are used
+      Number of density matrices in core                5
+      Maximum number of NDDO SCF iterations           400
+      Maximum number of HF SCF iterations             400
+      Threshold for SCF energy change            0.10E-08
+      Threshold for density matrix               0.10E-03
+      Threshold for Fock matrix                  0.15E-03
+      Threshold for linear dependence            0.00E+00
+      Threshold at which DIIS is turned on       0.15E+00
+      Threshold at which QNR/C2DIIS is turned on 0.75E-01
+      Threshold for Norm(delta) (QNR/C2DIIS)     0.20E-04
+      DIIS extrapolation of the SCF procedure
+      All orbitals punched on: UHFORB
+--
+ 
+      Input vectors read from INPORB
+      Orbital file label: *Guess orbitals
+ 
+ 
+++ Convergence information
+                               UHF SCF        iterations: Energy and convergence statistics
+ 
+Iter     Tot. SCF        One-elec.       Two-elec.     Energy      Max Dij or  Max Fij      DNorm      TNorm      AccCon     Time
+         Energy          Energy          Energy        Change      Delta Norm                                                in Sec.
+   1    -0.425862756    -0.425862756     0.000000000   0.00E+00    0.58E-01*   0.38E+01*    0.23E+01   0.15E+02   None         3.
+   2    -0.204116902    -0.204116902     0.000000000   0.22E+00*   0.00E+00    0.27E-12     0.84E+01   0.94E+01   EDIIS        3.
+   3    -0.422436922    -0.422436922     0.000000000  -0.22E+00*   0.58E-01*   0.12E-12     0.12E+01   0.14E+02   EDIIS        3.
+   4    -0.495411613    -0.495411613     0.000000000  -0.73E-01*   0.20E-01*   0.14E-01*    0.22E+01   0.16E+02   EDIIS        2.
+   5    -0.499940432    -0.499940432     0.000000000  -0.45E-02*   0.73E-02*   0.41E-02*    0.10E+00   0.16E+02   EDIIS        2.
+   6    -0.499992405    -0.499992405     0.000000000  -0.52E-04*   0.28E-02*   0.14E-02*    0.96E-02   0.16E+02   EDIIS        2.
+ 
+       Fermi aufbau procedure completed!
+      nOcc(alpha)=    1    0    0    0    0    0    0    0
+      nOcc(beta) =    0    0    0    0    0    0    0    0
+ 
+   7    -0.499998850    -0.499998850     0.000000000  -0.64E-05*   0.12E-02*   0.53E-03*    0.36E-02   0.16E+02   EDIIS        2.
+   8    -0.499999805    -0.499999805     0.000000000  -0.95E-06*   0.47E-03*   0.20E-03*    0.14E-02   0.16E+02   EDIIS        2.
+   9    -0.499999951    -0.499999951     0.000000000  -0.15E-06*   0.19E-03*   0.76E-04     0.56E-03   0.16E+02   EDIIS        2.
+  10    -0.499999973    -0.499999973     0.000000000  -0.23E-07*   0.77E-04    0.29E-04     0.23E-03   0.16E+02   EDIIS        2.
+  11    -0.499999977    -0.499999977     0.000000000  -0.35E-08*   0.22E-05    0.18E-04     0.90E-04   0.16E+02   c2DIIS       2.
+  12    -0.499999977    -0.499999977     0.000000000  -0.66E-09    0.11E-05    0.25E-06     0.42E-05   0.16E+02   QNRc2DIIS    2.
+ 
+       Convergence after 12 Macro Iterations
+--
+ 
+ *****************************************************************************************************************************
+ *                                                                                                                           *
+ *                                             SCF/KS-DFT Program, Final results                                             *
+ *                                                                                                                           *
+ *                                                                                                                           *
+ *                                                                                                                           *
+ *                                                       Final Results                                                       *
+ *                                                                                                                           *
+ *****************************************************************************************************************************
+ 
+::    Total SCF energy                                 -0.4999999774
+      One-electron energy                              -0.4999999774
+      Two-electron energy                               0.0000000000
+      Nuclear repulsion energy                          0.0000000000
+      Kinetic energy (interpolated)                     0.5000004300
+      Virial theorem                                    0.9999990947
+      Total spin, S(S+1)                                0.7500000000
+      Total spin, S                                     0.5000000000
+      Max non-diagonal density matrix element           0.0000007503
+      Max non-diagonal Fock matrix element              0.0000000000
+ 
+ 
+      All orbitals with orbital energies smaller than  E(LUMO)+0.5 are printed
+ 
+++    Molecular orbitals:
+      -------------------
+ 
+      Title: UHF orbitals (alpha)
+
+      Molecular orbitals for symmetry species 1: ag 
+ 
+ 
+      Basis set list:
+        1 H      1s                 16 H      3d0                31 H      5g0                46 H      7i0                61 H      7i6+   
+        2 H      1s                 17 H      3d0                32 H      5g0                47 H      7i0                62 H      9l0    
+        3 H      1s                 18 H      3d0                33 H      5g0                48 H      7i0                63 H      9l0    
+        4 H      1s                 19 H      3d0                34 H      5g2+               49 H      7i0                64 H      9l2+   
+        5 H      1s                 20 H      3d2+               35 H      5g2+               50 H      7i2+               65 H      9l2+   
+        6 H      1s                 21 H      3d2+               36 H      5g2+               51 H      7i2+               66 H      9l4+   
+        7 H      1s                 22 H      3d2+               37 H      5g2+               52 H      7i2+               67 H      9l4+   
+        8 H      1s                 23 H      3d2+               38 H      5g2+               53 H      7i2+               68 H      9l6+   
+        9 H      1s                 24 H      3d2+               39 H      5g2+               54 H      7i4+               69 H      9l6+   
+       10 H      1s                 25 H      3d2+               40 H      5g4+               55 H      7i4+               70 H      9l8+   
+       11 H      1s                 26 H      3d2+               41 H      5g4+               56 H      7i4+               71 H      9l8+   
+       12 H      3d0                27 H      3d2+               42 H      5g4+               57 H      7i4+   
+       13 H      3d0                28 H      5g0                43 H      5g4+               58 H      7i6+   
+       14 H      3d0                29 H      5g0                44 H      5g4+               59 H      7i6+   
+       15 H      3d0                30 H      5g0                45 H      5g4+               60 H      7i6+   
+ 
+ 
+  Index Energy  Occupation Coefficients ...
+ 
+    1   -0.5000    1.0000          6 H      1s     ( 0.254),     7 H      1s     ( 0.349),     8 H      1s     ( 0.260),                                                            
+ 
+    2    0.0103    0.0000         10 H      1s     (-0.889),    11 H      1s     ( 1.515),                                                                                          
+ 
+    3    0.0574    0.0000          9 H      1s     (-2.351),    10 H      1s     ( 3.253),                                                                                          
+ 
+    4    0.2030    0.0000          8 H      1s     (-5.271),     9 H      1s     ( 6.573),    10 H      1s     (-3.309),                                                            
+ 
+    5    0.3225    0.0000         27 H      3d2+   ( 1.106),                                                                                                                        
+ 
+    6    0.3225    0.0000         19 H      3d0    ( 1.106),                                                                                                                        
+ 
+
+      Molecular orbitals for symmetry species 2: b3u
+ 
+ 
+      Basis set list:
+        1 H      2px                11 H      4f1+               21 H      4f3+               31 H      6h3+               41 H      8k1+   
+        2 H      2px                12 H      4f1+               22 H      4f3+               32 H      6h3+               42 H      8k3+   
+        3 H      2px                13 H      4f1+               23 H      4f3+               33 H      6h3+               43 H      8k3+   
+        4 H      2px                14 H      4f1+               24 H      6h1+               34 H      6h5+               44 H      8k3+   
+        5 H      2px                15 H      4f1+               25 H      6h1+               35 H      6h5+               45 H      8k5+   
+        6 H      2px                16 H      4f1+               26 H      6h1+               36 H      6h5+               46 H      8k5+   
+        7 H      2px                17 H      4f3+               27 H      6h1+               37 H      6h5+               47 H      8k5+   
+        8 H      2px                18 H      4f3+               28 H      6h1+               38 H      6h5+               48 H      8k7+   
+        9 H      2px                19 H      4f3+               29 H      6h3+               39 H      8k1+               49 H      8k7+   
+       10 H      4f1+               20 H      4f3+               30 H      6h3+               40 H      8k1+               50 H      8k7+   
+ 
+ 
+  Index Energy  Occupation Coefficients ...
+ 
+    1    0.0844    0.0000          9 H      2px    ( 1.267),                                                                                                                        
+ 
+    2    0.3043    0.0000          7 H      2px    (-1.165),     8 H      2px    ( 2.327),                                                                                          
+ 
+
+      Molecular orbitals for symmetry species 3: b2u
+ 
+ 
+      Basis set list:
+        1 H      2py                11 H      4f3-               21 H      4f1-               31 H      6h3-               41 H      8k7-   
+        2 H      2py                12 H      4f3-               22 H      4f1-               32 H      6h3-               42 H      8k5-   
+        3 H      2py                13 H      4f3-               23 H      4f1-               33 H      6h3-               43 H      8k5-   
+        4 H      2py                14 H      4f3-               24 H      6h5-               34 H      6h1-               44 H      8k5-   
+        5 H      2py                15 H      4f3-               25 H      6h5-               35 H      6h1-               45 H      8k3-   
+        6 H      2py                16 H      4f3-               26 H      6h5-               36 H      6h1-               46 H      8k3-   
+        7 H      2py                17 H      4f1-               27 H      6h5-               37 H      6h1-               47 H      8k3-   
+        8 H      2py                18 H      4f1-               28 H      6h5-               38 H      6h1-               48 H      8k1-   
+        9 H      2py                19 H      4f1-               29 H      6h3-               39 H      8k7-               49 H      8k1-   
+       10 H      4f3-               20 H      4f1-               30 H      6h3-               40 H      8k7-               50 H      8k1-   
+ 
+ 
+  Index Energy  Occupation Coefficients ...
+ 
+    1    0.0844    0.0000          9 H      2py    ( 1.267),                                                                                                                        
+ 
+    2    0.3043    0.0000          7 H      2py    (-1.165),     8 H      2py    ( 2.327),                                                                                          
+ 
+
+      Molecular orbitals for symmetry species 4: b1g
+ 
+ 
+      Basis set list:
+        1 H      3d2-               11 H      5g4-               21 H      7i6-               31 H      7i2-   
+        2 H      3d2-               12 H      5g4-               22 H      7i6-               32 H      7i2-   
+        3 H      3d2-               13 H      5g4-               23 H      7i6-               33 H      9l8-   
+        4 H      3d2-               14 H      5g4-               24 H      7i6-               34 H      9l8-   
+        5 H      3d2-               15 H      5g2-               25 H      7i4-               35 H      9l6-   
+        6 H      3d2-               16 H      5g2-               26 H      7i4-               36 H      9l6-   
+        7 H      3d2-               17 H      5g2-               27 H      7i4-               37 H      9l4-   
+        8 H      3d2-               18 H      5g2-               28 H      7i4-               38 H      9l4-   
+        9 H      5g4-               19 H      5g2-               29 H      7i2-               39 H      9l2-   
+       10 H      5g4-               20 H      5g2-               30 H      7i2-               40 H      9l2-   
+ 
+ 
+  Index Energy  Occupation Coefficients ...
+ 
+    1    0.3225    0.0000          8 H      3d2-   ( 1.198),                                                                                                                        
+ 
+
+      Molecular orbitals for symmetry species 5: b1u
+ 
+ 
+      Basis set list:
+        1 H      2pz                11 H      4f0                21 H      4f2+               31 H      6h2+               41 H      8k0    
+        2 H      2pz                12 H      4f0                22 H      4f2+               32 H      6h2+               42 H      8k2+   
+        3 H      2pz                13 H      4f0                23 H      4f2+               33 H      6h2+               43 H      8k2+   
+        4 H      2pz                14 H      4f0                24 H      6h0                34 H      6h4+               44 H      8k2+   
+        5 H      2pz                15 H      4f0                25 H      6h0                35 H      6h4+               45 H      8k4+   
+        6 H      2pz                16 H      4f0                26 H      6h0                36 H      6h4+               46 H      8k4+   
+        7 H      2pz                17 H      4f2+               27 H      6h0                37 H      6h4+               47 H      8k4+   
+        8 H      2pz                18 H      4f2+               28 H      6h0                38 H      6h4+               48 H      8k6+   
+        9 H      2pz                19 H      4f2+               29 H      6h2+               39 H      8k0                49 H      8k6+   
+       10 H      4f0                20 H      4f2+               30 H      6h2+               40 H      8k0                50 H      8k6+   
+ 
+ 
+  Index Energy  Occupation Coefficients ...
+ 
+    1    0.0844    0.0000          9 H      2pz    ( 1.267),                                                                                                                        
+ 
+    2    0.3043    0.0000          7 H      2pz    (-1.165),     8 H      2pz    ( 2.327),                                                                                          
+ 
+
+      Molecular orbitals for symmetry species 6: b2g
+ 
+ 
+      Basis set list:
+        1 H      3d1+               11 H      5g1+               21 H      7i1+               31 H      7i5+   
+        2 H      3d1+               12 H      5g1+               22 H      7i1+               32 H      7i5+   
+        3 H      3d1+               13 H      5g1+               23 H      7i1+               33 H      9l1+   
+        4 H      3d1+               14 H      5g1+               24 H      7i1+               34 H      9l1+   
+        5 H      3d1+               15 H      5g3+               25 H      7i3+               35 H      9l3+   
+        6 H      3d1+               16 H      5g3+               26 H      7i3+               36 H      9l3+   
+        7 H      3d1+               17 H      5g3+               27 H      7i3+               37 H      9l5+   
+        8 H      3d1+               18 H      5g3+               28 H      7i3+               38 H      9l5+   
+        9 H      5g1+               19 H      5g3+               29 H      7i5+               39 H      9l7+   
+       10 H      5g1+               20 H      5g3+               30 H      7i5+               40 H      9l7+   
+ 
+ 
+  Index Energy  Occupation Coefficients ...
+ 
+    1    0.3225    0.0000          8 H      3d1+   ( 1.198),                                                                                                                        
+ 
+
+      Molecular orbitals for symmetry species 7: b3g
+ 
+ 
+      Basis set list:
+        1 H      3d1-               11 H      5g3-               21 H      7i5-               31 H      7i1-   
+        2 H      3d1-               12 H      5g3-               22 H      7i5-               32 H      7i1-   
+        3 H      3d1-               13 H      5g3-               23 H      7i5-               33 H      9l7-   
+        4 H      3d1-               14 H      5g3-               24 H      7i5-               34 H      9l7-   
+        5 H      3d1-               15 H      5g1-               25 H      7i3-               35 H      9l5-   
+        6 H      3d1-               16 H      5g1-               26 H      7i3-               36 H      9l5-   
+        7 H      3d1-               17 H      5g1-               27 H      7i3-               37 H      9l3-   
+        8 H      3d1-               18 H      5g1-               28 H      7i3-               38 H      9l3-   
+        9 H      5g3-               19 H      5g1-               29 H      7i1-               39 H      9l1-   
+       10 H      5g3-               20 H      5g1-               30 H      7i1-               40 H      9l1-   
+ 
+ 
+  Index Energy  Occupation Coefficients ...
+ 
+    1    0.3225    0.0000          8 H      3d1-   ( 1.198),                                                                                                                        
+ 
+--
+ 
+ 
+      All orbitals with orbital energies smaller than  E(LUMO)+0.5 are printed
+ 
+++    Molecular orbitals:
+      -------------------
+ 
+      Title: UHF orbitals (beta)
+
+      Molecular orbitals for symmetry species 1: ag 
+ 
+ 
+      Basis set list:
+        1 H      1s                 16 H      3d0                31 H      5g0                46 H      7i0                61 H      7i6+   
+        2 H      1s                 17 H      3d0                32 H      5g0                47 H      7i0                62 H      9l0    
+        3 H      1s                 18 H      3d0                33 H      5g0                48 H      7i0                63 H      9l0    
+        4 H      1s                 19 H      3d0                34 H      5g2+               49 H      7i0                64 H      9l2+   
+        5 H      1s                 20 H      3d2+               35 H      5g2+               50 H      7i2+               65 H      9l2+   
+        6 H      1s                 21 H      3d2+               36 H      5g2+               51 H      7i2+               66 H      9l4+   
+        7 H      1s                 22 H      3d2+               37 H      5g2+               52 H      7i2+               67 H      9l4+   
+        8 H      1s                 23 H      3d2+               38 H      5g2+               53 H      7i2+               68 H      9l6+   
+        9 H      1s                 24 H      3d2+               39 H      5g2+               54 H      7i4+               69 H      9l6+   
+       10 H      1s                 25 H      3d2+               40 H      5g4+               55 H      7i4+               70 H      9l8+   
+       11 H      1s                 26 H      3d2+               41 H      5g4+               56 H      7i4+               71 H      9l8+   
+       12 H      3d0                27 H      3d2+               42 H      5g4+               57 H      7i4+   
+       13 H      3d0                28 H      5g0                43 H      5g4+               58 H      7i6+   
+       14 H      3d0                29 H      5g0                44 H      5g4+               59 H      7i6+   
+       15 H      3d0                30 H      5g0                45 H      5g4+               60 H      7i6+   
+ 
+ 
+  Index Energy  Occupation Coefficients ...
+ 
+    1    0.0048    0.0000         11 H      1s     ( 1.065),                                                                                                                        
+ 
+    2    0.0271    0.0000         10 H      1s     ( 2.031),    11 H      1s     (-1.501),                                                                                          
+ 
+    3    0.0937    0.0000          8 H      1s     (-1.991),     9 H      1s     ( 3.684),    10 H      1s     (-3.313),                                                            
+ 
+    4    0.2625    0.0000          8 H      1s     (-6.355),     9 H      1s     ( 6.674),                                                                                          
+ 
+    5    0.3262    0.0000         27 H      3d2+   ( 1.144),                                                                                                                        
+ 
+    6    0.3262    0.0000         19 H      3d0    ( 1.144),                                                                                                                        
+ 
+
+      Molecular orbitals for symmetry species 2: b3u
+ 
+ 
+      Basis set list:
+        1 H      2px                11 H      4f1+               21 H      4f3+               31 H      6h3+               41 H      8k1+   
+        2 H      2px                12 H      4f1+               22 H      4f3+               32 H      6h3+               42 H      8k3+   
+        3 H      2px                13 H      4f1+               23 H      4f3+               33 H      6h3+               43 H      8k3+   
+        4 H      2px                14 H      4f1+               24 H      6h1+               34 H      6h5+               44 H      8k3+   
+        5 H      2px                15 H      4f1+               25 H      6h1+               35 H      6h5+               45 H      8k5+   
+        6 H      2px                16 H      4f1+               26 H      6h1+               36 H      6h5+               46 H      8k5+   
+        7 H      2px                17 H      4f3+               27 H      6h1+               37 H      6h5+               47 H      8k5+   
+        8 H      2px                18 H      4f3+               28 H      6h1+               38 H      6h5+               48 H      8k7+   
+        9 H      2px                19 H      4f3+               29 H      6h3+               39 H      8k1+               49 H      8k7+   
+       10 H      4f1+               20 H      4f3+               30 H      6h3+               40 H      8k1+               50 H      8k7+   
+ 
+ 
+  Index Energy  Occupation Coefficients ...
+ 
+    1    0.0888    0.0000          9 H      2px    ( 1.308),                                                                                                                        
+ 
+    2    0.3311    0.0000          7 H      2px    (-1.325),     8 H      2px    ( 2.451),                                                                                          
+ 
+
+      Molecular orbitals for symmetry species 3: b2u
+ 
+ 
+      Basis set list:
+        1 H      2py                11 H      4f3-               21 H      4f1-               31 H      6h3-               41 H      8k7-   
+        2 H      2py                12 H      4f3-               22 H      4f1-               32 H      6h3-               42 H      8k5-   
+        3 H      2py                13 H      4f3-               23 H      4f1-               33 H      6h3-               43 H      8k5-   
+        4 H      2py                14 H      4f3-               24 H      6h5-               34 H      6h1-               44 H      8k5-   
+        5 H      2py                15 H      4f3-               25 H      6h5-               35 H      6h1-               45 H      8k3-   
+        6 H      2py                16 H      4f3-               26 H      6h5-               36 H      6h1-               46 H      8k3-   
+        7 H      2py                17 H      4f1-               27 H      6h5-               37 H      6h1-               47 H      8k3-   
+        8 H      2py                18 H      4f1-               28 H      6h5-               38 H      6h1-               48 H      8k1-   
+        9 H      2py                19 H      4f1-               29 H      6h3-               39 H      8k7-               49 H      8k1-   
+       10 H      4f3-               20 H      4f1-               30 H      6h3-               40 H      8k7-               50 H      8k1-   
+ 
+ 
+  Index Energy  Occupation Coefficients ...
+ 
+    1    0.0888    0.0000          9 H      2py    ( 1.308),                                                                                                                        
+ 
+    2    0.3311    0.0000          7 H      2py    (-1.325),     8 H      2py    ( 2.451),                                                                                          
+ 
+
+      Molecular orbitals for symmetry species 4: b1g
+ 
+ 
+      Basis set list:
+        1 H      3d2-               11 H      5g4-               21 H      7i6-               31 H      7i2-   
+        2 H      3d2-               12 H      5g4-               22 H      7i6-               32 H      7i2-   
+        3 H      3d2-               13 H      5g4-               23 H      7i6-               33 H      9l8-   
+        4 H      3d2-               14 H      5g4-               24 H      7i6-               34 H      9l8-   
+        5 H      3d2-               15 H      5g2-               25 H      7i4-               35 H      9l6-   
+        6 H      3d2-               16 H      5g2-               26 H      7i4-               36 H      9l6-   
+        7 H      3d2-               17 H      5g2-               27 H      7i4-               37 H      9l4-   
+        8 H      3d2-               18 H      5g2-               28 H      7i4-               38 H      9l4-   
+        9 H      5g4-               19 H      5g2-               29 H      7i2-               39 H      9l2-   
+       10 H      5g4-               20 H      5g2-               30 H      7i2-               40 H      9l2-   
+ 
+ 
+  Index Energy  Occupation Coefficients ...
+ 
+    1    0.3262    0.0000          8 H      3d2-   ( 1.204),                                                                                                                        
+ 
+
+      Molecular orbitals for symmetry species 5: b1u
+ 
+ 
+      Basis set list:
+        1 H      2pz                11 H      4f0                21 H      4f2+               31 H      6h2+               41 H      8k0    
+        2 H      2pz                12 H      4f0                22 H      4f2+               32 H      6h2+               42 H      8k2+   
+        3 H      2pz                13 H      4f0                23 H      4f2+               33 H      6h2+               43 H      8k2+   
+        4 H      2pz                14 H      4f0                24 H      6h0                34 H      6h4+               44 H      8k2+   
+        5 H      2pz                15 H      4f0                25 H      6h0                35 H      6h4+               45 H      8k4+   
+        6 H      2pz                16 H      4f0                26 H      6h0                36 H      6h4+               46 H      8k4+   
+        7 H      2pz                17 H      4f2+               27 H      6h0                37 H      6h4+               47 H      8k4+   
+        8 H      2pz                18 H      4f2+               28 H      6h0                38 H      6h4+               48 H      8k6+   
+        9 H      2pz                19 H      4f2+               29 H      6h2+               39 H      8k0                49 H      8k6+   
+       10 H      4f0                20 H      4f2+               30 H      6h2+               40 H      8k0                50 H      8k6+   
+ 
+ 
+  Index Energy  Occupation Coefficients ...
+ 
+    1    0.0888    0.0000          9 H      2pz    ( 1.308),                                                                                                                        
+ 
+    2    0.3311    0.0000          7 H      2pz    (-1.325),     8 H      2pz    ( 2.451),                                                                                          
+ 
+
+      Molecular orbitals for symmetry species 6: b2g
+ 
+ 
+      Basis set list:
+        1 H      3d1+               11 H      5g1+               21 H      7i1+               31 H      7i5+   
+        2 H      3d1+               12 H      5g1+               22 H      7i1+               32 H      7i5+   
+        3 H      3d1+               13 H      5g1+               23 H      7i1+               33 H      9l1+   
+        4 H      3d1+               14 H      5g1+               24 H      7i1+               34 H      9l1+   
+        5 H      3d1+               15 H      5g3+               25 H      7i3+               35 H      9l3+   
+        6 H      3d1+               16 H      5g3+               26 H      7i3+               36 H      9l3+   
+        7 H      3d1+               17 H      5g3+               27 H      7i3+               37 H      9l5+   
+        8 H      3d1+               18 H      5g3+               28 H      7i3+               38 H      9l5+   
+        9 H      5g1+               19 H      5g3+               29 H      7i5+               39 H      9l7+   
+       10 H      5g1+               20 H      5g3+               30 H      7i5+               40 H      9l7+   
+ 
+ 
+  Index Energy  Occupation Coefficients ...
+ 
+    1    0.3262    0.0000          8 H      3d1+   ( 1.204),                                                                                                                        
+ 
+
+      Molecular orbitals for symmetry species 7: b3g
+ 
+ 
+      Basis set list:
+        1 H      3d1-               11 H      5g3-               21 H      7i5-               31 H      7i1-   
+        2 H      3d1-               12 H      5g3-               22 H      7i5-               32 H      7i1-   
+        3 H      3d1-               13 H      5g3-               23 H      7i5-               33 H      9l7-   
+        4 H      3d1-               14 H      5g3-               24 H      7i5-               34 H      9l7-   
+        5 H      3d1-               15 H      5g1-               25 H      7i3-               35 H      9l5-   
+        6 H      3d1-               16 H      5g1-               26 H      7i3-               36 H      9l5-   
+        7 H      3d1-               17 H      5g1-               27 H      7i3-               37 H      9l3-   
+        8 H      3d1-               18 H      5g1-               28 H      7i3-               38 H      9l3-   
+        9 H      5g3-               19 H      5g1-               29 H      7i1-               39 H      9l1-   
+       10 H      5g3-               20 H      5g1-               30 H      7i1-               40 H      9l1-   
+ 
+ 
+  Index Energy  Occupation Coefficients ...
+ 
+    1    0.3262    0.0000          8 H      3d1-   ( 1.204),                                                                                                                        
+ 
+--
+ 
+ 
+++    Molecular charges:
+      ------------------
+ 
+      Mulliken charges per centre and basis function type
+      ---------------------------------------------------
+ 
+                            H     
+                     alpha        beta
+      1s           1.0000      0.0000
+      2px          0.0000      0.0000
+      2pz          0.0000      0.0000
+      2py          0.0000      0.0000
+      3d2+        -0.0000      0.0000
+      3d1+         0.0000      0.0000
+      3d0          0.0000      0.0000
+      3d1-         0.0000      0.0000
+      3d2-         0.0000      0.0000
+      4f3+         0.0000      0.0000
+      4f2+         0.0000      0.0000
+      4f1+         0.0000      0.0000
+      4f0          0.0000      0.0000
+      4f1-         0.0000      0.0000
+      4f2-         0.0000      0.0000
+      4f3-         0.0000      0.0000
+      5g4+        -0.0000      0.0000
+      5g3+         0.0000      0.0000
+      5g2+        -0.0000      0.0000
+      5g1+         0.0000      0.0000
+      5g0         -0.0000      0.0000
+      5g1-         0.0000      0.0000
+      5g2-         0.0000      0.0000
+      5g3-         0.0000      0.0000
+      5g4-         0.0000      0.0000
+      6h5+         0.0000      0.0000
+      6h4+         0.0000      0.0000
+      6h3+         0.0000      0.0000
+      6h2+         0.0000      0.0000
+      6h1+         0.0000      0.0000
+      6h0          0.0000      0.0000
+      6h1-         0.0000      0.0000
+      6h2-         0.0000      0.0000
+      6h3-         0.0000      0.0000
+      6h4-         0.0000      0.0000
+      6h5-         0.0000      0.0000
+      7i6+         0.0000      0.0000
+      7i5+         0.0000      0.0000
+      7i4+        -0.0000      0.0000
+      7i3+         0.0000      0.0000
+      7i2+        -0.0000      0.0000
+      7i1+         0.0000      0.0000
+      7i0         -0.0000      0.0000
+      7i1-         0.0000      0.0000
+      7i2-         0.0000      0.0000
+      7i3-         0.0000      0.0000
+      7i4-         0.0000      0.0000
+      7i5-         0.0000      0.0000
+      7i6-         0.0000      0.0000
+      8k7+         0.0000      0.0000
+      8k6+         0.0000      0.0000
+      8k5+         0.0000      0.0000
+      8k4+         0.0000      0.0000
+      8k3+         0.0000      0.0000
+      8k2+         0.0000      0.0000
+      8k1+         0.0000      0.0000
+      8k0          0.0000      0.0000
+      8k1-         0.0000      0.0000
+      8k2-         0.0000      0.0000
+      8k3-         0.0000      0.0000
+      8k4-         0.0000      0.0000
+      8k5-         0.0000      0.0000
+      8k6-         0.0000      0.0000
+      8k7-         0.0000      0.0000
+      9l8+        -0.0000      0.0000
+      9l7+         0.0000      0.0000
+      9l6+        -0.0000      0.0000
+      9l5+         0.0000      0.0000
+      9l4+        -0.0000      0.0000
+      9l3+         0.0000      0.0000
+      9l2+         0.0000      0.0000
+      9l1+         0.0000      0.0000
+      9l0         -0.0000      0.0000
+      9l1-         0.0000      0.0000
+      9l2-         0.0000      0.0000
+      9l3-         0.0000      0.0000
+      9l4-         0.0000      0.0000
+      9l5-         0.0000      0.0000
+      9l6-         0.0000      0.0000
+      9l7-         0.0000      0.0000
+      9l8-         0.0000      0.0000
+      Total        1.0000      0.0000
+      Total              1.0000
+ 
+      Charge           -0.0000
+ 
+      Total electronic charge=    1.000000
+ 
+      Total            charge=   -0.000000
+--
+ 
+ 
+++    Molecular orbitals:
+      -------------------
+ 
+      Title: Natural orbitals
+
+      Molecular orbitals for symmetry species 1: ag 
+ 
+ 
+      Basis set list:
+        1 H      1s                 16 H      3d0                31 H      5g0                46 H      7i0                61 H      7i6+   
+        2 H      1s                 17 H      3d0                32 H      5g0                47 H      7i0                62 H      9l0    
+        3 H      1s                 18 H      3d0                33 H      5g0                48 H      7i0                63 H      9l0    
+        4 H      1s                 19 H      3d0                34 H      5g2+               49 H      7i0                64 H      9l2+   
+        5 H      1s                 20 H      3d2+               35 H      5g2+               50 H      7i2+               65 H      9l2+   
+        6 H      1s                 21 H      3d2+               36 H      5g2+               51 H      7i2+               66 H      9l4+   
+        7 H      1s                 22 H      3d2+               37 H      5g2+               52 H      7i2+               67 H      9l4+   
+        8 H      1s                 23 H      3d2+               38 H      5g2+               53 H      7i2+               68 H      9l6+   
+        9 H      1s                 24 H      3d2+               39 H      5g2+               54 H      7i4+               69 H      9l6+   
+       10 H      1s                 25 H      3d2+               40 H      5g4+               55 H      7i4+               70 H      9l8+   
+       11 H      1s                 26 H      3d2+               41 H      5g4+               56 H      7i4+               71 H      9l8+   
+       12 H      3d0                27 H      3d2+               42 H      5g4+               57 H      7i4+   
+       13 H      3d0                28 H      5g0                43 H      5g4+               58 H      7i6+   
+       14 H      3d0                29 H      5g0                44 H      5g4+               59 H      7i6+   
+       15 H      3d0                30 H      5g0                45 H      5g4+               60 H      7i6+   
+ 
+ 
+  Index Energy  Occupation Coefficients ...
+ 
+    1   -0.1875    1.0000          6 H      1s     ( 0.254),     7 H      1s     ( 0.349),     8 H      1s     ( 0.260),                                                            
+ 
+    2    0.0107    0.0000         10 H      1s     (-0.889),    11 H      1s     ( 1.515),                                                                                          
+ 
+    3    0.0604    0.0000          9 H      1s     (-2.351),    10 H      1s     ( 3.253),                                                                                          
+ 
+    4    0.2147    0.0000          8 H      1s     ( 5.271),     9 H      1s     (-6.573),    10 H      1s     ( 3.309),                                                            
+ 
+    5    0.3243    0.0000         27 H      3d2+   ( 1.106),                                                                                                                        
+ 
+    6    0.3243    0.0000         19 H      3d0    ( 1.106),                                                                                                                        
+ 
+    7    0.5966    0.0000          7 H      1s     (-6.864),     8 H      1s     ( 10.76),     9 H      1s     (-7.129),                                                            
+ 
+    8    1.0729    0.0000         25 H      3d2+   (-1.137),    26 H      3d2+   ( 1.997),                                                                                          
+ 
+    9    1.0729    0.0000         17 H      3d0    (-1.137),    18 H      3d0    ( 1.997),                                                                                          
+ 
+   10    1.4484    0.0000          6 H      1s     (-7.017),     7 H      1s     ( 12.02),     8 H      1s     (-10.59),                                                            
+ 
+   11    1.4782    0.0000         33 H      5g0    ( 1.039),                                                                                                                        
+ 
+   12    1.4782    0.0000         39 H      5g2+   ( 0.798),    45 H      5g4+   ( 0.766),                                                                                          
+ 
+   13    1.4782    0.0000         39 H      5g2+   (-0.689),    45 H      5g4+   ( 0.792),                                                                                          
+ 
+   14    2.6309    0.0000         25 H      3d2+   ( 3.061),    26 H      3d2+   (-2.041),                                                                                          
+ 
+   15    2.6309    0.0000         17 H      3d0    ( 3.061),    18 H      3d0    (-2.041),                                                                                          
+ 
+   16    3.3576    0.0000          5 H      1s     (-6.422),     6 H      1s     ( 11.22),     7 H      1s     (-11.05),     8 H      1s     ( 7.448),                              
+ 
+   17    4.1022    0.0000         49 H      7i0    ( 0.514),    57 H      7i4+   ( 0.923),                                                                                          
+ 
+   18    4.1022    0.0000         49 H      7i0    ( 0.874),                                                                                                                        
+ 
+   19    4.1022    0.0000         61 H      7i6+   ( 0.984),                                                                                                                        
+ 
+   20    4.1022    0.0000         53 H      7i2+   ( 0.876),                                                                                                                        
+ 
+   21    4.2761    0.0000         31 H      5g0    (-1.052),    32 H      5g0    ( 1.683),                                                                                          
+ 
+   22    4.2761    0.0000         37 H      5g2+   (-1.015),    38 H      5g2+   ( 1.624),                                                                                          
+ 
+   23    4.2761    0.0000         43 H      5g4+   (-1.090),    44 H      5g4+   ( 1.743),                                                                                          
+ 
+   24    5.7193    0.0000         24 H      3d2+   ( 3.676),    25 H      3d2+   (-3.457),                                                                                          
+ 
+   25    5.7193    0.0000         16 H      3d0    ( 3.676),    17 H      3d0    (-3.457),                                                                                          
+ 
+   26    7.8372    0.0000          4 H      1s     ( 5.461),     5 H      1s     (-9.548),     6 H      1s     ( 9.713),     7 H      1s     (-7.506),                              
+ 
+   27    9.3117    0.0000         37 H      5g2+   ( 2.827),    38 H      5g2+   (-1.623),                                                                                          
+ 
+   28    9.3117    0.0000         31 H      5g0    (-2.044),    32 H      5g0    ( 1.173),    43 H      5g4+   ( 1.990),    44 H      5g4+   (-1.142),                              
+ 
+   29    9.3117    0.0000         31 H      5g0    ( 1.971),    32 H      5g0    (-1.132),    43 H      5g4+   ( 2.179),    44 H      5g4+   (-1.251),                              
+ 
+   30   10.4361    0.0000         65 H      9l2+   ( 0.444),    67 H      9l4+   ( 0.660),    69 H      9l6+   ( 0.618),                                                            
+ 
+   31   10.4361    0.0000         63 H      9l0    ( 0.749),    69 H      9l6+   ( 0.527),                                                                                          
+ 
+   32   10.4361    0.0000         65 H      9l2+   (-0.671),    67 H      9l4+   ( 0.638),    71 H      9l8+   ( 0.339),                                                            
+ 
+   33   10.4361    0.0000         71 H      9l8+   ( 0.895),                                                                                                                        
+ 
+   34   10.4361    0.0000         63 H      9l0    ( 0.662),    65 H      9l2+   ( 0.488),    69 H      9l6+   (-0.477),                                                            
+ 
+   35   11.1507    0.0000         48 H      7i0    ( 0.747),    56 H      7i4+   (-1.009),                                                                                          
+ 
+   36   11.1507    0.0000         52 H      7i2+   ( 1.002),    60 H      7i6+   (-0.791),                                                                                          
+ 
+   37   11.1507    0.0000         48 H      7i0    ( 0.724),    52 H      7i2+   ( 0.470),    56 H      7i4+   ( 0.716),    60 H      7i6+   ( 0.714),                              
+ 
+   38   11.1507    0.0000         48 H      7i0    (-0.806),    52 H      7i2+   ( 0.594),    60 H      7i6+   ( 0.794),                                                            
+ 
+   39   11.8405    0.0000         15 H      3d0    ( 3.670),    16 H      3d0    (-3.981),    17 H      3d0    ( 2.495),    23 H      3d2+   ( 2.078),                              
+                                  24 H      3d2+   (-2.253),                                                                                                                        
+ 
+   40   11.8405    0.0000         15 H      3d0    (-2.078),    16 H      3d0    ( 2.253),    23 H      3d2+   ( 3.670),    24 H      3d2+   (-3.981),                              
+                                  25 H      3d2+   ( 2.495),                                                                                                                        
+ 
+   41   18.3029    0.0000         30 H      5g0    ( 1.934),    31 H      5g0    (-1.689),    36 H      5g2+   ( 1.613),    37 H      5g2+   (-1.409),                              
+                                  42 H      5g4+   (-2.255),    43 H      5g4+   ( 1.969),                                                                                          
+ 
+   42   18.3029    0.0000         30 H      5g0    ( 1.697),    31 H      5g0    (-1.482),    36 H      5g2+   ( 1.485),    37 H      5g2+   (-1.297),                              
+                                  42 H      5g4+   ( 2.518),    43 H      5g4+   (-2.199),                                                                                          
+ 
+   43   18.3029    0.0000         30 H      5g0    (-2.193),    31 H      5g0    ( 1.915),    36 H      5g2+   ( 2.573),    37 H      5g2+   (-2.246),                              
+ 
+   44   19.0891    0.0000          3 H      1s     (-4.309),     4 H      1s     ( 7.484),     5 H      1s     (-7.679),     6 H      1s     ( 6.279),                              
+                                   7 H      1s     (-4.556),                                                                                                                        
+ 
+   45   24.1406    0.0000         14 H      3d0    ( 3.446),    15 H      3d0    (-4.065),    16 H      3d0    ( 2.935),    22 H      3d2+   ( 2.254),                              
+                                  23 H      3d2+   (-2.659),                                                                                                                        
+ 
+   46   24.1406    0.0000         14 H      3d0    (-2.254),    15 H      3d0    ( 2.659),    22 H      3d2+   ( 3.446),    23 H      3d2+   (-4.065),                              
+                                  24 H      3d2+   ( 2.935),                                                                                                                        
+ 
+   47   24.7931    0.0000         51 H      7i2+   (-1.213),    52 H      7i2+   ( 0.632),    59 H      7i6+   ( 0.851),                                                            
+ 
+   48   24.7931    0.0000         47 H      7i0    ( 1.214),    48 H      7i0    (-0.633),    55 H      7i4+   ( 0.773),                                                            
+ 
+   49   24.7931    0.0000         47 H      7i0    ( 0.902),    55 H      7i4+   (-1.142),    56 H      7i4+   ( 0.595),                                                            
+ 
+   50   24.7931    0.0000         51 H      7i2+   ( 0.911),    55 H      7i4+   ( 0.567),    59 H      7i6+   ( 1.077),    60 H      7i6+   (-0.562),                              
+ 
+   51   34.5558    0.0000         66 H      9l4+   ( 0.932),                                                                                                                        
+ 
+   52   50.4483    0.0000          2 H      1s     ( 3.525),     3 H      1s     (-5.371),     4 H      1s     ( 5.460),     5 H      1s     (-4.630),                              
+                                   6 H      1s     ( 3.621),                                                                                                                        
+ 
+   53   34.5558    0.0000         64 H      9l2+   ( 0.509),    70 H      9l8+   (-0.787),                                                                                          
+ 
+   54   34.5558    0.0000         68 H      9l6+   (-0.863),                                                                                                                        
+ 
+   55  189.7665    0.0000          1 H      1s     (-6.917),     2 H      1s     ( 8.567),                                                                                          
+ 
+   56   34.5558    0.0000         62 H      9l0    (-0.812),                                                                                                                        
+ 
+   57   34.5558    0.0000         64 H      9l2+   (-0.793),    70 H      9l8+   (-0.491),                                                                                          
+ 
+   58   34.8735    0.0000         41 H      5g4+   (-3.013),    42 H      5g4+   ( 3.297),    43 H      5g4+   (-2.036),                                                            
+ 
+   59   34.8735    0.0000         35 H      5g2+   (-3.018),    36 H      5g2+   ( 3.303),    37 H      5g2+   (-2.039),                                                            
+ 
+   60   34.8735    0.0000         29 H      5g0    (-2.989),    30 H      5g0    ( 3.270),    31 H      5g0    (-2.019),                                                            
+ 
+   61   49.5934    0.0000         21 H      3d2+   (-3.517),    22 H      3d2+   ( 4.557),    23 H      3d2+   (-3.576),                                                            
+ 
+   62   49.5934    0.0000         13 H      3d0    ( 3.517),    14 H      3d0    (-4.557),    15 H      3d0    ( 3.576),                                                            
+ 
+   63   53.7232    0.0000         54 H      7i4+   (-1.128),    55 H      7i4+   ( 0.800),    58 H      7i6+   (-0.651),                                                            
+ 
+   64   53.7232    0.0000         50 H      7i2+   (-1.151),    51 H      7i2+   ( 0.817),    54 H      7i4+   (-0.636),                                                            
+ 
+   65   53.7232    0.0000         50 H      7i2+   (-0.646),    58 H      7i6+   (-1.110),    59 H      7i6+   ( 0.787),                                                            
+ 
+   66   53.7232    0.0000         46 H      7i0    (-1.337),    47 H      7i0    ( 0.949),                                                                                          
+ 
+   67   68.0313    0.0000         29 H      5g0    ( 1.379),    34 H      5g2+   (-1.966),    35 H      5g2+   ( 2.696),    36 H      5g2+   (-2.071),                              
+ 
+   68   68.0313    0.0000         40 H      5g4+   (-2.163),    41 H      5g4+   ( 2.966),    42 H      5g4+   (-2.280),                                                            
+ 
+   69   68.0313    0.0000         28 H      5g0    (-2.055),    29 H      5g0    ( 2.818),    30 H      5g0    (-2.165),                                                            
+ 
+   70  106.3297    0.0000         12 H      3d0    (-2.443),    13 H      3d0    ( 3.745),    14 H      3d0    (-3.215),    15 H      3d0    ( 2.193),                              
+ 
+   71  106.3297    0.0000         20 H      3d2+   (-2.443),    21 H      3d2+   ( 3.745),    22 H      3d2+   (-3.215),    23 H      3d2+   ( 2.193),                              
+ 
+
+      Molecular orbitals for symmetry species 2: b3u
+ 
+ 
+      Basis set list:
+        1 H      2px                11 H      4f1+               21 H      4f3+               31 H      6h3+               41 H      8k1+   
+        2 H      2px                12 H      4f1+               22 H      4f3+               32 H      6h3+               42 H      8k3+   
+        3 H      2px                13 H      4f1+               23 H      4f3+               33 H      6h3+               43 H      8k3+   
+        4 H      2px                14 H      4f1+               24 H      6h1+               34 H      6h5+               44 H      8k3+   
+        5 H      2px                15 H      4f1+               25 H      6h1+               35 H      6h5+               45 H      8k5+   
+        6 H      2px                16 H      4f1+               26 H      6h1+               36 H      6h5+               46 H      8k5+   
+        7 H      2px                17 H      4f3+               27 H      6h1+               37 H      6h5+               47 H      8k5+   
+        8 H      2px                18 H      4f3+               28 H      6h1+               38 H      6h5+               48 H      8k7+   
+        9 H      2px                19 H      4f3+               29 H      6h3+               39 H      8k1+               49 H      8k7+   
+       10 H      4f1+               20 H      4f3+               30 H      6h3+               40 H      8k1+               50 H      8k7+   
+ 
+ 
+  Index Energy  Occupation Coefficients ...
+ 
+    1    0.0870    0.0000          9 H      2px    ( 1.267),                                                                                                                        
+ 
+    2    0.3187    0.0000          7 H      2px    (-1.165),     8 H      2px    ( 2.327),                                                                                          
+ 
+    3    0.8448    0.0000          7 H      2px    ( 3.689),     8 H      2px    (-2.914),                                                                                          
+ 
+    4    0.8287    0.0000         16 H      4f1+   (-0.892),    23 H      4f3+   ( 0.711),                                                                                          
+ 
+    5    0.8287    0.0000         16 H      4f1+   ( 0.711),    23 H      4f3+   ( 0.892),                                                                                          
+ 
+    6    1.9793    0.0000          6 H      2px    ( 4.431),     7 H      2px    (-4.695),                                                                                          
+ 
+    7    2.5605    0.0000         21 H      4f3+   (-1.019),    22 H      4f3+   ( 1.837),                                                                                          
+ 
+    8    2.5605    0.0000         14 H      4f1+   (-1.019),    15 H      4f1+   ( 1.837),                                                                                          
+ 
+    9    2.8023    0.0000         28 H      6h1+   ( 1.067),                                                                                                                        
+ 
+   10    2.8023    0.0000         33 H      6h3+   ( 0.919),    38 H      6h5+   ( 0.543),                                                                                          
+ 
+   11    2.8023    0.0000         33 H      6h3+   (-0.549),    38 H      6h5+   ( 0.923),                                                                                          
+ 
+   12    4.3869    0.0000          5 H      2px    ( 4.774),     6 H      2px    (-5.653),     7 H      2px    ( 3.753),                                                            
+ 
+   13    5.9580    0.0000         14 H      4f1+   (-2.229),    15 H      4f1+   ( 1.365),    21 H      4f3+   ( 1.793),                                                            
+ 
+   14    5.9580    0.0000         14 H      4f1+   ( 1.793),    21 H      4f3+   ( 2.229),    22 H      4f3+   (-1.365),                                                            
+ 
+   15    7.3860    0.0000         44 H      8k3+   ( 0.880),    47 H      8k5+   ( 0.478),                                                                                          
+ 
+   16    7.3860    0.0000         41 H      8k1+   ( 0.924),                                                                                                                        
+ 
+   17    7.3860    0.0000         50 H      8k7+   ( 0.923),                                                                                                                        
+ 
+   18    7.3860    0.0000         41 H      8k1+   ( 0.380),    44 H      8k3+   (-0.462),    47 H      8k5+   ( 0.737),                                                            
+ 
+   19    8.0395    0.0000         26 H      6h1+   (-0.918),    27 H      6h1+   ( 1.585),                                                                                          
+ 
+   20    8.0395    0.0000         31 H      6h3+   (-0.890),    32 H      6h3+   ( 1.538),                                                                                          
+ 
+   21    8.0395    0.0000         36 H      6h5+   (-0.954),    37 H      6h5+   ( 1.647),                                                                                          
+ 
+   22    9.5243    0.0000          4 H      2px    ( 4.854),     5 H      2px    (-6.056),     6 H      2px    ( 4.525),                                                            
+ 
+   23   12.4423    0.0000         13 H      4f1+   ( 1.687),    14 H      4f1+   (-1.481),    20 H      4f3+   ( 2.858),    21 H      4f3+   (-2.509),                              
+ 
+   24   12.4423    0.0000         13 H      4f1+   ( 2.858),    14 H      4f1+   (-2.509),    20 H      4f3+   (-1.687),    21 H      4f3+   ( 1.481),                              
+ 
+   25   17.0483    0.0000         26 H      6h1+   (-1.577),    36 H      6h5+   ( 1.906),    37 H      6h5+   (-1.053),                                                            
+ 
+   26   17.0483    0.0000         26 H      6h1+   ( 1.982),    27 H      6h1+   (-1.095),    36 H      6h5+   ( 1.589),                                                            
+ 
+   27   17.0483    0.0000         31 H      6h3+   ( 2.469),    32 H      6h3+   (-1.364),                                                                                          
+ 
+   28   20.6115    0.0000          3 H      2px    ( 4.671),     4 H      2px    (-6.082),     5 H      2px    ( 4.811),                                                            
+ 
+   29   24.1743    0.0000         40 H      8k1+   (-0.412),    43 H      8k3+   ( 0.491),    46 H      8k5+   (-0.564),    49 H      8k7+   ( 0.793),                              
+ 
+   30   24.1743    0.0000         40 H      8k1+   ( 0.508),    43 H      8k3+   (-0.759),    49 H      8k7+   ( 0.723),                                                            
+ 
+   31   24.1743    0.0000         40 H      8k1+   (-0.559),    46 H      8k5+   ( 0.943),                                                                                          
+ 
+   32   24.1743    0.0000         40 H      8k1+   ( 0.785),    43 H      8k3+   ( 0.735),                                                                                          
+ 
+   33   24.9681    0.0000         19 H      4f3+   ( 3.377),    20 H      4f3+   (-3.471),    21 H      4f3+   ( 2.095),                                                            
+ 
+   34   24.9681    0.0000         12 H      4f1+   ( 3.377),    13 H      4f1+   (-3.471),    14 H      4f1+   ( 2.095),                                                            
+ 
+   35   33.0370    0.0000         25 H      6h1+   ( 2.145),    26 H      6h1+   (-1.892),    30 H      6h3+   ( 1.523),    31 H      6h3+   (-1.343),                              
+ 
+   36   33.0370    0.0000         25 H      6h1+   (-1.211),    26 H      6h1+   ( 1.068),    30 H      6h3+   ( 1.158),    35 H      6h5+   ( 2.068),                              
+                                  36 H      6h5+   (-1.824),                                                                                                                        
+ 
+   37   33.0370    0.0000         25 H      6h1+   ( 1.008),    30 H      6h3+   (-1.850),    31 H      6h3+   ( 1.632),    35 H      6h5+   ( 1.626),                              
+                                  36 H      6h5+   (-1.434),                                                                                                                        
+ 
+   38   45.2473    0.0000          2 H      2px    ( 4.053),     3 H      2px    (-5.702),     4 H      2px    ( 4.727),     5 H      2px    (-3.136),                              
+ 
+   39   49.9123    0.0000         11 H      4f1+   ( 1.754),    12 H      4f1+   (-2.028),    18 H      4f3+   ( 2.497),    19 H      4f3+   (-2.887),                              
+                                  20 H      4f3+   ( 2.035),                                                                                                                        
+ 
+   40   49.9123    0.0000         11 H      4f1+   (-2.497),    12 H      4f1+   ( 2.887),    13 H      4f1+   (-2.035),    18 H      4f3+   ( 1.754),                              
+                                  19 H      4f3+   (-2.028),                                                                                                                        
+ 
+   41   55.9481    0.0000         39 H      8k1+   ( 0.685),    42 H      8k3+   ( 0.728),    45 H      8k5+   (-0.713),                                                            
+ 
+   42   55.9481    0.0000         42 H      8k3+   ( 0.819),    45 H      8k5+   ( 0.923),                                                                                          
+ 
+   43   55.9481    0.0000         39 H      8k1+   ( 0.929),    42 H      8k3+   (-0.478),    48 H      8k7+   ( 0.647),                                                            
+ 
+   44   55.9481    0.0000         48 H      8k7+   ( 1.036),                                                                                                                        
+ 
+   45   63.9723    0.0000         24 H      6h1+   ( 1.399),    25 H      6h1+   (-1.674),    26 H      6h1+   ( 1.065),    29 H      6h3+   ( 1.322),                              
+                                  30 H      6h3+   (-1.582),    31 H      6h3+   ( 1.006),    35 H      6h5+   (-0.863),                                                            
+ 
+   46   63.9723    0.0000         24 H      6h1+   (-1.438),    25 H      6h1+   ( 1.721),    26 H      6h1+   (-1.095),    29 H      6h3+   ( 0.883),                              
+                                  30 H      6h3+   (-1.057),    34 H      6h5+   ( 1.173),    35 H      6h5+   (-1.404),    36 H      6h5+   ( 0.893),                              
+ 
+   47   63.9723    0.0000         29 H      6h3+   (-1.303),    30 H      6h3+   ( 1.559),    31 H      6h3+   (-0.992),    34 H      6h5+   ( 1.526),                              
+                                  35 H      6h5+   (-1.827),    36 H      6h5+   ( 1.162),                                                                                          
+ 
+   48  103.5655    0.0000         10 H      4f1+   ( 1.538),    11 H      4f1+   (-2.105),    12 H      4f1+   ( 1.666),    17 H      4f3+   ( 1.615),                              
+                                  18 H      4f3+   (-2.210),    19 H      4f3+   ( 1.749),                                                                                          
+ 
+   49  103.5655    0.0000         10 H      4f1+   (-1.615),    11 H      4f1+   ( 2.210),    12 H      4f1+   (-1.749),    17 H      4f3+   ( 1.538),                              
+                                  18 H      4f3+   (-2.105),    19 H      4f3+   ( 1.666),                                                                                          
+ 
+   50  103.7742    0.0000          1 H      2px    (-2.861),     2 H      2px    ( 4.741),     3 H      2px    (-4.230),     4 H      2px    ( 2.969),                              
+ 
+
+      Molecular orbitals for symmetry species 3: b2u
+ 
+ 
+      Basis set list:
+        1 H      2py                11 H      4f3-               21 H      4f1-               31 H      6h3-               41 H      8k7-   
+        2 H      2py                12 H      4f3-               22 H      4f1-               32 H      6h3-               42 H      8k5-   
+        3 H      2py                13 H      4f3-               23 H      4f1-               33 H      6h3-               43 H      8k5-   
+        4 H      2py                14 H      4f3-               24 H      6h5-               34 H      6h1-               44 H      8k5-   
+        5 H      2py                15 H      4f3-               25 H      6h5-               35 H      6h1-               45 H      8k3-   
+        6 H      2py                16 H      4f3-               26 H      6h5-               36 H      6h1-               46 H      8k3-   
+        7 H      2py                17 H      4f1-               27 H      6h5-               37 H      6h1-               47 H      8k3-   
+        8 H      2py                18 H      4f1-               28 H      6h5-               38 H      6h1-               48 H      8k1-   
+        9 H      2py                19 H      4f1-               29 H      6h3-               39 H      8k7-               49 H      8k1-   
+       10 H      4f3-               20 H      4f1-               30 H      6h3-               40 H      8k7-               50 H      8k1-   
+ 
+ 
+  Index Energy  Occupation Coefficients ...
+ 
+    1    0.0870    0.0000          9 H      2py    ( 1.267),                                                                                                                        
+ 
+    2    0.3187    0.0000          7 H      2py    (-1.165),     8 H      2py    ( 2.327),                                                                                          
+ 
+    3    0.8448    0.0000          7 H      2py    ( 3.689),     8 H      2py    (-2.914),                                                                                          
+ 
+    4    0.8287    0.0000         23 H      4f1-   ( 1.052),                                                                                                                        
+ 
+    5    0.8287    0.0000         16 H      4f3-   ( 1.052),                                                                                                                        
+ 
+    6    1.9793    0.0000          6 H      2py    ( 4.431),     7 H      2py    (-4.695),                                                                                          
+ 
+    7    2.5605    0.0000         21 H      4f1-   (-0.964),    22 H      4f1-   ( 1.739),                                                                                          
+ 
+    8    2.5605    0.0000         14 H      4f3-   (-0.964),    15 H      4f3-   ( 1.739),                                                                                          
+ 
+    9    2.8023    0.0000         28 H      6h5-   ( 0.596),    33 H      6h3-   (-0.403),    38 H      6h1-   ( 0.798),                                                            
+ 
+   10    2.8023    0.0000         28 H      6h5-   ( 0.830),    33 H      6h3-   ( 0.607),                                                                                          
+ 
+   11    2.8023    0.0000         33 H      6h3-   ( 0.790),    38 H      6h1-   ( 0.647),                                                                                          
+ 
+   12    4.3869    0.0000          5 H      2py    ( 4.774),     6 H      2py    (-5.653),     7 H      2py    ( 3.753),                                                            
+ 
+   13    5.9580    0.0000         14 H      4f3-   ( 2.687),    15 H      4f3-   (-1.646),                                                                                          
+ 
+   14    5.9580    0.0000         21 H      4f1-   ( 2.687),    22 H      4f1-   (-1.646),                                                                                          
+ 
+   15    7.3860    0.0000         47 H      8k3-   ( 0.877),                                                                                                                        
+ 
+   16    7.3860    0.0000         41 H      8k7-   ( 0.871),                                                                                                                        
+ 
+   17    7.3860    0.0000         44 H      8k5-   ( 0.920),                                                                                                                        
+ 
+   18    7.3860    0.0000         50 H      8k1-   ( 0.942),                                                                                                                        
+ 
+   19    8.0395    0.0000         36 H      6h1-   (-0.933),    37 H      6h1-   ( 1.612),                                                                                          
+ 
+   20    8.0395    0.0000         26 H      6h5-   (-0.954),    27 H      6h5-   ( 1.648),                                                                                          
+ 
+   21    8.0395    0.0000         31 H      6h3-   (-0.909),    32 H      6h3-   ( 1.570),                                                                                          
+ 
+   22    9.5243    0.0000          4 H      2py    ( 4.854),     5 H      2py    (-6.056),     6 H      2py    ( 4.525),                                                            
+ 
+   23   12.4423    0.0000         13 H      4f3-   ( 3.114),    14 H      4f3-   (-2.733),                                                                                          
+ 
+   24   12.4423    0.0000         20 H      4f1-   ( 3.114),    21 H      4f1-   (-2.733),                                                                                          
+ 
+   25   17.0483    0.0000         36 H      6h1-   ( 2.442),    37 H      6h1-   (-1.349),                                                                                          
+ 
+   26   17.0483    0.0000         31 H      6h3-   ( 2.393),    32 H      6h3-   (-1.322),                                                                                          
+ 
+   27   17.0483    0.0000         26 H      6h5-   ( 2.492),    27 H      6h5-   (-1.377),                                                                                          
+ 
+   28   20.6115    0.0000          3 H      2py    ( 4.671),     4 H      2py    (-6.082),     5 H      2py    ( 4.811),                                                            
+ 
+   29   24.1743    0.0000         40 H      8k7-   ( 0.751),    43 H      8k5-   ( 0.512),    46 H      8k3-   ( 0.520),    49 H      8k1-   ( 0.509),                              
+ 
+   30   24.1743    0.0000         40 H      8k7-   (-0.742),    46 H      8k3-   ( 0.871),                                                                                          
+ 
+   31   24.1743    0.0000         40 H      8k7-   (-0.459),    43 H      8k5-   ( 0.504),    46 H      8k3-   (-0.570),    49 H      8k1-   ( 0.753),                              
+ 
+   32   24.1743    0.0000         43 H      8k5-   (-0.917),    49 H      8k1-   ( 0.696),                                                                                          
+ 
+   33   24.9681    0.0000         19 H      4f1-   ( 3.111),    20 H      4f1-   (-3.197),    21 H      4f1-   ( 1.929),                                                            
+ 
+   34   24.9681    0.0000         12 H      4f3-   ( 3.111),    13 H      4f3-   (-3.197),    14 H      4f3-   ( 1.929),                                                            
+ 
+   35   33.0370    0.0000         35 H      6h1-   ( 2.528),    36 H      6h1-   (-2.230),                                                                                          
+ 
+   36   33.0370    0.0000         25 H      6h5-   (-1.545),    26 H      6h5-   ( 1.363),    30 H      6h3-   ( 2.114),    31 H      6h3-   (-1.865),                              
+ 
+   37   33.0370    0.0000         25 H      6h5-   ( 2.002),    26 H      6h5-   (-1.766),    30 H      6h3-   ( 1.616),    31 H      6h3-   (-1.425),                              
+ 
+   38   45.2473    0.0000          2 H      2py    ( 4.053),     3 H      2py    (-5.702),     4 H      2py    ( 4.727),     5 H      2py    (-3.136),                              
+ 
+   39   49.9123    0.0000         11 H      4f3-   (-1.838),    12 H      4f3-   ( 2.125),    13 H      4f3-   (-1.498),    18 H      4f1-   ( 2.436),                              
+                                  19 H      4f1-   (-2.817),    20 H      4f1-   ( 1.985),                                                                                          
+ 
+   40   49.9123    0.0000         11 H      4f3-   ( 2.436),    12 H      4f3-   (-2.817),    13 H      4f3-   ( 1.985),    18 H      4f1-   ( 1.838),                              
+                                  19 H      4f1-   (-2.125),    20 H      4f1-   ( 1.498),                                                                                          
+ 
+   41   55.9481    0.0000         42 H      8k5-   ( 0.570),    45 H      8k3-   (-1.037),                                                                                          
+ 
+   42   55.9481    0.0000         39 H      8k7-   ( 1.141),                                                                                                                        
+ 
+   43   55.9481    0.0000         42 H      8k5-   ( 1.096),                                                                                                                        
+ 
+   44   55.9481    0.0000         48 H      8k1-   ( 1.078),                                                                                                                        
+ 
+   45   63.9723    0.0000         34 H      6h1-   ( 2.012),    35 H      6h1-   (-2.409),    36 H      6h1-   ( 1.532),                                                            
+ 
+   46   63.9723    0.0000         24 H      6h5-   ( 1.652),    25 H      6h5-   (-1.977),    26 H      6h5-   ( 1.257),    29 H      6h3-   (-1.222),                              
+                                  30 H      6h3-   ( 1.462),                                                                                                                        
+ 
+   47   63.9723    0.0000         24 H      6h5-   ( 1.189),    25 H      6h5-   (-1.423),    29 H      6h3-   ( 1.624),    30 H      6h3-   (-1.944),                              
+                                  31 H      6h3-   ( 1.236),                                                                                                                        
+ 
+   48  103.5655    0.0000         17 H      4f1-   ( 2.033),    18 H      4f1-   (-2.781),    19 H      4f1-   ( 2.201),                                                            
+ 
+   49  103.5655    0.0000         10 H      4f3-   ( 2.033),    11 H      4f3-   (-2.781),    12 H      4f3-   ( 2.201),                                                            
+ 
+   50  103.7742    0.0000          1 H      2py    (-2.861),     2 H      2py    ( 4.741),     3 H      2py    (-4.230),     4 H      2py    ( 2.969),                              
+ 
+
+      Molecular orbitals for symmetry species 4: b1g
+ 
+ 
+      Basis set list:
+        1 H      3d2-               11 H      5g4-               21 H      7i6-               31 H      7i2-   
+        2 H      3d2-               12 H      5g4-               22 H      7i6-               32 H      7i2-   
+        3 H      3d2-               13 H      5g4-               23 H      7i6-               33 H      9l8-   
+        4 H      3d2-               14 H      5g4-               24 H      7i6-               34 H      9l8-   
+        5 H      3d2-               15 H      5g2-               25 H      7i4-               35 H      9l6-   
+        6 H      3d2-               16 H      5g2-               26 H      7i4-               36 H      9l6-   
+        7 H      3d2-               17 H      5g2-               27 H      7i4-               37 H      9l4-   
+        8 H      3d2-               18 H      5g2-               28 H      7i4-               38 H      9l4-   
+        9 H      5g4-               19 H      5g2-               29 H      7i2-               39 H      9l2-   
+       10 H      5g4-               20 H      5g2-               30 H      7i2-               40 H      9l2-   
+ 
+ 
+  Index Energy  Occupation Coefficients ...
+ 
+    1    0.3243    0.0000          8 H      3d2-   ( 1.198),                                                                                                                        
+ 
+    2    1.0729    0.0000          6 H      3d2-   (-1.199),     7 H      3d2-   ( 2.105),                                                                                          
+ 
+    3    1.4782    0.0000         14 H      5g4-   ( 1.098),                                                                                                                        
+ 
+    4    1.4782    0.0000         20 H      5g2-   ( 1.098),                                                                                                                        
+ 
+    5    2.6309    0.0000          6 H      3d2-   ( 3.342),     7 H      3d2-   (-2.228),                                                                                          
+ 
+    6    4.1022    0.0000         28 H      7i4-   ( 0.917),    32 H      7i2-   ( 0.527),                                                                                          
+ 
+    7    4.1022    0.0000         24 H      7i6-   ( 0.912),                                                                                                                        
+ 
+    8    4.1022    0.0000         24 H      7i6-   (-0.535),    32 H      7i2-   ( 0.839),                                                                                          
+ 
+    9    4.2761    0.0000         18 H      5g2-   (-1.169),    19 H      5g2-   ( 1.870),                                                                                          
+ 
+   10    4.2761    0.0000         12 H      5g4-   (-1.169),    13 H      5g4-   ( 1.870),                                                                                          
+ 
+   11    5.7193    0.0000          5 H      3d2-   ( 3.984),     6 H      3d2-   (-3.747),                                                                                          
+ 
+   12    9.3117    0.0000         12 H      5g4-   ( 2.787),    13 H      5g4-   (-1.600),                                                                                          
+ 
+   13    9.3117    0.0000         18 H      5g2-   ( 2.787),    19 H      5g2-   (-1.600),                                                                                          
+ 
+   14   10.4361    0.0000         38 H      9l4-   ( 0.720),    40 H      9l2-   (-0.695),                                                                                          
+ 
+   15   10.4361    0.0000         38 H      9l4-   ( 0.706),    40 H      9l2-   ( 0.714),                                                                                          
+ 
+   16   10.4361    0.0000         36 H      9l6-   ( 0.899),                                                                                                                        
+ 
+   17   10.4361    0.0000         34 H      9l8-   ( 0.903),                                                                                                                        
+ 
+   18   11.1507    0.0000         23 H      7i6-   ( 1.303),                                                                                                                        
+ 
+   19   11.1507    0.0000         27 H      7i4-   ( 1.307),                                                                                                                        
+ 
+   20   11.1507    0.0000         31 H      7i2-   ( 1.289),                                                                                                                        
+ 
+   21   11.8405    0.0000          4 H      3d2-   ( 4.218),     5 H      3d2-   (-4.574),     6 H      3d2-   ( 2.867),                                                            
+ 
+   22   18.3029    0.0000         17 H      5g2-   ( 3.323),    18 H      5g2-   (-2.901),                                                                                          
+ 
+   23   18.3029    0.0000         11 H      5g4-   ( 3.323),    12 H      5g4-   (-2.901),                                                                                          
+ 
+   24   24.1406    0.0000          3 H      3d2-   ( 4.118),     4 H      3d2-   (-4.857),     5 H      3d2-   ( 3.507),                                                            
+ 
+   25   24.7931    0.0000         22 H      7i6-   ( 1.519),    23 H      7i6-   (-0.792),                                                                                          
+ 
+   26   24.7931    0.0000         26 H      7i4-   ( 1.531),    27 H      7i4-   (-0.798),                                                                                          
+ 
+   27   24.7931    0.0000         30 H      7i2-   ( 1.527),    31 H      7i2-   (-0.796),                                                                                          
+ 
+   28   34.5558    0.0000         33 H      9l8-   ( 0.895),                                                                                                                        
+ 
+   29   34.5558    0.0000         35 H      9l6-   ( 1.004),                                                                                                                        
+ 
+   30   34.5558    0.0000         33 H      9l8-   (-0.443),    37 H      9l4-   ( 0.787),    39 H      9l2-   ( 0.470),                                                            
+ 
+   31   34.5558    0.0000         37 H      9l4-   (-0.564),    39 H      9l2-   ( 0.844),                                                                                          
+ 
+   32   34.8735    0.0000         16 H      5g2-   ( 3.151),    17 H      5g2-   (-3.449),    18 H      5g2-   ( 2.129),                                                            
+ 
+   33   34.8735    0.0000         10 H      5g4-   ( 3.151),    11 H      5g4-   (-3.449),    12 H      5g4-   ( 2.129),                                                            
+ 
+   34   49.5934    0.0000          2 H      3d2-   ( 3.604),     3 H      3d2-   (-4.670),     4 H      3d2-   ( 3.665),                                                            
+ 
+   35   53.7232    0.0000         21 H      7i6-   ( 1.361),    22 H      7i6-   (-0.965),                                                                                          
+ 
+   36   53.7232    0.0000         29 H      7i2-   ( 1.384),    30 H      7i2-   (-0.982),                                                                                          
+ 
+   37   53.7232    0.0000         25 H      7i4-   ( 1.364),    26 H      7i4-   (-0.968),                                                                                          
+ 
+   38   68.0313    0.0000         15 H      5g2-   ( 2.291),    16 H      5g2-   (-3.141),    17 H      5g2-   ( 2.414),                                                            
+ 
+   39   68.0313    0.0000          9 H      5g4-   ( 2.291),    10 H      5g4-   (-3.141),    11 H      5g4-   ( 2.414),                                                            
+ 
+   40  106.3297    0.0000          1 H      3d2-   (-2.553),     2 H      3d2-   ( 3.913),     3 H      3d2-   (-3.360),     4 H      3d2-   ( 2.291),                              
+ 
+
+      Molecular orbitals for symmetry species 5: b1u
+ 
+ 
+      Basis set list:
+        1 H      2pz                11 H      4f0                21 H      4f2+               31 H      6h2+               41 H      8k0    
+        2 H      2pz                12 H      4f0                22 H      4f2+               32 H      6h2+               42 H      8k2+   
+        3 H      2pz                13 H      4f0                23 H      4f2+               33 H      6h2+               43 H      8k2+   
+        4 H      2pz                14 H      4f0                24 H      6h0                34 H      6h4+               44 H      8k2+   
+        5 H      2pz                15 H      4f0                25 H      6h0                35 H      6h4+               45 H      8k4+   
+        6 H      2pz                16 H      4f0                26 H      6h0                36 H      6h4+               46 H      8k4+   
+        7 H      2pz                17 H      4f2+               27 H      6h0                37 H      6h4+               47 H      8k4+   
+        8 H      2pz                18 H      4f2+               28 H      6h0                38 H      6h4+               48 H      8k6+   
+        9 H      2pz                19 H      4f2+               29 H      6h2+               39 H      8k0                49 H      8k6+   
+       10 H      4f0                20 H      4f2+               30 H      6h2+               40 H      8k0                50 H      8k6+   
+ 
+ 
+  Index Energy  Occupation Coefficients ...
+ 
+    1    0.0870    0.0000          9 H      2pz    ( 1.267),                                                                                                                        
+ 
+    2    0.3187    0.0000          7 H      2pz    (-1.165),     8 H      2pz    ( 2.327),                                                                                          
+ 
+    3    0.8448    0.0000          7 H      2pz    ( 3.689),     8 H      2pz    (-2.914),                                                                                          
+ 
+    4    0.8287    0.0000         16 H      4f0    ( 1.074),                                                                                                                        
+ 
+    5    0.8287    0.0000         23 H      4f2+   ( 1.074),                                                                                                                        
+ 
+    6    1.9793    0.0000          6 H      2pz    ( 4.431),     7 H      2pz    (-4.695),                                                                                          
+ 
+    7    2.5605    0.0000         14 H      4f0    (-1.033),    15 H      4f0    ( 1.864),                                                                                          
+ 
+    8    2.5605    0.0000         21 H      4f2+   (-1.033),    22 H      4f2+   ( 1.864),                                                                                          
+ 
+    9    2.8023    0.0000         28 H      6h0    ( 0.542),    38 H      6h4+   ( 0.858),                                                                                          
+ 
+   10    2.8023    0.0000         33 H      6h2+   ( 0.991),                                                                                                                        
+ 
+   11    2.8023    0.0000         28 H      6h0    (-0.847),    38 H      6h4+   ( 0.625),                                                                                          
+ 
+   12    4.3869    0.0000          5 H      2pz    ( 4.774),     6 H      2pz    (-5.653),     7 H      2pz    ( 3.753),                                                            
+ 
+   13    5.9580    0.0000         14 H      4f0    ( 2.835),    15 H      4f0    (-1.736),                                                                                          
+ 
+   14    5.9580    0.0000         21 H      4f2+   ( 2.835),    22 H      4f2+   (-1.736),                                                                                          
+ 
+   15    7.3860    0.0000         47 H      8k4+   (-0.475),    50 H      8k6+   ( 0.848),                                                                                          
+ 
+   16    7.3860    0.0000         41 H      8k0    ( 0.784),    44 H      8k2+   (-0.583),                                                                                          
+ 
+   17    7.3860    0.0000         41 H      8k0    ( 0.542),    44 H      8k2+   ( 0.750),                                                                                          
+ 
+   18    7.3860    0.0000         47 H      8k4+   ( 0.828),    50 H      8k6+   ( 0.426),                                                                                          
+ 
+   19    8.0395    0.0000         26 H      6h0    (-0.832),    27 H      6h0    ( 1.437),    32 H      6h2+   (-0.891),                                                            
+ 
+   20    8.0395    0.0000         27 H      6h0    ( 0.870),    31 H      6h2+   (-0.754),    32 H      6h2+   ( 1.303),                                                            
+ 
+   21    8.0395    0.0000         36 H      6h4+   (-0.903),    37 H      6h4+   ( 1.561),                                                                                          
+ 
+   22    9.5243    0.0000          4 H      2pz    ( 4.854),     5 H      2pz    (-6.056),     6 H      2pz    ( 4.525),                                                            
+ 
+   23   12.4423    0.0000         20 H      4f2+   ( 3.197),    21 H      4f2+   (-2.806),                                                                                          
+ 
+   24   12.4423    0.0000         13 H      4f0    ( 3.197),    14 H      4f0    (-2.806),                                                                                          
+ 
+   25   17.0483    0.0000         31 H      6h2+   ( 2.463),    32 H      6h2+   (-1.361),                                                                                          
+ 
+   26   17.0483    0.0000         36 H      6h4+   ( 2.381),    37 H      6h4+   (-1.316),                                                                                          
+ 
+   27   17.0483    0.0000         26 H      6h0    ( 2.453),    27 H      6h0    (-1.356),                                                                                          
+ 
+   28   20.6115    0.0000          3 H      2pz    ( 4.671),     4 H      2pz    (-6.082),     5 H      2pz    ( 4.811),                                                            
+ 
+   29   24.1743    0.0000         40 H      8k0    ( 1.084),                                                                                                                        
+ 
+   30   24.1743    0.0000         43 H      8k2+   ( 0.715),    46 H      8k4+   (-0.863),                                                                                          
+ 
+   31   24.1743    0.0000         43 H      8k2+   ( 0.673),    49 H      8k6+   (-0.812),                                                                                          
+ 
+   32   24.1743    0.0000         43 H      8k2+   ( 0.467),    46 H      8k4+   ( 0.668),    49 H      8k6+   ( 0.798),                                                            
+ 
+   33   24.9681    0.0000         19 H      4f2+   ( 3.302),    20 H      4f2+   (-3.393),    21 H      4f2+   ( 2.048),                                                            
+ 
+   34   24.9681    0.0000         12 H      4f0    ( 3.302),    13 H      4f0    (-3.393),    14 H      4f0    ( 2.048),                                                            
+ 
+   35   33.0370    0.0000         30 H      6h2+   ( 1.633),    31 H      6h2+   (-1.440),    35 H      6h4+   ( 1.995),    36 H      6h4+   (-1.760),                              
+ 
+   36   33.0370    0.0000         30 H      6h2+   (-2.100),    31 H      6h2+   ( 1.852),    35 H      6h4+   ( 1.515),    36 H      6h4+   (-1.337),                              
+ 
+   37   33.0370    0.0000         25 H      6h0    ( 2.504),    26 H      6h0    (-2.209),                                                                                          
+ 
+   38   45.2473    0.0000          2 H      2pz    ( 4.053),     3 H      2pz    (-5.702),     4 H      2pz    ( 4.727),     5 H      2pz    (-3.136),                              
+ 
+   39   49.9123    0.0000         18 H      4f2+   ( 2.987),    19 H      4f2+   (-3.454),    20 H      4f2+   ( 2.434),                                                            
+ 
+   40   49.9123    0.0000         11 H      4f0    ( 2.987),    12 H      4f0    (-3.454),    13 H      4f0    ( 2.434),                                                            
+ 
+   41   55.9481    0.0000         39 H      8k0    (-0.827),    45 H      8k4+   ( 0.800),    48 H      8k6+   ( 0.427),                                                            
+ 
+   42   55.9481    0.0000         42 H      8k2+   (-0.736),    48 H      8k6+   ( 0.888),                                                                                          
+ 
+   43   55.9481    0.0000         42 H      8k2+   ( 0.977),    48 H      8k6+   ( 0.763),                                                                                          
+ 
+   44   55.9481    0.0000         39 H      8k0    ( 0.873),    45 H      8k4+   ( 0.884),                                                                                          
+ 
+   45   63.9723    0.0000         34 H      6h4+   ( 1.797),    35 H      6h4+   (-2.151),    36 H      6h4+   ( 1.368),                                                            
+ 
+   46   63.9723    0.0000         25 H      6h0    (-1.067),    29 H      6h2+   ( 1.592),    30 H      6h2+   (-1.906),    31 H      6h2+   ( 1.212),                              
+                                  35 H      6h4+   ( 1.131),                                                                                                                        
+ 
+   47   63.9723    0.0000         24 H      6h0    (-1.686),    25 H      6h0    ( 2.018),    26 H      6h0    (-1.284),    29 H      6h2+   ( 1.131),                              
+                                  30 H      6h2+   (-1.354),                                                                                                                        
+ 
+   48  103.5655    0.0000         17 H      4f2+   ( 2.219),    18 H      4f2+   (-3.036),    19 H      4f2+   ( 2.403),                                                            
+ 
+   49  103.5655    0.0000         10 H      4f0    ( 2.219),    11 H      4f0    (-3.036),    12 H      4f0    ( 2.403),                                                            
+ 
+   50  103.7742    0.0000          1 H      2pz    (-2.861),     2 H      2pz    ( 4.741),     3 H      2pz    (-4.230),     4 H      2pz    ( 2.969),                              
+ 
+
+      Molecular orbitals for symmetry species 6: b2g
+ 
+ 
+      Basis set list:
+        1 H      3d1+               11 H      5g1+               21 H      7i1+               31 H      7i5+   
+        2 H      3d1+               12 H      5g1+               22 H      7i1+               32 H      7i5+   
+        3 H      3d1+               13 H      5g1+               23 H      7i1+               33 H      9l1+   
+        4 H      3d1+               14 H      5g1+               24 H      7i1+               34 H      9l1+   
+        5 H      3d1+               15 H      5g3+               25 H      7i3+               35 H      9l3+   
+        6 H      3d1+               16 H      5g3+               26 H      7i3+               36 H      9l3+   
+        7 H      3d1+               17 H      5g3+               27 H      7i3+               37 H      9l5+   
+        8 H      3d1+               18 H      5g3+               28 H      7i3+               38 H      9l5+   
+        9 H      5g1+               19 H      5g3+               29 H      7i5+               39 H      9l7+   
+       10 H      5g1+               20 H      5g3+               30 H      7i5+               40 H      9l7+   
+ 
+ 
+  Index Energy  Occupation Coefficients ...
+ 
+    1    0.3243    0.0000          8 H      3d1+   ( 1.198),                                                                                                                        
+ 
+    2    1.0729    0.0000          6 H      3d1+   (-1.199),     7 H      3d1+   ( 2.105),                                                                                          
+ 
+    3    1.4782    0.0000         14 H      5g1+   ( 0.928),    20 H      5g3+   (-0.620),                                                                                          
+ 
+    4    1.4782    0.0000         14 H      5g1+   ( 0.620),    20 H      5g3+   ( 0.928),                                                                                          
+ 
+    5    2.6309    0.0000          6 H      3d1+   ( 3.342),     7 H      3d1+   (-2.228),                                                                                          
+ 
+    6    4.1022    0.0000         24 H      7i1+   ( 1.056),                                                                                                                        
+ 
+    7    4.1022    0.0000         28 H      7i3+   ( 0.772),    32 H      7i5+   (-0.730),                                                                                          
+ 
+    8    4.1022    0.0000         28 H      7i3+   ( 0.720),    32 H      7i5+   ( 0.781),                                                                                          
+ 
+    9    4.2761    0.0000         13 H      5g1+   ( 1.015),    18 H      5g3+   (-0.986),    19 H      5g3+   ( 1.577),                                                            
+ 
+   10    4.2761    0.0000         12 H      5g1+   (-0.986),    13 H      5g1+   ( 1.577),    19 H      5g3+   (-1.015),                                                            
+ 
+   11    5.7193    0.0000          5 H      3d1+   ( 3.984),     6 H      3d1+   (-3.747),                                                                                          
+ 
+   12    9.3117    0.0000         18 H      5g3+   ( 2.651),    19 H      5g3+   (-1.521),                                                                                          
+ 
+   13    9.3117    0.0000         12 H      5g1+   ( 2.651),    13 H      5g1+   (-1.521),                                                                                          
+ 
+   14   10.4361    0.0000         38 H      9l5+   ( 0.468),    40 H      9l7+   ( 0.887),                                                                                          
+ 
+   15   10.4361    0.0000         36 H      9l3+   ( 0.565),    38 H      9l5+   ( 0.765),                                                                                          
+ 
+   16   10.4361    0.0000         34 H      9l1+   ( 0.633),    36 H      9l3+   ( 0.619),    38 H      9l5+   (-0.386),                                                            
+ 
+   17   10.4361    0.0000         34 H      9l1+   ( 0.783),    36 H      9l3+   (-0.551),                                                                                          
+ 
+   18   11.1507    0.0000         23 H      7i1+   ( 1.002),    27 H      7i3+   (-0.786),                                                                                          
+ 
+   19   11.1507    0.0000         23 H      7i1+   ( 0.800),    27 H      7i3+   ( 0.593),    31 H      7i5+   (-0.880),                                                            
+ 
+   20   11.1507    0.0000         27 H      7i3+   ( 0.893),    31 H      7i5+   ( 0.920),                                                                                          
+ 
+   21   11.8405    0.0000          4 H      3d1+   ( 4.218),     5 H      3d1+   (-4.574),     6 H      3d1+   ( 2.867),                                                            
+ 
+   22   18.3029    0.0000         11 H      5g1+   ( 1.826),    12 H      5g1+   (-1.595),    17 H      5g3+   ( 2.845),    18 H      5g3+   (-2.484),                              
+ 
+   23   18.3029    0.0000         11 H      5g1+   (-2.845),    12 H      5g1+   ( 2.484),    17 H      5g3+   ( 1.826),    18 H      5g3+   (-1.595),                              
+ 
+   24   24.1406    0.0000          3 H      3d1+   ( 4.118),     4 H      3d1+   (-4.857),     5 H      3d1+   ( 3.507),                                                            
+ 
+   25   24.7931    0.0000         26 H      7i3+   ( 1.378),    27 H      7i3+   (-0.718),                                                                                          
+ 
+   26   24.7931    0.0000         22 H      7i1+   ( 1.418),    23 H      7i1+   (-0.739),                                                                                          
+ 
+   27   24.7931    0.0000         30 H      7i5+   ( 1.447),    31 H      7i5+   (-0.754),                                                                                          
+ 
+   28   34.5558    0.0000         33 H      9l1+   ( 0.747),    37 H      9l5+   ( 0.605),                                                                                          
+ 
+   29   34.5558    0.0000         33 H      9l1+   ( 0.690),    37 H      9l5+   (-0.664),    39 H      9l7+   ( 0.357),                                                            
+ 
+   30   34.5558    0.0000         35 H      9l3+   ( 1.005),                                                                                                                        
+ 
+   31   34.5558    0.0000         37 H      9l5+   ( 0.474),    39 H      9l7+   ( 0.892),                                                                                          
+ 
+   32   34.8735    0.0000         16 H      5g3+   ( 3.092),    17 H      5g3+   (-3.384),    18 H      5g3+   ( 2.089),                                                            
+ 
+   33   34.8735    0.0000         10 H      5g1+   ( 3.092),    11 H      5g1+   (-3.384),    12 H      5g1+   ( 2.089),                                                            
+ 
+   34   49.5934    0.0000          2 H      3d1+   ( 3.604),     3 H      3d1+   (-4.670),     4 H      3d1+   ( 3.665),                                                            
+ 
+   35   53.7232    0.0000         21 H      7i1+   ( 1.220),    22 H      7i1+   (-0.866),    25 H      7i3+   (-0.645),                                                            
+ 
+   36   53.7232    0.0000         25 H      7i3+   ( 1.147),    26 H      7i3+   (-0.814),                                                                                          
+ 
+   37   53.7232    0.0000         29 H      7i5+   ( 1.260),    30 H      7i5+   (-0.894),                                                                                          
+ 
+   38   68.0313    0.0000         15 H      5g3+   ( 2.186),    16 H      5g3+   (-2.997),    17 H      5g3+   ( 2.303),                                                            
+ 
+   39   68.0313    0.0000          9 H      5g1+   ( 2.186),    10 H      5g1+   (-2.997),    11 H      5g1+   ( 2.303),                                                            
+ 
+   40  106.3297    0.0000          1 H      3d1+   (-2.553),     2 H      3d1+   ( 3.913),     3 H      3d1+   (-3.360),     4 H      3d1+   ( 2.291),                              
+ 
+
+      Molecular orbitals for symmetry species 7: b3g
+ 
+ 
+      Basis set list:
+        1 H      3d1-               11 H      5g3-               21 H      7i5-               31 H      7i1-   
+        2 H      3d1-               12 H      5g3-               22 H      7i5-               32 H      7i1-   
+        3 H      3d1-               13 H      5g3-               23 H      7i5-               33 H      9l7-   
+        4 H      3d1-               14 H      5g3-               24 H      7i5-               34 H      9l7-   
+        5 H      3d1-               15 H      5g1-               25 H      7i3-               35 H      9l5-   
+        6 H      3d1-               16 H      5g1-               26 H      7i3-               36 H      9l5-   
+        7 H      3d1-               17 H      5g1-               27 H      7i3-               37 H      9l3-   
+        8 H      3d1-               18 H      5g1-               28 H      7i3-               38 H      9l3-   
+        9 H      5g3-               19 H      5g1-               29 H      7i1-               39 H      9l1-   
+       10 H      5g3-               20 H      5g1-               30 H      7i1-               40 H      9l1-   
+ 
+ 
+  Index Energy  Occupation Coefficients ...
+ 
+    1    0.3243    0.0000          8 H      3d1-   ( 1.198),                                                                                                                        
+ 
+    2    1.0729    0.0000          6 H      3d1-   (-1.199),     7 H      3d1-   ( 2.105),                                                                                          
+ 
+    3    1.4782    0.0000         14 H      5g3-   ( 1.013),                                                                                                                        
+ 
+    4    1.4782    0.0000         20 H      5g1-   ( 1.013),                                                                                                                        
+ 
+    5    2.6309    0.0000          6 H      3d1-   ( 3.342),     7 H      3d1-   (-2.228),                                                                                          
+ 
+    6    4.1022    0.0000         24 H      7i5-   ( 0.725),    32 H      7i1-   ( 0.754),                                                                                          
+ 
+    7    4.1022    0.0000         24 H      7i5-   ( 0.558),    28 H      7i3-   ( 0.868),                                                                                          
+ 
+    8    4.1022    0.0000         24 H      7i5-   (-0.553),    28 H      7i3-   ( 0.583),    32 H      7i1-   ( 0.705),                                                            
+ 
+    9    4.2761    0.0000         12 H      5g3-   (-1.089),    13 H      5g3-   ( 1.742),                                                                                          
+ 
+   10    4.2761    0.0000         18 H      5g1-   (-1.089),    19 H      5g1-   ( 1.742),                                                                                          
+ 
+   11    5.7193    0.0000          5 H      3d1-   ( 3.984),     6 H      3d1-   (-3.747),                                                                                          
+ 
+   12    9.3117    0.0000         12 H      5g3-   ( 2.595),    13 H      5g3-   (-1.490),    18 H      5g1-   (-1.430),                                                            
+ 
+   13    9.3117    0.0000         12 H      5g3-   ( 1.430),    18 H      5g1-   ( 2.595),    19 H      5g1-   (-1.490),                                                            
+ 
+   14   10.4361    0.0000         34 H      9l7-   ( 0.936),                                                                                                                        
+ 
+   15   10.4361    0.0000         36 H      9l5-   ( 0.912),                                                                                                                        
+ 
+   16   10.4361    0.0000         38 H      9l3-   ( 0.961),                                                                                                                        
+ 
+   17   10.4361    0.0000         40 H      9l1-   ( 0.959),                                                                                                                        
+ 
+   18   11.1507    0.0000         27 H      7i3-   ( 0.740),    31 H      7i1-   ( 1.035),                                                                                          
+ 
+   19   11.1507    0.0000         23 H      7i5-   ( 0.800),    27 H      7i3-   ( 0.701),    31 H      7i1-   (-0.797),                                                            
+ 
+   20   11.1507    0.0000         23 H      7i5-   ( 0.990),    27 H      7i3-   (-0.853),                                                                                          
+ 
+   21   11.8405    0.0000          4 H      3d1-   ( 4.218),     5 H      3d1-   (-4.574),     6 H      3d1-   ( 2.867),                                                            
+ 
+   22   18.3029    0.0000         11 H      5g3-   ( 3.377),    12 H      5g3-   (-2.949),                                                                                          
+ 
+   23   18.3029    0.0000         17 H      5g1-   ( 3.377),    18 H      5g1-   (-2.949),                                                                                          
+ 
+   24   24.1406    0.0000          3 H      3d1-   ( 4.118),     4 H      3d1-   (-4.857),     5 H      3d1-   ( 3.507),                                                            
+ 
+   25   24.7931    0.0000         26 H      7i3-   ( 0.815),    30 H      7i1-   ( 1.242),    31 H      7i1-   (-0.647),                                                            
+ 
+   26   24.7931    0.0000         22 H      7i5-   ( 1.034),    23 H      7i5-   (-0.539),    26 H      7i3-   ( 0.765),    30 H      7i1-   (-0.855),                              
+ 
+   27   24.7931    0.0000         22 H      7i5-   ( 1.067),    23 H      7i5-   (-0.556),    26 H      7i3-   (-1.066),    27 H      7i3-   ( 0.556),                              
+ 
+   28   34.5558    0.0000         33 H      9l7-   (-0.416),    37 H      9l3-   ( 0.739),    39 H      9l1-   ( 0.506),                                                            
+ 
+   29   34.5558    0.0000         33 H      9l7-   ( 0.543),    39 H      9l1-   ( 0.820),                                                                                          
+ 
+   30   34.5558    0.0000         33 H      9l7-   ( 0.507),    35 H      9l5-   ( 0.657),    37 H      9l3-   ( 0.588),                                                            
+ 
+   31   34.5558    0.0000         33 H      9l7-   (-0.565),    35 H      9l5-   ( 0.735),                                                                                          
+ 
+   32   34.8735    0.0000         10 H      5g3-   ( 3.146),    11 H      5g3-   (-3.442),    12 H      5g3-   ( 2.125),                                                            
+ 
+   33   34.8735    0.0000         16 H      5g1-   ( 3.146),    17 H      5g1-   (-3.442),    18 H      5g1-   ( 2.125),                                                            
+ 
+   34   49.5934    0.0000          2 H      3d1-   ( 3.604),     3 H      3d1-   (-4.670),     4 H      3d1-   ( 3.665),                                                            
+ 
+   35   53.7232    0.0000         25 H      7i3-   ( 0.834),    26 H      7i3-   (-0.592),    29 H      7i1-   ( 1.097),    30 H      7i1-   (-0.779),                              
+ 
+   36   53.7232    0.0000         25 H      7i3-   ( 1.046),    26 H      7i3-   (-0.742),    29 H      7i1-   (-0.845),    30 H      7i1-   ( 0.599),                              
+ 
+   37   53.7232    0.0000         21 H      7i5-   ( 1.335),    22 H      7i5-   (-0.947),                                                                                          
+ 
+   38   68.0313    0.0000          9 H      5g3-   ( 2.287),    10 H      5g3-   (-3.136),    11 H      5g3-   ( 2.410),                                                            
+ 
+   39   68.0313    0.0000         15 H      5g1-   ( 2.287),    16 H      5g1-   (-3.136),    17 H      5g1-   ( 2.410),                                                            
+ 
+   40  106.3297    0.0000          1 H      3d1-   (-2.553),     2 H      3d1-   ( 3.913),     3 H      3d1-   (-3.360),     4 H      3d1-   ( 2.291),                              
+ 
+
+      Molecular orbitals for symmetry species 8: au 
+ 
+ 
+      Basis set list:
+        1 H      4f2-               10 H      6h4-               19 H      8k6-   
+        2 H      4f2-               11 H      6h4-               20 H      8k6-   
+        3 H      4f2-               12 H      6h4-               21 H      8k4-   
+        4 H      4f2-               13 H      6h2-               22 H      8k4-   
+        5 H      4f2-               14 H      6h2-               23 H      8k4-   
+        6 H      4f2-               15 H      6h2-               24 H      8k2-   
+        7 H      4f2-               16 H      6h2-               25 H      8k2-   
+        8 H      6h4-               17 H      6h2-               26 H      8k2-   
+        9 H      6h4-               18 H      8k6-   
+ 
+ 
+  Index Energy  Occupation Coefficients ...
+ 
+    1    0.8287    0.0000          7 H      4f2-   ( 1.141),                                                                                                                        
+ 
+    2    2.5605    0.0000          5 H      4f2-   (-1.034),     6 H      4f2-   ( 1.866),                                                                                          
+ 
+    3    2.8023    0.0000         12 H      6h4-   (-0.730),    17 H      6h2-   ( 0.788),                                                                                          
+ 
+    4    2.8023    0.0000         12 H      6h4-   ( 0.788),    17 H      6h2-   ( 0.730),                                                                                          
+ 
+    5    5.9580    0.0000          5 H      4f2-   ( 2.860),     6 H      4f2-   (-1.752),                                                                                          
+ 
+    6    7.3860    0.0000         26 H      8k2-   ( 0.942),                                                                                                                        
+ 
+    7    7.3860    0.0000         20 H      8k6-   ( 0.987),                                                                                                                        
+ 
+    8    7.3860    0.0000         23 H      8k4-   ( 0.922),                                                                                                                        
+ 
+    9    8.0395    0.0000         15 H      6h2-   (-0.879),    16 H      6h2-   ( 1.519),                                                                                          
+ 
+   10    8.0395    0.0000         10 H      6h4-   (-0.879),    11 H      6h4-   ( 1.519),                                                                                          
+ 
+   11   12.4423    0.0000          4 H      4f2-   ( 3.319),     5 H      4f2-   (-2.913),                                                                                          
+ 
+   12   17.0483    0.0000         15 H      6h2-   ( 2.544),    16 H      6h2-   (-1.406),                                                                                          
+ 
+   13   17.0483    0.0000         10 H      6h4-   ( 2.544),    11 H      6h4-   (-1.406),                                                                                          
+ 
+   14   24.1743    0.0000         19 H      8k6-   ( 0.889),    25 H      8k2-   ( 0.752),                                                                                          
+ 
+   15   24.1743    0.0000         22 H      8k4-   ( 1.164),                                                                                                                        
+ 
+   16   24.1743    0.0000         19 H      8k6-   (-0.751),    25 H      8k2-   ( 0.889),                                                                                          
+ 
+   17   24.9681    0.0000          3 H      4f2-   ( 3.382),     4 H      4f2-   (-3.476),     5 H      4f2-   ( 2.098),                                                            
+ 
+   18   33.0370    0.0000         14 H      6h2-   ( 2.427),    15 H      6h2-   (-2.141),                                                                                          
+ 
+   19   33.0370    0.0000          9 H      6h4-   ( 2.427),    10 H      6h4-   (-2.141),                                                                                          
+ 
+   20   49.9123    0.0000          2 H      4f2-   ( 3.051),     3 H      4f2-   (-3.528),     4 H      4f2-   ( 2.487),                                                            
+ 
+   21   55.9481    0.0000         18 H      8k6-   ( 1.240),                                                                                                                        
+ 
+   22   55.9481    0.0000         24 H      8k2-   ( 1.174),                                                                                                                        
+ 
+   23   55.9481    0.0000         21 H      8k4-   ( 1.179),                                                                                                                        
+ 
+   24   63.9723    0.0000          8 H      6h4-   ( 1.910),     9 H      6h4-   (-2.286),    10 H      6h4-   ( 1.454),                                                            
+ 
+   25   63.9723    0.0000         13 H      6h2-   ( 1.910),    14 H      6h2-   (-2.286),    15 H      6h2-   ( 1.454),                                                            
+ 
+   26  103.5655    0.0000          1 H      4f2-   (-2.230),     2 H      4f2-   ( 3.052),     3 H      4f2-   (-2.415),                                                            
+ 
+--
+ 
+ 
+++    Molecular properties:
+      ---------------------
+ 
+      Charge (e):
+                      =   -0.0000
+      Dipole Moment (Debye):
+      Origin of the operator (Ang)=    0.0000    0.0000    0.0000
+                   X=  0.0000E+00               Y=  0.0000E+00               Z=  0.0000E+00           Total=  0.0000E+00
+      Quadrupole Moment (Debye*Ang):
+      Origin of the operator (Ang)=    0.0000    0.0000    0.0000
+                  XX= -1.3450E+00              XY=  0.0000E+00              XZ=  0.0000E+00              YY= -1.3450E+00
+                  YZ=  0.0000E+00              ZZ= -1.3450E+00
+      In traceless form (Debye*Ang)
+                  XX=  3.7332E-16              XY=  0.0000E+00              XZ=  0.0000E+00              YY= -7.4664E-17
+                  YZ=  0.0000E+00              ZZ= -2.9866E-16
+--
+ 
+ Sorry, Molden does not know how to handle
+ functions with angular momentum larger than g
+ ###############################################################################
+ ###############################################################################
+ ###                                                                         ###
+ ###                                                                         ###
+ ###    WARNING: RunFile label nBas                                          ###
+ ###    was used       71 times                                              ###
+ ###                                                                         ###
+ ###                                                                         ###
+ ###############################################################################
+ ###############################################################################
+--- Stop Module: scf at Sun Nov 20 14:07:50 2022 /rc=_RC_ALL_IS_WELL_ ---
+*** files: H_aV9Z.scf.h5 H_aV9Z.UhfOrb H_aV9Z.UnaOrb xmldump
+    saved to directory /project/6004934/nike/atomic/H
+--- Module scf spent 15 seconds ---
+
+.##################.
+.# Happy landing! #.
+.##################.
+
+    Timing: Wall=135.35 User=1196.07 System=294.64
