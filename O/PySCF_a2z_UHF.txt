@@ -1,0 +1,758 @@
+#INFO: **** input file is /project/6004934/nike/atomic/O/triplet/inp_UHF.py ****
+#!/usr/bin/env python
+# Author: Nike Dattani, nike@hpqc.org
+
+'''
+O in aug-cc-pV2Z
+'''
+
+import pyscf
+from pyscf.gto.basis import parse_gaussian
+
+mol = pyscf.M(
+    atom = '''       
+        O
+    ''',
+    unit = 'angstrom',
+    basis = {
+            'O' : parse_gaussian.load('/home/nike/AI_ENERGIES/O/av2z.gbs', 'O')
+    },
+    charge = 0,
+    spin = 2,
+    verbose = 9,
+    symmetry = True,
+    output = 'O_av2z_UHF.txt',
+    symmetry_subgroup = 'Dooh',
+)
+
+#mol.max_memory =100000
+mol.max_memory =4000
+mf = mol.UHF()
+mf.irrep_nelec = {'A1g': (2,2), 'E1ux': (1,0), 'E1uy': (1,0),'A1u': (1,1)}
+#mf.irrep_nelec = {'A1g': 4, 'E1ux': 1, 'E1uy': 1,'A1u': 2}
+mf.chkfile = 'O_av2z_UHF.chk'
+mf.init_guess='atom'
+mf.kernel()
+
+
+    
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Linux', node='cedar5.cedar.computecanada.ca', release='3.10.0-1160.53.1.el7.x86_64', version='#1 SMP Fri Jan 14 13:59:45 UTC 2022', machine='x86_64', processor='')  Threads 64
+Python 3.8.10 (default, Jun 16 2021, 14:20:20) 
+[GCC 9.3.0]
+numpy 1.23.0  scipy 1.9.3
+Date: Mon Dec  5 18:03:07 2022
+PySCF version 2.1.0
+PySCF path  /home/nike/.local/lib/python3.8/site-packages/pyscf
+
+[CONFIG] DEBUG = False
+[CONFIG] MAX_MEMORY = 4000
+[CONFIG] TMPDIR = /tmp
+[CONFIG] UNIT = angstrom
+[CONFIG] VERBOSE = 3
+[CONFIG] conf_file = None
+[INPUT] verbose = 9
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 8
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 2
+[INPUT] symmetry True subgroup Dooh
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 O      0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] O
+[INPUT] 0    0    [9    /2   ]  11720             0.00071 -0.00016
+                                1759              0.00547 -0.001263
+                                400.8             0.027837 -0.006267
+                                113.7             0.1048 -0.025716
+                                37.03             0.283062 -0.070924
+                                13.27             0.448719 -0.165411
+                                5.025             0.270952 -0.116955
+                                1.013             0.015458 0.557368
+                                0.3023            -0.002585 0.572759
+[INPUT] 0    0    [1    /1   ]  0.3023               1
+[INPUT] 0    0    [1    /1   ]  0.07896              1
+[INPUT] 1    0    [4    /1   ]  17.7              0.043018
+                                3.854             0.228913
+                                1.046             0.508728
+                                0.2753            0.460531
+[INPUT] 1    0    [1    /1   ]  0.2753               1
+[INPUT] 1    0    [1    /1   ]  0.06856              1
+[INPUT] 2    0    [1    /1   ]  1.185                1
+[INPUT] 2    0    [1    /1   ]  0.332                1
+
+nuclear repulsion = 0
+point group symmetry = SO3, use subgroup Dooh
+symmetry origin: [0. 0. 0.]
+symmetry axis x: [1. 0. 0.]
+symmetry axis y: [0. 1. 0.]
+symmetry axis z: [0. 0. 1.]
+num. orbitals of irrep A1g = 6
+num. orbitals of irrep E1gx = 2
+num. orbitals of irrep E1gy = 2
+num. orbitals of irrep A1u = 3
+num. orbitals of irrep E1uy = 3
+num. orbitals of irrep E1ux = 3
+num. orbitals of irrep E2gx = 2
+num. orbitals of irrep E2gy = 2
+number of shells = 8
+number of NR pGTOs = 39
+number of NR cGTOs = 23
+basis = {'O': [[0, [11720.0, 0.00071, -0.00016], [1759.0, 0.00547, -0.001263], [400.8, 0.027837, -0.006267], [113.7, 0.1048, -0.025716], [37.03, 0.283062, -0.070924], [13.27, 0.448719, -0.165411], [5.025, 0.270952, -0.116955], [1.013, 0.015458, 0.557368], [0.3023, -0.002585, 0.572759]], [0, [0.3023, 1.0]], [0, [0.07896, 1.0]], [1, [17.7, 0.043018], [3.854, 0.228913], [1.046, 0.508728], [0.2753, 0.460531]], [1, [0.2753, 1.0]], [1, [0.06856, 1.0]], [2, [1.185, 1.0]], [2, [0.332, 1.0]]]}
+ecp = {}
+bas 0, expnt(s) = [1.172e+04 1.759e+03 4.008e+02 1.137e+02 3.703e+01 1.327e+01 5.025e+00
+ 1.013e+00 3.023e-01]
+bas 1, expnt(s) = [0.3023]
+bas 2, expnt(s) = [0.07896]
+bas 3, expnt(s) = [17.7     3.854   1.046   0.2753]
+bas 4, expnt(s) = [0.2753]
+bas 5, expnt(s) = [0.06856]
+bas 6, expnt(s) = [1.185]
+bas 7, expnt(s) = [0.332]
+CPU time:         0.97
+arg.atm = [[ 8 20  1 23  0  0]]
+arg.bas = [[ 0  0  9  2  0 24 33  0]
+ [ 0  0  1  1  0 51 52  0]
+ [ 0  0  1  1  0 53 54  0]
+ [ 0  1  4  1  0 55 59  0]
+ [ 0  1  1  1  0 63 64  0]
+ [ 0  1  1  1  0 65 66  0]
+ [ 0  2  1  1  0 67 68  0]
+ [ 0  2  1  1  0 69 70  0]]
+arg.env = [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+  0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+  0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+  0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+  0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+  0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+  1.17200000e+04  1.75900000e+03  4.00800000e+02  1.13700000e+02
+  3.70300000e+01  1.32700000e+01  5.02500000e+00  1.01300000e+00
+  3.02300000e-01  2.02054829e+00  3.75363365e+00  6.29989616e+00
+  9.21927582e+00  1.07352468e+01  7.88211612e+00  2.29752152e+00
+  3.94344297e-02 -2.66259024e-03 -4.55334710e-01 -8.66698003e-01
+ -1.41830798e+00 -2.26224080e+00 -2.68982218e+00 -2.90557871e+00
+ -9.91712777e-01  1.42188405e+00  5.89950534e-01  3.02300000e-01
+  1.03001520e+00  7.89600000e-02  3.76331333e-01  1.77000000e+01
+  3.85400000e+00  1.04600000e+00  2.75300000e-01  4.55618253e+00
+  3.60615518e+00  1.56994545e+00  2.67917418e-01  2.75300000e-01
+  5.81757722e-01  6.85600000e-02  1.02346478e-01  1.18500000e+00
+  3.51185438e+00  3.32000000e-01  3.78896883e-01]
+ecpbas  = []
+
+
+******** <class 'pyscf.scf.uhf_symm.SymAdaptedUHF'> ********
+method = SymAdaptedUHF-UHF
+initial guess = atom
+damping factor = 0
+level_shift factor = 0
+DIIS = <class 'pyscf.scf.diis.CDIIS'>
+diis_start_cycle = 1
+diis_space = 8
+SCF conv_tol = 1e-09
+SCF conv_tol_grad = None
+SCF max_cycles = 50
+direct_scf = True
+direct_scf_tol = 1e-13
+chkfile to save SCF result = O_av2z_UHF.chk
+max_memory 4000 MB (current use 72 MB)
+number electrons alpha = 5  beta = 3
+irrep_nelec {'A1g': (2, 2), 'E1ux': (1, 0), 'E1uy': (1, 0), 'A1u': (1, 1)}
+Freeze 8 electrons in irreps ['A1g', 'E1ux', 'E1uy', 'A1u']
+    0 free electrons in irreps E1gx E1gy E2gx E2gy
+Set gradient conv threshold to 3.16228e-05
+Spherically averaged atomic HF for {'O'}
+
+
+******** <class 'pyscf.scf.atom_hf.AtomSphAverageRHF'> ********
+method = AtomSphAverageRHF-RHF
+initial guess = minao
+damping factor = 0
+level_shift factor = 0
+DIIS = <class 'pyscf.scf.diis.CDIIS'>
+diis_start_cycle = 1
+diis_space = 8
+SCF conv_tol = 1e-09
+SCF conv_tol_grad = None
+SCF max_cycles = 50
+direct_scf = True
+direct_scf_tol = 1e-13
+chkfile to save SCF result = /tmp/tmp0rx93o6_
+max_memory 4000 MB (current use 73 MB)
+atom = O
+Set gradient conv threshold to 3.16228e-05
+Nelec from initial guess = 7.998490022194456
+E1 = -103.07772671628263  E_coul = 28.8114724050722
+init E= -74.2662543112104
+cond(S) = 81.85302726725536
+    CPU time for initialize scf      3.03 sec, wall time      0.10 sec
+l = 0  e_0 = -20.6990029
+l = 0  e_1 = -1.26190251
+l = 0  e_2 = 0.185952808
+l = 0  e_3 = 1.7463197
+l = 1  e_0 = -0.387149911
+l = 1  e_1 = 0.197449504
+l = 1  e_2 = 1.31795094
+l = 2  e_0 = 0.955814666
+l = 2  e_1 = 3.48486223
+l = 0  occ = 2 + 0
+l = 1  occ = 0 + 1.333
+l = 2  occ = 0 + 0
+l = 3  occ = 0 + 0
+E1 = -102.27516752386812  E_coul = 27.99820192524622
+cycle= 1 E= -74.2769655986219  delta_E= -0.0107  |g|=    0  |ddm|= 0.385
+    CPU time for cycle= 1      0.63 sec, wall time      0.02 sec
+diis-norm(errvec)=0.0908011
+diis-c [-0.00824484  1.        ]
+l = 0  e_0 = -20.8977052
+l = 0  e_1 = -1.34054522
+l = 0  e_2 = 0.177435198
+l = 0  e_3 = 1.69223916
+l = 1  e_0 = -0.451313999
+l = 1  e_1 = 0.192361178
+l = 1  e_2 = 1.26683022
+l = 2  e_0 = 0.935447992
+l = 2  e_1 = 3.41789023
+l = 0  occ = 2 + 0
+l = 1  occ = 0 + 1.333
+l = 2  occ = 0 + 0
+l = 3  occ = 0 + 0
+E1 = -102.69226482809425  E_coul = 28.413674995502802
+cycle= 2 E= -74.2785898325915  delta_E= -0.00162  |g|=    0  |ddm|= 0.234
+    CPU time for cycle= 2      0.64 sec, wall time      0.02 sec
+diis-norm(errvec)=0.0385366
+diis-c [-1.45170624e-04  2.89129680e-01  7.10870320e-01]
+l = 0  e_0 = -20.8258319
+l = 0  e_1 = -1.31421346
+l = 0  e_2 = 0.180521095
+l = 0  e_3 = 1.71079993
+l = 1  e_0 = -0.426424212
+l = 1  e_1 = 0.194547954
+l = 1  e_2 = 1.28663788
+l = 2  e_0 = 0.943525962
+l = 2  e_1 = 3.44335075
+l = 0  occ = 2 + 0
+l = 1  occ = 0 + 1.333
+l = 2  occ = 0 + 0
+l = 3  occ = 0 + 0
+E1 = -102.5484366375943  E_coul = 28.269378406763327
+cycle= 3 E= -74.279058230831  delta_E= -0.000468  |g|=    0  |ddm|= 0.0668
+    CPU time for cycle= 3      0.72 sec, wall time      0.02 sec
+diis-norm(errvec)=0.00411979
+diis-c [-1.17952432e-07 -1.01807377e-01 -1.35595148e-01  1.23740252e+00]
+l = 0  e_0 = -20.8296243
+l = 0  e_1 = -1.31637028
+l = 0  e_2 = 0.180279764
+l = 0  e_3 = 1.70946535
+l = 1  e_0 = -0.427393584
+l = 1  e_1 = 0.194482833
+l = 1  e_2 = 1.28585082
+l = 2  e_0 = 0.943170736
+l = 2  e_1 = 3.44220437
+l = 0  occ = 2 + 0
+l = 1  occ = 0 + 1.333
+l = 2  occ = 0 + 0
+l = 3  occ = 0 + 0
+E1 = -102.55683285511377  E_coul = 28.277770605329767
+cycle= 4 E= -74.279062249784  delta_E= -4.02e-06  |g|=    0  |ddm|= 0.0111
+    CPU time for cycle= 4      0.57 sec, wall time      0.02 sec
+diis-norm(errvec)=6.64273e-05
+diis-c [-2.97587827e-10  1.49400243e-02  1.84540870e-02 -1.82678642e-01
+  1.14928453e+00]
+l = 0  e_0 = -20.8295509
+l = 0  e_1 = -1.31637337
+l = 0  e_2 = 0.180257884
+l = 0  e_3 = 1.70943976
+l = 1  e_0 = -0.427397515
+l = 1  e_1 = 0.194472639
+l = 1  e_2 = 1.28582685
+l = 2  e_0 = 0.943141839
+l = 2  e_1 = 3.44217725
+l = 0  occ = 2 + 0
+l = 1  occ = 0 + 1.333
+l = 2  occ = 0 + 0
+l = 3  occ = 0 + 0
+E1 = -102.55668218902368  E_coul = 28.277619937222568
+cycle= 5 E= -74.2790622518011  delta_E= -2.02e-09  |g|=    0  |ddm|= 0.000116
+    CPU time for cycle= 5      0.62 sec, wall time      0.02 sec
+diis-norm(errvec)=4.45166e-06
+diis-c [-9.00339707e-13  6.40003269e-04  7.93853615e-04 -7.41882498e-03
+ -7.68791390e-03  1.01367288e+00]
+l = 0  e_0 = -20.8295527
+l = 0  e_1 = -1.31637577
+l = 0  e_2 = 0.180258049
+l = 0  e_3 = 1.70944001
+l = 1  e_0 = -0.427399191
+l = 1  e_1 = 0.194472959
+l = 1  e_2 = 1.28582698
+l = 2  e_0 = 0.943141381
+l = 2  e_1 = 3.44217672
+l = 0  occ = 2 + 0
+l = 1  occ = 0 + 1.333
+l = 2  occ = 0 + 0
+l = 3  occ = 0 + 0
+E1 = -102.55667127446306  E_coul = 28.27760902265449
+cycle= 6 E= -74.2790622518086  delta_E= -7.46e-12  |g|=    0  |ddm|= 7.46e-06
+    CPU time for cycle= 6      0.63 sec, wall time      0.01 sec
+l = 0  e_0 = -20.8295525
+l = 0  e_1 = -1.31637583
+l = 0  e_2 = 0.180258064
+l = 0  e_3 = 1.70944004
+l = 1  e_0 = -0.427399161
+l = 1  e_1 = 0.194472985
+l = 1  e_2 = 1.28582707
+l = 2  e_0 = 0.943141385
+l = 2  e_1 = 3.4421768
+l = 0  occ = 2 + 0
+l = 1  occ = 0 + 1.333
+l = 2  occ = 0 + 0
+l = 3  occ = 0 + 0
+E1 = -102.5566701990038  E_coul = 28.277607947195232
+Extra cycle  E= -74.2790622518086  delta_E=    0  |g|=    0  |ddm|= 1.2e-06
+    CPU time for scf_cycle      7.46 sec, wall time      0.21 sec
+    CPU time for SCF      7.48 sec, wall time      0.21 sec
+Atomic HF for atom  O  converged. SCF energy = -74.2790622518086
+Atom O, E = -74.2790622518
+Nelec from initial guess = (3.9999999999999996, 3.9999999999999996)
+E1 = -102.5566701990038  Ecoul = 28.277607947195236
+init E= -74.2790622518086
+cond(S) = 81.85302726725536
+    CPU time for initialize scf     10.45 sec, wall time      0.29 sec
+alpha HOMO (E1uy) = -0.427399252386012  LUMO (A1g) = 0.180258044521556
+alpha irrep_nelec = [2, 0, 0, 1, 1, 1, 0, 0]
+beta  irrep_nelec = [2, 0, 0, 1, 0, 0, 0, 0]
+alpha-A1g nocc = 2  HOMO = -1.31637595351637  LUMO = 0.180258044521556
+   mo_energy = [-20.82955269  -1.31637595   0.18025804   0.94314134   1.70943996
+   3.44217669]
+alpha-E1gx nocc = 0
+   mo_energy = [0.94314134 3.44217669]
+alpha-E1gy nocc = 0
+   mo_energy = [0.94314134 3.44217669]
+alpha-A1u nocc = 1  HOMO = -0.427399252386014  LUMO = 0.194472974793784
+   mo_energy = [-0.42739925  0.19447297  1.28582699]
+alpha-E1uy nocc = 1  HOMO = -0.427399252386012  LUMO = 0.194472974793784
+   mo_energy = [-0.42739925  0.19447297  1.28582699]
+alpha-E1ux nocc = 1  HOMO = -0.427399252386014  LUMO = 0.194472974793784
+   mo_energy = [-0.42739925  0.19447297  1.28582699]
+alpha-E2gx nocc = 0
+   mo_energy = [0.94314134 3.44217669]
+alpha-E2gy nocc = 0
+   mo_energy = [0.94314134 3.44217669]
+beta-A1g nocc = 2  HOMO = -1.31637595351637  LUMO = 0.180258044521556
+   mo_energy = [-20.82955269  -1.31637595   0.18025804   0.94314134   1.70943996
+   3.44217669]
+beta-E1gx nocc = 0
+   mo_energy = [0.94314134 3.44217669]
+beta-E1gy nocc = 0
+   mo_energy = [0.94314134 3.44217669]
+beta-A1u nocc = 1  HOMO = -0.427399252386014  LUMO = 0.194472974793784
+   mo_energy = [-0.42739925  0.19447297  1.28582699]
+beta-E1uy nocc = 0
+   mo_energy = [-0.42739925  0.19447297  1.28582699]
+beta-E1ux nocc = 0
+   mo_energy = [-0.42739925  0.19447297  1.28582699]
+beta-E2gx nocc = 0
+   mo_energy = [0.94314134 3.44217669]
+beta-E2gy nocc = 0
+   mo_energy = [0.94314134 3.44217669]
+multiplicity <S^2> = 2  2S+1 = 3
+E1 = -102.5566706355479  Ecoul = 27.78119947652579
+cycle= 1 E= -74.7754711590221  delta_E= -0.496  |g|= 0.179  |ddm|= 1.06
+    CPU time for cycle= 1      1.61 sec, wall time      0.04 sec
+diis-norm(errvec)=0.296199
+diis-c [-0.08773391  1.        ]
+alpha HOMO (A1u) = -0.659754128826613  LUMO (A1g) = 0.16948597784502
+alpha irrep_nelec = [2, 0, 0, 1, 1, 1, 0, 0]
+beta  irrep_nelec = [2, 0, 0, 1, 0, 0, 0, 0]
+alpha-A1g nocc = 2  HOMO = -1.46977999112737  LUMO = 0.16948597784502
+   mo_energy = [-20.86134569  -1.46977999   0.16948598   0.93078388   1.67058756
+   3.41814839]
+alpha-E1gx nocc = 0
+   mo_energy = [0.92120246 3.39815511]
+alpha-E1gy nocc = 0
+   mo_energy = [0.92120246 3.39815511]
+alpha-A1u nocc = 1  HOMO = -0.659754128826613  LUMO = 0.19191673281259
+   mo_energy = [-0.65975413  0.19191673  1.26504127]
+alpha-E1uy nocc = 1  HOMO = -0.737560284969414  LUMO = 0.180245810865489
+   mo_energy = [-0.73756028  0.18024581  1.21385835]
+alpha-E1ux nocc = 1  HOMO = -0.737560284969415  LUMO = 0.180245810865488
+   mo_energy = [-0.73756028  0.18024581  1.21385835]
+alpha-E2gx nocc = 0
+   mo_energy = [0.8922284  3.34075741]
+alpha-E2gy nocc = 0
+   mo_energy = [0.8922284  3.34075741]
+beta-A1g nocc = 2  HOMO = -1.16572091223084  LUMO = 0.190747914964113
+   mo_energy = [-20.79792946  -1.16572091   0.19074791   0.96913063   1.74920137
+   3.49517629]
+beta-E1gx nocc = 0
+   mo_energy = [0.97125672 3.50017725]
+beta-E1gy nocc = 0
+   mo_energy = [0.97125672 3.50017725]
+beta-A1u nocc = 1  HOMO = -0.582736801149883  LUMO = 0.197045328853235
+   mo_energy = [-0.5827368   0.19704533  1.29609204]
+beta-E1uy nocc = 0
+   mo_energy = [0.02873331 0.2402084  1.37941455]
+beta-E1ux nocc = 0
+   mo_energy = [0.02873331 0.2402084  1.37941455]
+beta-E2gx nocc = 0
+   mo_energy = [0.9796119  3.51772772]
+beta-E2gy nocc = 0
+   mo_energy = [0.9796119  3.51772772]
+multiplicity <S^2> = 2.002278  2S+1 = 3.0015183
+E1 = -103.29375953246856  Ecoul = 28.499796929271042
+cycle= 2 E= -74.7939626031975  delta_E= -0.0185  |g|= 0.0651  |ddm|= 0.295
+    CPU time for cycle= 2      1.53 sec, wall time      0.04 sec
+diis-norm(errvec)=0.0795763
+diis-c [-0.0053907  -0.11974565  1.11974565]
+alpha HOMO (A1u) = -0.592206663722865  LUMO (A1g) = 0.181598530084727
+alpha irrep_nelec = [2, 0, 0, 1, 1, 1, 0, 0]
+beta  irrep_nelec = [2, 0, 0, 1, 0, 0, 0, 0]
+alpha-A1g nocc = 2  HOMO = -1.39946518575036  LUMO = 0.181598530084727
+   mo_energy = [-20.6670878   -1.39946519   0.18159853   0.95927559   1.72392572
+   3.48824281]
+alpha-E1gx nocc = 0
+   mo_energy = [0.94951544 3.46615748]
+alpha-E1gy nocc = 0
+   mo_energy = [0.94951544 3.46615748]
+alpha-A1u nocc = 1  HOMO = -0.592206663722865  LUMO = 0.197320105171397
+   mo_energy = [-0.59220666  0.19732011  1.31630448]
+alpha-E1uy nocc = 1  HOMO = -0.685946773076898  LUMO = 0.185216708585802
+   mo_energy = [-0.68594677  0.18521671  1.25868861]
+alpha-E1ux nocc = 1  HOMO = -0.685946773076897  LUMO = 0.185216708585802
+   mo_energy = [-0.68594677  0.18521671  1.25868861]
+alpha-E2gx nocc = 0
+   mo_energy = [0.9205301  3.40365035]
+alpha-E2gy nocc = 0
+   mo_energy = [0.9205301  3.40365035]
+beta-A1g nocc = 2  HOMO = -1.07350948632275  LUMO = 0.199842887299151
+   mo_energy = [-20.59228021  -1.07350949   0.19984289   0.98990736   1.81219213
+   3.57113828]
+beta-E1gx nocc = 0
+   mo_energy = [0.99138818 3.57723671]
+beta-E1gy nocc = 0
+   mo_energy = [0.99138818 3.57723671]
+beta-A1u nocc = 1  HOMO = -0.514069765418695  LUMO = 0.202534726633132
+   mo_energy = [-0.51406977  0.20253473  1.35219731]
+beta-E1uy nocc = 0
+   mo_energy = [0.07417583 0.27715117 1.45795511]
+beta-E1ux nocc = 0
+   mo_energy = [0.07417583 0.27715117 1.45795511]
+beta-E2gx nocc = 0
+   mo_energy = [0.99867313 3.59921081]
+beta-E2gy nocc = 0
+   mo_energy = [0.99867313 3.59921081]
+multiplicity <S^2> = 2.005271  2S+1 = 3.003512
+E1 = -103.1100932486134  Ecoul = 28.313932866848205
+cycle= 3 E= -74.7961603817652  delta_E= -0.0022  |g|= 0.0224  |ddm|= 0.17
+    CPU time for cycle= 3      1.56 sec, wall time      0.05 sec
+diis-norm(errvec)=0.0251544
+diis-c [-2.60379603e-04 -7.61119883e-02  1.03296013e-01  9.72815975e-01]
+alpha HOMO (A1u) = -0.609683287588341  LUMO (A1g) = 0.18047885987508
+alpha irrep_nelec = [2, 0, 0, 1, 1, 1, 0, 0]
+beta  irrep_nelec = [2, 0, 0, 1, 0, 0, 0, 0]
+alpha-A1g nocc = 2  HOMO = -1.41969841670427  LUMO = 0.18047885987508
+   mo_energy = [-20.72151178  -1.41969842   0.18047886   0.95570897   1.71117871
+   3.47050225]
+alpha-E1gx nocc = 0
+   mo_energy = [0.94575548 3.44831637]
+alpha-E1gy nocc = 0
+   mo_energy = [0.94575548 3.44831637]
+alpha-A1u nocc = 1  HOMO = -0.609683287588341  LUMO = 0.196708835310029
+   mo_energy = [-0.60968329  0.19670884  1.30374264]
+alpha-E1uy nocc = 1  HOMO = -0.70779273203411  LUMO = 0.184009116495829
+   mo_energy = [-0.70779273  0.18400912  1.24472143]
+alpha-E1ux nocc = 1  HOMO = -0.707792732034111  LUMO = 0.184009116495829
+   mo_energy = [-0.70779273  0.18400912  1.24472143]
+alpha-E2gx nocc = 0
+   mo_energy = [0.91620829 3.38555914]
+alpha-E2gy nocc = 0
+   mo_energy = [0.91620829 3.38555914]
+beta-A1g nocc = 2  HOMO = -1.08594798335755  LUMO = 0.198765683471208
+   mo_energy = [-20.64430573  -1.08594798   0.19876568   0.98444588   1.80221871
+   3.55517492]
+beta-E1gx nocc = 0
+   mo_energy = [0.98614574 3.56118205]
+beta-E1gy nocc = 0
+   mo_energy = [0.98614574 3.56118205]
+beta-A1u nocc = 1  HOMO = -0.526387056856616  LUMO = 0.202301332014591
+   mo_energy = [-0.52638706  0.20230133  1.34261528]
+beta-E1uy nocc = 0
+   mo_energy = [0.06572086 0.26911813 1.44080198]
+beta-E1ux nocc = 0
+   mo_energy = [0.06572086 0.26911813 1.44080198]
+beta-E2gx nocc = 0
+   mo_energy = [0.99430281 3.58274884]
+beta-E2gy nocc = 0
+   mo_energy = [0.99430281 3.58274884]
+multiplicity <S^2> = 2.0066838  2S+1 = 3.0044526
+E1 = -103.17602271078846  Ecoul = 28.379497732423175
+cycle= 4 E= -74.7965249783653  delta_E= -0.000365  |g|= 0.00738  |ddm|= 0.0452
+    CPU time for cycle= 4      1.54 sec, wall time      0.05 sec
+diis-norm(errvec)=0.00824791
+diis-c [-1.50520456e-05  6.32242055e-02 -1.19748276e-01 -7.82494177e-01
+  1.83901825e+00]
+alpha HOMO (A1u) = -0.611457571124004  LUMO (A1g) = 0.18052678279059
+alpha irrep_nelec = [2, 0, 0, 1, 1, 1, 0, 0]
+beta  irrep_nelec = [2, 0, 0, 1, 0, 0, 0, 0]
+alpha-A1g nocc = 2  HOMO = -1.42176604171723  LUMO = 0.18052678279059
+   mo_energy = [-20.72074454  -1.42176604   0.18052678   0.9564946    1.71052516
+   3.46934472]
+alpha-E1gx nocc = 0
+   mo_energy = [0.94652673 3.44729398]
+alpha-E1gy nocc = 0
+   mo_energy = [0.94652673 3.44729398]
+alpha-A1u nocc = 1  HOMO = -0.611457571124004  LUMO = 0.196641466619404
+   mo_energy = [-0.61145757  0.19664147  1.30290774]
+alpha-E1uy nocc = 1  HOMO = -0.709912475937298  LUMO = 0.18361292327914
+   mo_energy = [-0.70991248  0.18361292  1.24336557]
+alpha-E1ux nocc = 1  HOMO = -0.709912475937299  LUMO = 0.183612923279139
+   mo_energy = [-0.70991248  0.18361292  1.24336557]
+alpha-E2gx nocc = 0
+   mo_energy = [0.91687875 3.38483511]
+alpha-E2gy nocc = 0
+   mo_energy = [0.91687875 3.38483511]
+beta-A1g nocc = 2  HOMO = -1.08235345618723  LUMO = 0.19870776305548
+   mo_energy = [-20.64037953  -1.08235346   0.19870776   0.98322498   1.80370749
+   3.55671344]
+beta-E1gx nocc = 0
+   mo_energy = [0.98504479 3.56261567]
+beta-E1gy nocc = 0
+   mo_energy = [0.98504479 3.56261567]
+beta-A1u nocc = 1  HOMO = -0.521360019863872  LUMO = 0.202936008021819
+   mo_energy = [-0.52136002  0.20293601  1.34579622]
+beta-E1uy nocc = 0
+   mo_energy = [0.06567497 0.26974523 1.44206728]
+beta-E1ux nocc = 0
+   mo_energy = [0.06567497 0.26974523 1.44206728]
+beta-E2gx nocc = 0
+   mo_energy = [0.99350327 3.58368162]
+beta-E2gy nocc = 0
+   mo_energy = [0.99350327 3.58368162]
+multiplicity <S^2> = 2.0080462  2S+1 = 3.0053594
+E1 = -103.17613173480231  Ecoul = 28.379533514548847
+cycle= 5 E= -74.7965982202535  delta_E= -7.32e-05  |g|= 0.00123  |ddm|= 0.03
+    CPU time for cycle= 5      1.59 sec, wall time      0.05 sec
+diis-norm(errvec)=0.00157482
+diis-c [-7.78890452e-07 -1.10135335e-02  2.53891542e-02  1.58130040e-01
+ -5.24502212e-01  1.35199655e+00]
+alpha HOMO (A1u) = -0.612254809298236  LUMO (A1g) = 0.180597576313877
+alpha irrep_nelec = [2, 0, 0, 1, 1, 1, 0, 0]
+beta  irrep_nelec = [2, 0, 0, 1, 0, 0, 0, 0]
+alpha-A1g nocc = 2  HOMO = -1.42217973168936  LUMO = 0.180597576313877
+   mo_energy = [-20.72071633  -1.42217973   0.18059758   0.95667043   1.71045125
+   3.46912548]
+alpha-E1gx nocc = 0
+   mo_energy = [0.94667744 3.44712694]
+alpha-E1gy nocc = 0
+   mo_energy = [0.94667744 3.44712694]
+alpha-A1u nocc = 1  HOMO = -0.612254809298236  LUMO = 0.196655185778399
+   mo_energy = [-0.61225481  0.19665519  1.30259874]
+alpha-E1uy nocc = 1  HOMO = -0.710277128920663  LUMO = 0.183677871932619
+   mo_energy = [-0.71027713  0.18367787  1.24336971]
+alpha-E1ux nocc = 1  HOMO = -0.710277128920662  LUMO = 0.183677871932619
+   mo_energy = [-0.71027713  0.18367787  1.24336971]
+alpha-E2gx nocc = 0
+   mo_energy = [0.91696552 3.38482942]
+alpha-E2gy nocc = 0
+   mo_energy = [0.91696552 3.38482942]
+beta-A1g nocc = 2  HOMO = -1.08193926323657  LUMO = 0.198655015701934
+   mo_energy = [-20.64005949  -1.08193926   0.19865502   0.98309192   1.80387777
+   3.55710154]
+beta-E1gx nocc = 0
+   mo_energy = [0.9849224  3.56294233]
+beta-E1gy nocc = 0
+   mo_energy = [0.9849224  3.56294233]
+beta-A1u nocc = 1  HOMO = -0.520100998820934  LUMO = 0.203055093722309
+   mo_energy = [-0.520101    0.20305509  1.34641503]
+beta-E1uy nocc = 0
+   mo_energy = [0.06571038 0.26982901 1.44223156]
+beta-E1ux nocc = 0
+   mo_energy = [0.06571038 0.26982901 1.44223156]
+beta-E2gx nocc = 0
+   mo_energy = [0.99347401 3.58384904]
+beta-E2gy nocc = 0
+   mo_energy = [0.99347401 3.58384904]
+multiplicity <S^2> = 2.0083511  2S+1 = 3.0055622
+E1 = -103.1749113988174  Ecoul = 28.378310763878197
+cycle= 6 E= -74.7966006349392  delta_E= -2.41e-06  |g|= 0.000293  |ddm|= 0.00491
+    CPU time for cycle= 6      1.61 sec, wall time      0.05 sec
+diis-norm(errvec)=0.000366875
+diis-c [-2.14826047e-08  2.56164552e-03 -5.63998094e-03 -4.39583303e-02
+  1.68725358e-01 -6.60958387e-01  1.53926970e+00]
+alpha HOMO (A1u) = -0.612545751811436  LUMO (A1g) = 0.180588965106164
+alpha irrep_nelec = [2, 0, 0, 1, 1, 1, 0, 0]
+beta  irrep_nelec = [2, 0, 0, 1, 0, 0, 0, 0]
+alpha-A1g nocc = 2  HOMO = -1.42225604463969  LUMO = 0.180588965106164
+   mo_energy = [-20.72083045  -1.42225604   0.18058897   0.95667013   1.7104006
+   3.46900498]
+alpha-E1gx nocc = 0
+   mo_energy = [0.9466673  3.44702901]
+alpha-E1gy nocc = 0
+   mo_energy = [0.9466673  3.44702901]
+alpha-A1u nocc = 1  HOMO = -0.612545751811436  LUMO = 0.196621939894946
+   mo_energy = [-0.61254575  0.19662194  1.30242019]
+alpha-E1uy nocc = 1  HOMO = -0.710248703012185  LUMO = 0.183665140004371
+   mo_energy = [-0.7102487   0.18366514  1.24334703]
+alpha-E1ux nocc = 1  HOMO = -0.710248703012184  LUMO = 0.183665140004369
+   mo_energy = [-0.7102487   0.18366514  1.24334703]
+alpha-E2gx nocc = 0
+   mo_energy = [0.91692152 3.38478316]
+alpha-E2gy nocc = 0
+   mo_energy = [0.91692152 3.38478316]
+beta-A1g nocc = 2  HOMO = -1.08200724359017  LUMO = 0.198626309175789
+   mo_energy = [-20.64014729  -1.08200724   0.19862631   0.98302847   1.80381805
+   3.55707916]
+beta-E1gx nocc = 0
+   mo_energy = [0.98487113 3.5629102 ]
+beta-E1gy nocc = 0
+   mo_energy = [0.98487113 3.5629102 ]
+beta-A1u nocc = 1  HOMO = -0.519991113857257  LUMO = 0.203060758494814
+   mo_energy = [-0.51999111  0.20306076  1.34645743]
+beta-E1uy nocc = 0
+   mo_energy = [0.06567713 0.26979361 1.44216761]
+beta-E1ux nocc = 0
+   mo_energy = [0.06567713 0.26979361 1.44216761]
+beta-E2gx nocc = 0
+   mo_energy = [0.99345171 3.58377006]
+beta-E2gy nocc = 0
+   mo_energy = [0.99345171 3.58377006]
+multiplicity <S^2> = 2.0084162  2S+1 = 3.0056055
+E1 = -103.17497431098002  Ecoul = 28.378373557849336
+cycle= 7 E= -74.7966007531307  delta_E= -1.18e-07  |g|= 3.48e-05  |ddm|= 0.00105
+    CPU time for cycle= 7      1.62 sec, wall time      0.05 sec
+diis-norm(errvec)=4.30293e-05
+diis-c [-2.56117671e-10 -5.77775857e-04  1.19839596e-03  1.07879916e-02
+ -4.23964547e-02  1.86080421e-01 -4.99566112e-01  1.34447353e+00]
+alpha HOMO (A1u) = -0.612560314745925  LUMO (A1g) = 0.180594310821444
+alpha irrep_nelec = [2, 0, 0, 1, 1, 1, 0, 0]
+beta  irrep_nelec = [2, 0, 0, 1, 0, 0, 0, 0]
+alpha-A1g nocc = 2  HOMO = -1.42224733974832  LUMO = 0.180594310821444
+   mo_energy = [-20.72082694  -1.42224734   0.18059431   0.95667971   1.71041062
+   3.46901276]
+alpha-E1gx nocc = 0
+   mo_energy = [0.94667537 3.44703773]
+alpha-E1gy nocc = 0
+   mo_energy = [0.94667537 3.44703773]
+alpha-A1u nocc = 1  HOMO = -0.612560314745925  LUMO = 0.196622308704457
+   mo_energy = [-0.61256031  0.19662231  1.30241769]
+alpha-E1uy nocc = 1  HOMO = -0.710239140033809  LUMO = 0.183670914768756
+   mo_energy = [-0.71023914  0.18367091  1.24336192]
+alpha-E1ux nocc = 1  HOMO = -0.71023914003381  LUMO = 0.183670914768755
+   mo_energy = [-0.71023914  0.18367091  1.24336192]
+alpha-E2gx nocc = 0
+   mo_energy = [0.91692576 3.38479533]
+alpha-E2gy nocc = 0
+   mo_energy = [0.91692576 3.38479533]
+beta-A1g nocc = 2  HOMO = -1.08199137126218  LUMO = 0.198630763098917
+   mo_energy = [-20.64014404  -1.08199137   0.19863076   0.98303537   1.80382891
+   3.55709259]
+beta-E1gx nocc = 0
+   mo_energy = [0.9848779  3.56292223]
+beta-E1gy nocc = 0
+   mo_energy = [0.9848779  3.56292223]
+beta-A1u nocc = 1  HOMO = -0.519985791988227  LUMO = 0.203061202476463
+   mo_energy = [-0.51998579  0.2030612   1.3464631 ]
+beta-E1uy nocc = 0
+   mo_energy = [0.06568311 0.26979911 1.44217465]
+beta-E1ux nocc = 0
+   mo_energy = [0.06568311 0.26979911 1.44217465]
+beta-E2gx nocc = 0
+   mo_energy = [0.99346053 3.5837799 ]
+beta-E2gy nocc = 0
+   mo_energy = [0.99346053 3.5837799 ]
+multiplicity <S^2> = 2.0084193  2S+1 = 3.0056076
+E1 = -103.17496045045579  Ecoul = 28.378359696036313
+cycle= 8 E= -74.7966007544195  delta_E= -1.29e-09  |g|= 4.72e-06  |ddm|= 0.000103
+    CPU time for cycle= 8      1.58 sec, wall time      0.05 sec
+diis-norm(errvec)=5.06802e-06
+diis-c [-3.30351196e-12  9.76650176e-05 -1.74876017e-04 -2.03164746e-03
+  7.84356929e-03 -3.70430909e-02  1.04382389e-01 -3.68881933e-01
+  1.29580792e+00]
+alpha HOMO (A1u) = -0.612562945633429  LUMO (A1g) = 0.180593746128267
+alpha irrep_nelec = [2, 0, 0, 1, 1, 1, 0, 0]
+beta  irrep_nelec = [2, 0, 0, 1, 0, 0, 0, 0]
+alpha-A1g nocc = 2  HOMO = -1.42224830817933  LUMO = 0.180593746128267
+   mo_energy = [-20.72082747  -1.42224831   0.18059375   0.95667971   1.71040968
+   3.46901144]
+alpha-E1gx nocc = 0
+   mo_energy = [0.94667533 3.44703664]
+alpha-E1gy nocc = 0
+   mo_energy = [0.94667533 3.44703664]
+alpha-A1u nocc = 1  HOMO = -0.612562945633429  LUMO = 0.196621547571157
+   mo_energy = [-0.61256295  0.19662155  1.30241547]
+alpha-E1uy nocc = 1  HOMO = -0.710237590777523  LUMO = 0.183670237527062
+   mo_energy = [-0.71023759  0.18367024  1.24336112]
+alpha-E1ux nocc = 1  HOMO = -0.710237590777522  LUMO = 0.183670237527061
+   mo_energy = [-0.71023759  0.18367024  1.24336112]
+alpha-E2gx nocc = 0
+   mo_energy = [0.91692541 3.3847945 ]
+alpha-E2gy nocc = 0
+   mo_energy = [0.91692541 3.3847945 ]
+beta-A1g nocc = 2  HOMO = -1.08199023519201  LUMO = 0.198630919071279
+   mo_energy = [-20.64014336  -1.08199024   0.19863092   0.9830343    1.8038292
+   3.55709186]
+beta-E1gx nocc = 0
+   mo_energy = [0.984877   3.56292156]
+beta-E1gy nocc = 0
+   mo_energy = [0.984877   3.56292156]
+beta-A1u nocc = 1  HOMO = -0.519986666117698  LUMO = 0.203060956899813
+   mo_energy = [-0.51998667  0.20306096  1.346463  ]
+beta-E1uy nocc = 0
+   mo_energy = [0.06568242 0.26979887 1.44217435]
+beta-E1ux nocc = 0
+   mo_energy = [0.06568242 0.26979887 1.44217435]
+beta-E2gx nocc = 0
+   mo_energy = [0.99345971 3.58377889]
+beta-E2gy nocc = 0
+   mo_energy = [0.99345971 3.58377889]
+multiplicity <S^2> = 2.0084198  2S+1 = 3.005608
+E1 = -103.17496973888066  Ecoul = 28.378368984440915
+cycle= 9 E= -74.7966007544398  delta_E= -2.03e-11  |g|= 4.24e-07  |ddm|= 1.65e-05
+    CPU time for cycle= 9      1.59 sec, wall time      0.05 sec
+alpha HOMO (A1u) = -0.612562751901713  LUMO (A1g) = 0.180593841363486
+alpha irrep_nelec = [2, 0, 0, 1, 1, 1, 0, 0]
+beta  irrep_nelec = [2, 0, 0, 1, 0, 0, 0, 0]
+alpha-A1g nocc = 2  HOMO = -1.42224811354511  LUMO = 0.180593841363486
+   mo_energy = [-20.72082696  -1.42224811   0.18059384   0.95667988   1.71040992
+   3.46901179]
+alpha-E1gx nocc = 0
+   mo_energy = [0.9466755  3.44703696]
+alpha-E1gy nocc = 0
+   mo_energy = [0.9466755  3.44703696]
+alpha-A1u nocc = 1  HOMO = -0.612562751901713  LUMO = 0.19662161739358
+   mo_energy = [-0.61256275  0.19662162  1.30241571]
+alpha-E1uy nocc = 1  HOMO = -0.710237525931637  LUMO = 0.183670361217522
+   mo_energy = [-0.71023753  0.18367036  1.24336142]
+alpha-E1ux nocc = 1  HOMO = -0.710237525931637  LUMO = 0.183670361217523
+   mo_energy = [-0.71023753  0.18367036  1.24336142]
+alpha-E2gx nocc = 0
+   mo_energy = [0.91692558 3.38479482]
+alpha-E2gy nocc = 0
+   mo_energy = [0.91692558 3.38479482]
+beta-A1g nocc = 2  HOMO = -1.08198981774851  LUMO = 0.198630998210273
+   mo_energy = [-20.64014273  -1.08198982   0.198631     0.98303447   1.80382955
+   3.55709225]
+beta-E1gx nocc = 0
+   mo_energy = [0.98487716 3.56292194]
+beta-E1gy nocc = 0
+   mo_energy = [0.98487716 3.56292194]
+beta-A1u nocc = 1  HOMO = -0.519986343704081  LUMO = 0.203061007881303
+   mo_energy = [-0.51998634  0.20306101  1.34646328]
+beta-E1uy nocc = 0
+   mo_energy = [0.06568262 0.26979905 1.4421747 ]
+beta-E1ux nocc = 0
+   mo_energy = [0.06568262 0.26979905 1.4421747 ]
+beta-E2gx nocc = 0
+   mo_energy = [0.99345987 3.58377929]
+beta-E2gy nocc = 0
+   mo_energy = [0.99345987 3.58377929]
+multiplicity <S^2> = 2.0084198  2S+1 = 3.005608
+E1 = -103.17496846449768  Ecoul = 28.378367710057894
+Extra cycle  E= -74.7966007544398  delta_E= -4.26e-14  |g|= 1.22e-07  |ddm|= 1.08e-06
+    CPU time for scf_cycle     26.23 sec, wall time      0.77 sec
+    CPU time for SCF     26.23 sec, wall time      0.77 sec
+converged SCF energy = -74.7966007544398  <S^2> = 2.0084198  2S+1 = 3.005608

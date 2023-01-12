@@ -1,0 +1,388 @@
+#INFO: **** input file is /project/6004934/nike/atomic/O/triplet/inp.py ****
+#!/usr/bin/env python
+# Author: Nike Dattani, nike@hpqc.org
+
+'''
+O in aug-cc-pV8Z
+'''
+
+import pyscf
+from pyscf.gto.basis import parse_gaussian
+
+mol = pyscf.M(
+    atom = '''       
+        O
+    ''',
+    unit = 'angstrom',
+    basis = {
+            'O' : parse_gaussian.load('/home/nike/AI_ENERGIES/O/av8z.gbs', 'O')
+    },
+    charge = 0,
+    spin = 2,
+    verbose = 9,
+    symmetry = True,
+    output = 'O_av8z_UHF.txt',
+    symmetry_subgroup = 'Dooh',
+)
+
+#mol.max_memory =100000
+mol.max_memory =16000
+#mol.max_memory =4000
+#mol.max_memory =100
+mf = mol.ROHF()
+mf.irrep_nelec = {'A1g': (2,2), 'E1ux': (1,0), 'E1uy': (1,0),'A1u': (1,1)}
+#mf.irrep_nelec = {'A1g': 4, 'E1ux': 1, 'E1uy': 1,'A1u': 2}
+mf.chkfile = 'O_av8z_UHF.chk'
+mf.init_guess='atom'
+#mf.init_guess='O_av7z_UHF.chk'
+mf.kernel()
+
+
+    
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Linux', node='cedar5.cedar.computecanada.ca', release='3.10.0-1160.53.1.el7.x86_64', version='#1 SMP Fri Jan 14 13:59:45 UTC 2022', machine='x86_64', processor='')  Threads 1
+Python 3.8.10 (default, Jun 16 2021, 14:20:20) 
+[GCC 9.3.0]
+numpy 1.23.0  scipy 1.9.3
+Date: Wed Dec  7 12:32:18 2022
+PySCF version 2.1.1
+PySCF path  /home/nike/.local/lib/python3.8/site-packages/pyscf
+
+[CONFIG] DEBUG = False
+[CONFIG] MAX_MEMORY = 4000
+[CONFIG] TMPDIR = /tmp
+[CONFIG] UNIT = angstrom
+[CONFIG] VERBOSE = 3
+[CONFIG] conf_file = None
+[INPUT] verbose = 9
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 8
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 2
+[INPUT] symmetry True subgroup Dooh
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 O      0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] O
+[INPUT] 0    0    [13   /2   ]  4968020.11        3.7e-07 -8e-08
+                                767184.019        2.72e-06 -6.2e-07
+                                179922.002        1.379e-05 -3.13e-06
+                                52168.3994        5.683e-05 -1.289e-05
+                                17293.4001        0.0002042 -4.636e-05
+                                6310.46971        0.00066172 -0.00015021
+                                2481.42017        0.00196923 -0.000448
+                                1036.74998        0.00545811 -0.00124466
+                                454.070076        0.0142779 -0.00328278
+                                205.801868        0.03530343 -0.00823173
+                                95.75971          0.08052299 -0.01938959
+                                45.603781         0.1618984 -0.04135307
+                                22.1827           0.26764794 -0.07730378
+[INPUT] 0    0    [1    /1   ]  11.0045              1
+[INPUT] 0    0    [1    /1   ]  5.530011             1
+[INPUT] 0    0    [1    /1   ]  2.74694              1
+[INPUT] 0    0    [1    /1   ]  1.32605              1
+[INPUT] 0    0    [1    /1   ]  0.626784             1
+[INPUT] 0    0    [1    /1   ]  0.293908             1
+[INPUT] 0    0    [1    /1   ]  0.134983             1
+[INPUT] 0    0    [1    /1   ]  0.05348              1
+[INPUT] 1    0    [7    /1   ]  4020.41119        4.82e-06
+                                930.56103         4.578e-05
+                                295.517338        0.00027268
+                                113.498375        0.00120664
+                                48.552113         0.00441527
+                                22.142807         0.01370896
+                                10.538095         0.03675032
+[INPUT] 1    0    [1    /1   ]  5.192839             1
+[INPUT] 1    0    [1    /1   ]  2.615344             1
+[INPUT] 1    0    [1    /1   ]  1.321589             1
+[INPUT] 1    0    [1    /1   ]  0.661978             1
+[INPUT] 1    0    [1    /1   ]  0.327398             1
+[INPUT] 1    0    [1    /1   ]  0.159348             1
+[INPUT] 1    0    [1    /1   ]  0.074582             1
+[INPUT] 1    0    [1    /1   ]  0.03191              1
+[INPUT] 2    0    [1    /1   ]  12.9767              1
+[INPUT] 2    0    [1    /1   ]  6.65877              1
+[INPUT] 2    0    [1    /1   ]  3.41684              1
+[INPUT] 2    0    [1    /1   ]  1.7533               1
+[INPUT] 2    0    [1    /1   ]  0.89968              1
+[INPUT] 2    0    [1    /1   ]  0.46165              1
+[INPUT] 2    0    [1    /1   ]  0.2369               1
+[INPUT] 2    0    [1    /1   ]  0.09777              1
+[INPUT] 3    0    [1    /1   ]  12.7941              1
+[INPUT] 3    0    [1    /1   ]  6.48093              1
+[INPUT] 3    0    [1    /1   ]  3.28295              1
+[INPUT] 3    0    [1    /1   ]  1.66299              1
+[INPUT] 3    0    [1    /1   ]  0.8424               1
+[INPUT] 3    0    [1    /1   ]  0.42672              1
+[INPUT] 3    0    [1    /1   ]  0.18007              1
+[INPUT] 4    0    [1    /1   ]  7.22853              1
+[INPUT] 4    0    [1    /1   ]  3.91156              1
+[INPUT] 4    0    [1    /1   ]  2.11666              1
+[INPUT] 4    0    [1    /1   ]  1.14538              1
+[INPUT] 4    0    [1    /1   ]  0.6198               1
+[INPUT] 4    0    [1    /1   ]  0.27223              1
+[INPUT] 5    0    [1    /1   ]  7.81133              1
+[INPUT] 5    0    [1    /1   ]  4.05272              1
+[INPUT] 5    0    [1    /1   ]  2.10265              1
+[INPUT] 5    0    [1    /1   ]  1.09091              1
+[INPUT] 5    0    [1    /1   ]  0.52508              1
+[INPUT] 6    0    [1    /1   ]  6.10477              1
+[INPUT] 6    0    [1    /1   ]  2.95271              1
+[INPUT] 6    0    [1    /1   ]  1.42815              1
+[INPUT] 6    0    [1    /1   ]  0.74042              1
+[INPUT] 7    0    [1    /1   ]  4.75927              1
+[INPUT] 7    0    [1    /1   ]  2.18588              1
+[INPUT] 7    0    [1    /1   ]  1.0942               1
+[INPUT] 8    0    [1    /1   ]  3.22427              1
+[INPUT] 8    0    [1    /1   ]  1.614                1
+
+nuclear repulsion = 0
+point group symmetry = SO3, use subgroup Dooh
+symmetry origin: [0. 0. 0.]
+symmetry axis x: [1. 0. 0.]
+symmetry axis y: [0. 1. 0.]
+symmetry axis z: [0. 0. 1.]
+num. orbitals of irrep A1g = 30
+num. orbitals of irrep E1gx = 20
+num. orbitals of irrep E1gy = 20
+num. orbitals of irrep A1u = 24
+num. orbitals of irrep E1uy = 24
+num. orbitals of irrep E1ux = 24
+num. orbitals of irrep E2gx = 20
+num. orbitals of irrep E2gy = 20
+num. orbitals of irrep E3gx = 12
+num. orbitals of irrep E3gy = 12
+num. orbitals of irrep E2uy = 15
+num. orbitals of irrep E2ux = 15
+num. orbitals of irrep E3uy = 15
+num. orbitals of irrep E3ux = 15
+num. orbitals of irrep E4gx = 12
+num. orbitals of irrep E4gy = 12
+num. orbitals of irrep E5gx = 6
+num. orbitals of irrep E5gy = 6
+num. orbitals of irrep E4uy = 8
+num. orbitals of irrep E4ux = 8
+num. orbitals of irrep E5uy = 8
+num. orbitals of irrep E5ux = 8
+num. orbitals of irrep E6gx = 6
+num. orbitals of irrep E6gy = 6
+num. orbitals of irrep E7gx = 2
+num. orbitals of irrep E7gy = 2
+num. orbitals of irrep E6uy = 3
+num. orbitals of irrep E6ux = 3
+num. orbitals of irrep E7uy = 3
+num. orbitals of irrep E7ux = 3
+num. orbitals of irrep E8gx = 2
+num. orbitals of irrep E8gy = 2
+number of shells = 53
+number of NR pGTOs = 395
+number of NR cGTOs = 366
+basis = {'O': [[0, [4968020.11, 3.7e-07, -8e-08], [767184.019, 2.72e-06, -6.2e-07], [179922.002, 1.379e-05, -3.13e-06], [52168.3994, 5.683e-05, -1.289e-05], [17293.4001, 0.0002042, -4.636e-05], [6310.46971, 0.00066172, -0.00015021], [2481.42017, 0.00196923, -0.000448], [1036.74998, 0.00545811, -0.00124466], [454.070076, 0.0142779, -0.00328278], [205.801868, 0.03530343, -0.00823173], [95.75971, 0.08052299, -0.01938959], [45.603781, 0.1618984, -0.04135307], [22.1827, 0.26764794, -0.07730378]], [0, [11.0045, 1.0]], [0, [5.530011, 1.0]], [0, [2.74694, 1.0]], [0, [1.32605, 1.0]], [0, [0.626784, 1.0]], [0, [0.293908, 1.0]], [0, [0.134983, 1.0]], [0, [0.05348, 1.0]], [1, [4020.41119, 4.82e-06], [930.56103, 4.578e-05], [295.517338, 0.00027268], [113.498375, 0.00120664], [48.552113, 0.00441527], [22.142807, 0.01370896], [10.538095, 0.03675032]], [1, [5.192839, 1.0]], [1, [2.615344, 1.0]], [1, [1.321589, 1.0]], [1, [0.661978, 1.0]], [1, [0.327398, 1.0]], [1, [0.159348, 1.0]], [1, [0.074582, 1.0]], [1, [0.03191, 1.0]], [2, [12.9767, 1.0]], [2, [6.65877, 1.0]], [2, [3.41684, 1.0]], [2, [1.7533, 1.0]], [2, [0.89968, 1.0]], [2, [0.46165, 1.0]], [2, [0.2369, 1.0]], [2, [0.09777, 1.0]], [3, [12.7941, 1.0]], [3, [6.48093, 1.0]], [3, [3.28295, 1.0]], [3, [1.66299, 1.0]], [3, [0.8424, 1.0]], [3, [0.42672, 1.0]], [3, [0.18007, 1.0]], [4, [7.22853, 1.0]], [4, [3.91156, 1.0]], [4, [2.11666, 1.0]], [4, [1.14538, 1.0]], [4, [0.6198, 1.0]], [4, [0.27223, 1.0]], [5, [7.81133, 1.0]], [5, [4.05272, 1.0]], [5, [2.10265, 1.0]], [5, [1.09091, 1.0]], [5, [0.52508, 1.0]], [6, [6.10477, 1.0]], [6, [2.95271, 1.0]], [6, [1.42815, 1.0]], [6, [0.74042, 1.0]], [7, [4.75927, 1.0]], [7, [2.18588, 1.0]], [7, [1.0942, 1.0]], [8, [3.22427, 1.0]], [8, [1.614, 1.0]]]}
+ecp = {}
+bas 0, expnt(s) = [4.96802011e+06 7.67184019e+05 1.79922002e+05 5.21683994e+04
+ 1.72934001e+04 6.31046971e+03 2.48142017e+03 1.03674998e+03
+ 4.54070076e+02 2.05801868e+02 9.57597100e+01 4.56037810e+01
+ 2.21827000e+01]
+bas 1, expnt(s) = [11.0045]
+bas 2, expnt(s) = [5.530011]
+bas 3, expnt(s) = [2.74694]
+bas 4, expnt(s) = [1.32605]
+bas 5, expnt(s) = [0.626784]
+bas 6, expnt(s) = [0.293908]
+bas 7, expnt(s) = [0.134983]
+bas 8, expnt(s) = [0.05348]
+bas 9, expnt(s) = [4020.41119   930.56103   295.517338  113.498375   48.552113   22.142807
+   10.538095]
+bas 10, expnt(s) = [5.192839]
+bas 11, expnt(s) = [2.615344]
+bas 12, expnt(s) = [1.321589]
+bas 13, expnt(s) = [0.661978]
+bas 14, expnt(s) = [0.327398]
+bas 15, expnt(s) = [0.159348]
+bas 16, expnt(s) = [0.074582]
+bas 17, expnt(s) = [0.03191]
+bas 18, expnt(s) = [12.9767]
+bas 19, expnt(s) = [6.65877]
+bas 20, expnt(s) = [3.41684]
+bas 21, expnt(s) = [1.7533]
+bas 22, expnt(s) = [0.89968]
+bas 23, expnt(s) = [0.46165]
+bas 24, expnt(s) = [0.2369]
+bas 25, expnt(s) = [0.09777]
+bas 26, expnt(s) = [12.7941]
+bas 27, expnt(s) = [6.48093]
+bas 28, expnt(s) = [3.28295]
+bas 29, expnt(s) = [1.66299]
+bas 30, expnt(s) = [0.8424]
+bas 31, expnt(s) = [0.42672]
+bas 32, expnt(s) = [0.18007]
+bas 33, expnt(s) = [7.22853]
+bas 34, expnt(s) = [3.91156]
+bas 35, expnt(s) = [2.11666]
+bas 36, expnt(s) = [1.14538]
+bas 37, expnt(s) = [0.6198]
+bas 38, expnt(s) = [0.27223]
+bas 39, expnt(s) = [7.81133]
+bas 40, expnt(s) = [4.05272]
+bas 41, expnt(s) = [2.10265]
+bas 42, expnt(s) = [1.09091]
+bas 43, expnt(s) = [0.52508]
+bas 44, expnt(s) = [6.10477]
+bas 45, expnt(s) = [2.95271]
+bas 46, expnt(s) = [1.42815]
+bas 47, expnt(s) = [0.74042]
+bas 48, expnt(s) = [4.75927]
+bas 49, expnt(s) = [2.18588]
+bas 50, expnt(s) = [1.0942]
+bas 51, expnt(s) = [3.22427]
+bas 52, expnt(s) = [1.614]
+CPU time:         1.52
+arg.atm = [[ 8 20  1 23  0  0]]
+arg.bas = [[  0   0  13   2   0  24  37   0]
+ [  0   0   1   1   0  63  64   0]
+ [  0   0   1   1   0  65  66   0]
+ [  0   0   1   1   0  67  68   0]
+ [  0   0   1   1   0  69  70   0]
+ [  0   0   1   1   0  71  72   0]
+ [  0   0   1   1   0  73  74   0]
+ [  0   0   1   1   0  75  76   0]
+ [  0   0   1   1   0  77  78   0]
+ [  0   1   7   1   0  79  86   0]
+ [  0   1   1   1   0  93  94   0]
+ [  0   1   1   1   0  95  96   0]
+ [  0   1   1   1   0  97  98   0]
+ [  0   1   1   1   0  99 100   0]
+ [  0   1   1   1   0 101 102   0]
+ [  0   1   1   1   0 103 104   0]
+ [  0   1   1   1   0 105 106   0]
+ [  0   1   1   1   0 107 108   0]
+ [  0   2   1   1   0 109 110   0]
+ [  0   2   1   1   0 111 112   0]
+ [  0   2   1   1   0 113 114   0]
+ [  0   2   1   1   0 115 116   0]
+ [  0   2   1   1   0 117 118   0]
+ [  0   2   1   1   0 119 120   0]
+ [  0   2   1   1   0 121 122   0]
+ [  0   2   1   1   0 123 124   0]
+ [  0   3   1   1   0 125 126   0]
+ [  0   3   1   1   0 127 128   0]
+ [  0   3   1   1   0 129 130   0]
+ [  0   3   1   1   0 131 132   0]
+ [  0   3   1   1   0 133 134   0]
+ [  0   3   1   1   0 135 136   0]
+ [  0   3   1   1   0 137 138   0]
+ [  0   4   1   1   0 139 140   0]
+ [  0   4   1   1   0 141 142   0]
+ [  0   4   1   1   0 143 144   0]
+ [  0   4   1   1   0 145 146   0]
+ [  0   4   1   1   0 147 148   0]
+ [  0   4   1   1   0 149 150   0]
+ [  0   5   1   1   0 151 152   0]
+ [  0   5   1   1   0 153 154   0]
+ [  0   5   1   1   0 155 156   0]
+ [  0   5   1   1   0 157 158   0]
+ [  0   5   1   1   0 159 160   0]
+ [  0   6   1   1   0 161 162   0]
+ [  0   6   1   1   0 163 164   0]
+ [  0   6   1   1   0 165 166   0]
+ [  0   6   1   1   0 167 168   0]
+ [  0   7   1   1   0 169 170   0]
+ [  0   7   1   1   0 171 172   0]
+ [  0   7   1   1   0 173 174   0]
+ [  0   8   1   1   0 175 176   0]
+ [  0   8   1   1   0 177 178   0]]
+arg.env = [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+  0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+  0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+  0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+  0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+  0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+  4.96802011e+06  7.67184019e+05  1.79922002e+05  5.21683994e+04
+  1.72934001e+04  6.31046971e+03  2.48142017e+03  1.03674998e+03
+  4.54070076e+02  2.05801868e+02  9.57597100e+01  4.56037810e+01
+  2.21827000e+01  1.90006451e-01  3.44090497e-01  5.87904231e-01
+  9.57331620e-01  1.50277909e+00  2.28638646e+00  3.37870899e+00
+  4.86661426e+00  6.85386603e+00  9.36123182e+00  1.20291828e+01
+  1.38650777e+01  1.33506934e+01 -1.53039982e-01 -2.92175475e-01
+ -4.97089916e-01 -8.08883470e-01 -1.27095779e+00 -1.93340359e+00
+ -2.86339099e+00 -4.13412561e+00 -5.87031424e+00 -8.13121623e+00
+ -1.07902909e+01 -1.31927643e+01 -1.43644481e+01  1.10045000e+01
+  1.52648577e+01  5.53001100e+00  9.11086309e+00  2.74694000e+00
+  5.39078367e+00  1.32605000e+00  3.12201474e+00  6.26784000e-01
+  1.77972725e+00  2.93908000e-01  1.00849461e+00  1.34983000e-01
+  5.62631873e-01  5.34800000e-02  2.80969108e-01  4.02041119e+03
+  9.30561030e+02  2.95517338e+02  1.13498375e+02  4.85521130e+01
+  2.21428070e+01  1.05380950e+01  8.62023549e+00  1.31444030e+01
+  1.86644842e+01  2.49717382e+01  3.16119609e+01  3.67857278e+01
+  3.89805320e+01  5.19283900e+00  2.28686467e+01  2.61534400e+00
+  9.70276288e+00  1.32158900e+00  4.13385188e+00  6.61978000e-01
+  1.74196265e+00  3.27398000e-01  7.22485974e-01  1.59348000e-01
+  2.93709277e-01  7.45820000e-02  1.13704309e-01  3.19100000e-02
+  3.93453033e-02  1.29767000e+01  2.31508451e+02  6.65877000e+00
+  7.20226192e+01  3.41684000e+00  2.24064220e+01  1.75330000e+00
+  6.97072249e+00  8.99680000e-01  2.16862022e+00  4.61650000e-01
+  6.74647408e-01  2.36900000e-01  2.09902805e-01  9.77700000e-02
+  4.46055822e-02  1.27941000e+01  6.10635823e+02  6.48093000e+00
+  1.32188707e+02  3.28295000e+00  2.86157390e+01  1.66299000e+00
+  6.19458257e+00  8.42400000e-01  1.34099348e+00  4.26720000e-01
+  2.90290022e-01  1.80070000e-01  4.16632776e-02  7.22853000e+00
+  3.02905088e+02  3.91156000e+00  5.59605008e+01  2.11666000e+00
+  1.03385501e+01  1.14538000e+00  1.90998735e+00  6.19800000e-01
+  3.52866903e-01  2.72230000e-01  3.67276428e-02  7.81133000e+00
+  6.31842680e+02  4.05272000e+00  7.48909267e+01  2.10265000e+00
+  8.87657578e+00  1.09091000e+00  1.05212358e+00  5.25080000e-01
+  9.77204717e-02  6.10477000e+00  3.88661009e+02  2.95271000e+00
+  2.55058062e+01  1.42815000e+00  1.67383605e+00  7.40420000e-01
+  1.42512876e-01  4.75927000e+00  1.72124187e+02  2.18588000e+00
+  6.30532224e+00  1.09420000e+00  3.33009376e-01  3.22427000e+00
+  2.86516830e+01  1.61400000e+00  1.07063823e+00]
+ecpbas  = []
+
+
+******** <class 'pyscf.scf.hf_symm.SymAdaptedROHF'> ********
+method = SymAdaptedROHF-ROHF-RHF
+initial guess = atom
+damping factor = 0
+level_shift factor = 0
+DIIS = <class 'pyscf.scf.diis.CDIIS'>
+diis_start_cycle = 1
+diis_space = 8
+SCF conv_tol = 1e-09
+SCF conv_tol_grad = None
+SCF max_cycles = 50
+direct_scf = True
+direct_scf_tol = 1e-13
+chkfile to save SCF result = O_av8z_UHF.chk
+max_memory 16000 MB (current use 74 MB)
+num. doubly occ = 3  num. singly occ = 2
+irrep_nelec {'A1g': (2, 2), 'E1ux': (1, 0), 'E1uy': (1, 0), 'A1u': (1, 1)}
+Freeze 8 electrons in irreps ['A1g', 'E1ux', 'E1uy', 'A1u']
+    0 free electrons in irreps E1gx E1gy E2gx E2gy E3gx E3gy E2uy E2ux E3uy E3ux E4gx E4gy E5gx E5gy E4uy E4ux E5uy E5ux E6gx E6gy E7gx E7gy E6uy E6ux E7uy E7ux E8gx E8gy
+Set gradient conv threshold to 3.16228e-05
+Initial guess from the superpostion of atomic densties.
+Spherically averaged atomic HF for {'O'}
+
+
+******** <class 'pyscf.scf.atom_hf.AtomSphAverageRHF'> ********
+method = AtomSphAverageRHF-RHF
+initial guess = minao
+damping factor = 0
+level_shift factor = 0
+DIIS = <class 'pyscf.scf.diis.CDIIS'>
+diis_start_cycle = 1
+diis_space = 8
+SCF conv_tol = 1e-09
+SCF conv_tol_grad = None
+SCF max_cycles = 50
+direct_scf = True
+direct_scf_tol = 1e-13
+chkfile to save SCF result = /tmp/tmpjbm4kfp7
+max_memory 16000 MB (current use 76 MB)
+atom = O
+Set gradient conv threshold to 3.16228e-05
+Nelec from initial guess = 7.999994159000153
