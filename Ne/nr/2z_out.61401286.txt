@@ -1,0 +1,2339 @@
+ **********************************************************************
+                          MRCC program system
+ **********************************************************************
+ 
+                              Written by
+  Mihaly Kallay, Zoltan Rolik, Jozsef Csontos, Peter Nagy, Gyula Samu,
+    David Mester, Istvan Ladjanszki, Lorant Szegedy, Bence Ladoczki,
+              Klara Petrov, Mate Farkas, and Bence Hegely
+ 
+        Department of Physical Chemistry and Materials Science
+            Budapest University of Technology and Economics
+                  Budapest P.O.Box 91, H-1521 Hungary
+ 
+                              www.mrcc.hu
+ 
+                      Release date: April 12, 2017
+
+ ************************ 2023-02-28 14:32:26 *************************
+ Executing minp...
+
+ Reading input from MINP...
+ 
+ Input file:
+ 
+# TITLE
+basis=VDZ-EMSL
+uncontract=off
+#iface=cfour
+itol=18
+scftol=12
+cctol=7
+calc=CI(2)
+#mem=276GB
+mem=2GB
+core=corr
+ccmaxit=999
+scfmaxit=9999
+scftype=RHF
+
+scfiguess=ao
+rohftype=standard
+mult=1
+charge=+0
+rest=2
+#symm = 7
+
+unit=bohr
+geom
+Ne
+
+#R=1.401100  # ! from Puchalsi2017, au.
+
+tprint=0.01
+verbosity=9
+nstate=10
+
+ 
+ 
+ Checking keyword combinations...
+ 
+ Keywords:
+ 
+ active=none
+ agrid=ld0006-ld0590
+ basis=vdz-emsl
+ basopt=off
+ bpcompo=0.985
+ bpcompv=0.98
+ bpdfo=0.985
+ bpocc=0.985
+ bppdo=0.985
+ bppdv=0.98
+ bpedo=0.985
+ bpedv=0.98
+ calc=ci(2)
+ ccmaxit=999
+ ccprog=mrcc
+ cctol=7
+ charge=+0
+ cialg=disk
+ ciguess=off
+ cmpgrp=auto
+ core=corr
+ corembed=off
+ dboc=off
+ dendec=cholesky
+ dens=0
+ dfalg=invsqrt
+ dfbasis_cor=none
+ dfbasis_scf=none
+ dfintran=ovirt
+ dft=off
+ diag=david
+ domrad=10.d0
+ drpaalg=fit
+ ecp=auto
+ edisp=off
+ embed=off
+ epert=none
+ eps=0.975
+ excrad=0.d0
+ excrad_fin=0.000000000D+00
+ freq=off
+ gauss=spher
+ geom=zmat
+ gopt=off
+ ghost=none
+ gtol=7
+ grdens=off
+ grtol=10
+ hamilton=dc
+ iface=none
+ intalg=auto
+ itol=18
+ laptol=1.d-2
+ lcorthr=loose
+ lccrest=off
+ lmp2dens=on
+ lnoepso=3e-5
+ lnoepsv=1e-6
+ localcc=off
+ locintrf=disk
+ maxact=off
+ maxex=0
+ bfbasis=none
+ mem=2gb
+ molden=on
+ mulmet=0
+ mult=1
+ nacto=0
+ nactv=0
+ naf_cor=off
+ naf_scf=off
+ nafalg=albe
+ naftyp=
+ nchol=auto
+ ndeps=1e-3
+ nstate=10
+ nsing=0
+ ntrip=0
+ occ=
+ optalg=
+ optmaxit=50
+ optetol=1e-6
+ optgtol=1e-4
+ optstol=1e-3
+ orblocc=off
+ orbloco=off
+ orblocv=off
+ osveps=1e-3
+ ovirt=off
+ ovosnorb=80.0
+ ptfreq=0.0
+ popul=off
+ pressure=100000
+ qmmm=off
+ refdet=none
+ rest=2
+ rgrid=log3
+ rohftype=standard
+ scfalg=auto
+ scfdamp=off
+ scfdiis=on
+ scfdiis_end=9999
+ scfdiis_start=1
+ scfdiis_step=1
+ scfdtol=16
+ scfext=10
+ scfiguess=ao
+ scflshift=off
+ scfmaxit=9999
+ scftype=rhf
+ scftol=12
+ scspe=1.d0
+ scsps=1.2d0
+ scspt=0.33333333333333
+ scspv=1.d0
+ spairtol=1e-4
+ symm=
+ talg=occ
+ temp=298.15
+ test=off
+ tprint=0.01
+ uncontract=off
+ unit=bohr
+ verbosity=9
+ wpairtol=0.100000000E-05
+
+ ************************ 2023-02-28 14:32:27 *************************
+ Executing integ...
+
+ Allocation of 2048.0 Mbytes of memory...
+ 
+ Number of atoms:              1
+ Charge:                       0
+ Number of electrons:         10
+ Number of core electrons:     2
+ Spin multiplicity:            1
+ 
+                 Cartesian coordinates [bohr]      Atomic mass [AMU]  Z
+   1  Ne    0.00000000    0.00000000    0.00000000    19.992436      10
+ 
+ This molecule is a spherical top.
+ 
+ Rotational constants [cm-1]: 
+
+ 
+ Point group: Dxh 
+ Computational point group: D2h 
+ 
+ Cartesian coordinates in standard orientation [bohr]
+   1  Ne    0.00000000    0.00000000    0.00000000
+ 
+ Nuclear repulsion energy [au]:          0.000000000000
+ 
+ 
+ Basis set information:
+ 
+ Maximum angular momentum: d
+ Maximum number of contracted Gaussians:    3
+ Maximum number of primitive Gaussians:     9
+ Spherical harmonic GTOs are used.
+ 
+    1  Ne vdz-emsl [ 9s 4p 1d | 3s 2p 1d ]
+ 
+ Basis functions:
+           1             2             3             4             5             6             7             8             9            10
+   0    1Ne1s         1Ne2s         1Ne3s         1Ne1pz        1Ne1py        1Ne1px        1Ne2pz        1Ne2py        1Ne2px        1Ne1d-2   
+   1    1Ne1d-1       1Ne1d0        1Ne1d+1       1Ne1d+2   
+ 
+ Maximum number of basis functions per shell:    6
+ Total number of basis functions:    14
+ 
+ 
+ Character table for point group D2h:
+ 
+          E  C2z C2y C2x  i  Qxy Qxz Qyz 
+    Ag    1   1   1   1   1   1   1   1
+    B1g   1   1  -1  -1   1   1  -1  -1
+    B2g   1  -1   1  -1   1  -1   1  -1
+    B3g   1  -1  -1   1   1  -1  -1   1
+    Au    1   1   1   1  -1  -1  -1  -1
+    B1u   1   1  -1  -1  -1  -1   1   1
+    B2u   1  -1   1  -1  -1   1  -1   1
+    B3u   1  -1  -1   1  -1   1   1  -1
+ 
+ Number of basis functions per irrep:
+    Ag      5
+    B1g     1
+    B2g     1
+    B3g     1
+    Au      0
+    B1u     2
+    B2u     2
+    B3u     2
+ 
+ 
+ Calculation of overlap integrals...
+ CPU time [min]:     0.049                   Wall time [min]:     0.057
+ Calculation of kinetic energy integrals...
+ CPU time [min]:     0.101                   Wall time [min]:     0.061
+ Calculation of dipole moment integrals...
+ CPU time [min]:     0.102                   Wall time [min]:     0.061
+ Calculation of second moment integrals...
+ CPU time [min]:     0.102                   Wall time [min]:     0.061
+ Calculation of third moment integrals...
+ CPU time [min]:     0.102                   Wall time [min]:     0.061
+ Calculation of linear momentum integrals...
+ CPU time [min]:     0.102                   Wall time [min]:     0.061
+ Calculation of angular momentum integrals...
+ CPU time [min]:     0.103                   Wall time [min]:     0.061
+ Calculation of nuclear attraction integrals...
+ CPU time [min]:     0.103                   Wall time [min]:     0.061
+ 
+ Calculation of prescreening integrals...
+ CPU time [min]:     0.104                   Wall time [min]:     0.061
+ 
+ Calculation of two-electron integrals...
+  19% done.
+ 100% done.
+ CPU time [min]:     0.140                   Wall time [min]:     0.063
+
+ ************************ 2023-02-28 14:32:31 *************************
+ Executing scf...
+
+ @scfsetup: integrals taken from disk
+            mrcc/integ binary format
+ @scfsetup: calc on blockdiagonal matrices
+            using symmetry adapted basis
+ @scfsetup: diis switched on
+ @scfsetup: number of steps to extrapolate from  10
+ @scfsetup: tolerance in energy deviation    0.100000E-11
+            tolerance in density deviation    0.100000E-15
+ @scfsetup: maximum number of iterations:9999
+ @scfsetup: restricted closed shell hf calc
+ @scfsetup: starting scf from diagonal ao guess
+ @scfsetup: occupation set:
+            from initial orbitals
+ @scfsetup: diis runs from iteration:   1
+ @scfsetup: diis runs to iteration:9999
+ @scfsetup: diis runs in every   1 iteration
+ Allocation of 2048.0 Mbytes of memory...
+ ======================================================================
+ ITERATION STEP   1
+ CPU time [min]:     0.001                   Wall time [min]:     0.002
+ 
+ @SCF: CHECKING CLOSED SHELL DENSITY MATRIX
+ @check_dens: symmetry of density matrix OK!
+ @check_dens: norm of density matrix OK!
+ @check_dens: density idempotency OK!
+ Squared Frobenius norm of difference density:         0.00000000006215
+ ALPHA OCC:   2   0   0   0   0   1   1   1
+ BETA  OCC:   2   0   0   0   0   1   1   1
+ ***HARTREE-FOCK ENERGY IN STEP   1 IS    -128.4887755517097219 [AU]
+ ======================================================================
+ ITERATION STEP   2
+ CPU time [min]:     0.002                   Wall time [min]:     0.006
+ 
+ @scf diis running in this iteration
+ @SCF: CHECKING CLOSED SHELL DENSITY MATRIX
+ @check_dens: symmetry of density matrix OK!
+ @check_dens: norm of density matrix OK!
+ @check_dens: density idempotency OK!
+ Squared Frobenius norm of difference density:         0.00000000001847
+ ALPHA OCC:   2   0   0   0   0   1   1   1
+ BETA  OCC:   2   0   0   0   0   1   1   1
+ ***HARTREE-FOCK ENERGY IN STEP   2 IS    -128.4887755517399910 [AU]
+ ======================================================================
+ ITERATION STEP   3
+ CPU time [min]:     0.002                   Wall time [min]:     0.007
+ 
+ @scf diis running in this iteration
+ @SCF: CHECKING CLOSED SHELL DENSITY MATRIX
+ @check_dens: symmetry of density matrix OK!
+ @check_dens: norm of density matrix OK!
+ @check_dens: density idempotency OK!
+ Squared Frobenius norm of difference density:         0.00000000000139
+ ALPHA OCC:   2   0   0   0   0   1   1   1
+ BETA  OCC:   2   0   0   0   0   1   1   1
+ ***HARTREE-FOCK ENERGY IN STEP   3 IS    -128.4887755517406731 [AU]
+ ======================================================================
+ ITERATION STEP   4
+ CPU time [min]:     0.002                   Wall time [min]:     0.007
+ 
+ @scf diis running in this iteration
+ @SCF: CHECKING CLOSED SHELL DENSITY MATRIX
+ @check_dens: symmetry of density matrix OK!
+ @check_dens: norm of density matrix OK!
+ @check_dens: density idempotency OK!
+ Squared Frobenius norm of difference density:         0.00000000000001
+ ALPHA OCC:   2   0   0   0   0   1   1   1
+ BETA  OCC:   2   0   0   0   0   1   1   1
+ ***HARTREE-FOCK ENERGY IN STEP   4 IS    -128.4887755517409005 [AU]
+ ======================================================================
+ ITERATION STEP   5
+ CPU time [min]:     0.002                   Wall time [min]:     0.008
+ 
+ @scf diis running in this iteration
+ @SCF: CHECKING CLOSED SHELL DENSITY MATRIX
+ @check_dens: symmetry of density matrix OK!
+ @check_dens: norm of density matrix OK!
+ @check_dens: density idempotency OK!
+ Squared Frobenius norm of difference density:         0.00000000000000
+ ALPHA OCC:   2   0   0   0   0   1   1   1
+ BETA  OCC:   2   0   0   0   0   1   1   1
+ ***HARTREE-FOCK ENERGY IN STEP   5 IS    -128.4887755517408721 [AU]
+ ======================================================================
+ 
+ SUCCESS...
+ THE SCF ITERATION HAS CONVERGED!
+ 
+                   Ag  B1g B2g B3g Au  B1u B2u B3u 
+ FINAL ALPHA OCC:   2   0   0   0   0   1   1   1
+ FINAL BETA  OCC:   2   0   0   0   0   1   1   1
+ 
+ ***FINAL HARTREE-FOCK ENERGY:   -128.4887755517408721 [AU]
+ 
+ Orbital energies [au]:
+      Irrep         Alpha          Beta
+    1   Ag       -32.765635     -32.765635
+    2   Ag        -1.918798      -1.918798
+    3   B1u       -0.832097      -0.832097
+    4   B3u       -0.832097      -0.832097
+    5   B2u       -0.832097      -0.832097
+ 
+    6   B3u        1.694558       1.694558
+    7   B1u        1.694558       1.694558
+    8   B2u        1.694558       1.694558
+    9   Ag         2.159425       2.159425
+   10   B2g        5.196711       5.196711
+   11   B3g        5.196711       5.196711
+   12   Ag         5.196711       5.196711
+   13   B1g        5.196711       5.196711
+   14   Ag         5.196711       5.196711
+ 
+ RETURNING FROM SCF ALGORITHM
+ ======================================================================
+
+ ************************ 2023-02-28 14:32:33 *************************
+ Executing ovirt...
+
+ ovirt, the routine of orbital optimization and integral transformation 
+Tue Feb 28 14:32:33 PST 2023
+ Allocated memory:                    2048  Mb
+ RHF calculation! 
+ integral transforamtion: AOs ------ MOs
+ # of basis functions, # of int. blocks    14     1
+100 % 
+ second part
+100 %
+ integral transformation is completed! 
+CPU and WC time           0.02           1.28     AOs -> MOs 
+Integrals are written to fort.55
+Tue Feb 28 14:32:35 PST 2023
+  ovirt terminated normally 
+
+ ************************ 2023-02-28 14:32:35 *************************
+ Executing goldstone...
+
+ Generation of CI equations in terms of H and C...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:     7
+ Number of diagrams in T^2 equations:     8
+ Translation of diagrams to factorized equations...
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   5.9514E+04
+ Probable CPU time per iteration step (hours):      0.00
+ Required memory (Mbytes):       1.1
+ Number of intermediates:                                  26
+ Number of intermediates to be stored:                     11
+ Length of intermediate file (Mbytes):       0.1
+
+ ************************ 2023-02-28 14:32:37 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ CI(                     2 ) calculation 
+ 
+ 
+ Allocation of 100.0 Mbytes of memory...
+ Number of spinorbitals:                    28
+ Number of alpha electrons:                        5
+ Number of beta electrons:                         5
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                     18
+ Number of                     2 -fold excitations:                    381
+ Total number of configurations:                    400
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):       0.1
+ 
+ ======================================================================
+ 
+ ======================================================================
+ 
+ ======================================================================
+ 
+ ======================================================================
+ 
+ ======================================================================
+ 
+ ======================================================================
+ 
+ ======================================================================
+ 
+ ======================================================================
+ 
+ ======================================================================
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:          0.0454         0.3214
+ Integer:         3.2981
+ Total:           3.3435         3.6196
+ 
+
+ ************************ 2023-02-28 14:32:38 *************************
+ Executing goldstone...
+
+ Generation of CI equations in terms of H and C...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:     4
+ Translation of diagrams to factorized equations...
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   2.9602E+02
+ Probable CPU time per iteration step (hours):      0.00
+ Required memory (Mbytes):       1.1
+ Number of intermediates:                                  11
+ Number of intermediates to be stored:                      7
+ Length of intermediate file (Mbytes):       0.0
+
+ ************************ 2023-02-28 14:32:38 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ CI(                     1 ) calculation 
+ 
+ 
+ Allocation of 100.0 Mbytes of memory...
+ Number of spinorbitals:                    28
+ Number of alpha electrons:                        5
+ Number of beta electrons:                         5
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                     18
+ Total number of configurations:                     19
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):       0.1
+ 
+ ======================================================================
+ 
+ ======================================================================
+ 
+ ======================================================================
+ 
+ ======================================================================
+ 
+ ======================================================================
+ 
+ ======================================================================
+ 
+ ======================================================================
+ 
+ ======================================================================
+ 
+ ======================================================================
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:          0.0224         0.2985
+ Integer:         3.2529
+ Total:           3.2754         3.5514
+ 
+
+ ************************ 2023-02-28 14:32:40 *************************
+ Executing mrcc...
+
+ **********************************************************************
+ CIS calculation                                                        
+ 
+ 
+ OpenMP parallel version is running.
+ Number of CPUs:  16
+ Allocation of    0.3 Mbytes of memory...
+ Number of spinorbitals:  28
+ Number of alpha electrons:  5
+ Number of beta  electrons:  5
+ z-component of spin:  0.0
+ Spatial symmetry: 1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of 0-fold excitations: 1
+ Number of 1-fold excitations: 18
+ Total number of determinants: 19
+ Calculation of coupling coefficients...
+ Initial cluster amplitudes are generated.
+ Length of intermediate file (Mbytes):       0.1
+ Reading integral list from unit 55...
+ Sorting integrals...
+ Energy of reference determinant [au]:    -128.488775551741
+ Calculation of diagonal elements of Hamiltonian...
+ 
+ Starting CI iteration for root                      1 ...
+ ======================================================================
+ Norm of residual vector:     0.0000E+00      Convergence:   1.0000E+00
+ CPU time [min]:     0.070                   Wall time [min]:     0.005
+ 
+ Iteration  1  CI energy:  -128.48877555  Energy decrease:   0.0000E+00
+ ======================================================================
+ 
+ Iteration has converged in  1 steps.
+ 
+ Final results:
+ Total CIS energy [au]:             -128.488775551741
+ Spin multiplicity:                     1
+ 
+ 
+ 
+ Dominant CI coefficients
+ Printing threshold:  1.00E-02
+ 
+    1.000000  Reference determinant                                     
+ 
+ Starting CI iteration for root                      2 ...
+ ======================================================================
+ Norm of residual vector:     0.43464699      Convergence:   1.00000000
+ CPU time [min]:     0.071                   Wall time [min]:     0.005
+ 
+ Iteration  1  CI energy:  -126.39099327  Energy decrease:   2.09778228
+ ======================================================================
+ Norm of residual vector:     0.06911342      Convergence:   0.58554680
+ CPU time [min]:     0.072                   Wall time [min]:     0.005
+ 
+ Iteration  2  CI energy:  -126.66833292  Energy decrease:   0.27733965
+ ======================================================================
+ Norm of residual vector:     0.00239248      Convergence:   0.03744202
+ CPU time [min]:     0.073                   Wall time [min]:     0.005
+ 
+ Iteration  3  CI energy:  -126.67072117  Energy decrease:   0.00238825
+ ======================================================================
+ Norm of residual vector:     0.00003249      Convergence:   0.00033300
+ CPU time [min]:     0.075                   Wall time [min]:     0.005
+ 
+ Iteration  4  CI energy:  -126.67072175  Energy decrease:   0.00000058
+ ======================================================================
+ Norm of residual vector:     0.0000E+00      Convergence:   1.1430E-06
+ CPU time [min]:     0.077                   Wall time [min]:     0.005
+ 
+ Iteration  5  CI energy:  -126.67072175  Energy decrease:   3.7105E-11
+ ======================================================================
+ 
+ Iteration has converged in  5 steps.
+ 
+ Final results:
+ Total CIS energy [au]:             -126.670721748578
+ Excitation energy [eV]:          49.4718
+ Excitation energy [cm^-1]:   399016.72
+ Absorption wavelength [nm]:      25.06
+ Spin multiplicity:                     1
+ 
+ 
+ 
+ Dominant CI coefficients
+ Printing threshold:  1.00E-02
+ 
+   -0.577348  3b -> 7b                                                  
+    0.288674  5b -> 8b                                                  
+    0.288674  4b -> 6b                                                  
+   -0.577348  3a -> 7a                                                  
+    0.288674  5a -> 8a                                                  
+    0.288674  4a -> 6a                                                  
+ 
+ Starting CI iteration for root                      3 ...
+ ======================================================================
+ Norm of residual vector:     0.45598455      Convergence:   1.00000000
+ CPU time [min]:     0.079                   Wall time [min]:     0.005
+ 
+ Iteration  1  CI energy:  -126.33504817  Energy decrease:   2.15372738
+ ======================================================================
+ Norm of residual vector:     0.10441796      Convergence:   0.64329274
+ CPU time [min]:     0.080                   Wall time [min]:     0.005
+ 
+ Iteration  2  CI energy:  -126.66505997  Energy decrease:   0.33001181
+ ======================================================================
+ Norm of residual vector:     0.00405595      Convergence:   0.05759878
+ CPU time [min]:     0.082                   Wall time [min]:     0.006
+ 
+ Iteration  3  CI energy:  -126.67071990  Energy decrease:   0.00565993
+ ======================================================================
+ Norm of residual vector:     0.00005266      Convergence:   0.00060166
+ CPU time [min]:     0.083                   Wall time [min]:     0.006
+ 
+ Iteration  4  CI energy:  -126.67072175  Energy decrease:   0.00000184
+ ======================================================================
+ Norm of residual vector:     0.0000E+00      Convergence:   1.7775E-06
+ CPU time [min]:     0.084                   Wall time [min]:     0.006
+ 
+ Iteration  5  CI energy:  -126.67072175  Energy decrease:   9.3351E-11
+ ======================================================================
+ 
+ Iteration has converged in  5 steps.
+ 
+ Final results:
+ Total CIS energy [au]:             -126.670721748578
+ Excitation energy [eV]:          49.4718
+ Excitation energy [cm^-1]:   399016.72
+ Absorption wavelength [nm]:      25.06
+ Spin multiplicity:                     1
+ 
+ 
+ 
+ Dominant CI coefficients
+ Printing threshold:  1.00E-02
+ 
+   -0.499998  5b -> 8b                                                  
+    0.499998  4b -> 6b                                                  
+   -0.499998  5a -> 8a                                                  
+    0.499998  4a -> 6a                                                  
+ 
+ Starting CI iteration for root                      4 ...
+ ======================================================================
+ Norm of residual vector:     0.31189202      Convergence:   1.00000000
+ CPU time [min]:     0.085                   Wall time [min]:     0.006
+ 
+ Iteration  1  CI energy:  -125.83155121  Energy decrease:   2.65722434
+ ======================================================================
+ Norm of residual vector:     0.02155498      Convergence:   0.28689647
+ CPU time [min]:     0.085                   Wall time [min]:     0.006
+ 
+ Iteration  2  CI energy:  -125.91787785  Energy decrease:   0.08632663
+ ======================================================================
+ Norm of residual vector:     0.00011605      Convergence:   0.00109965
+ CPU time [min]:     0.086                   Wall time [min]:     0.006
+ 
+ Iteration  3  CI energy:  -125.91789503  Energy decrease:   0.00001719
+ ======================================================================
+ Norm of residual vector:     0.0000E+00      Convergence:   1.4105E-05
+ CPU time [min]:     0.086                   Wall time [min]:     0.006
+ 
+ Iteration  4  CI energy:  -125.91789503  Energy decrease:   1.6343E-09
+ ======================================================================
+ 
+ Iteration has converged in  4 steps.
+ 
+ Final results:
+ Total CIS energy [au]:             -125.917895032673
+ Excitation energy [eV]:          69.9572
+ Excitation energy [cm^-1]:   564243.09
+ Absorption wavelength [nm]:      17.72
+ Spin multiplicity:                     1
+ 
+ 
+ 
+ Dominant CI coefficients
+ Printing threshold:  1.00E-02
+ 
+   -0.202665  2b -> 9b                                                  
+    0.391118  3b -> 7b                                                  
+    0.391118  5b -> 8b                                                  
+    0.391118  4b -> 6b                                                  
+   -0.202665  2a -> 9a                                                  
+    0.391118  3a -> 7a                                                  
+    0.391118  5a -> 8a                                                  
+    0.391118  4a -> 6a                                                  
+ 
+ Starting CI iteration for root                      5 ...
+ ======================================================================
+ Norm of residual vector:     0.02086359      Convergence:   1.00000000
+ CPU time [min]:     0.087                   Wall time [min]:     0.006
+ 
+ Iteration  1  CI energy:  -124.87328239  Energy decrease:   3.61549316
+ ======================================================================
+ Norm of residual vector:     0.0000E+00      Convergence:   6.8837E-04
+ CPU time [min]:     0.088                   Wall time [min]:     0.006
+ 
+ Iteration  2  CI energy:  -124.87329675  Energy decrease:   0.00001436
+ ======================================================================
+ 
+ Iteration has converged in  2 steps.
+ 
+ Final results:
+ Total CIS energy [au]:             -124.873296751393
+ Excitation energy [eV]:          98.3822
+ Excitation energy [cm^-1]:   793505.93
+ Absorption wavelength [nm]:      12.60
+ Spin multiplicity:                     1
+ 
+ 
+ 
+ Dominant CI coefficients
+ Printing threshold:  1.00E-02
+ 
+   -0.677441  2b -> 9b                                                  
+   -0.117007  3b -> 7b                                                  
+   -0.117007  5b -> 8b                                                  
+   -0.117007  4b -> 6b                                                  
+   -0.677441  2a -> 9a                                                  
+   -0.117007  3a -> 7a                                                  
+   -0.117007  5a -> 8a                                                  
+   -0.117007  4a -> 6a                                                  
+ 
+ Starting CI iteration for root                      6 ...
+ ======================================================================
+ Norm of residual vector:     0.02320642      Convergence:   1.00000000
+ CPU time [min]:     0.089                   Wall time [min]:     0.006
+ 
+ Iteration  1  CI energy:  -122.19175517  Energy decrease:   6.29702038
+ ======================================================================
+ Norm of residual vector:     0.0000E+00      Convergence:   7.6316E-04
+ CPU time [min]:     0.089                   Wall time [min]:     0.006
+ 
+ Iteration  2  CI energy:  -122.19177288  Energy decrease:   0.00001771
+ ======================================================================
+ 
+ Iteration has converged in  2 steps.
+ 
+ Final results:
+ Total CIS energy [au]:             -122.191772878866
+ Excitation energy [eV]:         171.3502
+ Excitation energy [cm^-1]:  1382032.44
+ Absorption wavelength [nm]:       7.24
+ Spin multiplicity:                     1
+ 
+ 
+ 
+ Dominant CI coefficients
+ Printing threshold:  1.00E-02
+ 
+   -0.707103  2b -> 12b                                                 
+   -0.707103  2a -> 12a                                                 
+ 
+ Starting CI iteration for root                      7 ...
+ ======================================================================
+ Norm of residual vector:     0.02320642      Convergence:   1.00000000
+ CPU time [min]:     0.090                   Wall time [min]:     0.006
+ 
+ Iteration  1  CI energy:  -122.19175517  Energy decrease:   6.29702038
+ ======================================================================
+ Norm of residual vector:     0.0000E+00      Convergence:   7.6316E-04
+ CPU time [min]:     0.090                   Wall time [min]:     0.006
+ 
+ Iteration  2  CI energy:  -122.19177288  Energy decrease:   0.00001771
+ ======================================================================
+ 
+ Iteration has converged in  2 steps.
+ 
+ Final results:
+ Total CIS energy [au]:             -122.191772878866
+ Excitation energy [eV]:         171.3502
+ Excitation energy [cm^-1]:  1382032.44
+ Absorption wavelength [nm]:       7.24
+ Spin multiplicity:                     1
+ 
+ 
+ 
+ Dominant CI coefficients
+ Printing threshold:  1.00E-02
+ 
+   -0.707103  2b -> 14b                                                 
+   -0.707103  2a -> 14a                                                 
+ 
+ Starting CI iteration for root                      8 ...
+ ======================================================================
+ Norm of residual vector:     0.0000E+00      Convergence:   1.0000E+00
+ CPU time [min]:     0.091                   Wall time [min]:     0.006
+ 
+ Iteration  1  CI energy:   -94.56481808  Energy decrease:  33.92395747
+ ======================================================================
+ 
+ Iteration has converged in  1 steps.
+ 
+ Final results:
+ Total CIS energy [au]:              -94.564818077904
+ Excitation energy [eV]:         923.1179
+ Excitation energy [cm^-1]:  7445448.59
+ Absorption wavelength [nm]:       1.34
+ Spin multiplicity:                     1
+ 
+ 
+ 
+ Dominant CI coefficients
+ Printing threshold:  1.00E-02
+ 
+    0.707101  1b -> 9b                                                  
+    0.707101  1a -> 9a                                                  
+ 
+ Starting CI iteration for root                      9 ...
+ ======================================================================
+ Norm of residual vector:     0.0000E+00      Convergence:   1.0000E+00
+ CPU time [min]:     0.092                   Wall time [min]:     0.006
+ 
+ Iteration  1  CI energy:   -91.78357558  Energy decrease:  36.70519997
+ ======================================================================
+ 
+ Iteration has converged in  1 steps.
+ 
+ Final results:
+ Total CIS energy [au]:              -91.783575577761
+ Excitation energy [eV]:         998.7994
+ Excitation energy [cm^-1]:  8055860.81
+ Absorption wavelength [nm]:       1.24
+ Spin multiplicity:                     1
+ 
+ 
+ 
+ Dominant CI coefficients
+ Printing threshold:  1.00E-02
+ 
+    0.707107  1b -> 12b                                                 
+    0.707107  1a -> 12a                                                 
+ 
+ Starting CI iteration for root                     10 ...
+ ======================================================================
+ Norm of residual vector:     0.0000E+00      Convergence:   1.0000E+00
+ CPU time [min]:     0.093                   Wall time [min]:     0.006
+ 
+ Iteration  1  CI energy:   -91.78357558  Energy decrease:  36.70519997
+ ======================================================================
+ 
+ Iteration has converged in  1 steps.
+ 
+ Final results:
+ Total CIS energy [au]:              -91.783575577761
+ Excitation energy [eV]:         998.7994
+ Excitation energy [cm^-1]:  8055860.81
+ Absorption wavelength [nm]:       1.24
+ Spin multiplicity:                     1
+ 
+ Dominant CI coefficients
+ Printing threshold:  1.00E-02
+ 
+    0.707107  1b -> 14b                                                 
+    0.707107  1a -> 14a                                                 
+
+ ************************ 2023-02-28 14:32:40 *************************
+ Executing goldstone...
+
+ Generation of CI equations in terms of H and C...
+ Generation of antisymmetrized Goldstone diagrams...
+ Number of diagrams in T^1 equations:     7
+ Number of diagrams in T^2 equations:     8
+ Translation of diagrams to factorized equations...
+ Optimizing intermediate calculation...
+ Number of floating-point operations per iteration step:   5.9514E+04
+ Probable CPU time per iteration step (hours):      0.00
+ Required memory (Mbytes):       1.1
+ Number of intermediates:                                  26
+ Number of intermediates to be stored:                     11
+ Length of intermediate file (Mbytes):       0.1
+
+ ************************ 2023-02-28 14:32:40 *************************
+ Executing xmrcc...
+
+ **********************************************************************
+ CI(                     2 ) calculation 
+ 
+ 
+ Allocation of 100.0 Mbytes of memory...
+ Number of spinorbitals:                    28
+ Number of alpha electrons:                        5
+ Number of beta electrons:                         5
+ z-component of spin:  0.0
+ Spatial symmetry:                      1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of                     0 -fold excitations:                      1
+ Number of                     1 -fold excitations:                     18
+ Number of                     2 -fold excitations:                    381
+ Total number of configurations:                    400
+ Calculation of coupling coefficients...
+ Length of intermediate file (Mbytes):       0.1
+ 
+ ======================================================================
+ 
+ ======================================================================
+ 
+ ======================================================================
+ 
+ ======================================================================
+ 
+ ======================================================================
+ 
+ ======================================================================
+ 
+ ======================================================================
+ 
+ ======================================================================
+ 
+ ======================================================================
+ 
+ ======================================================================
+ 
+ Memory requirements /Mbyte/: 
+               Minimal        Optimal
+ Real*8:          0.0454         0.3214
+ Integer:         3.2981
+ Total:           3.3435         3.6196
+ 
+
+ ************************ 2023-02-28 14:32:41 *************************
+ Executing mrcc...
+
+ **********************************************************************
+ CISD calculation                                                       
+ 
+ 
+ OpenMP parallel version is running.
+ Number of CPUs:  16
+ Allocation of    0.3 Mbytes of memory...
+ Number of spinorbitals:  28
+ Number of alpha electrons:  5
+ Number of beta  electrons:  5
+ z-component of spin:  0.0
+ Spatial symmetry: 1
+ Convergence criterion:  1.0E-07
+ Construction of occupation graphs...
+ Number of 0-fold excitations: 1
+ Number of 1-fold excitations: 18
+ Number of 2-fold excitations: 381
+ Total number of determinants: 400
+ Calculation of coupling coefficients...
+ Initial cluster amplitudes are read from unit 16.
+ Length of intermediate file (Mbytes):       0.1
+ Reading integral list from unit 55...
+ Sorting integrals...
+ Energy of reference determinant [au]:    -128.488775551741
+ Calculation of diagonal elements of Hamiltonian...
+ 
+ Starting CI iteration for root                      1 ...
+ ======================================================================
+ Norm of residual vector:     1.25814773      Convergence:   1.00000000
+ CPU time [min]:     0.111                   Wall time [min]:     0.025
+ 
+ Iteration  1  CI energy:  -128.48877555  Energy decrease:   0.0000E+00
+ ======================================================================
+ Norm of residual vector:     0.15588732      Convergence:   0.16131469
+ CPU time [min]:     0.120                   Wall time [min]:     0.025
+ 
+ Iteration  2  CI energy:  -128.67222515  Energy decrease:   0.18344960
+ ======================================================================
+ Norm of residual vector:     0.01843228      Convergence:   0.02265279
+ CPU time [min]:     0.155                   Wall time [min]:     0.028
+ 
+ Iteration  3  CI energy:  -128.67535461  Energy decrease:   0.00312946
+ ======================================================================
+ Norm of residual vector:     0.00363650      Convergence:   0.00441242
+ CPU time [min]:     0.192                   Wall time [min]:     0.030
+ 
+ Iteration  4  CI energy:  -128.67542454  Energy decrease:   0.00006993
+ ======================================================================
+ Norm of residual vector:     0.00036985      Convergence:   0.00069193
+ CPU time [min]:     0.228                   Wall time [min]:     0.032
+ 
+ Iteration  5  CI energy:  -128.67542693  Energy decrease:   0.00000238
+ ======================================================================
+ Norm of residual vector:     0.00002424      Convergence:   0.00005516
+ CPU time [min]:     0.266                   Wall time [min]:     0.035
+ 
+ Iteration  6  CI energy:  -128.67542695  Energy decrease:   0.00000002
+ ======================================================================
+ Norm of residual vector:     0.00000309      Convergence:   0.00000432
+ CPU time [min]:     0.352                   Wall time [min]:     0.041
+ 
+ Iteration  7  CI energy:  -128.67542695  Energy decrease:   9.2626E-11
+ ======================================================================
+ Norm of residual vector:     0.0000E+00      Convergence:   4.4882E-07
+ CPU time [min]:     0.389                   Wall time [min]:     0.043
+ 
+ Iteration  8  CI energy:  -128.67542695  Energy decrease:   1.3074E-12
+ ======================================================================
+ 
+ Iteration has converged in  8 steps.
+ 
+ Final results:
+ Total CISD energy [au]:            -128.675426945386
+ Spin multiplicity:                     1
+ 
+ 
+ 
+ Dominant CI coefficients
+ Printing threshold:  1.00E-02
+ 
+    0.987163  Reference determinant                                     
+   -0.022092  4b 5b -> 6b 8b                                            
+   -0.014331  4b 5b -> 12b 13b                                          
+    0.022092  3b 4b -> 6b 7b                                            
+   -0.012411  3b 4b -> 10b 14b                                          
+   -0.022092  3b 5b -> 7b 8b                                            
+   -0.012411  3b 5b -> 11b 14b                                          
+    0.012030  2b 3b -> 7b 9b                                            
+    0.012030  2b 5b -> 8b 9b                                            
+    0.012030  2b 4b -> 6b 9b                                            
+   -0.017300  2a 2b -> 9a 9b                                            
+   -0.011839  3a 3b -> 9a 9b                                            
+   -0.016985  3a 3b -> 14a 14b                                          
+   -0.011839  5a 5b -> 9a 9b                                            
+   -0.013157  5a 5b -> 12a 12b                                          
+   -0.011839  4a 4b -> 9a 9b                                            
+   -0.013157  4a 4b -> 12a 12b                                          
+   -0.013157  5a 5b -> 13a 13b                                          
+   -0.013157  4a 4b -> 13a 13b                                          
+   -0.013157  3a 3b -> 10a 10b                                          
+   -0.013157  4a 4b -> 10a 10b                                          
+   -0.013157  3a 3b -> 11a 11b                                          
+   -0.013157  5a 5b -> 11a 11b                                          
+   -0.040249  3a 3b -> 7a 7b                                            
+   -0.040249  5a 5b -> 8a 8b                                            
+   -0.040249  4a 4b -> 6a 6b                                            
+   -0.028977  5a 4b -> 8a 6b                                            
+   -0.028977  4a 5b -> 6a 8b                                            
+   -0.028977  3a 4b -> 7a 6b                                            
+   -0.028977  4a 3b -> 6a 7b                                            
+   -0.028977  3a 5b -> 7a 8b                                            
+   -0.028977  5a 3b -> 8a 7b                                            
+   -0.022860  2a 3b -> 9a 7b                                            
+   -0.010829  3a 2b -> 9a 7b                                            
+   -0.010829  2a 3b -> 7a 9b                                            
+   -0.022860  3a 2b -> 7a 9b                                            
+   -0.022860  2a 5b -> 9a 8b                                            
+   -0.010829  5a 2b -> 9a 8b                                            
+   -0.010829  2a 5b -> 8a 9b                                            
+   -0.022860  5a 2b -> 8a 9b                                            
+   -0.022860  2a 4b -> 9a 6b                                            
+   -0.010829  4a 2b -> 9a 6b                                            
+   -0.010829  2a 4b -> 6a 9b                                            
+   -0.022860  4a 2b -> 6a 9b                                            
+   -0.022092  4a 5a -> 6a 8a                                            
+   -0.014331  4a 5a -> 12a 13a                                          
+    0.022092  3a 4a -> 6a 7a                                            
+   -0.012411  3a 4a -> 10a 14a                                          
+   -0.022092  3a 5a -> 7a 8a                                            
+   -0.012411  3a 5a -> 11a 14a                                          
+    0.012030  2a 3a -> 7a 9a                                            
+    0.012030  2a 5a -> 8a 9a                                            
+    0.012030  2a 4a -> 6a 9a                                            
+ 
+ Starting CI iteration for root                      2 ...
+ ======================================================================
+ Norm of residual vector:     0.51875986      Convergence:   1.00000000
+ CPU time [min]:     0.428                   Wall time [min]:     0.046
+ 
+ Iteration  1  CI energy:  -126.67072175  Energy decrease:   1.81805380
+ ======================================================================
+ Norm of residual vector:     0.04033490      Convergence:   0.10481616
+ CPU time [min]:     0.464                   Wall time [min]:     0.048
+ 
+ Iteration  2  CI energy:  -126.71755326  Energy decrease:   0.04683152
+ ======================================================================
+ Norm of residual vector:     0.00511565      Convergence:   0.00974459
+ CPU time [min]:     0.500                   Wall time [min]:     0.051
+ 
+ Iteration  3  CI energy:  -126.71789831  Energy decrease:   0.00034504
+ ======================================================================
+ Norm of residual vector:     0.00078821      Convergence:   0.00150431
+ CPU time [min]:     0.536                   Wall time [min]:     0.053
+ 
+ Iteration  4  CI energy:  -126.71790502  Energy decrease:   0.00000671
+ ======================================================================
+ Norm of residual vector:     0.00059388      Convergence:   0.00038238
+ CPU time [min]:     0.571                   Wall time [min]:     0.055
+ 
+ Iteration  5  CI energy:  -126.71790516  Energy decrease:   0.00000014
+ ======================================================================
+ Norm of residual vector:     0.00006956      Convergence:   0.00013994
+ CPU time [min]:     0.607                   Wall time [min]:     0.058
+ 
+ Iteration  6  CI energy:  -126.71790524  Energy decrease:   0.00000007
+ ======================================================================
+ Norm of residual vector:     0.00000686      Convergence:   0.00001594
+ CPU time [min]:     0.643                   Wall time [min]:     0.060
+ 
+ Iteration  7  CI energy:  -126.71790524  Energy decrease:   9.5534E-10
+ ======================================================================
+ Norm of residual vector:     0.00000127      Convergence:   0.00000193
+ CPU time [min]:     0.680                   Wall time [min]:     0.063
+ 
+ Iteration  8  CI energy:  -126.71790524  Energy decrease:   1.1894E-11
+ ======================================================================
+ Norm of residual vector:     0.0000E+00      Convergence:   3.4874E-07
+ CPU time [min]:     0.716                   Wall time [min]:     0.065
+ 
+ Iteration  9  CI energy:  -126.71790524  Energy decrease:   4.1211E-13
+ ======================================================================
+ 
+ Iteration has converged in  9 steps.
+ 
+ Final results:
+ Total CISD energy [au]:            -126.717905238535
+ Excitation energy [eV]:          53.2669
+ Excitation energy [cm^-1]:   429626.39
+ Absorption wavelength [nm]:      23.28
+ Spin multiplicity:                     1
+ 
+ 
+ 
+ Dominant CI coefficients
+ Printing threshold:  1.00E-02
+ 
+   -0.574237  3b -> 7b                                                  
+    0.287119  5b -> 8b                                                  
+    0.287119  4b -> 6b                                                  
+   -0.574237  3a -> 7a                                                  
+    0.287119  5a -> 8a                                                  
+    0.287119  4a -> 6a                                                  
+    0.013136  4b 5b -> 6b 8b                                            
+    0.014434  3a 3b -> 14a 9b                                           
+    0.014434  3a 3b -> 9a 14b                                           
+   -0.013995  2a 2b -> 7a 7b                                            
+   -0.049035  3a 3b -> 7a 7b                                            
+    0.024518  5a 5b -> 8a 8b                                            
+    0.024518  4a 4b -> 6a 6b                                            
+    0.017524  5a 4b -> 8a 6b                                            
+    0.017524  4a 5b -> 6a 8b                                            
+   -0.010881  2a 3b -> 9a 7b                                            
+   -0.012197  3a 2b -> 14a 7b                                           
+   -0.012197  2a 3b -> 7a 14b                                           
+   -0.010881  3a 2b -> 7a 9b                                            
+    0.014558  5a 2b -> 11a 7b                                           
+    0.014558  2a 5b -> 7a 11b                                           
+    0.014558  4a 2b -> 10a 7b                                           
+    0.014558  2a 4b -> 7a 10b                                           
+    0.013136  4a 5a -> 6a 8a                                            
+ 
+ Starting CI iteration for root                      3 ...
+ ======================================================================
+ Norm of residual vector:     0.51875986      Convergence:   1.00000000
+ CPU time [min]:     0.754                   Wall time [min]:     0.068
+ 
+ Iteration  1  CI energy:  -126.67072175  Energy decrease:   1.81805380
+ ======================================================================
+ Norm of residual vector:     0.04031647      Convergence:   0.10480524
+ CPU time [min]:     0.789                   Wall time [min]:     0.070
+ 
+ Iteration  2  CI energy:  -126.71755376  Energy decrease:   0.04683201
+ ======================================================================
+ Norm of residual vector:     0.00510725      Convergence:   0.00974020
+ CPU time [min]:     0.824                   Wall time [min]:     0.072
+ 
+ Iteration  3  CI energy:  -126.71789833  Energy decrease:   0.00034457
+ ======================================================================
+ Norm of residual vector:     0.00069915      Convergence:   0.00147323
+ CPU time [min]:     0.907                   Wall time [min]:     0.078
+ 
+ Iteration  4  CI energy:  -126.71790514  Energy decrease:   0.00000681
+ ======================================================================
+ Norm of residual vector:     0.00008002      Convergence:   0.00016274
+ CPU time [min]:     0.943                   Wall time [min]:     0.080
+ 
+ Iteration  5  CI energy:  -126.71790524  Energy decrease:   0.00000010
+ ======================================================================
+ Norm of residual vector:     0.00000774      Convergence:   0.00001846
+ CPU time [min]:     0.979                   Wall time [min]:     0.083
+ 
+ Iteration  6  CI energy:  -126.71790524  Energy decrease:   1.2732E-09
+ ======================================================================
+ Norm of residual vector:     0.00000372      Convergence:   0.00000262
+ CPU time [min]:     1.015                   Wall time [min]:     0.085
+ 
+ Iteration  7  CI energy:  -126.71790524  Energy decrease:   1.0075E-11
+ ======================================================================
+ Norm of residual vector:     0.00000089      Convergence:   0.00000165
+ CPU time [min]:     1.052                   Wall time [min]:     0.087
+ 
+ Iteration  8  CI energy:  -126.71790524  Energy decrease:   5.4143E-12
+ ======================================================================
+ Norm of residual vector:     0.0000E+00      Convergence:   2.1549E-07
+ CPU time [min]:     1.088                   Wall time [min]:     0.090
+ 
+ Iteration  9  CI energy:  -126.71790524  Energy decrease:   1.7053E-13
+ ======================================================================
+ 
+ Iteration has converged in  9 steps.
+ 
+ Final results:
+ Total CISD energy [au]:            -126.717905238535
+ Excitation energy [eV]:          53.2669
+ Excitation energy [cm^-1]:   429626.39
+ Absorption wavelength [nm]:      23.28
+ Spin multiplicity:                     1
+ 
+ 
+ 
+ Dominant CI coefficients
+ Printing threshold:  1.00E-02
+ 
+   -0.497304  5b -> 8b                                                  
+    0.497304  4b -> 6b                                                  
+   -0.497304  5a -> 8a                                                  
+    0.497304  4a -> 6a                                                  
+    0.010846  4b 5b -> 9b 13b                                           
+   -0.011376  3b 4b -> 6b 7b                                            
+   -0.011376  3b 5b -> 7b 8b                                            
+    0.010856  5a 5b -> 12a 9b                                           
+    0.010856  5a 5b -> 9a 12b                                           
+    0.010856  4a 4b -> 12a 9b                                           
+    0.010856  4a 4b -> 9a 12b                                           
+   -0.012120  2a 2b -> 8a 8b                                            
+   -0.042466  5a 5b -> 8a 8b                                            
+    0.012120  2a 2b -> 6a 6b                                            
+    0.042466  4a 4b -> 6a 6b                                            
+    0.015176  3a 4b -> 7a 6b                                            
+    0.015176  4a 3b -> 6a 7b                                            
+   -0.015176  3a 5b -> 7a 8b                                            
+   -0.015176  5a 3b -> 8a 7b                                            
+   -0.011449  3a 2b -> 10a 6b                                           
+    0.011449  3a 2b -> 11a 8b                                           
+    0.011449  2a 3b -> 8a 11b                                           
+   -0.011449  2a 3b -> 6a 10b                                           
+   -0.013767  5a 2b -> 13a 6b                                           
+   -0.013767  2a 5b -> 6a 13b                                           
+    0.013767  4a 2b -> 13a 8b                                           
+    0.013767  2a 4b -> 8a 13b                                           
+    0.010846  4a 5a -> 9a 13a                                           
+   -0.011376  3a 4a -> 6a 7a                                            
+   -0.011376  3a 5a -> 7a 8a                                            
+ 
+ Starting CI iteration for root                      4 ...
+ ======================================================================
+ Norm of residual vector:     0.65135808      Convergence:   1.00000000
+ CPU time [min]:     1.126                   Wall time [min]:     0.092
+ 
+ Iteration  1  CI energy:  -125.91778430  Energy decrease:   2.57099125
+ ======================================================================
+ Norm of residual vector:     0.18720934      Convergence:   0.14804444
+ CPU time [min]:     1.161                   Wall time [min]:     0.095
+ 
+ Iteration  2  CI energy:  -125.99445467  Energy decrease:   0.07667037
+ ======================================================================
+ Norm of residual vector:     0.03575775      Convergence:   0.05135469
+ CPU time [min]:     1.196                   Wall time [min]:     0.097
+ 
+ Iteration  3  CI energy:  -126.00325449  Energy decrease:   0.00879982
+ ======================================================================
+ Norm of residual vector:     0.00803894      Convergence:   0.02300363
+ CPU time [min]:     1.232                   Wall time [min]:     0.099
+ 
+ Iteration  4  CI energy:  -126.00399227  Energy decrease:   0.00073778
+ ======================================================================
+ Norm of residual vector:     0.00120538      Convergence:   0.00192790
+ CPU time [min]:     1.268                   Wall time [min]:     0.102
+ 
+ Iteration  5  CI energy:  -126.00400393  Energy decrease:   0.00001166
+ ======================================================================
+ Norm of residual vector:     0.00047313      Convergence:   0.00061029
+ CPU time [min]:     1.304                   Wall time [min]:     0.104
+ 
+ Iteration  6  CI energy:  -126.00400457  Energy decrease:   0.00000065
+ ======================================================================
+ Norm of residual vector:     0.00010031      Convergence:   0.00015634
+ CPU time [min]:     1.340                   Wall time [min]:     0.107
+ 
+ Iteration  7  CI energy:  -126.00400463  Energy decrease:   0.00000006
+ ======================================================================
+ Norm of residual vector:     0.00002166      Convergence:   0.00003574
+ CPU time [min]:     1.377                   Wall time [min]:     0.109
+ 
+ Iteration  8  CI energy:  -126.00400463  Energy decrease:   2.9213E-09
+ ======================================================================
+ Norm of residual vector:     0.00000467      Convergence:   0.00000695
+ CPU time [min]:     1.462                   Wall time [min]:     0.115
+ 
+ Iteration  9  CI energy:  -126.00400463  Energy decrease:   1.1802E-10
+ ======================================================================
+ Norm of residual vector:     0.00000113      Convergence:   0.00000191
+ CPU time [min]:     1.499                   Wall time [min]:     0.117
+ 
+ Iteration 10  CI energy:  -126.00400463  Energy decrease:   7.2475E-12
+ ======================================================================
+ Norm of residual vector:     0.0000E+00      Convergence:   2.7695E-07
+ CPU time [min]:     1.536                   Wall time [min]:     0.120
+ 
+ Iteration 11  CI energy:  -126.00400463  Energy decrease:   1.9895E-13
+ ======================================================================
+ 
+ Iteration has converged in 11 steps.
+ 
+ Final results:
+ Total CISD energy [au]:            -126.004004634472
+ Excitation energy [eV]:          72.6931
+ Excitation energy [cm^-1]:   586309.47
+ Absorption wavelength [nm]:      17.06
+ Spin multiplicity:                     1
+ 
+ 
+ 
+ Dominant CI coefficients
+ Printing threshold:  1.00E-02
+ 
+    0.015423  Reference determinant                                     
+   -0.228219  2b -> 9b                                                  
+    0.381631  3b -> 7b                                                  
+    0.381631  5b -> 8b                                                  
+    0.381631  4b -> 6b                                                  
+   -0.228219  2a -> 9a                                                  
+    0.381631  3a -> 7a                                                  
+    0.381631  5a -> 8a                                                  
+    0.381631  4a -> 6a                                                  
+    0.013645  4b 5b -> 6b 8b                                            
+   -0.013645  3b 4b -> 6b 7b                                            
+    0.013645  3b 5b -> 7b 8b                                            
+    0.010080  2b 3b -> 7b 14b                                           
+   -0.013603  3a 3b -> 9a 9b                                            
+   -0.019534  3a 3b -> 14a 9b                                           
+   -0.019534  3a 3b -> 9a 14b                                           
+   -0.013603  5a 5b -> 9a 9b                                            
+   -0.016917  5a 5b -> 12a 9b                                           
+   -0.016917  5a 5b -> 9a 12b                                           
+   -0.013603  4a 4b -> 9a 9b                                            
+    0.016917  4a 4b -> 12a 9b                                           
+    0.016917  4a 4b -> 9a 12b                                           
+    0.012373  2a 2b -> 7a 7b                                            
+    0.039326  3a 3b -> 7a 7b                                            
+    0.012373  2a 2b -> 8a 8b                                            
+    0.039326  5a 5b -> 8a 8b                                            
+    0.012373  2a 2b -> 6a 6b                                            
+    0.039326  4a 4b -> 6a 6b                                            
+    0.016917  5a 4b -> 9a 13b                                           
+    0.016917  4a 5b -> 9a 13b                                           
+    0.016917  5a 4b -> 13a 9b                                           
+    0.016917  4a 5b -> 13a 9b                                           
+    0.023896  5a 4b -> 8a 6b                                            
+    0.010252  4a 5b -> 8a 6b                                            
+    0.010252  5a 4b -> 6a 8b                                            
+    0.023896  4a 5b -> 6a 8b                                            
+    0.016917  3a 4b -> 9a 10b                                           
+    0.016917  4a 3b -> 9a 10b                                           
+    0.016917  3a 4b -> 10a 9b                                           
+    0.016917  4a 3b -> 10a 9b                                           
+    0.023896  3a 4b -> 7a 6b                                            
+    0.010252  4a 3b -> 7a 6b                                            
+    0.010252  3a 4b -> 6a 7b                                            
+    0.023896  4a 3b -> 6a 7b                                            
+    0.016917  3a 5b -> 9a 11b                                           
+    0.016917  5a 3b -> 9a 11b                                           
+    0.016917  3a 5b -> 11a 9b                                           
+    0.016917  5a 3b -> 11a 9b                                           
+    0.023896  3a 5b -> 7a 8b                                            
+    0.010252  5a 3b -> 7a 8b                                            
+    0.010252  3a 5b -> 8a 7b                                            
+    0.023896  5a 3b -> 8a 7b                                            
+    0.013020  3a 2b -> 14a 7b                                           
+   -0.011276  3a 2b -> 10a 6b                                           
+   -0.011276  3a 2b -> 11a 8b                                           
+    0.013020  2a 3b -> 7a 14b                                           
+   -0.011276  2a 3b -> 8a 11b                                           
+   -0.011276  2a 3b -> 6a 10b                                           
+    0.011276  5a 2b -> 12a 8b                                           
+   -0.011276  5a 2b -> 13a 6b                                           
+   -0.011276  5a 2b -> 11a 7b                                           
+   -0.011276  2a 5b -> 7a 11b                                           
+    0.011276  2a 5b -> 8a 12b                                           
+   -0.011276  2a 5b -> 6a 13b                                           
+   -0.011276  4a 2b -> 12a 6b                                           
+   -0.011276  4a 2b -> 13a 8b                                           
+   -0.011276  4a 2b -> 10a 7b                                           
+   -0.011276  2a 4b -> 7a 10b                                           
+   -0.011276  2a 4b -> 8a 13b                                           
+   -0.011276  2a 4b -> 6a 12b                                           
+    0.013645  4a 5a -> 6a 8a                                            
+   -0.013645  3a 4a -> 6a 7a                                            
+    0.013645  3a 5a -> 7a 8a                                            
+    0.010080  2a 3a -> 7a 14a                                           
+ 
+ Starting CI iteration for root                      5 ...
+ ======================================================================
+ Norm of residual vector:     0.61035572      Convergence:   1.00000000
+ CPU time [min]:     1.574                   Wall time [min]:     0.122
+ 
+ Iteration  1  CI energy:  -124.87126624  Energy decrease:   3.61750932
+ ======================================================================
+ Norm of residual vector:     0.34591780      Convergence:   0.15484387
+ CPU time [min]:     1.610                   Wall time [min]:     0.125
+ 
+ Iteration  2  CI energy:  -124.92391636  Energy decrease:   0.05265012
+ ======================================================================
+ Norm of residual vector:     0.07077173      Convergence:   0.16542156
+ CPU time [min]:     1.645                   Wall time [min]:     0.127
+ 
+ Iteration  3  CI energy:  -124.96095581  Energy decrease:   0.03703946
+ ======================================================================
+ Norm of residual vector:     0.30646425      Convergence:   0.81780077
+ CPU time [min]:     1.681                   Wall time [min]:     0.129
+ 
+ Iteration  4  CI energy:  -125.08606434  Energy decrease:   0.12510853
+ ======================================================================
+ Norm of residual vector:     0.18821209      Convergence:   0.39646538
+ CPU time [min]:     1.717                   Wall time [min]:     0.132
+ 
+ Iteration  5  CI energy:  -125.18752018  Energy decrease:   0.10145584
+ ======================================================================
+ Norm of residual vector:     0.07808724      Convergence:   0.13654637
+ CPU time [min]:     1.753                   Wall time [min]:     0.134
+ 
+ Iteration  6  CI energy:  -125.21095342  Energy decrease:   0.02343324
+ ======================================================================
+ Norm of residual vector:     0.10134453      Convergence:   0.18904220
+ CPU time [min]:     1.789                   Wall time [min]:     0.137
+ 
+ Iteration  7  CI energy:  -125.22200417  Energy decrease:   0.01105075
+ ======================================================================
+ Norm of residual vector:     0.04220670      Convergence:   0.08394384
+ CPU time [min]:     1.826                   Wall time [min]:     0.139
+ 
+ Iteration  8  CI energy:  -125.22849846  Energy decrease:   0.00649428
+ ======================================================================
+ Norm of residual vector:     0.00922778      Convergence:   0.01971744
+ CPU time [min]:     1.863                   Wall time [min]:     0.142
+ 
+ Iteration  9  CI energy:  -125.22917956  Energy decrease:   0.00068110
+ ======================================================================
+ Norm of residual vector:     0.00163441      Convergence:   0.00326022
+ CPU time [min]:     1.900                   Wall time [min]:     0.144
+ 
+ Iteration 10  CI energy:  -125.22920725  Energy decrease:   0.00002770
+ ======================================================================
+ Norm of residual vector:     0.00031999      Convergence:   0.00074098
+ CPU time [min]:     1.938                   Wall time [min]:     0.147
+ 
+ Iteration 11  CI energy:  -125.22920825  Energy decrease:   0.00000099
+ ======================================================================
+ Norm of residual vector:     0.00003160      Convergence:   0.00009870
+ CPU time [min]:     2.025                   Wall time [min]:     0.152
+ 
+ Iteration 12  CI energy:  -125.22920827  Energy decrease:   0.00000003
+ ======================================================================
+ Norm of residual vector:     0.00000390      Convergence:   0.00000838
+ CPU time [min]:     2.063                   Wall time [min]:     0.155
+ 
+ Iteration 13  CI energy:  -125.22920827  Energy decrease:   1.7366E-10
+ ======================================================================
+ Norm of residual vector:     0.00000276      Convergence:   0.00000421
+ CPU time [min]:     2.102                   Wall time [min]:     0.158
+ 
+ Iteration 14  CI energy:  -125.22920827  Energy decrease:   1.2236E-11
+ ======================================================================
+ Norm of residual vector:     0.00000178      Convergence:   0.00000334
+ CPU time [min]:     2.141                   Wall time [min]:     0.160
+ 
+ Iteration 15  CI energy:  -125.22920827  Energy decrease:   7.4607E-12
+ ======================================================================
+ Norm of residual vector:     0.00000062      Convergence:   0.00000108
+ CPU time [min]:     2.182                   Wall time [min]:     0.163
+ 
+ Iteration 16  CI energy:  -125.22920827  Energy decrease:   1.6342E-12
+ ======================================================================
+ Norm of residual vector:     0.0000E+00      Convergence:   2.9167E-07
+ CPU time [min]:     2.220                   Wall time [min]:     0.165
+ 
+ Iteration 17  CI energy:  -125.22920827  Energy decrease:   8.5265E-14
+ ======================================================================
+ 
+ Iteration has converged in 17 steps.
+ 
+ Final results:
+ Total CISD energy [au]:            -125.229208271693
+ Excitation energy [eV]:          93.7764
+ Excitation energy [cm^-1]:   756357.63
+ Absorption wavelength [nm]:      13.22
+ Spin multiplicity:                     1
+ 
+ 
+ 
+ Dominant CI coefficients
+ Printing threshold:  1.00E-02
+ 
+    0.231281  4b 5b -> 6b 8b                                            
+   -0.231281  3b 4b -> 6b 7b                                            
+    0.231281  3b 5b -> 7b 8b                                            
+   -0.045211  2b 3b -> 7b 9b                                            
+   -0.045211  2b 5b -> 8b 9b                                            
+   -0.045211  2b 4b -> 6b 9b                                            
+   -0.231281  5a 4b -> 8a 6b                                            
+    0.231281  4a 5b -> 8a 6b                                            
+    0.231281  5a 4b -> 6a 8b                                            
+   -0.231281  4a 5b -> 6a 8b                                            
+   -0.231281  3a 4b -> 7a 6b                                            
+    0.231281  4a 3b -> 7a 6b                                            
+    0.231281  3a 4b -> 6a 7b                                            
+   -0.231281  4a 3b -> 6a 7b                                            
+   -0.231281  3a 5b -> 7a 8b                                            
+    0.231281  5a 3b -> 7a 8b                                            
+    0.231281  3a 5b -> 8a 7b                                            
+   -0.231281  5a 3b -> 8a 7b                                            
+   -0.045211  2a 3b -> 9a 7b                                            
+    0.045211  3a 2b -> 9a 7b                                            
+    0.045211  2a 3b -> 7a 9b                                            
+   -0.045211  3a 2b -> 7a 9b                                            
+   -0.045211  2a 5b -> 9a 8b                                            
+    0.045211  5a 2b -> 9a 8b                                            
+    0.045211  2a 5b -> 8a 9b                                            
+   -0.045211  5a 2b -> 8a 9b                                            
+   -0.045211  2a 4b -> 9a 6b                                            
+    0.045211  4a 2b -> 9a 6b                                            
+    0.045211  2a 4b -> 6a 9b                                            
+   -0.045211  4a 2b -> 6a 9b                                            
+    0.231281  4a 5a -> 6a 8a                                            
+   -0.231281  3a 4a -> 6a 7a                                            
+    0.231281  3a 5a -> 7a 8a                                            
+   -0.045211  2a 3a -> 7a 9a                                            
+   -0.045211  2a 5a -> 8a 9a                                            
+   -0.045211  2a 4a -> 6a 9a                                            
+ 
+ Starting CI iteration for root                      6 ...
+ ======================================================================
+ Norm of residual vector:     0.61697044      Convergence:   1.00000000
+ CPU time [min]:     2.259                   Wall time [min]:     0.168
+ 
+ Iteration  1  CI energy:  -122.19174530  Energy decrease:   6.29703026
+ ======================================================================
+ Norm of residual vector:     0.08962605      Convergence:   0.22155278
+ CPU time [min]:     2.294                   Wall time [min]:     0.170
+ 
+ Iteration  2  CI energy:  -122.26608830  Energy decrease:   0.07434300
+ ======================================================================
+ Norm of residual vector:     2.12602367      Convergence:   0.95345091
+ CPU time [min]:     2.329                   Wall time [min]:     0.173
+ 
+ Iteration  3  CI energy:  -122.36324420  Energy decrease:   0.09715590
+ ======================================================================
+ Norm of residual vector:     1.22119584      Convergence:   0.64395786
+ CPU time [min]:     2.365                   Wall time [min]:     0.175
+ 
+ Iteration  4  CI energy:  -122.57526918  Energy decrease:   0.21202499
+ ======================================================================
+ Norm of residual vector:     1.45147560      Convergence:   0.59377740
+ CPU time [min]:     2.401                   Wall time [min]:     0.177
+ 
+ Iteration  5  CI energy:  -122.96831712  Energy decrease:   0.39304794
+ ======================================================================
+ Norm of residual vector:     1.32404052      Convergence:   0.83572765
+ CPU time [min]:     2.437                   Wall time [min]:     0.180
+ 
+ Iteration  6  CI energy:  -123.62493504  Energy decrease:   0.65661792
+ ======================================================================
+ Norm of residual vector:     1.43467982      Convergence:   0.15314580
+ CPU time [min]:     2.473                   Wall time [min]:     0.182
+ 
+ Iteration  7  CI energy:  -123.62798052  Energy decrease:   0.00304548
+ ======================================================================
+ Norm of residual vector:     0.47129492      Convergence:   0.69942487
+ CPU time [min]:     2.559                   Wall time [min]:     0.188
+ 
+ Iteration  8  CI energy:  -123.83854970  Energy decrease:   0.21056918
+ ======================================================================
+ Norm of residual vector:     0.36267597      Convergence:   0.78100598
+ CPU time [min]:     2.596                   Wall time [min]:     0.190
+ 
+ Iteration  9  CI energy:  -124.01260342  Energy decrease:   0.17405372
+ ======================================================================
+ Norm of residual vector:     0.79403392      Convergence:   0.91637454
+ CPU time [min]:     2.633                   Wall time [min]:     0.193
+ 
+ Iteration 10  CI energy:  -124.49061291  Energy decrease:   0.47800949
+ ======================================================================
+ Norm of residual vector:     0.72956941      Convergence:   0.74687985
+ CPU time [min]:     2.671                   Wall time [min]:     0.195
+ 
+ Iteration 11  CI energy:  -124.68069175  Energy decrease:   0.19007885
+ ======================================================================
+ Norm of residual vector:     0.20271601      Convergence:   0.74980146
+ CPU time [min]:     2.709                   Wall time [min]:     0.198
+ 
+ Iteration 12  CI energy:  -125.02420700  Energy decrease:   0.34351524
+ ======================================================================
+ Norm of residual vector:     0.12910108      Convergence:   0.51639986
+ CPU time [min]:     2.748                   Wall time [min]:     0.201
+ 
+ Iteration 13  CI energy:  -125.06548542  Energy decrease:   0.04127843
+ ======================================================================
+ Norm of residual vector:     0.10008675      Convergence:   0.22499107
+ CPU time [min]:     2.787                   Wall time [min]:     0.203
+ 
+ Iteration 14  CI energy:  -125.08505026  Energy decrease:   0.01956483
+ ======================================================================
+ Norm of residual vector:     0.01609369      Convergence:   0.05025866
+ CPU time [min]:     2.825                   Wall time [min]:     0.206
+ 
+ Iteration 15  CI energy:  -125.08913174  Energy decrease:   0.00408148
+ ======================================================================
+ Norm of residual vector:     0.00228565      Convergence:   0.00425173
+ CPU time [min]:     2.865                   Wall time [min]:     0.208
+ 
+ Iteration 16  CI energy:  -125.08917971  Energy decrease:   0.00004798
+ ======================================================================
+ Norm of residual vector:     0.00148826      Convergence:   0.00204351
+ CPU time [min]:     2.904                   Wall time [min]:     0.211
+ 
+ Iteration 17  CI energy:  -125.08918112  Energy decrease:   0.00000141
+ ======================================================================
+ Norm of residual vector:     0.00026591      Convergence:   0.00033302
+ CPU time [min]:     2.945                   Wall time [min]:     0.214
+ 
+ Iteration 18  CI energy:  -125.08918154  Energy decrease:   0.00000042
+ ======================================================================
+ Norm of residual vector:     0.00010610      Convergence:   0.00011391
+ CPU time [min]:     2.985                   Wall time [min]:     0.216
+ 
+ Iteration 19  CI energy:  -125.08918157  Energy decrease:   0.00000003
+ ======================================================================
+ Norm of residual vector:     0.00001118      Convergence:   0.00003273
+ CPU time [min]:     3.025                   Wall time [min]:     0.219
+ 
+ Iteration 20  CI energy:  -125.08918157  Energy decrease:   2.7053E-09
+ ======================================================================
+ Norm of residual vector:     0.00000095      Convergence:   0.00000203
+ CPU time [min]:     3.115                   Wall time [min]:     0.225
+ 
+ Iteration 21  CI energy:  -125.08918157  Energy decrease:   1.9966E-11
+ ======================================================================
+ Norm of residual vector:     0.00000026      Convergence:   0.00000039
+ CPU time [min]:     3.156                   Wall time [min]:     0.228
+ 
+ Iteration 22  CI energy:  -125.08918157  Energy decrease:   2.1316E-13
+ ======================================================================
+ Norm of residual vector:     0.27497602      Convergence:   0.55764530
+ CPU time [min]:     3.198                   Wall time [min]:     0.231
+ 
+ Iteration 23  CI energy:  -125.10813274  Energy decrease:   0.01895117
+ ======================================================================
+ Norm of residual vector:     0.06569569      Convergence:   0.13123208
+ CPU time [min]:     3.240                   Wall time [min]:     0.233
+ 
+ Iteration 24  CI energy:  -125.12631999  Energy decrease:   0.01818725
+ ======================================================================
+ Norm of residual vector:     0.01940086      Convergence:   0.03419079
+ CPU time [min]:     3.282                   Wall time [min]:     0.236
+ 
+ Iteration 25  CI energy:  -125.12766563  Energy decrease:   0.00134564
+ ======================================================================
+ Norm of residual vector:     0.00708221      Convergence:   0.00882449
+ CPU time [min]:     3.325                   Wall time [min]:     0.239
+ 
+ Iteration 26  CI energy:  -125.12780423  Energy decrease:   0.00013860
+ ======================================================================
+ Norm of residual vector:     0.00167368      Convergence:   0.00253507
+ CPU time [min]:     3.367                   Wall time [min]:     0.242
+ 
+ Iteration 27  CI energy:  -125.12781793  Energy decrease:   0.00001369
+ ======================================================================
+ Norm of residual vector:     0.00027553      Convergence:   0.00048099
+ CPU time [min]:     3.410                   Wall time [min]:     0.245
+ 
+ Iteration 28  CI energy:  -125.12781857  Energy decrease:   0.00000064
+ ======================================================================
+ Norm of residual vector:     0.00005045      Convergence:   0.00007431
+ CPU time [min]:     3.454                   Wall time [min]:     0.248
+ 
+ Iteration 29  CI energy:  -125.12781858  Energy decrease:   0.00000002
+ ======================================================================
+ Norm of residual vector:     0.00001490      Convergence:   0.00002143
+ CPU time [min]:     3.499                   Wall time [min]:     0.251
+ 
+ Iteration 30  CI energy:  -125.12781858  Energy decrease:   9.2491E-10
+ ======================================================================
+ Norm of residual vector:     0.00000250      Convergence:   0.00000589
+ CPU time [min]:     3.542                   Wall time [min]:     0.254
+ 
+ Iteration 31  CI energy:  -125.12781858  Energy decrease:   5.5380E-11
+ ======================================================================
+ Norm of residual vector:     0.00000051      Convergence:   0.00000098
+ CPU time [min]:     3.586                   Wall time [min]:     0.256
+ 
+ Iteration 32  CI energy:  -125.12781858  Energy decrease:   1.6627E-12
+ ======================================================================
+ Norm of residual vector:     0.00000024      Convergence:   0.00000033
+ CPU time [min]:     3.680                   Wall time [min]:     0.263
+ 
+ Iteration 33  CI energy:  -125.12781858  Energy decrease:   9.9476E-14
+ ======================================================================
+ Norm of residual vector:     0.00000027      Convergence:   0.00000034
+ CPU time [min]:     3.725                   Wall time [min]:     0.266
+ 
+ Iteration 34  CI energy:  -125.12781858  Energy decrease:   4.2633E-14
+ ======================================================================
+ Norm of residual vector:     0.00000014      Convergence:   0.00000031
+ CPU time [min]:     3.770                   Wall time [min]:     0.269
+ 
+ Iteration 35  CI energy:  -125.12781858  Energy decrease:   5.6843E-14
+ ======================================================================
+ Norm of residual vector:     0.0000E+00      Convergence:   2.2266E-07
+ CPU time [min]:     3.815                   Wall time [min]:     0.272
+ 
+ Iteration 36  CI energy:  -125.12781858  Energy decrease:   2.8422E-14
+ ======================================================================
+ 
+ Iteration has converged in 36 steps.
+ 
+ Final results:
+ Total CISD energy [au]:            -125.127818583543
+ Excitation energy [eV]:          96.5353
+ Excitation energy [cm^-1]:   778610.09
+ Absorption wavelength [nm]:      12.84
+ Spin multiplicity:                     1
+ 
+ 
+ 
+ Dominant CI coefficients
+ Printing threshold:  1.00E-02
+ 
+   -0.035628  Reference determinant                                     
+   -0.113831  2b -> 9b                                                  
+   -0.113831  2a -> 9a                                                  
+    0.197292  4b 5b -> 6b 8b                                            
+   -0.197292  3b 4b -> 6b 7b                                            
+    0.197292  3b 5b -> 7b 8b                                            
+   -0.035350  2b 3b -> 7b 9b                                            
+   -0.035350  2b 5b -> 8b 9b                                            
+   -0.035350  2b 4b -> 6b 9b                                            
+   -0.029839  2a 2b -> 9a 9b                                            
+    0.015599  2a 2b -> 7a 7b                                            
+   -0.292605  3a 3b -> 7a 7b                                            
+    0.034855  5a 5b -> 7a 7b                                            
+    0.034855  4a 4b -> 7a 7b                                            
+    0.015599  2a 2b -> 8a 8b                                            
+    0.034855  3a 3b -> 8a 8b                                            
+   -0.292605  5a 5b -> 8a 8b                                            
+    0.034855  4a 4b -> 8a 8b                                            
+    0.015599  2a 2b -> 6a 6b                                            
+    0.034855  3a 3b -> 6a 6b                                            
+    0.034855  5a 5b -> 6a 6b                                            
+   -0.292605  4a 4b -> 6a 6b                                            
+   -0.065084  5a 4b -> 8a 6b                                            
+   -0.262376  4a 5b -> 8a 6b                                            
+   -0.262376  5a 4b -> 6a 8b                                            
+   -0.065084  4a 5b -> 6a 8b                                            
+   -0.065084  3a 4b -> 7a 6b                                            
+   -0.262376  4a 3b -> 7a 6b                                            
+   -0.262376  3a 4b -> 6a 7b                                            
+   -0.065084  4a 3b -> 6a 7b                                            
+   -0.065084  3a 5b -> 7a 8b                                            
+   -0.262376  5a 3b -> 7a 8b                                            
+   -0.262376  3a 5b -> 8a 7b                                            
+   -0.065084  5a 3b -> 8a 7b                                            
+   -0.026193  2a 3b -> 9a 7b                                            
+   -0.061543  3a 2b -> 9a 7b                                            
+   -0.061543  2a 3b -> 7a 9b                                            
+   -0.026193  3a 2b -> 7a 9b                                            
+   -0.026193  2a 5b -> 9a 8b                                            
+   -0.061543  5a 2b -> 9a 8b                                            
+   -0.061543  2a 5b -> 8a 9b                                            
+   -0.026193  5a 2b -> 8a 9b                                            
+   -0.026193  2a 4b -> 9a 6b                                            
+   -0.061543  4a 2b -> 9a 6b                                            
+   -0.061543  2a 4b -> 6a 9b                                            
+   -0.026193  4a 2b -> 6a 9b                                            
+    0.197292  4a 5a -> 6a 8a                                            
+   -0.197292  3a 4a -> 6a 7a                                            
+    0.197292  3a 5a -> 7a 8a                                            
+   -0.035350  2a 3a -> 7a 9a                                            
+   -0.035350  2a 5a -> 8a 9a                                            
+   -0.035350  2a 4a -> 6a 9a                                            
+ 
+ Starting CI iteration for root                      7 ...
+ ======================================================================
+ Norm of residual vector:     0.61697044      Convergence:   1.00000000
+ CPU time [min]:     3.854                   Wall time [min]:     0.274
+ 
+ Iteration  1  CI energy:  -122.19174530  Energy decrease:   6.29703026
+ ======================================================================
+ Norm of residual vector:     0.09007528      Convergence:   0.22174856
+ CPU time [min]:     3.890                   Wall time [min]:     0.277
+ 
+ Iteration  2  CI energy:  -122.26609196  Energy decrease:   0.07434666
+ ======================================================================
+ Norm of residual vector:     2.13318271      Convergence:   0.95278242
+ CPU time [min]:     3.925                   Wall time [min]:     0.279
+ 
+ Iteration  3  CI energy:  -122.36652932  Energy decrease:   0.10043736
+ ======================================================================
+ Norm of residual vector:     1.22741724      Convergence:   0.64041453
+ CPU time [min]:     3.961                   Wall time [min]:     0.282
+ 
+ Iteration  4  CI energy:  -122.57701748  Energy decrease:   0.21048816
+ ======================================================================
+ Norm of residual vector:     1.47270406      Convergence:   0.59387572
+ CPU time [min]:     3.997                   Wall time [min]:     0.284
+ 
+ Iteration  5  CI energy:  -122.95704116  Energy decrease:   0.38002368
+ ======================================================================
+ Norm of residual vector:     1.32436059      Convergence:   0.84743734
+ CPU time [min]:     4.035                   Wall time [min]:     0.286
+ 
+ Iteration  6  CI energy:  -123.62737772  Energy decrease:   0.67033656
+ ======================================================================
+ Norm of residual vector:     1.29743656      Convergence:   0.03150536
+ CPU time [min]:     4.077                   Wall time [min]:     0.289
+ 
+ Iteration  7  CI energy:  -123.62748395  Energy decrease:   0.00010622
+ ======================================================================
+ Norm of residual vector:     0.52152018      Convergence:   0.66177698
+ CPU time [min]:     4.122                   Wall time [min]:     0.292
+ 
+ Iteration  8  CI energy:  -123.81147163  Energy decrease:   0.18398769
+ ======================================================================
+ Norm of residual vector:     0.53923505      Convergence:   0.74789509
+ CPU time [min]:     4.215                   Wall time [min]:     0.299
+ 
+ Iteration  9  CI energy:  -123.97028943  Energy decrease:   0.15881780
+ ======================================================================
+ Norm of residual vector:     0.38780154      Convergence:   0.12871443
+ CPU time [min]:     4.272                   Wall time [min]:     0.303
+ 
+ Iteration 10  CI energy:  -123.98075758  Energy decrease:   0.01046815
+ ======================================================================
+ Norm of residual vector:     0.80213399      Convergence:   0.65937378
+ CPU time [min]:     4.313                   Wall time [min]:     0.305
+ 
+ Iteration 11  CI energy:  -124.14879083  Energy decrease:   0.16803325
+ ======================================================================
+ Norm of residual vector:     0.58651184      Convergence:   0.43397799
+ CPU time [min]:     4.352                   Wall time [min]:     0.308
+ 
+ Iteration 12  CI energy:  -124.23129759  Energy decrease:   0.08250677
+ ======================================================================
+ Norm of residual vector:     0.65040340      Convergence:   0.18588049
+ CPU time [min]:     4.391                   Wall time [min]:     0.311
+ 
+ Iteration 13  CI energy:  -124.25876697  Energy decrease:   0.02746938
+ ======================================================================
+ Norm of residual vector:     0.52255605      Convergence:   0.69395385
+ CPU time [min]:     4.429                   Wall time [min]:     0.313
+ 
+ Iteration 14  CI energy:  -124.49369240  Energy decrease:   0.23492543
+ ======================================================================
+ Norm of residual vector:     0.60909860      Convergence:   0.63300062
+ CPU time [min]:     4.469                   Wall time [min]:     0.316
+ 
+ Iteration 15  CI energy:  -124.69348449  Energy decrease:   0.19979208
+ ======================================================================
+ Norm of residual vector:     0.27813283      Convergence:   0.67982470
+ CPU time [min]:     4.508                   Wall time [min]:     0.318
+ 
+ Iteration 16  CI energy:  -124.98284405  Energy decrease:   0.28935956
+ ======================================================================
+ Norm of residual vector:     0.24706770      Convergence:   0.61707729
+ CPU time [min]:     4.554                   Wall time [min]:     0.321
+ 
+ Iteration 17  CI energy:  -125.03135163  Energy decrease:   0.04850758
+ ======================================================================
+ Norm of residual vector:     0.14925121      Convergence:   0.28730470
+ CPU time [min]:     4.600                   Wall time [min]:     0.325
+ 
+ Iteration 18  CI energy:  -125.07444351  Energy decrease:   0.04309188
+ ======================================================================
+ Norm of residual vector:     0.07989751      Convergence:   0.18667906
+ CPU time [min]:     4.643                   Wall time [min]:     0.327
+ 
+ Iteration 19  CI energy:  -125.08541206  Energy decrease:   0.01096855
+ ======================================================================
+ Norm of residual vector:     0.02829267      Convergence:   0.06823657
+ CPU time [min]:     4.735                   Wall time [min]:     0.334
+ 
+ Iteration 20  CI energy:  -125.08856126  Energy decrease:   0.00314920
+ ======================================================================
+ Norm of residual vector:     0.01106849      Convergence:   0.02551934
+ CPU time [min]:     4.773                   Wall time [min]:     0.336
+ 
+ Iteration 21  CI energy:  -125.08913609  Energy decrease:   0.00057483
+ ======================================================================
+ Norm of residual vector:     0.00258394      Convergence:   0.00643364
+ CPU time [min]:     4.815                   Wall time [min]:     0.339
+ 
+ Iteration 22  CI energy:  -125.08917922  Energy decrease:   0.00004313
+ ======================================================================
+ Norm of residual vector:     0.00057338      Convergence:   0.00105376
+ CPU time [min]:     4.856                   Wall time [min]:     0.342
+ 
+ Iteration 23  CI energy:  -125.08918136  Energy decrease:   0.00000214
+ ======================================================================
+ Norm of residual vector:     0.00022759      Convergence:   0.00047230
+ CPU time [min]:     4.898                   Wall time [min]:     0.344
+ 
+ Iteration 24  CI energy:  -125.08918156  Energy decrease:   0.00000020
+ ======================================================================
+ Norm of residual vector:     0.00004538      Convergence:   0.00006398
+ CPU time [min]:     4.940                   Wall time [min]:     0.347
+ 
+ Iteration 25  CI energy:  -125.08918157  Energy decrease:   0.00000001
+ ======================================================================
+ Norm of residual vector:     0.00001115      Convergence:   0.00001353
+ CPU time [min]:     4.982                   Wall time [min]:     0.350
+ 
+ Iteration 26  CI energy:  -125.08918157  Energy decrease:   5.7746E-10
+ ======================================================================
+ Norm of residual vector:     0.00000138      Convergence:   0.00000348
+ CPU time [min]:     5.025                   Wall time [min]:     0.353
+ 
+ Iteration 27  CI energy:  -125.08918157  Energy decrease:   2.9402E-11
+ ======================================================================
+ Norm of residual vector:     0.00000023      Convergence:   0.00000041
+ CPU time [min]:     5.068                   Wall time [min]:     0.356
+ 
+ Iteration 28  CI energy:  -125.08918157  Energy decrease:   4.2633E-13
+ ======================================================================
+ Norm of residual vector:     0.0000E+00      Convergence:   1.0894E-07
+ CPU time [min]:     5.111                   Wall time [min]:     0.359
+ 
+ Iteration 29  CI energy:  -125.08918157  Energy decrease:   1.4211E-14
+ ======================================================================
+ 
+ Iteration has converged in 29 steps.
+ 
+ Final results:
+ Total CISD energy [au]:            -125.089181568845
+ Excitation energy [eV]:          97.5867
+ Excitation energy [cm^-1]:   787089.94
+ Absorption wavelength [nm]:      12.71
+ Spin multiplicity:                     1
+ 
+ 
+ 
+ Dominant CI coefficients
+ Printing threshold:  1.00E-02
+ 
+   -0.331526  4b 5b -> 6b 8b                                            
+   -0.165763  3b 4b -> 6b 7b                                            
+    0.165763  3b 5b -> 7b 8b                                            
+   -0.033361  2b 3b -> 7b 9b                                            
+    0.016680  2b 5b -> 8b 9b                                            
+    0.016680  2b 4b -> 6b 9b                                            
+    0.331526  5a 4b -> 8a 6b                                            
+   -0.331526  4a 5b -> 8a 6b                                            
+   -0.331526  5a 4b -> 6a 8b                                            
+    0.331526  4a 5b -> 6a 8b                                            
+   -0.165763  3a 4b -> 7a 6b                                            
+    0.165763  4a 3b -> 7a 6b                                            
+    0.165763  3a 4b -> 6a 7b                                            
+   -0.165763  4a 3b -> 6a 7b                                            
+   -0.165763  3a 5b -> 7a 8b                                            
+    0.165763  5a 3b -> 7a 8b                                            
+    0.165763  3a 5b -> 8a 7b                                            
+   -0.165763  5a 3b -> 8a 7b                                            
+   -0.033361  2a 3b -> 9a 7b                                            
+    0.033361  3a 2b -> 9a 7b                                            
+    0.033361  2a 3b -> 7a 9b                                            
+   -0.033361  3a 2b -> 7a 9b                                            
+    0.016680  2a 5b -> 9a 8b                                            
+   -0.016680  5a 2b -> 9a 8b                                            
+   -0.016680  2a 5b -> 8a 9b                                            
+    0.016680  5a 2b -> 8a 9b                                            
+    0.016680  2a 4b -> 9a 6b                                            
+   -0.016680  4a 2b -> 9a 6b                                            
+   -0.016680  2a 4b -> 6a 9b                                            
+    0.016680  4a 2b -> 6a 9b                                            
+   -0.331526  4a 5a -> 6a 8a                                            
+   -0.165763  3a 4a -> 6a 7a                                            
+    0.165763  3a 5a -> 7a 8a                                            
+   -0.033361  2a 3a -> 7a 9a                                            
+    0.016680  2a 5a -> 8a 9a                                            
+    0.016680  2a 4a -> 6a 9a                                            
+ 
+ Starting CI iteration for root                      8 ...
+ ======================================================================
+ Norm of residual vector:     1.52498543      Convergence:   1.00000000
+ CPU time [min]:     5.150                   Wall time [min]:     0.361
+ 
+ Iteration  1  CI energy:   -94.56481110  Energy decrease:  33.92396446
+ ======================================================================
+ Norm of residual vector:     0.24232874      Convergence:   0.34933346
+ CPU time [min]:     5.185                   Wall time [min]:     0.364
+ 
+ Iteration  2  CI energy:   -95.04705599  Energy decrease:   0.48224490
+ ======================================================================
+ Norm of residual vector:     0.02074396      Convergence:   0.03664945
+ CPU time [min]:     5.221                   Wall time [min]:     0.366
+ 
+ Iteration  3  CI energy:   -95.05245087  Energy decrease:   0.00539488
+ ======================================================================
+ Norm of residual vector:     0.00379418      Convergence:   0.00449307
+ CPU time [min]:     5.284                   Wall time [min]:     0.370
+ 
+ Iteration  4  CI energy:   -95.05251504  Energy decrease:   0.00006417
+ ======================================================================
+ Norm of residual vector:     0.00019270      Convergence:   0.00040115
+ CPU time [min]:     5.292                   Wall time [min]:     0.371
+ 
+ Iteration  5  CI energy:   -95.05251567  Energy decrease:   0.00000063
+ ======================================================================
+ Norm of residual vector:     0.00005349      Convergence:   0.00004633
+ CPU time [min]:     5.301                   Wall time [min]:     0.371
+ 
+ Iteration  6  CI energy:   -95.05251567  Energy decrease:   0.00000001
+ ======================================================================
+ Norm of residual vector:     0.00000317      Convergence:   0.00000380
+ CPU time [min]:     5.309                   Wall time [min]:     0.372
+ 
+ Iteration  7  CI energy:   -95.05251567  Energy decrease:   1.1170E-10
+ ======================================================================
+ Norm of residual vector:     0.0000E+00      Convergence:   2.5727E-07
+ CPU time [min]:     5.317                   Wall time [min]:     0.372
+ 
+ Iteration  8  CI energy:   -95.05251567  Energy decrease:   4.5475E-13
+ ======================================================================
+ 
+ Iteration has converged in  8 steps.
+ 
+ Final results:
+ Total CISD energy [au]:             -95.052515674172
+ Excitation energy [eV]:         914.9260
+ Excitation energy [cm^-1]:  7379376.58
+ Absorption wavelength [nm]:       1.36
+ Spin multiplicity:                     1
+ 
+ 
+ 
+ Dominant CI coefficients
+ Printing threshold:  1.00E-02
+ 
+   -0.663356  1b -> 9b                                                  
+   -0.663356  1a -> 9a                                                  
+    0.083914  1b 3b -> 7b 9b                                            
+    0.010435  1b 3b -> 7b 14b                                           
+    0.083914  1b 5b -> 8b 9b                                            
+    0.083914  1b 4b -> 6b 9b                                            
+    0.014696  1a 1b -> 9a 9b                                            
+   -0.076414  2a 1b -> 9a 9b                                            
+   -0.076414  1a 2b -> 9a 9b                                            
+   -0.099791  1a 3b -> 9a 7b                                            
+   -0.015877  3a 1b -> 9a 7b                                            
+    0.013247  3a 1b -> 14a 7b                                           
+   -0.011473  3a 1b -> 10a 6b                                           
+   -0.011473  3a 1b -> 11a 8b                                           
+   -0.015877  1a 3b -> 7a 9b                                            
+    0.013247  1a 3b -> 7a 14b                                           
+   -0.099791  3a 1b -> 7a 9b                                            
+   -0.011473  1a 3b -> 8a 11b                                           
+   -0.011473  1a 3b -> 6a 10b                                           
+   -0.099791  1a 5b -> 9a 8b                                            
+   -0.015877  5a 1b -> 9a 8b                                            
+    0.011473  5a 1b -> 12a 8b                                           
+   -0.011473  5a 1b -> 13a 6b                                           
+   -0.011473  5a 1b -> 11a 7b                                           
+   -0.011473  1a 5b -> 7a 11b                                           
+   -0.015877  1a 5b -> 8a 9b                                            
+    0.011473  1a 5b -> 8a 12b                                           
+   -0.099791  5a 1b -> 8a 9b                                            
+   -0.011473  1a 5b -> 6a 13b                                           
+   -0.099791  1a 4b -> 9a 6b                                            
+   -0.015877  4a 1b -> 9a 6b                                            
+   -0.011473  4a 1b -> 12a 6b                                           
+   -0.011473  4a 1b -> 13a 8b                                           
+   -0.011473  4a 1b -> 10a 7b                                           
+   -0.011473  1a 4b -> 7a 10b                                           
+   -0.011473  1a 4b -> 8a 13b                                           
+   -0.015877  1a 4b -> 6a 9b                                            
+   -0.011473  1a 4b -> 6a 12b                                           
+   -0.099791  4a 1b -> 6a 9b                                            
+    0.083914  1a 3a -> 7a 9a                                            
+    0.010435  1a 3a -> 7a 14a                                           
+    0.083914  1a 5a -> 8a 9a                                            
+    0.083914  1a 4a -> 6a 9a                                            
+ 
+ Starting CI iteration for root                      9 ...
+ ======================================================================
+ Norm of residual vector:     1.24599610      Convergence:   1.00000000
+ CPU time [min]:     5.327                   Wall time [min]:     0.373
+ 
+ Iteration  1  CI energy:   -91.78357555  Energy decrease:  36.70520000
+ ======================================================================
+ Norm of residual vector:     0.18962624      Convergence:   0.32170132
+ CPU time [min]:     5.339                   Wall time [min]:     0.374
+ 
+ Iteration  2  CI energy:   -92.13161181  Energy decrease:   0.34803626
+ ======================================================================
+ Norm of residual vector:     0.20780402      Convergence:   0.25461627
+ CPU time [min]:     5.387                   Wall time [min]:     0.377
+ 
+ Iteration  3  CI energy:   -92.14149050  Energy decrease:   0.00987869
+ ======================================================================
+ Norm of residual vector:     2.34185706      Convergence:   0.95944760
+ CPU time [min]:     5.429                   Wall time [min]:     0.380
+ 
+ Iteration  4  CI energy:   -92.40004727  Energy decrease:   0.25855676
+ ======================================================================
+ Norm of residual vector:     1.05517603      Convergence:   0.97551653
+ CPU time [min]:     5.472                   Wall time [min]:     0.383
+ 
+ Iteration  5  CI energy:   -92.84692539  Energy decrease:   0.44687813
+ ======================================================================
+ Norm of residual vector:     0.16961316      Convergence:   0.57078039
+ CPU time [min]:     5.516                   Wall time [min]:     0.386
+ 
+ Iteration  6  CI energy:   -93.05417060  Energy decrease:   0.20724520
+ ======================================================================
+ Norm of residual vector:     0.01572738      Convergence:   0.03001278
+ CPU time [min]:     5.560                   Wall time [min]:     0.389
+ 
+ Iteration  7  CI energy:   -93.05674633  Energy decrease:   0.00257574
+ ======================================================================
+ Norm of residual vector:     0.00181029      Convergence:   0.00368214
+ CPU time [min]:     5.604                   Wall time [min]:     0.392
+ 
+ Iteration  8  CI energy:   -93.05677858  Energy decrease:   0.00003225
+ ======================================================================
+ Norm of residual vector:     0.00019705      Convergence:   0.00022002
+ CPU time [min]:     5.643                   Wall time [min]:     0.394
+ 
+ Iteration  9  CI energy:   -93.05677873  Energy decrease:   0.00000015
+ ======================================================================
+ Norm of residual vector:     0.00001346      Convergence:   0.00002247
+ CPU time [min]:     5.651                   Wall time [min]:     0.395
+ 
+ Iteration 10  CI energy:   -93.05677873  Energy decrease:   1.0051E-09
+ ======================================================================
+ Norm of residual vector:     0.00001075      Convergence:   0.00000267
+ CPU time [min]:     5.658                   Wall time [min]:     0.395
+ 
+ Iteration 11  CI energy:   -93.05677873  Energy decrease:   1.2164E-11
+ ======================================================================
+ Norm of residual vector:     0.0000E+00      Convergence:   1.1580E-06
+ CPU time [min]:     5.667                   Wall time [min]:     0.396
+ 
+ Iteration 12  CI energy:   -93.05677873  Energy decrease:   2.9843E-12
+ ======================================================================
+ 
+ Iteration has converged in 12 steps.
+ 
+ Final results:
+ Total CISD energy [au]:             -93.056778732560
+ Excitation energy [eV]:         969.2328
+ Excitation energy [cm^-1]:  7817390.24
+ Absorption wavelength [nm]:       1.28
+ Spin multiplicity:                     1
+ 
+ 
+ 
+ Dominant CI coefficients
+ Printing threshold:  1.00E-02
+ 
+   -0.288592  1b 5b -> 8b 9b                                            
+    0.288592  1b 4b -> 6b 9b                                            
+   -0.288592  1a 5b -> 9a 8b                                            
+    0.288592  5a 1b -> 9a 8b                                            
+    0.288592  1a 5b -> 8a 9b                                            
+   -0.288592  5a 1b -> 8a 9b                                            
+    0.288592  1a 4b -> 9a 6b                                            
+   -0.288592  4a 1b -> 9a 6b                                            
+   -0.288592  1a 4b -> 6a 9b                                            
+    0.288592  4a 1b -> 6a 9b                                            
+   -0.288592  1a 5a -> 8a 9a                                            
+    0.288592  1a 4a -> 6a 9a                                            
+ 
+ Starting CI iteration for root                     10 ...
+ ======================================================================
+ Norm of residual vector:     1.24599610      Convergence:   1.00000000
+ CPU time [min]:     5.676                   Wall time [min]:     0.396
+ 
+ Iteration  1  CI energy:   -91.78357555  Energy decrease:  36.70520000
+ ======================================================================
+ Norm of residual vector:     0.18980543      Convergence:   0.32170493
+ CPU time [min]:     5.683                   Wall time [min]:     0.397
+ 
+ Iteration  2  CI energy:   -92.13160101  Energy decrease:   0.34802546
+ ======================================================================
+ Norm of residual vector:     0.20791059      Convergence:   0.25468643
+ CPU time [min]:     5.690                   Wall time [min]:     0.397
+ 
+ Iteration  3  CI energy:   -92.14148590  Energy decrease:   0.00988489
+ ======================================================================
+ Norm of residual vector:     2.34185008      Convergence:   0.95948021
+ CPU time [min]:     5.697                   Wall time [min]:     0.398
+ 
+ Iteration  4  CI energy:   -92.40018863  Energy decrease:   0.25870273
+ ======================================================================
+ Norm of residual vector:     1.05949771      Convergence:   0.97619368
+ CPU time [min]:     5.704                   Wall time [min]:     0.398
+ 
+ Iteration  5  CI energy:   -92.84774994  Energy decrease:   0.44756131
+ ======================================================================
+ Norm of residual vector:     0.17512966      Convergence:   0.56781064
+ CPU time [min]:     5.711                   Wall time [min]:     0.399
+ 
+ Iteration  6  CI energy:   -93.05231222  Energy decrease:   0.20456228
+ ======================================================================
+ Norm of residual vector:     0.10519412      Convergence:   0.04478218
+ CPU time [min]:     5.719                   Wall time [min]:     0.399
+ 
+ Iteration  7  CI energy:   -93.05566187  Energy decrease:   0.00334965
+ ======================================================================
+ Norm of residual vector:     0.01168515      Convergence:   0.02094087
+ CPU time [min]:     5.727                   Wall time [min]:     0.399
+ 
+ Iteration  8  CI energy:   -93.05675919  Energy decrease:   0.00109731
+ ======================================================================
+ Norm of residual vector:     0.00235768      Convergence:   0.00309582
+ CPU time [min]:     5.734                   Wall time [min]:     0.400
+ 
+ Iteration  9  CI energy:   -93.05677786  Energy decrease:   0.00001867
+ ======================================================================
+ Norm of residual vector:     0.00050355      Convergence:   0.00101069
+ CPU time [min]:     5.742                   Wall time [min]:     0.400
+ 
+ Iteration 10  CI energy:   -93.05677869  Energy decrease:   0.00000084
+ ======================================================================
+ Norm of residual vector:     0.00017664      Convergence:   0.00017899
+ CPU time [min]:     5.750                   Wall time [min]:     0.401
+ 
+ Iteration 11  CI energy:   -93.05677873  Energy decrease:   0.00000004
+ ======================================================================
+ Norm of residual vector:     0.00014116      Convergence:   0.00013197
+ CPU time [min]:     5.758                   Wall time [min]:     0.401
+ 
+ Iteration 12  CI energy:   -93.05677874  Energy decrease:   0.00000001
+ ======================================================================
+ Norm of residual vector:     0.31475042      Convergence:   0.40416145
+ CPU time [min]:     5.766                   Wall time [min]:     0.402
+ 
+ Iteration 13  CI energy:   -93.15586423  Energy decrease:   0.09908549
+ ======================================================================
+ Norm of residual vector:     0.01744671      Convergence:   0.03625374
+ CPU time [min]:     5.773                   Wall time [min]:     0.402
+ 
+ Iteration 14  CI energy:   -93.15823413  Energy decrease:   0.00236989
+ ======================================================================
+ Norm of residual vector:     0.00213753      Convergence:   0.00193010
+ CPU time [min]:     5.781                   Wall time [min]:     0.403
+ 
+ Iteration 15  CI energy:   -93.15824838  Energy decrease:   0.00001425
+ ======================================================================
+ Norm of residual vector:     0.00014659      Convergence:   0.00022917
+ CPU time [min]:     5.790                   Wall time [min]:     0.403
+ 
+ Iteration 16  CI energy:   -93.15824850  Energy decrease:   0.00000012
+ ======================================================================
+ Norm of residual vector:     0.00001831      Convergence:   0.00001777
+ CPU time [min]:     5.798                   Wall time [min]:     0.404
+ 
+ Iteration 17  CI energy:   -93.15824850  Energy decrease:   1.0310E-09
+ ======================================================================
+ Norm of residual vector:     0.0000E+00      Convergence:   1.7740E-06
+ CPU time [min]:     5.806                   Wall time [min]:     0.404
+ 
+ Iteration 18  CI energy:   -93.15824850  Energy decrease:   8.8676E-12
+ ======================================================================
+ 
+ Iteration has converged in 18 steps.
+ 
+ Final results:
+ Total CISD energy [au]:             -93.158248501110
+ Excitation energy [eV]:         966.4717
+ Excitation energy [cm^-1]:  7795120.20
+ Absorption wavelength [nm]:       1.28
+ Spin multiplicity:                     1
+ 
+ Dominant CI coefficients
+ Printing threshold:  1.00E-02
+ 
+    0.235634  1b 3b -> 7b 9b                                            
+    0.235634  1b 5b -> 8b 9b                                            
+    0.235634  1b 4b -> 6b 9b                                            
+    0.235634  1a 3b -> 9a 7b                                            
+   -0.235634  3a 1b -> 9a 7b                                            
+   -0.235634  1a 3b -> 7a 9b                                            
+    0.235634  3a 1b -> 7a 9b                                            
+    0.235634  1a 5b -> 9a 8b                                            
+   -0.235634  5a 1b -> 9a 8b                                            
+   -0.235634  1a 5b -> 8a 9b                                            
+    0.235634  5a 1b -> 8a 9b                                            
+    0.235634  1a 4b -> 9a 6b                                            
+   -0.235634  4a 1b -> 9a 6b                                            
+   -0.235634  1a 4b -> 6a 9b                                            
+    0.235634  4a 1b -> 6a 9b                                            
+    0.235634  1a 3a -> 7a 9a                                            
+    0.235634  1a 5a -> 8a 9a                                            
+    0.235634  1a 4a -> 6a 9a                                            
+ 
+ ************************ 2023-02-28 14:33:05 *************************
+                      Normal termination of mrcc.
+ **********************************************************************
