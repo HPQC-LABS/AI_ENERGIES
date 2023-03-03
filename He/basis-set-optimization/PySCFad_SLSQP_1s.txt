@@ -1,0 +1,1572 @@
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/h5py_mpi_test/pyscfad_test.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy.optimize import minimize, Bounds
+
+"""
+Analytic nuclear gradient for RHF computed by auto-differentiation
+"""
+
+
+def He_energy(exponent):
+    mol = gto.Mole()
+    mol.atom    = 'He 0 0 0'  # in Angstrom
+
+    mol.basis = {'He': pyscf.gto.basis.parse(f'''
+    He   S
+        {exponent[0]}              1.0
+    ''')}
+    mol.verbose = 5
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+    # jac = mf.energy_grad()
+
+    return e
+
+def grad_He_energy(exponent):
+    mol = gto.Mole()
+    mol.atom    = 'He 0 0 0'  # in Angstrom
+
+    mol.basis = {'He': pyscf.gto.basis.parse(f'''
+    He   S
+        {exponent[0]}              1.0
+    ''')}
+    mol.verbose = 5
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    return jac.exp
+
+x0 = 0.2432879285E+01
+res = minimize(He_energy, x0, jac=grad_He_energy,
+               bounds=Bounds(lb=1e-4),
+               method='SLSQP', tol=1e-6)
+
+print(res.x)
+print(res.values())
+
+# print("E", He_energy(71.6168370))
+
+# print(f'Nuclaer gradient:\n{jac.coords}')
+# print(f'Gradient wrt basis exponents:\n{jac.exp}')
+# print(f'Gradient wrt basis contraction coefficients:\n{jac.ctr_coeff}')#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Jan 17 2023, 16:42:09) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Fri Mar  3 21:29:49 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] conf_file /Users/deyanmihaylov/.pyscf_conf.py
+[INPUT] verbose = 5
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 2
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 He     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] He
+[INPUT] 0    0    [1    /1   ]  2.432879285          1
+
+nuclear repulsion = 0
+number of shells = 1
+number of NR pGTOs = 1
+number of NR cGTOs = 1
+basis = {'He': [[0, [2.432879285, 1.0]]]}
+ecp = {}
+CPU time:         1.30
+WARNING:absl:No GPU/TPU found, falling back to CPU. (Set TF_CPP_MIN_LOG_LEVEL=0 and rerun for more info.)
+Set gradient conv threshold to 3.16228e-05
+/Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscfad/gto/moleintor.py:74: UserWarning: AO symmetry is not supported. Setting aosym = s1.
+  warnings.warn(msg)
+cond(S) = 1.0
+E1 = -1.8169794225603926  E_coul = 0.8227598704987964
+init E= -0.994219552061596
+    CPU time for initialize scf      0.10 sec, wall time      0.10 sec
+/Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/jax/_src/numpy/lax_numpy.py:3237: UserWarning: 'kind' argument to argsort is ignored; only 'stable' sorts are supported.
+  warnings.warn("'kind' argument to argsort is ignored; only 'stable' sorts "
+  mo_energy =
+[-0.12538718]
+E1 = -2.6574868741970104  E_coul = 1.760010827588572
+cycle= 1 E= -0.897476046608438  delta_E= 0.0967  |g|=    0  |ddm|= 0.633
+    CPU time for cycle= 1      0.15 sec, wall time      0.15 sec
+  mo_energy =
+[0.43126739]
+E1 = -2.6574868741970104  E_coul = 1.760010827588572
+cycle= 2 E= -0.897476046608438  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for cycle= 2      0.05 sec, wall time      0.05 sec
+E1 = -2.6574868741970104  E_coul = 1.760010827588572
+  mo_energy =
+[0.43126739]
+E1 = -2.6574868741970104  E_coul = 1.760010827588572
+Extra cycle  E= -0.897476046608438  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.30 sec, wall time      0.31 sec
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/h5py_mpi_test/pyscfad_test.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy.optimize import minimize, Bounds
+
+"""
+Analytic nuclear gradient for RHF computed by auto-differentiation
+"""
+
+
+def He_energy(exponent):
+    mol = gto.Mole()
+    mol.atom    = 'He 0 0 0'  # in Angstrom
+
+    mol.basis = {'He': pyscf.gto.basis.parse(f'''
+    He   S
+        {exponent[0]}              1.0
+    ''')}
+    mol.verbose = 5
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+    # jac = mf.energy_grad()
+
+    return e
+
+def grad_He_energy(exponent):
+    mol = gto.Mole()
+    mol.atom    = 'He 0 0 0'  # in Angstrom
+
+    mol.basis = {'He': pyscf.gto.basis.parse(f'''
+    He   S
+        {exponent[0]}              1.0
+    ''')}
+    mol.verbose = 5
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    return jac.exp
+
+x0 = 0.2432879285E+01
+res = minimize(He_energy, x0, jac=grad_He_energy,
+               bounds=Bounds(lb=1e-4),
+               method='SLSQP', tol=1e-6)
+
+print(res.x)
+print(res.values())
+
+# print("E", He_energy(71.6168370))
+
+# print(f'Nuclaer gradient:\n{jac.coords}')
+# print(f'Gradient wrt basis exponents:\n{jac.exp}')
+# print(f'Gradient wrt basis contraction coefficients:\n{jac.ctr_coeff}')#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Jan 17 2023, 16:42:09) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Fri Mar  3 21:29:50 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] conf_file /Users/deyanmihaylov/.pyscf_conf.py
+[INPUT] verbose = 5
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 2
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 He     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] He
+[INPUT] 0    0    [1    /1   ]  2.432879285          1
+
+nuclear repulsion = 0
+number of shells = 1
+number of NR pGTOs = 1
+number of NR cGTOs = 1
+basis = {'He': [[0, [2.432879285, 1.0]]]}
+ecp = {}
+CPU time:         1.67
+Set gradient conv threshold to 3.16228e-05
+cond(S) = 1.0
+E1 = -1.8169794225603926  E_coul = 0.8227598704987964
+init E= -0.994219552061596
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-0.12538718]
+E1 = -2.6574868741970104  E_coul = 1.760010827588572
+cycle= 1 E= -0.897476046608438  delta_E= 0.0967  |g|=    0  |ddm|= 0.633
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+  mo_energy =
+[0.43126739]
+E1 = -2.6574868741970104  E_coul = 1.760010827588572
+cycle= 2 E= -0.897476046608438  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -2.6574868741970104  E_coul = 1.760010827588572
+  mo_energy =
+[0.43126739]
+E1 = -2.6574868741970104  E_coul = 1.760010827588572
+Extra cycle  E= -0.897476046608438  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.03 sec, wall time      0.03 sec
+Set gradient conv threshold to 3.16228e-05
+cond(S) = 1.0
+E1 = -2.6574868741970104  E_coul = 1.760010827588572
+init E= -0.897476046608438
+    CPU time for initialize scf      0.25 sec, wall time      0.25 sec
+  mo_energy =
+[0.43126739]
+E1 = -2.6574868741970104  E_coul = 1.760010827588572
+cycle= 1 E= -0.897476046608438  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+E1 = -2.6574868741970104  E_coul = 1.760010827588572
+  mo_energy =
+[0.43126739]
+E1 = -2.6574868741970104  E_coul = 1.760010827588572
+Extra cycle  E= -0.897476046608438  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.66 sec, wall time      0.66 sec
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/h5py_mpi_test/pyscfad_test.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy.optimize import minimize, Bounds
+
+"""
+Analytic nuclear gradient for RHF computed by auto-differentiation
+"""
+
+
+def He_energy(exponent):
+    mol = gto.Mole()
+    mol.atom    = 'He 0 0 0'  # in Angstrom
+
+    mol.basis = {'He': pyscf.gto.basis.parse(f'''
+    He   S
+        {exponent[0]}              1.0
+    ''')}
+    mol.verbose = 5
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+    # jac = mf.energy_grad()
+
+    return e
+
+def grad_He_energy(exponent):
+    mol = gto.Mole()
+    mol.atom    = 'He 0 0 0'  # in Angstrom
+
+    mol.basis = {'He': pyscf.gto.basis.parse(f'''
+    He   S
+        {exponent[0]}              1.0
+    ''')}
+    mol.verbose = 5
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    return jac.exp
+
+x0 = 0.2432879285E+01
+res = minimize(He_energy, x0, jac=grad_He_energy,
+               bounds=Bounds(lb=1e-4),
+               method='SLSQP', tol=1e-6)
+
+print(res.x)
+print(res.values())
+
+# print("E", He_energy(71.6168370))
+
+# print(f'Nuclaer gradient:\n{jac.coords}')
+# print(f'Gradient wrt basis exponents:\n{jac.exp}')
+# print(f'Gradient wrt basis contraction coefficients:\n{jac.ctr_coeff}')#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Jan 17 2023, 16:42:09) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Fri Mar  3 21:29:53 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] conf_file /Users/deyanmihaylov/.pyscf_conf.py
+[INPUT] verbose = 5
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 2
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 He     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] He
+[INPUT] 0    0    [1    /1   ]  1.11732658827        1
+
+nuclear repulsion = 0
+number of shells = 1
+number of NR pGTOs = 1
+number of NR cGTOs = 1
+basis = {'He': [[0, [1.1173265882718586, 1.0]]]}
+ecp = {}
+CPU time:         4.87
+Set gradient conv threshold to 3.16228e-05
+cond(S) = 1.0
+E1 = -3.047049418230388  E_coul = 0.96068720390346
+init E= -2.08636221432693
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-0.62714013]
+E1 = -3.395166349675804  E_coul = 1.19273819280333
+cycle= 1 E= -2.20242815687247  delta_E= -0.116  |g|=    0  |ddm|= 0.205
+    CPU time for cycle= 1      0.00 sec, wall time      0.00 sec
+  mo_energy =
+[-0.50484498]
+E1 = -3.395166349675804  E_coul = 1.19273819280333
+cycle= 2 E= -2.20242815687247  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -3.395166349675804  E_coul = 1.19273819280333
+  mo_energy =
+[-0.50484498]
+E1 = -3.395166349675804  E_coul = 1.19273819280333
+Extra cycle  E= -2.20242815687247  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.04 sec, wall time      0.04 sec
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/h5py_mpi_test/pyscfad_test.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy.optimize import minimize, Bounds
+
+"""
+Analytic nuclear gradient for RHF computed by auto-differentiation
+"""
+
+
+def He_energy(exponent):
+    mol = gto.Mole()
+    mol.atom    = 'He 0 0 0'  # in Angstrom
+
+    mol.basis = {'He': pyscf.gto.basis.parse(f'''
+    He   S
+        {exponent[0]}              1.0
+    ''')}
+    mol.verbose = 5
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+    # jac = mf.energy_grad()
+
+    return e
+
+def grad_He_energy(exponent):
+    mol = gto.Mole()
+    mol.atom    = 'He 0 0 0'  # in Angstrom
+
+    mol.basis = {'He': pyscf.gto.basis.parse(f'''
+    He   S
+        {exponent[0]}              1.0
+    ''')}
+    mol.verbose = 5
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    return jac.exp
+
+x0 = 0.2432879285E+01
+res = minimize(He_energy, x0, jac=grad_He_energy,
+               bounds=Bounds(lb=1e-4),
+               method='SLSQP', tol=1e-6)
+
+print(res.x)
+print(res.values())
+
+# print("E", He_energy(71.6168370))
+
+# print(f'Nuclaer gradient:\n{jac.coords}')
+# print(f'Gradient wrt basis exponents:\n{jac.exp}')
+# print(f'Gradient wrt basis contraction coefficients:\n{jac.ctr_coeff}')#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Jan 17 2023, 16:42:09) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Fri Mar  3 21:29:53 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] conf_file /Users/deyanmihaylov/.pyscf_conf.py
+[INPUT] verbose = 5
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 2
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 He     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] He
+[INPUT] 0    0    [1    /1   ]  1.11732658827        1
+
+nuclear repulsion = 0
+number of shells = 1
+number of NR pGTOs = 1
+number of NR cGTOs = 1
+basis = {'He': [[0, [1.1173265882718586, 1.0]]]}
+ecp = {}
+CPU time:         4.95
+Set gradient conv threshold to 3.16228e-05
+cond(S) = 1.0
+E1 = -3.047049418230388  E_coul = 0.96068720390346
+init E= -2.08636221432693
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-0.62714013]
+E1 = -3.395166349675804  E_coul = 1.19273819280333
+cycle= 1 E= -2.20242815687247  delta_E= -0.116  |g|=    0  |ddm|= 0.205
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+  mo_energy =
+[-0.50484498]
+E1 = -3.395166349675804  E_coul = 1.19273819280333
+cycle= 2 E= -2.20242815687247  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -3.395166349675804  E_coul = 1.19273819280333
+  mo_energy =
+[-0.50484498]
+E1 = -3.395166349675804  E_coul = 1.19273819280333
+Extra cycle  E= -2.20242815687247  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.03 sec, wall time      0.04 sec
+Set gradient conv threshold to 3.16228e-05
+cond(S) = 1.0
+E1 = -3.395166349675804  E_coul = 1.19273819280333
+init E= -2.20242815687247
+    CPU time for initialize scf      0.03 sec, wall time      0.03 sec
+  mo_energy =
+[-0.50484498]
+E1 = -3.395166349675804  E_coul = 1.19273819280333
+cycle= 1 E= -2.20242815687247  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for cycle= 1      0.00 sec, wall time      0.00 sec
+E1 = -3.395166349675804  E_coul = 1.19273819280333
+  mo_energy =
+[-0.50484498]
+E1 = -3.395166349675804  E_coul = 1.19273819280333
+Extra cycle  E= -2.20242815687247  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.07 sec, wall time      0.07 sec
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/h5py_mpi_test/pyscfad_test.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy.optimize import minimize, Bounds
+
+"""
+Analytic nuclear gradient for RHF computed by auto-differentiation
+"""
+
+
+def He_energy(exponent):
+    mol = gto.Mole()
+    mol.atom    = 'He 0 0 0'  # in Angstrom
+
+    mol.basis = {'He': pyscf.gto.basis.parse(f'''
+    He   S
+        {exponent[0]}              1.0
+    ''')}
+    mol.verbose = 5
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+    # jac = mf.energy_grad()
+
+    return e
+
+def grad_He_energy(exponent):
+    mol = gto.Mole()
+    mol.atom    = 'He 0 0 0'  # in Angstrom
+
+    mol.basis = {'He': pyscf.gto.basis.parse(f'''
+    He   S
+        {exponent[0]}              1.0
+    ''')}
+    mol.verbose = 5
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    return jac.exp
+
+x0 = 0.2432879285E+01
+res = minimize(He_energy, x0, jac=grad_He_energy,
+               bounds=Bounds(lb=1e-4),
+               method='SLSQP', tol=1e-6)
+
+print(res.x)
+print(res.values())
+
+# print("E", He_energy(71.6168370))
+
+# print(f'Nuclaer gradient:\n{jac.coords}')
+# print(f'Gradient wrt basis exponents:\n{jac.exp}')
+# print(f'Gradient wrt basis contraction coefficients:\n{jac.ctr_coeff}')#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Jan 17 2023, 16:42:09) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Fri Mar  3 21:29:54 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] conf_file /Users/deyanmihaylov/.pyscf_conf.py
+[INPUT] verbose = 5
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 2
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 He     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] He
+[INPUT] 0    0    [1    /1   ]  0.272587760452       1
+
+nuclear repulsion = 0
+number of shells = 1
+number of NR pGTOs = 1
+number of NR cGTOs = 1
+basis = {'He': [[0, [0.2725877604517831, 1.0]]]}
+ecp = {}
+CPU time:         6.47
+Set gradient conv threshold to 3.16228e-05
+cond(S) = 1.0
+E1 = -1.918657791207009  E_coul = 0.3429127253029212
+init E= -1.57574506590409
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-0.80795345]
+E1 = -2.514836981588918  E_coul = 0.5891260612279909
+cycle= 1 E= -1.92571092036093  delta_E= -0.35  |g|=    0  |ddm|= 0.474
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+  mo_energy =
+[-0.66829243]
+E1 = -2.514836981588918  E_coul = 0.5891260612279909
+cycle= 2 E= -1.92571092036093  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -2.514836981588918  E_coul = 0.5891260612279909
+  mo_energy =
+[-0.66829243]
+E1 = -2.514836981588918  E_coul = 0.5891260612279909
+Extra cycle  E= -1.92571092036093  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.04 sec, wall time      0.04 sec
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/h5py_mpi_test/pyscfad_test.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy.optimize import minimize, Bounds
+
+"""
+Analytic nuclear gradient for RHF computed by auto-differentiation
+"""
+
+
+def He_energy(exponent):
+    mol = gto.Mole()
+    mol.atom    = 'He 0 0 0'  # in Angstrom
+
+    mol.basis = {'He': pyscf.gto.basis.parse(f'''
+    He   S
+        {exponent[0]}              1.0
+    ''')}
+    mol.verbose = 5
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+    # jac = mf.energy_grad()
+
+    return e
+
+def grad_He_energy(exponent):
+    mol = gto.Mole()
+    mol.atom    = 'He 0 0 0'  # in Angstrom
+
+    mol.basis = {'He': pyscf.gto.basis.parse(f'''
+    He   S
+        {exponent[0]}              1.0
+    ''')}
+    mol.verbose = 5
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    return jac.exp
+
+x0 = 0.2432879285E+01
+res = minimize(He_energy, x0, jac=grad_He_energy,
+               bounds=Bounds(lb=1e-4),
+               method='SLSQP', tol=1e-6)
+
+print(res.x)
+print(res.values())
+
+# print("E", He_energy(71.6168370))
+
+# print(f'Nuclaer gradient:\n{jac.coords}')
+# print(f'Gradient wrt basis exponents:\n{jac.exp}')
+# print(f'Gradient wrt basis contraction coefficients:\n{jac.ctr_coeff}')#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Jan 17 2023, 16:42:09) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Fri Mar  3 21:29:55 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] conf_file /Users/deyanmihaylov/.pyscf_conf.py
+[INPUT] verbose = 5
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 2
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 He     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] He
+[INPUT] 0    0    [1    /1   ]  0.859278991733       1
+
+nuclear repulsion = 0
+number of shells = 1
+number of NR pGTOs = 1
+number of NR cGTOs = 1
+basis = {'He': [[0, [0.8592789917325896, 1.0]]]}
+ecp = {}
+CPU time:         6.59
+Set gradient conv threshold to 3.16228e-05
+cond(S) = 1.0
+E1 = -3.108907775433102  E_coul = 0.9067305888135456
+init E= -2.20217718661956
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-0.69568312]
+E1 = -3.33910275336893  E_coul = 1.045977051485401
+cycle= 1 E= -2.29312570188353  delta_E= -0.0909  |g|=    0  |ddm|= 0.138
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+  mo_energy =
+[-0.62357433]
+E1 = -3.33910275336893  E_coul = 1.045977051485401
+cycle= 2 E= -2.29312570188353  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -3.33910275336893  E_coul = 1.045977051485401
+  mo_energy =
+[-0.62357433]
+E1 = -3.33910275336893  E_coul = 1.045977051485401
+Extra cycle  E= -2.29312570188353  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.04 sec, wall time      0.04 sec
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/h5py_mpi_test/pyscfad_test.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy.optimize import minimize, Bounds
+
+"""
+Analytic nuclear gradient for RHF computed by auto-differentiation
+"""
+
+
+def He_energy(exponent):
+    mol = gto.Mole()
+    mol.atom    = 'He 0 0 0'  # in Angstrom
+
+    mol.basis = {'He': pyscf.gto.basis.parse(f'''
+    He   S
+        {exponent[0]}              1.0
+    ''')}
+    mol.verbose = 5
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+    # jac = mf.energy_grad()
+
+    return e
+
+def grad_He_energy(exponent):
+    mol = gto.Mole()
+    mol.atom    = 'He 0 0 0'  # in Angstrom
+
+    mol.basis = {'He': pyscf.gto.basis.parse(f'''
+    He   S
+        {exponent[0]}              1.0
+    ''')}
+    mol.verbose = 5
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    return jac.exp
+
+x0 = 0.2432879285E+01
+res = minimize(He_energy, x0, jac=grad_He_energy,
+               bounds=Bounds(lb=1e-4),
+               method='SLSQP', tol=1e-6)
+
+print(res.x)
+print(res.values())
+
+# print("E", He_energy(71.6168370))
+
+# print(f'Nuclaer gradient:\n{jac.coords}')
+# print(f'Gradient wrt basis exponents:\n{jac.exp}')
+# print(f'Gradient wrt basis contraction coefficients:\n{jac.ctr_coeff}')#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Jan 17 2023, 16:42:09) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Fri Mar  3 21:29:55 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] conf_file /Users/deyanmihaylov/.pyscf_conf.py
+[INPUT] verbose = 5
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 2
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 He     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] He
+[INPUT] 0    0    [1    /1   ]  0.859278991733       1
+
+nuclear repulsion = 0
+number of shells = 1
+number of NR pGTOs = 1
+number of NR cGTOs = 1
+basis = {'He': [[0, [0.8592789917325896, 1.0]]]}
+ecp = {}
+CPU time:         6.71
+Set gradient conv threshold to 3.16228e-05
+cond(S) = 1.0
+E1 = -3.108907775433102  E_coul = 0.9067305888135456
+init E= -2.20217718661956
+    CPU time for initialize scf      0.02 sec, wall time      0.03 sec
+  mo_energy =
+[-0.69568312]
+E1 = -3.33910275336893  E_coul = 1.045977051485401
+cycle= 1 E= -2.29312570188353  delta_E= -0.0909  |g|=    0  |ddm|= 0.138
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+  mo_energy =
+[-0.62357433]
+E1 = -3.33910275336893  E_coul = 1.045977051485401
+cycle= 2 E= -2.29312570188353  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -3.33910275336893  E_coul = 1.045977051485401
+  mo_energy =
+[-0.62357433]
+E1 = -3.33910275336893  E_coul = 1.045977051485401
+Extra cycle  E= -2.29312570188353  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.06 sec, wall time      0.06 sec
+Set gradient conv threshold to 3.16228e-05
+cond(S) = 1.0
+E1 = -3.33910275336893  E_coul = 1.045977051485401
+init E= -2.29312570188353
+    CPU time for initialize scf      0.04 sec, wall time      0.04 sec
+  mo_energy =
+[-0.62357433]
+E1 = -3.33910275336893  E_coul = 1.045977051485401
+cycle= 1 E= -2.29312570188353  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+E1 = -3.33910275336893  E_coul = 1.045977051485401
+  mo_energy =
+[-0.62357433]
+E1 = -3.33910275336893  E_coul = 1.045977051485401
+Extra cycle  E= -2.29312570188353  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.09 sec, wall time      0.09 sec
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/h5py_mpi_test/pyscfad_test.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy.optimize import minimize, Bounds
+
+"""
+Analytic nuclear gradient for RHF computed by auto-differentiation
+"""
+
+
+def He_energy(exponent):
+    mol = gto.Mole()
+    mol.atom    = 'He 0 0 0'  # in Angstrom
+
+    mol.basis = {'He': pyscf.gto.basis.parse(f'''
+    He   S
+        {exponent[0]}              1.0
+    ''')}
+    mol.verbose = 5
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+    # jac = mf.energy_grad()
+
+    return e
+
+def grad_He_energy(exponent):
+    mol = gto.Mole()
+    mol.atom    = 'He 0 0 0'  # in Angstrom
+
+    mol.basis = {'He': pyscf.gto.basis.parse(f'''
+    He   S
+        {exponent[0]}              1.0
+    ''')}
+    mol.verbose = 5
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    return jac.exp
+
+x0 = 0.2432879285E+01
+res = minimize(He_energy, x0, jac=grad_He_energy,
+               bounds=Bounds(lb=1e-4),
+               method='SLSQP', tol=1e-6)
+
+print(res.x)
+print(res.values())
+
+# print("E", He_energy(71.6168370))
+
+# print(f'Nuclaer gradient:\n{jac.coords}')
+# print(f'Gradient wrt basis exponents:\n{jac.exp}')
+# print(f'Gradient wrt basis contraction coefficients:\n{jac.ctr_coeff}')#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Jan 17 2023, 16:42:09) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Fri Mar  3 21:29:56 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] conf_file /Users/deyanmihaylov/.pyscf_conf.py
+[INPUT] verbose = 5
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 2
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 He     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] He
+[INPUT] 0    0    [1    /1   ]  0.736697832033       1
+
+nuclear repulsion = 0
+number of shells = 1
+number of NR pGTOs = 1
+number of NR cGTOs = 1
+basis = {'He': [[0, [0.7366978320331821, 1.0]]]}
+ecp = {}
+CPU time:         8.44
+Set gradient conv threshold to 3.16228e-05
+cond(S) = 1.0
+E1 = -3.066931790023663  E_coul = 0.8526916574316086
+init E= -2.21424013259205
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-0.72553269]
+E1 = -3.268571486584641  E_coul = 0.9685002902763169
+cycle= 1 E= -2.30007119630832  delta_E= -0.0858  |g|=    0  |ddm|= 0.123
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+  mo_energy =
+[-0.66578545]
+E1 = -3.268571486584641  E_coul = 0.9685002902763169
+cycle= 2 E= -2.30007119630832  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -3.268571486584641  E_coul = 0.9685002902763169
+  mo_energy =
+[-0.66578545]
+E1 = -3.268571486584641  E_coul = 0.9685002902763169
+Extra cycle  E= -2.30007119630832  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.04 sec, wall time      0.04 sec
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/h5py_mpi_test/pyscfad_test.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy.optimize import minimize, Bounds
+
+"""
+Analytic nuclear gradient for RHF computed by auto-differentiation
+"""
+
+
+def He_energy(exponent):
+    mol = gto.Mole()
+    mol.atom    = 'He 0 0 0'  # in Angstrom
+
+    mol.basis = {'He': pyscf.gto.basis.parse(f'''
+    He   S
+        {exponent[0]}              1.0
+    ''')}
+    mol.verbose = 5
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+    # jac = mf.energy_grad()
+
+    return e
+
+def grad_He_energy(exponent):
+    mol = gto.Mole()
+    mol.atom    = 'He 0 0 0'  # in Angstrom
+
+    mol.basis = {'He': pyscf.gto.basis.parse(f'''
+    He   S
+        {exponent[0]}              1.0
+    ''')}
+    mol.verbose = 5
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    return jac.exp
+
+x0 = 0.2432879285E+01
+res = minimize(He_energy, x0, jac=grad_He_energy,
+               bounds=Bounds(lb=1e-4),
+               method='SLSQP', tol=1e-6)
+
+print(res.x)
+print(res.values())
+
+# print("E", He_energy(71.6168370))
+
+# print(f'Nuclaer gradient:\n{jac.coords}')
+# print(f'Gradient wrt basis exponents:\n{jac.exp}')
+# print(f'Gradient wrt basis contraction coefficients:\n{jac.ctr_coeff}')#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Jan 17 2023, 16:42:09) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Fri Mar  3 21:29:57 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] conf_file /Users/deyanmihaylov/.pyscf_conf.py
+[INPUT] verbose = 5
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 2
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 He     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] He
+[INPUT] 0    0    [1    /1   ]  0.736697832033       1
+
+nuclear repulsion = 0
+number of shells = 1
+number of NR pGTOs = 1
+number of NR cGTOs = 1
+basis = {'He': [[0, [0.7366978320331821, 1.0]]]}
+ecp = {}
+CPU time:         8.55
+Set gradient conv threshold to 3.16228e-05
+cond(S) = 1.0
+E1 = -3.066931790023663  E_coul = 0.8526916574316086
+init E= -2.21424013259205
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-0.72553269]
+E1 = -3.268571486584641  E_coul = 0.9685002902763169
+cycle= 1 E= -2.30007119630832  delta_E= -0.0858  |g|=    0  |ddm|= 0.123
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+  mo_energy =
+[-0.66578545]
+E1 = -3.268571486584641  E_coul = 0.9685002902763169
+cycle= 2 E= -2.30007119630832  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -3.268571486584641  E_coul = 0.9685002902763169
+  mo_energy =
+[-0.66578545]
+E1 = -3.268571486584641  E_coul = 0.9685002902763169
+Extra cycle  E= -2.30007119630832  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.04 sec, wall time      0.04 sec
+Set gradient conv threshold to 3.16228e-05
+cond(S) = 1.0
+E1 = -3.268571486584641  E_coul = 0.9685002902763169
+init E= -2.30007119630832
+    CPU time for initialize scf      0.03 sec, wall time      0.03 sec
+  mo_energy =
+[-0.66578545]
+E1 = -3.268571486584641  E_coul = 0.9685002902763169
+cycle= 1 E= -2.30007119630832  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+E1 = -3.268571486584641  E_coul = 0.9685002902763169
+  mo_energy =
+[-0.66578545]
+E1 = -3.268571486584641  E_coul = 0.9685002902763169
+Extra cycle  E= -2.30007119630832  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.08 sec, wall time      0.08 sec
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/h5py_mpi_test/pyscfad_test.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy.optimize import minimize, Bounds
+
+"""
+Analytic nuclear gradient for RHF computed by auto-differentiation
+"""
+
+
+def He_energy(exponent):
+    mol = gto.Mole()
+    mol.atom    = 'He 0 0 0'  # in Angstrom
+
+    mol.basis = {'He': pyscf.gto.basis.parse(f'''
+    He   S
+        {exponent[0]}              1.0
+    ''')}
+    mol.verbose = 5
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+    # jac = mf.energy_grad()
+
+    return e
+
+def grad_He_energy(exponent):
+    mol = gto.Mole()
+    mol.atom    = 'He 0 0 0'  # in Angstrom
+
+    mol.basis = {'He': pyscf.gto.basis.parse(f'''
+    He   S
+        {exponent[0]}              1.0
+    ''')}
+    mol.verbose = 5
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    return jac.exp
+
+x0 = 0.2432879285E+01
+res = minimize(He_energy, x0, jac=grad_He_energy,
+               bounds=Bounds(lb=1e-4),
+               method='SLSQP', tol=1e-6)
+
+print(res.x)
+print(res.values())
+
+# print("E", He_energy(71.6168370))
+
+# print(f'Nuclaer gradient:\n{jac.coords}')
+# print(f'Gradient wrt basis exponents:\n{jac.exp}')
+# print(f'Gradient wrt basis contraction coefficients:\n{jac.ctr_coeff}')#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Jan 17 2023, 16:42:09) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Fri Mar  3 21:29:58 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] conf_file /Users/deyanmihaylov/.pyscf_conf.py
+[INPUT] verbose = 5
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 2
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 He     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] He
+[INPUT] 0    0    [1    /1   ]  0.769713258568       1
+
+nuclear repulsion = 0
+number of shells = 1
+number of NR pGTOs = 1
+number of NR cGTOs = 1
+basis = {'He': [[0, [0.7697132585682669, 1.0]]]}
+ecp = {}
+CPU time:        10.09
+Set gradient conv threshold to 3.16228e-05
+cond(S) = 1.0
+E1 = -3.084362776125228  E_coul = 0.8695797883453091
+init E= -2.21478298777992
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-0.71765043]
+E1 = -3.2909441062843356  E_coul = 0.989964322042001
+cycle= 1 E= -2.30097978424233  delta_E= -0.0862  |g|=    0  |ddm|= 0.126
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+  mo_energy =
+[-0.65550773]
+E1 = -3.2909441062843356  E_coul = 0.989964322042001
+cycle= 2 E= -2.30097978424233  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -3.2909441062843356  E_coul = 0.989964322042001
+  mo_energy =
+[-0.65550773]
+E1 = -3.2909441062843356  E_coul = 0.989964322042001
+Extra cycle  E= -2.30097978424233  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.04 sec, wall time      0.04 sec
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/h5py_mpi_test/pyscfad_test.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy.optimize import minimize, Bounds
+
+"""
+Analytic nuclear gradient for RHF computed by auto-differentiation
+"""
+
+
+def He_energy(exponent):
+    mol = gto.Mole()
+    mol.atom    = 'He 0 0 0'  # in Angstrom
+
+    mol.basis = {'He': pyscf.gto.basis.parse(f'''
+    He   S
+        {exponent[0]}              1.0
+    ''')}
+    mol.verbose = 5
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+    # jac = mf.energy_grad()
+
+    return e
+
+def grad_He_energy(exponent):
+    mol = gto.Mole()
+    mol.atom    = 'He 0 0 0'  # in Angstrom
+
+    mol.basis = {'He': pyscf.gto.basis.parse(f'''
+    He   S
+        {exponent[0]}              1.0
+    ''')}
+    mol.verbose = 5
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    return jac.exp
+
+x0 = 0.2432879285E+01
+res = minimize(He_energy, x0, jac=grad_He_energy,
+               bounds=Bounds(lb=1e-4),
+               method='SLSQP', tol=1e-6)
+
+print(res.x)
+print(res.values())
+
+# print("E", He_energy(71.6168370))
+
+# print(f'Nuclaer gradient:\n{jac.coords}')
+# print(f'Gradient wrt basis exponents:\n{jac.exp}')
+# print(f'Gradient wrt basis contraction coefficients:\n{jac.ctr_coeff}')#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Jan 17 2023, 16:42:09) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Fri Mar  3 21:29:58 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] conf_file /Users/deyanmihaylov/.pyscf_conf.py
+[INPUT] verbose = 5
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 2
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 He     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] He
+[INPUT] 0    0    [1    /1   ]  0.769713258568       1
+
+nuclear repulsion = 0
+number of shells = 1
+number of NR pGTOs = 1
+number of NR cGTOs = 1
+basis = {'He': [[0, [0.7697132585682669, 1.0]]]}
+ecp = {}
+CPU time:        10.20
+Set gradient conv threshold to 3.16228e-05
+cond(S) = 1.0
+E1 = -3.084362776125228  E_coul = 0.8695797883453091
+init E= -2.21478298777992
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-0.71765043]
+E1 = -3.2909441062843356  E_coul = 0.989964322042001
+cycle= 1 E= -2.30097978424233  delta_E= -0.0862  |g|=    0  |ddm|= 0.126
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+  mo_energy =
+[-0.65550773]
+E1 = -3.2909441062843356  E_coul = 0.989964322042001
+cycle= 2 E= -2.30097978424233  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -3.2909441062843356  E_coul = 0.989964322042001
+  mo_energy =
+[-0.65550773]
+E1 = -3.2909441062843356  E_coul = 0.989964322042001
+Extra cycle  E= -2.30097978424233  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.04 sec, wall time      0.04 sec
+Set gradient conv threshold to 3.16228e-05
+cond(S) = 1.0
+E1 = -3.2909441062843356  E_coul = 0.989964322042001
+init E= -2.30097978424233
+    CPU time for initialize scf      0.03 sec, wall time      0.03 sec
+  mo_energy =
+[-0.65550773]
+E1 = -3.2909441062843356  E_coul = 0.989964322042001
+cycle= 1 E= -2.30097978424233  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for cycle= 1      0.00 sec, wall time      0.00 sec
+E1 = -3.2909441062843356  E_coul = 0.989964322042001
+  mo_energy =
+[-0.65550773]
+E1 = -3.2909441062843356  E_coul = 0.989964322042001
+Extra cycle  E= -2.30097978424233  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.07 sec, wall time      0.07 sec
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/h5py_mpi_test/pyscfad_test.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy.optimize import minimize, Bounds
+
+"""
+Analytic nuclear gradient for RHF computed by auto-differentiation
+"""
+
+
+def He_energy(exponent):
+    mol = gto.Mole()
+    mol.atom    = 'He 0 0 0'  # in Angstrom
+
+    mol.basis = {'He': pyscf.gto.basis.parse(f'''
+    He   S
+        {exponent[0]}              1.0
+    ''')}
+    mol.verbose = 5
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+    # jac = mf.energy_grad()
+
+    return e
+
+def grad_He_energy(exponent):
+    mol = gto.Mole()
+    mol.atom    = 'He 0 0 0'  # in Angstrom
+
+    mol.basis = {'He': pyscf.gto.basis.parse(f'''
+    He   S
+        {exponent[0]}              1.0
+    ''')}
+    mol.verbose = 5
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    return jac.exp
+
+x0 = 0.2432879285E+01
+res = minimize(He_energy, x0, jac=grad_He_energy,
+               bounds=Bounds(lb=1e-4),
+               method='SLSQP', tol=1e-6)
+
+print(res.x)
+print(res.values())
+
+# print("E", He_energy(71.6168370))
+
+# print(f'Nuclaer gradient:\n{jac.coords}')
+# print(f'Gradient wrt basis exponents:\n{jac.exp}')
+# print(f'Gradient wrt basis contraction coefficients:\n{jac.ctr_coeff}')#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Jan 17 2023, 16:42:09) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Fri Mar  3 21:30:00 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] conf_file /Users/deyanmihaylov/.pyscf_conf.py
+[INPUT] verbose = 5
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 2
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 He     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] He
+[INPUT] 0    0    [1    /1   ]  0.767076424016       1
+
+nuclear repulsion = 0
+number of shells = 1
+number of NR pGTOs = 1
+number of NR cGTOs = 1
+basis = {'He': [[0, [0.7670764240156883, 1.0]]]}
+ecp = {}
+CPU time:        11.82
+Set gradient conv threshold to 3.16228e-05
+cond(S) = 1.0
+E1 = -3.0831513045678793  E_coul = 0.8682987655275567
+init E= -2.21485253904032
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-0.71828418]
+E1 = -3.2892541757869385  E_coul = 0.9882671890186432
+cycle= 1 E= -2.3009869867683  delta_E= -0.0861  |g|=    0  |ddm|= 0.125
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+  mo_energy =
+[-0.6563599]
+E1 = -3.2892541757869385  E_coul = 0.9882671890186432
+cycle= 2 E= -2.3009869867683  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -3.2892541757869385  E_coul = 0.9882671890186432
+  mo_energy =
+[-0.6563599]
+E1 = -3.2892541757869385  E_coul = 0.9882671890186432
+Extra cycle  E= -2.3009869867683  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.04 sec, wall time      0.04 sec
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/h5py_mpi_test/pyscfad_test.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy.optimize import minimize, Bounds
+
+"""
+Analytic nuclear gradient for RHF computed by auto-differentiation
+"""
+
+
+def He_energy(exponent):
+    mol = gto.Mole()
+    mol.atom    = 'He 0 0 0'  # in Angstrom
+
+    mol.basis = {'He': pyscf.gto.basis.parse(f'''
+    He   S
+        {exponent[0]}              1.0
+    ''')}
+    mol.verbose = 5
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+    # jac = mf.energy_grad()
+
+    return e
+
+def grad_He_energy(exponent):
+    mol = gto.Mole()
+    mol.atom    = 'He 0 0 0'  # in Angstrom
+
+    mol.basis = {'He': pyscf.gto.basis.parse(f'''
+    He   S
+        {exponent[0]}              1.0
+    ''')}
+    mol.verbose = 5
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    return jac.exp
+
+x0 = 0.2432879285E+01
+res = minimize(He_energy, x0, jac=grad_He_energy,
+               bounds=Bounds(lb=1e-4),
+               method='SLSQP', tol=1e-6)
+
+print(res.x)
+print(res.values())
+
+# print("E", He_energy(71.6168370))
+
+# print(f'Nuclaer gradient:\n{jac.coords}')
+# print(f'Gradient wrt basis exponents:\n{jac.exp}')
+# print(f'Gradient wrt basis contraction coefficients:\n{jac.ctr_coeff}')#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Jan 17 2023, 16:42:09) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Fri Mar  3 21:30:00 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] conf_file /Users/deyanmihaylov/.pyscf_conf.py
+[INPUT] verbose = 5
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 2
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 He     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] He
+[INPUT] 0    0    [1    /1   ]  0.767076424016       1
+
+nuclear repulsion = 0
+number of shells = 1
+number of NR pGTOs = 1
+number of NR cGTOs = 1
+basis = {'He': [[0, [0.7670764240156883, 1.0]]]}
+ecp = {}
+CPU time:        11.95
+Set gradient conv threshold to 3.16228e-05
+cond(S) = 1.0
+E1 = -3.0831513045678793  E_coul = 0.8682987655275567
+init E= -2.21485253904032
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-0.71828418]
+E1 = -3.2892541757869385  E_coul = 0.9882671890186432
+cycle= 1 E= -2.3009869867683  delta_E= -0.0861  |g|=    0  |ddm|= 0.125
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+  mo_energy =
+[-0.6563599]
+E1 = -3.2892541757869385  E_coul = 0.9882671890186432
+cycle= 2 E= -2.3009869867683  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -3.2892541757869385  E_coul = 0.9882671890186432
+  mo_energy =
+[-0.6563599]
+E1 = -3.2892541757869385  E_coul = 0.9882671890186432
+Extra cycle  E= -2.3009869867683  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.04 sec, wall time      0.04 sec
+Set gradient conv threshold to 3.16228e-05
+cond(S) = 1.0
+E1 = -3.2892541757869385  E_coul = 0.9882671890186432
+init E= -2.3009869867683
+    CPU time for initialize scf      0.03 sec, wall time      0.03 sec
+  mo_energy =
+[-0.6563599]
+E1 = -3.2892541757869385  E_coul = 0.9882671890186432
+cycle= 1 E= -2.3009869867683  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+E1 = -3.2892541757869385  E_coul = 0.9882671890186432
+  mo_energy =
+[-0.6563599]
+E1 = -3.2892541757869385  E_coul = 0.9882671890186432
+Extra cycle  E= -2.3009869867683  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.07 sec, wall time      0.07 sec
+[0.76707642]
+dict_values([array([0.76707642]), -2.3009869867682955, array([0.00015793]), 6, 7, 6, 0, 'Optimization terminated successfully', True])
