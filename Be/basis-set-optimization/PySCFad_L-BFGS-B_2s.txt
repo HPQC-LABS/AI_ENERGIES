@@ -1,0 +1,4537 @@
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/pyscf_basis_opt/Be_energies.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy import optimize
+
+def atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+
+    print(f"exp = {exponent}")
+    print(f"E = {e}")
+
+    return e
+
+def grad_atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+        
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+    
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    print(f"exp = {exponent}")
+    print(f"grad_E = {jac.exp}")
+
+    grad_E = np.array(jac.exp)
+
+    return grad_E
+
+def minimize_energy(n, exp_array=None):
+    # x0 = [0.5 * (n-i) for i in range(n)]
+    x0 = exp_array[:, 0]
+    bnds = ((1e-9, None) for _ in range(n))
+
+    res = optimize.minimize(
+        atomic_energy,
+        x0,
+        args=(exp_array),
+        method="L-BFGS-B",
+        jac=grad_atomic_energy,
+        hess=None,
+        hessp=None,
+        bounds=bnds,
+        tol=1e-9,
+        callback=None,
+        options={"maxfev": 10000, "ftol": 1e-9},
+    )
+    
+    print(res)
+    print(f"E = {atomic_energy(res.x)}")
+    print(f"exp = [{','.join(['{:.16e}'.format(x) for x in res.x])}]")
+    
+
+N = 2
+
+exps = np.zeros((N, 2))
+exps[:, 0] = np.array([1.0, 0.5])
+# exps[1:, 0] = exps_Be_3s[:]
+# exps[0, 0] = np.max(exps_Be_3s) * 10.0
+
+minimize_energy(N, exps)
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Mar  1 2023, 21:19:10) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Tue Mar  7 18:13:30 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] DEBUG = False
+[CONFIG] MAX_MEMORY = 4000
+[CONFIG] TMPDIR = /var/folders/v7/w4c0kx6d5bq1lvxw1rnqy7br0000gp/T/
+[CONFIG] UNIT = angstrom
+[CONFIG] VERBOSE = 3
+[CONFIG] conf_file = /Users/deyanmihaylov/.pyscf_conf.py
+[CONFIG] pyscf_numpy_backend = jax
+[CONFIG] pyscf_scipy_backend = jax
+[CONFIG] pyscf_scipy_linalg_backend = pyscfad
+[CONFIG] pyscfad = True
+[CONFIG] pyscfad_ccsd_implicit_diff = True
+[CONFIG] pyscfad_scf_implicit_diff = True
+[INPUT] verbose = 9
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 4
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 Be     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] Be
+[INPUT] 0    0    [1    /1   ]  1                    1
+[INPUT] 0    0    [1    /1   ]  0.5                  1
+
+nuclear repulsion = 0
+number of shells = 2
+number of NR pGTOs = 2
+number of NR cGTOs = 2
+basis = {'Be': [[0, [1.0, 1.0]], [0, [0.5, 1.0]]]}
+ecp = {}
+bas 0, expnt(s) = [1.]
+bas 1, expnt(s) = [0.5]
+CPU time:         1.62
+arg.atm = [[ 4 20  1 23  0  0]]
+arg.bas = [[ 0  0  1  1  0 24 25  0]
+ [ 0  0  1  1  0 26 27  0]]
+arg.env = [0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 1.         2.52647511 0.5        1.50225109]
+ecpbas  = []
+Set gradient conv threshold to 3.16228e-05
+Nelec from initial guess = 2.689961266738771
+cond(S) = 22.655219673529245
+E1 = -9.185976228717088  E_coul = 2.047568960690909
+init E= -7.13840726802618
+    CPU time for initialize scf      0.11 sec, wall time      0.11 sec
+  mo_energy =
+[-3.35059741 -0.1744745 ]
+E1 = -13.057894186626745  E_coul = 4.400434120574686
+cycle= 1 E= -8.65746006605206  delta_E= -1.52  |g|=    0  |ddm|= 8.21
+    CPU time for cycle= 1      0.16 sec, wall time      0.17 sec
+diis-norm(errvec)=8.79252e-15
+diis-c [-7.73083687e-29  1.00000000e+00]
+  mo_energy =
+[-2.51731349  0.38880052]
+E1 = -13.057894186626752  E_coul = 4.400434120574694
+cycle= 2 E= -8.65746006605206  delta_E= 1.78e-15  |g|=    0  |ddm|= 3.08e-15
+    CPU time for cycle= 2      0.06 sec, wall time      0.06 sec
+E1 = -13.057894186626752  E_coul = 4.400434120574694
+  mo_energy =
+[-2.51731349  0.38880052]
+E1 = -13.057894186626758  E_coul = 4.400434120574701
+Extra cycle  E= -8.65746006605206  delta_E= 1.78e-15  |g|=    0  |ddm|= 7.11e-15
+    CPU time for scf_cycle      0.33 sec, wall time      0.34 sec
+exp = [1.  0.5]
+E = -8.657460066052057
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/pyscf_basis_opt/Be_energies.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy import optimize
+
+def atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+
+    print(f"exp = {exponent}")
+    print(f"E = {e}")
+
+    return e
+
+def grad_atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+        
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+    
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    print(f"exp = {exponent}")
+    print(f"grad_E = {jac.exp}")
+
+    grad_E = np.array(jac.exp)
+
+    return grad_E
+
+def minimize_energy(n, exp_array=None):
+    # x0 = [0.5 * (n-i) for i in range(n)]
+    x0 = exp_array[:, 0]
+    bnds = ((1e-9, None) for _ in range(n))
+
+    res = optimize.minimize(
+        atomic_energy,
+        x0,
+        args=(exp_array),
+        method="L-BFGS-B",
+        jac=grad_atomic_energy,
+        hess=None,
+        hessp=None,
+        bounds=bnds,
+        tol=1e-9,
+        callback=None,
+        options={"maxfev": 10000, "ftol": 1e-9},
+    )
+    
+    print(res)
+    print(f"E = {atomic_energy(res.x)}")
+    print(f"exp = [{','.join(['{:.16e}'.format(x) for x in res.x])}]")
+    
+
+N = 2
+
+exps = np.zeros((N, 2))
+exps[:, 0] = np.array([1.0, 0.5])
+# exps[1:, 0] = exps_Be_3s[:]
+# exps[0, 0] = np.max(exps_Be_3s) * 10.0
+
+minimize_energy(N, exps)
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Mar  1 2023, 21:19:10) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Tue Mar  7 18:13:30 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] DEBUG = False
+[CONFIG] MAX_MEMORY = 4000
+[CONFIG] TMPDIR = /var/folders/v7/w4c0kx6d5bq1lvxw1rnqy7br0000gp/T/
+[CONFIG] UNIT = angstrom
+[CONFIG] VERBOSE = 3
+[CONFIG] conf_file = /Users/deyanmihaylov/.pyscf_conf.py
+[CONFIG] pyscf_numpy_backend = jax
+[CONFIG] pyscf_scipy_backend = jax
+[CONFIG] pyscf_scipy_linalg_backend = pyscfad
+[CONFIG] pyscfad = True
+[CONFIG] pyscfad_ccsd_implicit_diff = True
+[CONFIG] pyscfad_scf_implicit_diff = True
+[INPUT] verbose = 9
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 4
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 Be     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] Be
+[INPUT] 0    0    [1    /1   ]  1                    1
+[INPUT] 0    0    [1    /1   ]  0.5                  1
+
+nuclear repulsion = 0
+number of shells = 2
+number of NR pGTOs = 2
+number of NR cGTOs = 2
+basis = {'Be': [[0, [1.0, 1.0]], [0, [0.5, 1.0]]]}
+ecp = {}
+bas 0, expnt(s) = [1.]
+bas 1, expnt(s) = [0.5]
+CPU time:         2.03
+arg.atm = [[ 4 20  1 23  0  0]]
+arg.bas = [[ 0  0  1  1  0 24 25  0]
+ [ 0  0  1  1  0 26 27  0]]
+arg.env = [0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 1.         2.52647511 0.5        1.50225109]
+ecpbas  = []
+Set gradient conv threshold to 3.16228e-05
+Nelec from initial guess = 2.689961266738771
+cond(S) = 22.655219673529245
+E1 = -9.185976228717088  E_coul = 2.047568960690909
+init E= -7.13840726802618
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-3.35059741 -0.1744745 ]
+E1 = -13.057894186626745  E_coul = 4.400434120574686
+cycle= 1 E= -8.65746006605206  delta_E= -1.52  |g|=    0  |ddm|= 8.21
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+diis-norm(errvec)=8.79252e-15
+diis-c [-7.73083687e-29  1.00000000e+00]
+  mo_energy =
+[-2.51731349  0.38880052]
+E1 = -13.057894186626752  E_coul = 4.400434120574694
+cycle= 2 E= -8.65746006605206  delta_E= 1.78e-15  |g|=    0  |ddm|= 3.08e-15
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -13.057894186626752  E_coul = 4.400434120574694
+  mo_energy =
+[-2.51731349  0.38880052]
+E1 = -13.057894186626758  E_coul = 4.400434120574701
+Extra cycle  E= -8.65746006605206  delta_E= 1.78e-15  |g|=    0  |ddm|= 7.11e-15
+    CPU time for scf_cycle      0.04 sec, wall time      0.04 sec
+Set gradient conv threshold to 3.16228e-05
+cond(S) = 22.655219673529245
+E1 = -13.057894186626758  E_coul = 4.400434120574701
+init E= -8.65746006605206
+    CPU time for initialize scf      0.26 sec, wall time      0.26 sec
+  mo_energy =
+[-2.51731349  0.38880052]
+E1 = -13.057894186626758  E_coul = 4.400434120574694
+cycle= 1 E= -8.65746006605206  delta_E= -7.11e-15  |g|=    0  |ddm|= 3.55e-15
+    CPU time for cycle= 1      0.00 sec, wall time      0.00 sec
+E1 = -13.057894186626758  E_coul = 4.400434120574694
+  mo_energy =
+[-2.51731349  0.38880052]
+E1 = -13.057894186626745  E_coul = 4.4004341205746975
+Extra cycle  E= -8.65746006605205  delta_E= 1.6e-14  |g|=    0  |ddm|= 1.79e-14
+    CPU time for scf_cycle      0.72 sec, wall time      0.73 sec
+exp = [1.  0.5]
+grad_E = [-1.52541816  1.4807962 ]
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/pyscf_basis_opt/Be_energies.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy import optimize
+
+def atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+
+    print(f"exp = {exponent}")
+    print(f"E = {e}")
+
+    return e
+
+def grad_atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+        
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+    
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    print(f"exp = {exponent}")
+    print(f"grad_E = {jac.exp}")
+
+    grad_E = np.array(jac.exp)
+
+    return grad_E
+
+def minimize_energy(n, exp_array=None):
+    # x0 = [0.5 * (n-i) for i in range(n)]
+    x0 = exp_array[:, 0]
+    bnds = ((1e-9, None) for _ in range(n))
+
+    res = optimize.minimize(
+        atomic_energy,
+        x0,
+        args=(exp_array),
+        method="L-BFGS-B",
+        jac=grad_atomic_energy,
+        hess=None,
+        hessp=None,
+        bounds=bnds,
+        tol=1e-9,
+        callback=None,
+        options={"maxfev": 10000, "ftol": 1e-9},
+    )
+    
+    print(res)
+    print(f"E = {atomic_energy(res.x)}")
+    print(f"exp = [{','.join(['{:.16e}'.format(x) for x in res.x])}]")
+    
+
+N = 2
+
+exps = np.zeros((N, 2))
+exps[:, 0] = np.array([1.0, 0.5])
+# exps[1:, 0] = exps_Be_3s[:]
+# exps[0, 0] = np.max(exps_Be_3s) * 10.0
+
+minimize_energy(N, exps)
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Mar  1 2023, 21:19:10) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Tue Mar  7 18:13:34 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] DEBUG = False
+[CONFIG] MAX_MEMORY = 4000
+[CONFIG] TMPDIR = /var/folders/v7/w4c0kx6d5bq1lvxw1rnqy7br0000gp/T/
+[CONFIG] UNIT = angstrom
+[CONFIG] VERBOSE = 3
+[CONFIG] conf_file = /Users/deyanmihaylov/.pyscf_conf.py
+[CONFIG] pyscf_numpy_backend = jax
+[CONFIG] pyscf_scipy_backend = jax
+[CONFIG] pyscf_scipy_linalg_backend = pyscfad
+[CONFIG] pyscfad = True
+[CONFIG] pyscfad_ccsd_implicit_diff = True
+[CONFIG] pyscfad_scf_implicit_diff = True
+[INPUT] verbose = 9
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 4
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 Be     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] Be
+[INPUT] 0    0    [1    /1   ]  1.95025482207        1
+[INPUT] 0    0    [1    /1   ]  0.188526448749       1
+
+nuclear repulsion = 0
+number of shells = 2
+number of NR pGTOs = 2
+number of NR cGTOs = 2
+basis = {'Be': [[0, [1.9502548220721132, 1.0]], [0, [0.1885264487493416, 1.0]]]}
+ecp = {}
+bas 0, expnt(s) = [1.95025482]
+bas 1, expnt(s) = [0.18852645]
+CPU time:         5.88
+arg.atm = [[ 4 20  1 23  0  0]]
+arg.bas = [[ 0  0  1  1  0 24 25  0]
+ [ 0  0  1  1  0 26 27  0]]
+arg.env = [0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 1.95025482 4.16949584 0.18852645 0.72284343]
+ecpbas  = []
+Set gradient conv threshold to 3.16228e-05
+Nelec from initial guess = 3.5417124291439834
+cond(S) = 2.4901935659890273
+E1 = -13.464819949814412  E_coul = 3.3068202787325114
+init E= -10.1579996710819
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-3.62039777 -0.28225076]
+E1 = -15.308238389092628  E_coul = 4.2555038794054125
+cycle= 1 E= -11.0527345096872  delta_E= -0.895  |g|=    0  |ddm|= 0.465
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+diis-norm(errvec)=0
+diis-c [0. 1.]
+  mo_energy =
+[-3.30371443 -0.09490088]
+E1 = -15.308238389092628  E_coul = 4.2555038794054125
+cycle= 2 E= -11.0527345096872  delta_E=    0  |g|=    0  |ddm|= 3.14e-16
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -15.308238389092628  E_coul = 4.2555038794054125
+  mo_energy =
+[-3.30371443 -0.09490088]
+E1 = -15.308238389092628  E_coul = 4.2555038794054125
+Extra cycle  E= -11.0527345096872  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.04 sec, wall time      0.04 sec
+exp = [1.95025482 0.18852645]
+E = -11.052734509687216
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/pyscf_basis_opt/Be_energies.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy import optimize
+
+def atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+
+    print(f"exp = {exponent}")
+    print(f"E = {e}")
+
+    return e
+
+def grad_atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+        
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+    
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    print(f"exp = {exponent}")
+    print(f"grad_E = {jac.exp}")
+
+    grad_E = np.array(jac.exp)
+
+    return grad_E
+
+def minimize_energy(n, exp_array=None):
+    # x0 = [0.5 * (n-i) for i in range(n)]
+    x0 = exp_array[:, 0]
+    bnds = ((1e-9, None) for _ in range(n))
+
+    res = optimize.minimize(
+        atomic_energy,
+        x0,
+        args=(exp_array),
+        method="L-BFGS-B",
+        jac=grad_atomic_energy,
+        hess=None,
+        hessp=None,
+        bounds=bnds,
+        tol=1e-9,
+        callback=None,
+        options={"maxfev": 10000, "ftol": 1e-9},
+    )
+    
+    print(res)
+    print(f"E = {atomic_energy(res.x)}")
+    print(f"exp = [{','.join(['{:.16e}'.format(x) for x in res.x])}]")
+    
+
+N = 2
+
+exps = np.zeros((N, 2))
+exps[:, 0] = np.array([1.0, 0.5])
+# exps[1:, 0] = exps_Be_3s[:]
+# exps[0, 0] = np.max(exps_Be_3s) * 10.0
+
+minimize_energy(N, exps)
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Mar  1 2023, 21:19:10) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Tue Mar  7 18:13:34 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] DEBUG = False
+[CONFIG] MAX_MEMORY = 4000
+[CONFIG] TMPDIR = /var/folders/v7/w4c0kx6d5bq1lvxw1rnqy7br0000gp/T/
+[CONFIG] UNIT = angstrom
+[CONFIG] VERBOSE = 3
+[CONFIG] conf_file = /Users/deyanmihaylov/.pyscf_conf.py
+[CONFIG] pyscf_numpy_backend = jax
+[CONFIG] pyscf_scipy_backend = jax
+[CONFIG] pyscf_scipy_linalg_backend = pyscfad
+[CONFIG] pyscfad = True
+[CONFIG] pyscfad_ccsd_implicit_diff = True
+[CONFIG] pyscfad_scf_implicit_diff = True
+[INPUT] verbose = 9
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 4
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 Be     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] Be
+[INPUT] 0    0    [1    /1   ]  1.95025482207        1
+[INPUT] 0    0    [1    /1   ]  0.188526448749       1
+
+nuclear repulsion = 0
+number of shells = 2
+number of NR pGTOs = 2
+number of NR cGTOs = 2
+basis = {'Be': [[0, [1.9502548220721132, 1.0]], [0, [0.1885264487493416, 1.0]]]}
+ecp = {}
+bas 0, expnt(s) = [1.95025482]
+bas 1, expnt(s) = [0.18852645]
+CPU time:         5.96
+arg.atm = [[ 4 20  1 23  0  0]]
+arg.bas = [[ 0  0  1  1  0 24 25  0]
+ [ 0  0  1  1  0 26 27  0]]
+arg.env = [0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 1.95025482 4.16949584 0.18852645 0.72284343]
+ecpbas  = []
+Set gradient conv threshold to 3.16228e-05
+Nelec from initial guess = 3.5417124291439834
+cond(S) = 2.4901935659890273
+E1 = -13.464819949814412  E_coul = 3.3068202787325114
+init E= -10.1579996710819
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-3.62039777 -0.28225076]
+E1 = -15.308238389092628  E_coul = 4.2555038794054125
+cycle= 1 E= -11.0527345096872  delta_E= -0.895  |g|=    0  |ddm|= 0.465
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+diis-norm(errvec)=0
+diis-c [0. 1.]
+  mo_energy =
+[-3.30371443 -0.09490088]
+E1 = -15.308238389092628  E_coul = 4.2555038794054125
+cycle= 2 E= -11.0527345096872  delta_E=    0  |g|=    0  |ddm|= 3.14e-16
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -15.308238389092628  E_coul = 4.2555038794054125
+  mo_energy =
+[-3.30371443 -0.09490088]
+E1 = -15.308238389092628  E_coul = 4.2555038794054125
+Extra cycle  E= -11.0527345096872  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.04 sec, wall time      0.04 sec
+Set gradient conv threshold to 3.16228e-05
+cond(S) = 2.4901935659890273
+E1 = -15.308238389092628  E_coul = 4.2555038794054125
+init E= -11.0527345096872
+    CPU time for initialize scf      0.03 sec, wall time      0.03 sec
+  mo_energy =
+[-3.30371443 -0.09490088]
+E1 = -15.308238389092628  E_coul = 4.2555038794054125
+cycle= 1 E= -11.0527345096872  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for cycle= 1      0.00 sec, wall time      0.00 sec
+E1 = -15.308238389092628  E_coul = 4.2555038794054125
+  mo_energy =
+[-3.30371443 -0.09490088]
+E1 = -15.308238389092628  E_coul = 4.2555038794054125
+Extra cycle  E= -11.0527345096872  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.06 sec, wall time      0.06 sec
+exp = [1.95025482 0.18852645]
+grad_E = [-1.25094602  3.21838727]
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/pyscf_basis_opt/Be_energies.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy import optimize
+
+def atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+
+    print(f"exp = {exponent}")
+    print(f"E = {e}")
+
+    return e
+
+def grad_atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+        
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+    
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    print(f"exp = {exponent}")
+    print(f"grad_E = {jac.exp}")
+
+    grad_E = np.array(jac.exp)
+
+    return grad_E
+
+def minimize_energy(n, exp_array=None):
+    # x0 = [0.5 * (n-i) for i in range(n)]
+    x0 = exp_array[:, 0]
+    bnds = ((1e-9, None) for _ in range(n))
+
+    res = optimize.minimize(
+        atomic_energy,
+        x0,
+        args=(exp_array),
+        method="L-BFGS-B",
+        jac=grad_atomic_energy,
+        hess=None,
+        hessp=None,
+        bounds=bnds,
+        tol=1e-9,
+        callback=None,
+        options={"maxfev": 10000, "ftol": 1e-9},
+    )
+    
+    print(res)
+    print(f"E = {atomic_energy(res.x)}")
+    print(f"exp = [{','.join(['{:.16e}'.format(x) for x in res.x])}]")
+    
+
+N = 2
+
+exps = np.zeros((N, 2))
+exps[:, 0] = np.array([1.0, 0.5])
+# exps[1:, 0] = exps_Be_3s[:]
+# exps[0, 0] = np.max(exps_Be_3s) * 10.0
+
+minimize_energy(N, exps)
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Mar  1 2023, 21:19:10) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Tue Mar  7 18:13:36 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] DEBUG = False
+[CONFIG] MAX_MEMORY = 4000
+[CONFIG] TMPDIR = /var/folders/v7/w4c0kx6d5bq1lvxw1rnqy7br0000gp/T/
+[CONFIG] UNIT = angstrom
+[CONFIG] VERBOSE = 3
+[CONFIG] conf_file = /Users/deyanmihaylov/.pyscf_conf.py
+[CONFIG] pyscf_numpy_backend = jax
+[CONFIG] pyscf_scipy_backend = jax
+[CONFIG] pyscf_scipy_linalg_backend = pyscfad
+[CONFIG] pyscfad = True
+[CONFIG] pyscfad_ccsd_implicit_diff = True
+[CONFIG] pyscfad_scf_implicit_diff = True
+[INPUT] verbose = 9
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 4
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 Be     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] Be
+[INPUT] 0    0    [1    /1   ]  2.52541815566        1
+[INPUT] 0    0    [1    /1   ]  1e-09                1
+
+nuclear repulsion = 0
+number of shells = 2
+number of NR pGTOs = 2
+number of NR cGTOs = 2
+basis = {'Be': [[0, [2.5254181556604878, 1.0]], [0, [1e-09, 1.0]]]}
+ecp = {}
+bas 0, expnt(s) = [2.52541816]
+bas 1, expnt(s) = [1.e-09]
+CPU time:         7.74
+arg.atm = [[ 4 20  1 23  0  0]]
+arg.bas = [[ 0  0  1  1  0 24 25  0]
+ [ 0  0  1  1  0 26 27  0]]
+arg.env = [0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+ 2.52541816e+00 5.06133401e+00 1.00000000e-09 4.49277867e-07]
+ecpbas  = []
+Set gradient conv threshold to 3.16228e-05
+Nelec from initial guess = 1.8484606482307269
+cond(S) = 1.0000005021403537
+E1 = -11.748039159385018  E_coul = 1.5317297087979778
+init E= -10.216309450587
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-4.69827678e+00 -1.08570878e-04]
+E1 = -12.71156330092746  E_coul = 1.7934085407623388
+cycle= 1 E= -10.9181547601651  delta_E= -0.702  |g|=    0  |ddm|= 2.01
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+diis-norm(errvec)=1.19789e-21
+diis-c [-1.43492963e-42  1.00000000e+00]
+  mo_energy =
+[-4.56230787e+00 -6.52413182e-05]
+E1 = -12.711563300927459  E_coul = 1.793408540762338
+cycle= 2 E= -10.9181547601651  delta_E=    0  |g|=    0  |ddm|= 4.44e-16
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -12.711563300927459  E_coul = 1.793408540762338
+  mo_energy =
+[-4.56230787e+00 -6.52413182e-05]
+E1 = -12.711563300927459  E_coul = 1.793408540762338
+Extra cycle  E= -10.9181547601651  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.04 sec, wall time      0.04 sec
+exp = [2.52541816e+00 1.00000000e-09]
+E = -10.918154760165121
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/pyscf_basis_opt/Be_energies.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy import optimize
+
+def atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+
+    print(f"exp = {exponent}")
+    print(f"E = {e}")
+
+    return e
+
+def grad_atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+        
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+    
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    print(f"exp = {exponent}")
+    print(f"grad_E = {jac.exp}")
+
+    grad_E = np.array(jac.exp)
+
+    return grad_E
+
+def minimize_energy(n, exp_array=None):
+    # x0 = [0.5 * (n-i) for i in range(n)]
+    x0 = exp_array[:, 0]
+    bnds = ((1e-9, None) for _ in range(n))
+
+    res = optimize.minimize(
+        atomic_energy,
+        x0,
+        args=(exp_array),
+        method="L-BFGS-B",
+        jac=grad_atomic_energy,
+        hess=None,
+        hessp=None,
+        bounds=bnds,
+        tol=1e-9,
+        callback=None,
+        options={"maxfev": 10000, "ftol": 1e-9},
+    )
+    
+    print(res)
+    print(f"E = {atomic_energy(res.x)}")
+    print(f"exp = [{','.join(['{:.16e}'.format(x) for x in res.x])}]")
+    
+
+N = 2
+
+exps = np.zeros((N, 2))
+exps[:, 0] = np.array([1.0, 0.5])
+# exps[1:, 0] = exps_Be_3s[:]
+# exps[0, 0] = np.max(exps_Be_3s) * 10.0
+
+minimize_energy(N, exps)
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Mar  1 2023, 21:19:10) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Tue Mar  7 18:13:36 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] DEBUG = False
+[CONFIG] MAX_MEMORY = 4000
+[CONFIG] TMPDIR = /var/folders/v7/w4c0kx6d5bq1lvxw1rnqy7br0000gp/T/
+[CONFIG] UNIT = angstrom
+[CONFIG] VERBOSE = 3
+[CONFIG] conf_file = /Users/deyanmihaylov/.pyscf_conf.py
+[CONFIG] pyscf_numpy_backend = jax
+[CONFIG] pyscf_scipy_backend = jax
+[CONFIG] pyscf_scipy_linalg_backend = pyscfad
+[CONFIG] pyscfad = True
+[CONFIG] pyscfad_ccsd_implicit_diff = True
+[CONFIG] pyscfad_scf_implicit_diff = True
+[INPUT] verbose = 9
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 4
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 Be     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] Be
+[INPUT] 0    0    [1    /1   ]  2.52541815566        1
+[INPUT] 0    0    [1    /1   ]  1e-09                1
+
+nuclear repulsion = 0
+number of shells = 2
+number of NR pGTOs = 2
+number of NR cGTOs = 2
+basis = {'Be': [[0, [2.5254181556604878, 1.0]], [0, [1e-09, 1.0]]]}
+ecp = {}
+bas 0, expnt(s) = [2.52541816]
+bas 1, expnt(s) = [1.e-09]
+CPU time:         7.83
+arg.atm = [[ 4 20  1 23  0  0]]
+arg.bas = [[ 0  0  1  1  0 24 25  0]
+ [ 0  0  1  1  0 26 27  0]]
+arg.env = [0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+ 2.52541816e+00 5.06133401e+00 1.00000000e-09 4.49277867e-07]
+ecpbas  = []
+Set gradient conv threshold to 3.16228e-05
+Nelec from initial guess = 1.8484606482307269
+cond(S) = 1.0000005021403537
+E1 = -11.748039159385018  E_coul = 1.5317297087979778
+init E= -10.216309450587
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-4.69827678e+00 -1.08570878e-04]
+E1 = -12.71156330092746  E_coul = 1.7934085407623388
+cycle= 1 E= -10.9181547601651  delta_E= -0.702  |g|=    0  |ddm|= 2.01
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+diis-norm(errvec)=1.19789e-21
+diis-c [-1.43492963e-42  1.00000000e+00]
+  mo_energy =
+[-4.56230787e+00 -6.52413182e-05]
+E1 = -12.711563300927459  E_coul = 1.793408540762338
+cycle= 2 E= -10.9181547601651  delta_E=    0  |g|=    0  |ddm|= 4.44e-16
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -12.711563300927459  E_coul = 1.793408540762338
+  mo_energy =
+[-4.56230787e+00 -6.52413182e-05]
+E1 = -12.711563300927459  E_coul = 1.793408540762338
+Extra cycle  E= -10.9181547601651  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.04 sec, wall time      0.04 sec
+Set gradient conv threshold to 3.16228e-05
+cond(S) = 1.0000005021403537
+E1 = -12.711563300927459  E_coul = 1.793408540762338
+init E= -10.9181547601651
+    CPU time for initialize scf      0.03 sec, wall time      0.03 sec
+  mo_energy =
+[-4.56230787e+00 -6.52413182e-05]
+E1 = -12.711563300927459  E_coul = 1.793408540762338
+cycle= 1 E= -10.9181547601651  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for cycle= 1      0.00 sec, wall time      0.00 sec
+E1 = -12.711563300927459  E_coul = 1.793408540762338
+  mo_energy =
+[-4.56230787e+00 -6.52413182e-05]
+E1 = -12.711563300927459  E_coul = 1.793408540762338
+Extra cycle  E= -10.9181547601651  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.06 sec, wall time      0.06 sec
+exp = [2.52541816e+00 1.00000000e-09]
+grad_E = [-6.61619962e-01 -8.30810587e+04]
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/pyscf_basis_opt/Be_energies.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy import optimize
+
+def atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+
+    print(f"exp = {exponent}")
+    print(f"E = {e}")
+
+    return e
+
+def grad_atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+        
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+    
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    print(f"exp = {exponent}")
+    print(f"grad_E = {jac.exp}")
+
+    grad_E = np.array(jac.exp)
+
+    return grad_E
+
+def minimize_energy(n, exp_array=None):
+    # x0 = [0.5 * (n-i) for i in range(n)]
+    x0 = exp_array[:, 0]
+    bnds = ((1e-9, None) for _ in range(n))
+
+    res = optimize.minimize(
+        atomic_energy,
+        x0,
+        args=(exp_array),
+        method="L-BFGS-B",
+        jac=grad_atomic_energy,
+        hess=None,
+        hessp=None,
+        bounds=bnds,
+        tol=1e-9,
+        callback=None,
+        options={"maxfev": 10000, "ftol": 1e-9},
+    )
+    
+    print(res)
+    print(f"E = {atomic_energy(res.x)}")
+    print(f"exp = [{','.join(['{:.16e}'.format(x) for x in res.x])}]")
+    
+
+N = 2
+
+exps = np.zeros((N, 2))
+exps[:, 0] = np.array([1.0, 0.5])
+# exps[1:, 0] = exps_Be_3s[:]
+# exps[0, 0] = np.max(exps_Be_3s) * 10.0
+
+minimize_energy(N, exps)
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Mar  1 2023, 21:19:10) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Tue Mar  7 18:13:38 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] DEBUG = False
+[CONFIG] MAX_MEMORY = 4000
+[CONFIG] TMPDIR = /var/folders/v7/w4c0kx6d5bq1lvxw1rnqy7br0000gp/T/
+[CONFIG] UNIT = angstrom
+[CONFIG] VERBOSE = 3
+[CONFIG] conf_file = /Users/deyanmihaylov/.pyscf_conf.py
+[CONFIG] pyscf_numpy_backend = jax
+[CONFIG] pyscf_scipy_backend = jax
+[CONFIG] pyscf_scipy_linalg_backend = pyscfad
+[CONFIG] pyscfad = True
+[CONFIG] pyscfad_ccsd_implicit_diff = True
+[CONFIG] pyscfad_scf_implicit_diff = True
+[INPUT] verbose = 9
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 4
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 Be     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] Be
+[INPUT] 0    0    [1    /1   ]  2.27251424496        1
+[INPUT] 0    0    [1    /1   ]  0.0828965855386      1
+
+nuclear repulsion = 0
+number of shells = 2
+number of NR pGTOs = 2
+number of NR cGTOs = 2
+basis = {'Be': [[0, [2.272514244959736, 1.0]], [0, [0.08289658553863083, 1.0]]]}
+ecp = {}
+bas 0, expnt(s) = [2.27251424]
+bas 1, expnt(s) = [0.08289659]
+CPU time:         9.67
+arg.atm = [[ 4 20  1 23  0  0]]
+arg.bas = [[ 0  0  1  1  0 24 25  0]
+ [ 0  0  1  1  0 26 27  0]]
+arg.env = [0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 2.27251424 4.67622054 0.08289659 0.39031704]
+ecpbas  = []
+Set gradient conv threshold to 3.16228e-05
+Nelec from initial guess = 3.754907810824572
+cond(S) = 1.576428643575519
+E1 = -14.04253155551958  E_coul = 3.144299030389464
+init E= -10.8982325251301
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-3.88058898 -0.36246379]
+E1 = -15.280108440894006  E_coul = 3.6695542458116903
+cycle= 1 E= -11.6105541950823  delta_E= -0.712  |g|=    0  |ddm|= 0.231
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+diis-norm(errvec)=9.42055e-16
+diis-c [-8.87468518e-31  1.00000000e+00]
+  mo_energy =
+[-3.69471323 -0.27578674]
+E1 = -15.280108440894004  E_coul = 3.669554245811689
+cycle= 2 E= -11.6105541950823  delta_E=    0  |g|=    0  |ddm|= 1.01e-15
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -15.280108440894004  E_coul = 3.669554245811689
+  mo_energy =
+[-3.69471323 -0.27578674]
+E1 = -15.280108440894004  E_coul = 3.669554245811689
+Extra cycle  E= -11.6105541950823  delta_E=    0  |g|=    0  |ddm|= 7.85e-17
+    CPU time for scf_cycle      0.04 sec, wall time      0.04 sec
+exp = [2.27251424 0.08289659]
+E = -11.610554195082315
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/pyscf_basis_opt/Be_energies.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy import optimize
+
+def atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+
+    print(f"exp = {exponent}")
+    print(f"E = {e}")
+
+    return e
+
+def grad_atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+        
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+    
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    print(f"exp = {exponent}")
+    print(f"grad_E = {jac.exp}")
+
+    grad_E = np.array(jac.exp)
+
+    return grad_E
+
+def minimize_energy(n, exp_array=None):
+    # x0 = [0.5 * (n-i) for i in range(n)]
+    x0 = exp_array[:, 0]
+    bnds = ((1e-9, None) for _ in range(n))
+
+    res = optimize.minimize(
+        atomic_energy,
+        x0,
+        args=(exp_array),
+        method="L-BFGS-B",
+        jac=grad_atomic_energy,
+        hess=None,
+        hessp=None,
+        bounds=bnds,
+        tol=1e-9,
+        callback=None,
+        options={"maxfev": 10000, "ftol": 1e-9},
+    )
+    
+    print(res)
+    print(f"E = {atomic_energy(res.x)}")
+    print(f"exp = [{','.join(['{:.16e}'.format(x) for x in res.x])}]")
+    
+
+N = 2
+
+exps = np.zeros((N, 2))
+exps[:, 0] = np.array([1.0, 0.5])
+# exps[1:, 0] = exps_Be_3s[:]
+# exps[0, 0] = np.max(exps_Be_3s) * 10.0
+
+minimize_energy(N, exps)
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Mar  1 2023, 21:19:10) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Tue Mar  7 18:13:38 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] DEBUG = False
+[CONFIG] MAX_MEMORY = 4000
+[CONFIG] TMPDIR = /var/folders/v7/w4c0kx6d5bq1lvxw1rnqy7br0000gp/T/
+[CONFIG] UNIT = angstrom
+[CONFIG] VERBOSE = 3
+[CONFIG] conf_file = /Users/deyanmihaylov/.pyscf_conf.py
+[CONFIG] pyscf_numpy_backend = jax
+[CONFIG] pyscf_scipy_backend = jax
+[CONFIG] pyscf_scipy_linalg_backend = pyscfad
+[CONFIG] pyscfad = True
+[CONFIG] pyscfad_ccsd_implicit_diff = True
+[CONFIG] pyscfad_scf_implicit_diff = True
+[INPUT] verbose = 9
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 4
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 Be     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] Be
+[INPUT] 0    0    [1    /1   ]  2.27251424496        1
+[INPUT] 0    0    [1    /1   ]  0.0828965855386      1
+
+nuclear repulsion = 0
+number of shells = 2
+number of NR pGTOs = 2
+number of NR cGTOs = 2
+basis = {'Be': [[0, [2.272514244959736, 1.0]], [0, [0.08289658553863083, 1.0]]]}
+ecp = {}
+bas 0, expnt(s) = [2.27251424]
+bas 1, expnt(s) = [0.08289659]
+CPU time:         9.80
+arg.atm = [[ 4 20  1 23  0  0]]
+arg.bas = [[ 0  0  1  1  0 24 25  0]
+ [ 0  0  1  1  0 26 27  0]]
+arg.env = [0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 2.27251424 4.67622054 0.08289659 0.39031704]
+ecpbas  = []
+Set gradient conv threshold to 3.16228e-05
+Nelec from initial guess = 3.754907810824572
+cond(S) = 1.576428643575519
+E1 = -14.04253155551958  E_coul = 3.144299030389464
+init E= -10.8982325251301
+    CPU time for initialize scf      0.02 sec, wall time      0.03 sec
+  mo_energy =
+[-3.88058898 -0.36246379]
+E1 = -15.280108440894006  E_coul = 3.6695542458116903
+cycle= 1 E= -11.6105541950823  delta_E= -0.712  |g|=    0  |ddm|= 0.231
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+diis-norm(errvec)=9.42055e-16
+diis-c [-8.87468518e-31  1.00000000e+00]
+  mo_energy =
+[-3.69471323 -0.27578674]
+E1 = -15.280108440894004  E_coul = 3.669554245811689
+cycle= 2 E= -11.6105541950823  delta_E=    0  |g|=    0  |ddm|= 1.01e-15
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -15.280108440894004  E_coul = 3.669554245811689
+  mo_energy =
+[-3.69471323 -0.27578674]
+E1 = -15.280108440894004  E_coul = 3.669554245811689
+Extra cycle  E= -11.6105541950823  delta_E=    0  |g|=    0  |ddm|= 7.85e-17
+    CPU time for scf_cycle      0.04 sec, wall time      0.04 sec
+Set gradient conv threshold to 3.16228e-05
+cond(S) = 1.576428643575519
+E1 = -15.280108440894004  E_coul = 3.669554245811689
+init E= -11.6105541950823
+    CPU time for initialize scf      0.03 sec, wall time      0.03 sec
+  mo_energy =
+[-3.69471323 -0.27578674]
+E1 = -15.280108440894004  E_coul = 3.669554245811689
+cycle= 1 E= -11.6105541950823  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for cycle= 1      0.00 sec, wall time      0.00 sec
+E1 = -15.280108440894004  E_coul = 3.669554245811689
+  mo_energy =
+[-3.69471323 -0.27578674]
+E1 = -15.280108440894004  E_coul = 3.669554245811689
+Extra cycle  E= -11.6105541950823  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.06 sec, wall time      0.06 sec
+exp = [2.27251424 0.08289659]
+grad_E = [-0.92044678 -0.23579429]
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/pyscf_basis_opt/Be_energies.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy import optimize
+
+def atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+
+    print(f"exp = {exponent}")
+    print(f"E = {e}")
+
+    return e
+
+def grad_atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+        
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+    
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    print(f"exp = {exponent}")
+    print(f"grad_E = {jac.exp}")
+
+    grad_E = np.array(jac.exp)
+
+    return grad_E
+
+def minimize_energy(n, exp_array=None):
+    # x0 = [0.5 * (n-i) for i in range(n)]
+    x0 = exp_array[:, 0]
+    bnds = ((1e-9, None) for _ in range(n))
+
+    res = optimize.minimize(
+        atomic_energy,
+        x0,
+        args=(exp_array),
+        method="L-BFGS-B",
+        jac=grad_atomic_energy,
+        hess=None,
+        hessp=None,
+        bounds=bnds,
+        tol=1e-9,
+        callback=None,
+        options={"maxfev": 10000, "ftol": 1e-9},
+    )
+    
+    print(res)
+    print(f"E = {atomic_energy(res.x)}")
+    print(f"exp = [{','.join(['{:.16e}'.format(x) for x in res.x])}]")
+    
+
+N = 2
+
+exps = np.zeros((N, 2))
+exps[:, 0] = np.array([1.0, 0.5])
+# exps[1:, 0] = exps_Be_3s[:]
+# exps[0, 0] = np.max(exps_Be_3s) * 10.0
+
+minimize_energy(N, exps)
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Mar  1 2023, 21:19:10) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Tue Mar  7 18:13:40 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] DEBUG = False
+[CONFIG] MAX_MEMORY = 4000
+[CONFIG] TMPDIR = /var/folders/v7/w4c0kx6d5bq1lvxw1rnqy7br0000gp/T/
+[CONFIG] UNIT = angstrom
+[CONFIG] VERBOSE = 3
+[CONFIG] conf_file = /Users/deyanmihaylov/.pyscf_conf.py
+[CONFIG] pyscf_numpy_backend = jax
+[CONFIG] pyscf_scipy_backend = jax
+[CONFIG] pyscf_scipy_linalg_backend = pyscfad
+[CONFIG] pyscfad = True
+[CONFIG] pyscfad_ccsd_implicit_diff = True
+[CONFIG] pyscfad_scf_implicit_diff = True
+[INPUT] verbose = 9
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 4
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 Be     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] Be
+[INPUT] 0    0    [1    /1   ]  4.26878639289        1
+[INPUT] 0    0    [1    /1   ]  0.161398985944       1
+
+nuclear repulsion = 0
+number of shells = 2
+number of NR pGTOs = 2
+number of NR cGTOs = 2
+basis = {'Be': [[0, [4.268786392891798, 1.0]], [0, [0.1613989859436315, 1.0]]]}
+ecp = {}
+bas 0, expnt(s) = [4.26878639]
+bas 1, expnt(s) = [0.16139899]
+CPU time:        11.55
+arg.atm = [[ 4 20  1 23  0  0]]
+arg.bas = [[ 0  0  1  1  0 24 25  0]
+ [ 0  0  1  1  0 26 27  0]]
+arg.env = [0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 4.26878639 7.50314504 0.16139899 0.6433401 ]
+ecpbas  = []
+Set gradient conv threshold to 3.16228e-05
+Nelec from initial guess = 3.756821507635146
+cond(S) = 1.5953315690025582
+E1 = -16.33921999773503  E_coul = 4.496909941228317
+init E= -11.8423100565067
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-3.63174413 -0.20209145]
+E1 = -17.219125956236986  E_coul = 5.070530956859784
+cycle= 1 E= -12.1485949993772  delta_E= -0.306  |g|=    0  |ddm|= 0.246
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+diis-norm(errvec)=0
+diis-c [0. 1.]
+  mo_energy =
+[-3.42598626 -0.11304576]
+E1 = -17.219125956236983  E_coul = 5.070530956859783
+cycle= 2 E= -12.1485949993772  delta_E= 3.55e-15  |g|=    0  |ddm|= 4.51e-16
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -17.219125956236983  E_coul = 5.070530956859783
+  mo_energy =
+[-3.42598626 -0.11304576]
+E1 = -17.219125956236983  E_coul = 5.070530956859783
+Extra cycle  E= -12.1485949993772  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.04 sec, wall time      0.04 sec
+exp = [4.26878639 0.16139899]
+E = -12.148594999377199
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/pyscf_basis_opt/Be_energies.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy import optimize
+
+def atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+
+    print(f"exp = {exponent}")
+    print(f"E = {e}")
+
+    return e
+
+def grad_atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+        
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+    
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    print(f"exp = {exponent}")
+    print(f"grad_E = {jac.exp}")
+
+    grad_E = np.array(jac.exp)
+
+    return grad_E
+
+def minimize_energy(n, exp_array=None):
+    # x0 = [0.5 * (n-i) for i in range(n)]
+    x0 = exp_array[:, 0]
+    bnds = ((1e-9, None) for _ in range(n))
+
+    res = optimize.minimize(
+        atomic_energy,
+        x0,
+        args=(exp_array),
+        method="L-BFGS-B",
+        jac=grad_atomic_energy,
+        hess=None,
+        hessp=None,
+        bounds=bnds,
+        tol=1e-9,
+        callback=None,
+        options={"maxfev": 10000, "ftol": 1e-9},
+    )
+    
+    print(res)
+    print(f"E = {atomic_energy(res.x)}")
+    print(f"exp = [{','.join(['{:.16e}'.format(x) for x in res.x])}]")
+    
+
+N = 2
+
+exps = np.zeros((N, 2))
+exps[:, 0] = np.array([1.0, 0.5])
+# exps[1:, 0] = exps_Be_3s[:]
+# exps[0, 0] = np.max(exps_Be_3s) * 10.0
+
+minimize_energy(N, exps)
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Mar  1 2023, 21:19:10) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Tue Mar  7 18:13:40 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] DEBUG = False
+[CONFIG] MAX_MEMORY = 4000
+[CONFIG] TMPDIR = /var/folders/v7/w4c0kx6d5bq1lvxw1rnqy7br0000gp/T/
+[CONFIG] UNIT = angstrom
+[CONFIG] VERBOSE = 3
+[CONFIG] conf_file = /Users/deyanmihaylov/.pyscf_conf.py
+[CONFIG] pyscf_numpy_backend = jax
+[CONFIG] pyscf_scipy_backend = jax
+[CONFIG] pyscf_scipy_linalg_backend = pyscfad
+[CONFIG] pyscfad = True
+[CONFIG] pyscfad_ccsd_implicit_diff = True
+[CONFIG] pyscfad_scf_implicit_diff = True
+[INPUT] verbose = 9
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 4
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 Be     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] Be
+[INPUT] 0    0    [1    /1   ]  4.26878639289        1
+[INPUT] 0    0    [1    /1   ]  0.161398985944       1
+
+nuclear repulsion = 0
+number of shells = 2
+number of NR pGTOs = 2
+number of NR cGTOs = 2
+basis = {'Be': [[0, [4.268786392891798, 1.0]], [0, [0.1613989859436315, 1.0]]]}
+ecp = {}
+bas 0, expnt(s) = [4.26878639]
+bas 1, expnt(s) = [0.16139899]
+CPU time:        11.68
+arg.atm = [[ 4 20  1 23  0  0]]
+arg.bas = [[ 0  0  1  1  0 24 25  0]
+ [ 0  0  1  1  0 26 27  0]]
+arg.env = [0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 4.26878639 7.50314504 0.16139899 0.6433401 ]
+ecpbas  = []
+Set gradient conv threshold to 3.16228e-05
+Nelec from initial guess = 3.756821507635146
+cond(S) = 1.5953315690025582
+E1 = -16.33921999773503  E_coul = 4.496909941228317
+init E= -11.8423100565067
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-3.63174413 -0.20209145]
+E1 = -17.219125956236986  E_coul = 5.070530956859784
+cycle= 1 E= -12.1485949993772  delta_E= -0.306  |g|=    0  |ddm|= 0.246
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+diis-norm(errvec)=0
+diis-c [0. 1.]
+  mo_energy =
+[-3.42598626 -0.11304576]
+E1 = -17.219125956236983  E_coul = 5.070530956859783
+cycle= 2 E= -12.1485949993772  delta_E= 3.55e-15  |g|=    0  |ddm|= 4.51e-16
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -17.219125956236983  E_coul = 5.070530956859783
+  mo_energy =
+[-3.42598626 -0.11304576]
+E1 = -17.219125956236983  E_coul = 5.070530956859783
+Extra cycle  E= -12.1485949993772  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.04 sec, wall time      0.04 sec
+Set gradient conv threshold to 3.16228e-05
+cond(S) = 1.5953315690025582
+E1 = -17.219125956236983  E_coul = 5.070530956859783
+init E= -12.1485949993772
+    CPU time for initialize scf      0.03 sec, wall time      0.03 sec
+  mo_energy =
+[-3.42598626 -0.11304576]
+E1 = -17.219125956236983  E_coul = 5.070530956859783
+cycle= 1 E= -12.1485949993772  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for cycle= 1      0.00 sec, wall time      0.00 sec
+E1 = -17.219125956236983  E_coul = 5.070530956859783
+  mo_energy =
+[-3.42598626 -0.11304576]
+E1 = -17.219125956236983  E_coul = 5.070530956859783
+Extra cycle  E= -12.1485949993772  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.06 sec, wall time      0.06 sec
+exp = [4.26878639 0.16139899]
+grad_E = [0.12403099 2.22289571]
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/pyscf_basis_opt/Be_energies.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy import optimize
+
+def atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+
+    print(f"exp = {exponent}")
+    print(f"E = {e}")
+
+    return e
+
+def grad_atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+        
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+    
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    print(f"exp = {exponent}")
+    print(f"grad_E = {jac.exp}")
+
+    grad_E = np.array(jac.exp)
+
+    return grad_E
+
+def minimize_energy(n, exp_array=None):
+    # x0 = [0.5 * (n-i) for i in range(n)]
+    x0 = exp_array[:, 0]
+    bnds = ((1e-9, None) for _ in range(n))
+
+    res = optimize.minimize(
+        atomic_energy,
+        x0,
+        args=(exp_array),
+        method="L-BFGS-B",
+        jac=grad_atomic_energy,
+        hess=None,
+        hessp=None,
+        bounds=bnds,
+        tol=1e-9,
+        callback=None,
+        options={"maxfev": 10000, "ftol": 1e-9},
+    )
+    
+    print(res)
+    print(f"E = {atomic_energy(res.x)}")
+    print(f"exp = [{','.join(['{:.16e}'.format(x) for x in res.x])}]")
+    
+
+N = 2
+
+exps = np.zeros((N, 2))
+exps[:, 0] = np.array([1.0, 0.5])
+# exps[1:, 0] = exps_Be_3s[:]
+# exps[0, 0] = np.max(exps_Be_3s) * 10.0
+
+minimize_energy(N, exps)
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Mar  1 2023, 21:19:10) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Tue Mar  7 18:13:42 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] DEBUG = False
+[CONFIG] MAX_MEMORY = 4000
+[CONFIG] TMPDIR = /var/folders/v7/w4c0kx6d5bq1lvxw1rnqy7br0000gp/T/
+[CONFIG] UNIT = angstrom
+[CONFIG] VERBOSE = 3
+[CONFIG] conf_file = /Users/deyanmihaylov/.pyscf_conf.py
+[CONFIG] pyscf_numpy_backend = jax
+[CONFIG] pyscf_scipy_backend = jax
+[CONFIG] pyscf_scipy_linalg_backend = pyscfad
+[CONFIG] pyscfad = True
+[CONFIG] pyscfad_ccsd_implicit_diff = True
+[CONFIG] pyscfad_scf_implicit_diff = True
+[INPUT] verbose = 9
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 4
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 Be     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] Be
+[INPUT] 0    0    [1    /1   ]  4.3290789452         1
+[INPUT] 0    0    [1    /1   ]  1e-09                1
+
+nuclear repulsion = 0
+number of shells = 2
+number of NR pGTOs = 2
+number of NR cGTOs = 2
+basis = {'Be': [[0, [4.329078945203032, 1.0]], [0, [1e-09, 1.0]]]}
+ecp = {}
+bas 0, expnt(s) = [4.32907895]
+bas 1, expnt(s) = [1.e-09]
+CPU time:        13.40
+arg.atm = [[ 4 20  1 23  0  0]]
+arg.bas = [[ 0  0  1  1  0 24 25  0]
+ [ 0  0  1  1  0 26 27  0]]
+arg.env = [0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+ 4.32907895e+00 7.58248664e+00 1.00000000e-09 4.49277867e-07]
+ecpbas  = []
+Set gradient conv threshold to 3.16228e-05
+Nelec from initial guess = 1.8970515936822379
+cond(S) = 1.0000003351802593
+E1 = -12.875840437297379  E_coul = 2.1122781458403197
+init E= -10.7635622914571
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-4.56038422e+00 -1.06118850e-04]
+E1 = -13.574984885463536  E_coul = 2.347992738660673
+cycle= 1 E= -11.2269921468029  delta_E= -0.463  |g|=    0  |ddm|=    2
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+diis-norm(errvec)=0
+diis-c [0. 1.]
+  mo_energy =
+[-4.43943446e+00 -6.52413183e-05]
+E1 = -13.574984885463536  E_coul = 2.347992738660673
+cycle= 2 E= -11.2269921468029  delta_E=    0  |g|=    0  |ddm|= 7.49e-23
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -13.574984885463536  E_coul = 2.347992738660673
+  mo_energy =
+[-4.43943446e+00 -6.52413183e-05]
+E1 = -13.574984885463536  E_coul = 2.347992738660673
+Extra cycle  E= -11.2269921468029  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.04 sec, wall time      0.04 sec
+exp = [4.32907895e+00 1.00000000e-09]
+E = -11.226992146802862
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/pyscf_basis_opt/Be_energies.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy import optimize
+
+def atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+
+    print(f"exp = {exponent}")
+    print(f"E = {e}")
+
+    return e
+
+def grad_atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+        
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+    
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    print(f"exp = {exponent}")
+    print(f"grad_E = {jac.exp}")
+
+    grad_E = np.array(jac.exp)
+
+    return grad_E
+
+def minimize_energy(n, exp_array=None):
+    # x0 = [0.5 * (n-i) for i in range(n)]
+    x0 = exp_array[:, 0]
+    bnds = ((1e-9, None) for _ in range(n))
+
+    res = optimize.minimize(
+        atomic_energy,
+        x0,
+        args=(exp_array),
+        method="L-BFGS-B",
+        jac=grad_atomic_energy,
+        hess=None,
+        hessp=None,
+        bounds=bnds,
+        tol=1e-9,
+        callback=None,
+        options={"maxfev": 10000, "ftol": 1e-9},
+    )
+    
+    print(res)
+    print(f"E = {atomic_energy(res.x)}")
+    print(f"exp = [{','.join(['{:.16e}'.format(x) for x in res.x])}]")
+    
+
+N = 2
+
+exps = np.zeros((N, 2))
+exps[:, 0] = np.array([1.0, 0.5])
+# exps[1:, 0] = exps_Be_3s[:]
+# exps[0, 0] = np.max(exps_Be_3s) * 10.0
+
+minimize_energy(N, exps)
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Mar  1 2023, 21:19:10) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Tue Mar  7 18:13:42 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] DEBUG = False
+[CONFIG] MAX_MEMORY = 4000
+[CONFIG] TMPDIR = /var/folders/v7/w4c0kx6d5bq1lvxw1rnqy7br0000gp/T/
+[CONFIG] UNIT = angstrom
+[CONFIG] VERBOSE = 3
+[CONFIG] conf_file = /Users/deyanmihaylov/.pyscf_conf.py
+[CONFIG] pyscf_numpy_backend = jax
+[CONFIG] pyscf_scipy_backend = jax
+[CONFIG] pyscf_scipy_linalg_backend = pyscfad
+[CONFIG] pyscfad = True
+[CONFIG] pyscfad_ccsd_implicit_diff = True
+[CONFIG] pyscfad_scf_implicit_diff = True
+[INPUT] verbose = 9
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 4
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 Be     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] Be
+[INPUT] 0    0    [1    /1   ]  4.3290789452         1
+[INPUT] 0    0    [1    /1   ]  1e-09                1
+
+nuclear repulsion = 0
+number of shells = 2
+number of NR pGTOs = 2
+number of NR cGTOs = 2
+basis = {'Be': [[0, [4.329078945203032, 1.0]], [0, [1e-09, 1.0]]]}
+ecp = {}
+bas 0, expnt(s) = [4.32907895]
+bas 1, expnt(s) = [1.e-09]
+CPU time:        13.53
+arg.atm = [[ 4 20  1 23  0  0]]
+arg.bas = [[ 0  0  1  1  0 24 25  0]
+ [ 0  0  1  1  0 26 27  0]]
+arg.env = [0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+ 4.32907895e+00 7.58248664e+00 1.00000000e-09 4.49277867e-07]
+ecpbas  = []
+Set gradient conv threshold to 3.16228e-05
+Nelec from initial guess = 1.8970515936822379
+cond(S) = 1.0000003351802593
+E1 = -12.875840437297379  E_coul = 2.1122781458403197
+init E= -10.7635622914571
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-4.56038422e+00 -1.06118850e-04]
+E1 = -13.574984885463536  E_coul = 2.347992738660673
+cycle= 1 E= -11.2269921468029  delta_E= -0.463  |g|=    0  |ddm|=    2
+    CPU time for cycle= 1      0.00 sec, wall time      0.00 sec
+diis-norm(errvec)=0
+diis-c [0. 1.]
+  mo_energy =
+[-4.43943446e+00 -6.52413183e-05]
+E1 = -13.574984885463536  E_coul = 2.347992738660673
+cycle= 2 E= -11.2269921468029  delta_E=    0  |g|=    0  |ddm|= 7.49e-23
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -13.574984885463536  E_coul = 2.347992738660673
+  mo_energy =
+[-4.43943446e+00 -6.52413183e-05]
+E1 = -13.574984885463536  E_coul = 2.347992738660673
+Extra cycle  E= -11.2269921468029  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.03 sec, wall time      0.03 sec
+Set gradient conv threshold to 3.16228e-05
+cond(S) = 1.0000003351802593
+E1 = -13.574984885463536  E_coul = 2.347992738660673
+init E= -11.2269921468029
+    CPU time for initialize scf      0.03 sec, wall time      0.03 sec
+  mo_energy =
+[-4.43943446e+00 -6.52413183e-05]
+E1 = -13.574984885463536  E_coul = 2.347992738660673
+cycle= 1 E= -11.2269921468029  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for cycle= 1      0.00 sec, wall time      0.00 sec
+E1 = -13.574984885463536  E_coul = 2.347992738660673
+  mo_energy =
+[-4.43943446e+00 -6.52413183e-05]
+E1 = -13.574984885463536  E_coul = 2.347992738660673
+Extra cycle  E= -11.2269921468029  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.06 sec, wall time      0.06 sec
+exp = [4.32907895e+00 1.00000000e-09]
+grad_E = [ 2.03323949e-01 -8.30810590e+04]
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/pyscf_basis_opt/Be_energies.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy import optimize
+
+def atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+
+    print(f"exp = {exponent}")
+    print(f"E = {e}")
+
+    return e
+
+def grad_atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+        
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+    
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    print(f"exp = {exponent}")
+    print(f"grad_E = {jac.exp}")
+
+    grad_E = np.array(jac.exp)
+
+    return grad_E
+
+def minimize_energy(n, exp_array=None):
+    # x0 = [0.5 * (n-i) for i in range(n)]
+    x0 = exp_array[:, 0]
+    bnds = ((1e-9, None) for _ in range(n))
+
+    res = optimize.minimize(
+        atomic_energy,
+        x0,
+        args=(exp_array),
+        method="L-BFGS-B",
+        jac=grad_atomic_energy,
+        hess=None,
+        hessp=None,
+        bounds=bnds,
+        tol=1e-9,
+        callback=None,
+        options={"maxfev": 10000, "ftol": 1e-9},
+    )
+    
+    print(res)
+    print(f"E = {atomic_energy(res.x)}")
+    print(f"exp = [{','.join(['{:.16e}'.format(x) for x in res.x])}]")
+    
+
+N = 2
+
+exps = np.zeros((N, 2))
+exps[:, 0] = np.array([1.0, 0.5])
+# exps[1:, 0] = exps_Be_3s[:]
+# exps[0, 0] = np.max(exps_Be_3s) * 10.0
+
+minimize_energy(N, exps)
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Mar  1 2023, 21:19:10) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Tue Mar  7 18:13:43 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] DEBUG = False
+[CONFIG] MAX_MEMORY = 4000
+[CONFIG] TMPDIR = /var/folders/v7/w4c0kx6d5bq1lvxw1rnqy7br0000gp/T/
+[CONFIG] UNIT = angstrom
+[CONFIG] VERBOSE = 3
+[CONFIG] conf_file = /Users/deyanmihaylov/.pyscf_conf.py
+[CONFIG] pyscf_numpy_backend = jax
+[CONFIG] pyscf_scipy_backend = jax
+[CONFIG] pyscf_scipy_linalg_backend = pyscfad
+[CONFIG] pyscfad = True
+[CONFIG] pyscfad_ccsd_implicit_diff = True
+[CONFIG] pyscfad_scf_implicit_diff = True
+[INPUT] verbose = 9
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 4
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 Be     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] Be
+[INPUT] 0    0    [1    /1   ]  4.29304228927        1
+[INPUT] 0    0    [1    /1   ]  0.0964676320105      1
+
+nuclear repulsion = 0
+number of shells = 2
+number of NR pGTOs = 2
+number of NR cGTOs = 2
+basis = {'Be': [[0, [4.293042289265725, 1.0]], [0, [0.0964676320105473, 1.0]]]}
+ecp = {}
+bas 0, expnt(s) = [4.29304229]
+bas 1, expnt(s) = [0.09646763]
+CPU time:        15.26
+arg.atm = [[ 4 20  1 23  0  0]]
+arg.bas = [[ 0  0  1  1  0 24 25  0]
+ [ 0  0  1  1  0 26 27  0]]
+arg.env = [0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 4.29304229 7.5350979  0.09646763 0.43732191]
+ecpbas  = []
+Set gradient conv threshold to 3.16228e-05
+Nelec from initial guess = 3.8829491871320747
+cond(S) = 1.377484086817235
+E1 = -16.029885490727263  E_coul = 4.1844344122517665
+init E= -11.8454510784755
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-3.71064011 -0.3083462 ]
+E1 = -16.744683263646102  E_coul = 4.52907459099612
+cycle= 1 E= -12.21560867265  delta_E= -0.37  |g|=    0  |ddm|= 0.104
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+diis-norm(errvec)=6.28037e-16
+diis-c [-3.94430453e-31  1.00000000e+00]
+  mo_energy =
+[-3.58682649 -0.25644055]
+E1 = -16.7446832636461  E_coul = 4.529074590996117
+cycle= 2 E= -12.21560867265  delta_E=    0  |g|=    0  |ddm|= 6.28e-16
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -16.7446832636461  E_coul = 4.529074590996117
+  mo_energy =
+[-3.58682649 -0.25644055]
+E1 = -16.744683263646095  E_coul = 4.529074590996116
+Extra cycle  E= -12.21560867265  delta_E= 1.78e-15  |g|=    0  |ddm|= 4.71e-16
+    CPU time for scf_cycle      0.04 sec, wall time      0.04 sec
+exp = [4.29304229 0.09646763]
+E = -12.21560867264998
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/pyscf_basis_opt/Be_energies.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy import optimize
+
+def atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+
+    print(f"exp = {exponent}")
+    print(f"E = {e}")
+
+    return e
+
+def grad_atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+        
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+    
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    print(f"exp = {exponent}")
+    print(f"grad_E = {jac.exp}")
+
+    grad_E = np.array(jac.exp)
+
+    return grad_E
+
+def minimize_energy(n, exp_array=None):
+    # x0 = [0.5 * (n-i) for i in range(n)]
+    x0 = exp_array[:, 0]
+    bnds = ((1e-9, None) for _ in range(n))
+
+    res = optimize.minimize(
+        atomic_energy,
+        x0,
+        args=(exp_array),
+        method="L-BFGS-B",
+        jac=grad_atomic_energy,
+        hess=None,
+        hessp=None,
+        bounds=bnds,
+        tol=1e-9,
+        callback=None,
+        options={"maxfev": 10000, "ftol": 1e-9},
+    )
+    
+    print(res)
+    print(f"E = {atomic_energy(res.x)}")
+    print(f"exp = [{','.join(['{:.16e}'.format(x) for x in res.x])}]")
+    
+
+N = 2
+
+exps = np.zeros((N, 2))
+exps[:, 0] = np.array([1.0, 0.5])
+# exps[1:, 0] = exps_Be_3s[:]
+# exps[0, 0] = np.max(exps_Be_3s) * 10.0
+
+minimize_energy(N, exps)
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Mar  1 2023, 21:19:10) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Tue Mar  7 18:13:44 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] DEBUG = False
+[CONFIG] MAX_MEMORY = 4000
+[CONFIG] TMPDIR = /var/folders/v7/w4c0kx6d5bq1lvxw1rnqy7br0000gp/T/
+[CONFIG] UNIT = angstrom
+[CONFIG] VERBOSE = 3
+[CONFIG] conf_file = /Users/deyanmihaylov/.pyscf_conf.py
+[CONFIG] pyscf_numpy_backend = jax
+[CONFIG] pyscf_scipy_backend = jax
+[CONFIG] pyscf_scipy_linalg_backend = pyscfad
+[CONFIG] pyscfad = True
+[CONFIG] pyscfad_ccsd_implicit_diff = True
+[CONFIG] pyscfad_scf_implicit_diff = True
+[INPUT] verbose = 9
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 4
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 Be     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] Be
+[INPUT] 0    0    [1    /1   ]  4.29304228927        1
+[INPUT] 0    0    [1    /1   ]  0.0964676320105      1
+
+nuclear repulsion = 0
+number of shells = 2
+number of NR pGTOs = 2
+number of NR cGTOs = 2
+basis = {'Be': [[0, [4.293042289265725, 1.0]], [0, [0.0964676320105473, 1.0]]]}
+ecp = {}
+bas 0, expnt(s) = [4.29304229]
+bas 1, expnt(s) = [0.09646763]
+CPU time:        15.40
+arg.atm = [[ 4 20  1 23  0  0]]
+arg.bas = [[ 0  0  1  1  0 24 25  0]
+ [ 0  0  1  1  0 26 27  0]]
+arg.env = [0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 4.29304229 7.5350979  0.09646763 0.43732191]
+ecpbas  = []
+Set gradient conv threshold to 3.16228e-05
+Nelec from initial guess = 3.8829491871320747
+cond(S) = 1.377484086817235
+E1 = -16.029885490727263  E_coul = 4.1844344122517665
+init E= -11.8454510784755
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-3.71064011 -0.3083462 ]
+E1 = -16.744683263646102  E_coul = 4.52907459099612
+cycle= 1 E= -12.21560867265  delta_E= -0.37  |g|=    0  |ddm|= 0.104
+    CPU time for cycle= 1      0.00 sec, wall time      0.00 sec
+diis-norm(errvec)=6.28037e-16
+diis-c [-3.94430453e-31  1.00000000e+00]
+  mo_energy =
+[-3.58682649 -0.25644055]
+E1 = -16.7446832636461  E_coul = 4.529074590996117
+cycle= 2 E= -12.21560867265  delta_E=    0  |g|=    0  |ddm|= 6.28e-16
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -16.7446832636461  E_coul = 4.529074590996117
+  mo_energy =
+[-3.58682649 -0.25644055]
+E1 = -16.744683263646095  E_coul = 4.529074590996116
+Extra cycle  E= -12.21560867265  delta_E= 1.78e-15  |g|=    0  |ddm|= 4.71e-16
+    CPU time for scf_cycle      0.03 sec, wall time      0.03 sec
+Set gradient conv threshold to 3.16228e-05
+cond(S) = 1.377484086817235
+E1 = -16.744683263646095  E_coul = 4.529074590996116
+init E= -12.21560867265
+    CPU time for initialize scf      0.03 sec, wall time      0.03 sec
+  mo_energy =
+[-3.58682649 -0.25644055]
+E1 = -16.744683263646095  E_coul = 4.529074590996116
+cycle= 1 E= -12.21560867265  delta_E=    0  |g|=    0  |ddm|= 7.85e-17
+    CPU time for cycle= 1      0.00 sec, wall time      0.00 sec
+E1 = -16.744683263646095  E_coul = 4.529074590996116
+  mo_energy =
+[-3.58682649 -0.25644055]
+E1 = -16.744683263646095  E_coul = 4.529074590996116
+Extra cycle  E= -12.21560867265  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.07 sec, wall time      0.07 sec
+exp = [4.29304229 0.09646763]
+grad_E = [ 0.15589071 -0.38506991]
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/pyscf_basis_opt/Be_energies.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy import optimize
+
+def atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+
+    print(f"exp = {exponent}")
+    print(f"E = {e}")
+
+    return e
+
+def grad_atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+        
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+    
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    print(f"exp = {exponent}")
+    print(f"grad_E = {jac.exp}")
+
+    grad_E = np.array(jac.exp)
+
+    return grad_E
+
+def minimize_energy(n, exp_array=None):
+    # x0 = [0.5 * (n-i) for i in range(n)]
+    x0 = exp_array[:, 0]
+    bnds = ((1e-9, None) for _ in range(n))
+
+    res = optimize.minimize(
+        atomic_energy,
+        x0,
+        args=(exp_array),
+        method="L-BFGS-B",
+        jac=grad_atomic_energy,
+        hess=None,
+        hessp=None,
+        bounds=bnds,
+        tol=1e-9,
+        callback=None,
+        options={"maxfev": 10000, "ftol": 1e-9},
+    )
+    
+    print(res)
+    print(f"E = {atomic_energy(res.x)}")
+    print(f"exp = [{','.join(['{:.16e}'.format(x) for x in res.x])}]")
+    
+
+N = 2
+
+exps = np.zeros((N, 2))
+exps[:, 0] = np.array([1.0, 0.5])
+# exps[1:, 0] = exps_Be_3s[:]
+# exps[0, 0] = np.max(exps_Be_3s) * 10.0
+
+minimize_energy(N, exps)
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Mar  1 2023, 21:19:10) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Tue Mar  7 18:13:45 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] DEBUG = False
+[CONFIG] MAX_MEMORY = 4000
+[CONFIG] TMPDIR = /var/folders/v7/w4c0kx6d5bq1lvxw1rnqy7br0000gp/T/
+[CONFIG] UNIT = angstrom
+[CONFIG] VERBOSE = 3
+[CONFIG] conf_file = /Users/deyanmihaylov/.pyscf_conf.py
+[CONFIG] pyscf_numpy_backend = jax
+[CONFIG] pyscf_scipy_backend = jax
+[CONFIG] pyscf_scipy_linalg_backend = pyscfad
+[CONFIG] pyscfad = True
+[CONFIG] pyscfad_ccsd_implicit_diff = True
+[CONFIG] pyscfad_scf_implicit_diff = True
+[INPUT] verbose = 9
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 4
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 Be     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] Be
+[INPUT] 0    0    [1    /1   ]  3.94392003912        1
+[INPUT] 0    0    [1    /1   ]  0.103239746703       1
+
+nuclear repulsion = 0
+number of shells = 2
+number of NR pGTOs = 2
+number of NR cGTOs = 2
+basis = {'Be': [[0, [3.9439200391198734, 1.0]], [0, [0.10323974670262762, 1.0]]]}
+ecp = {}
+bas 0, expnt(s) = [3.94392004]
+bas 1, expnt(s) = [0.10323975]
+CPU time:        17.17
+arg.atm = [[ 4 20  1 23  0  0]]
+arg.bas = [[ 0  0  1  1  0 24 25  0]
+ [ 0  0  1  1  0 26 27  0]]
+arg.env = [0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 3.94392004 7.07067866 0.10323975 0.46015084]
+ecpbas  = []
+Set gradient conv threshold to 3.16228e-05
+Nelec from initial guess = 3.8936496325267203
+cond(S) = 1.4303472967742943
+E1 = -16.08706028826301  E_coul = 4.177404776078083
+init E= -11.9096555121849
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-3.74017566 -0.29836076]
+E1 = -16.73692098070859  E_coul = 4.487973938667882
+cycle= 1 E= -12.2489470420407  delta_E= -0.339  |g|=    0  |ddm|= 0.0979
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+diis-norm(errvec)=6.28037e-16
+diis-c [-3.94430453e-31  1.00000000e+00]
+  mo_energy =
+[-3.63029085 -0.2501957 ]
+E1 = -16.73692098070859  E_coul = 4.487973938667882
+cycle= 2 E= -12.2489470420407  delta_E=    0  |g|=    0  |ddm|= 7.85e-17
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -16.73692098070859  E_coul = 4.487973938667882
+  mo_energy =
+[-3.63029085 -0.2501957 ]
+E1 = -16.73692098070859  E_coul = 4.487973938667882
+Extra cycle  E= -12.2489470420407  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.04 sec, wall time      0.04 sec
+exp = [3.94392004 0.10323975]
+E = -12.248947042040708
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/pyscf_basis_opt/Be_energies.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy import optimize
+
+def atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+
+    print(f"exp = {exponent}")
+    print(f"E = {e}")
+
+    return e
+
+def grad_atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+        
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+    
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    print(f"exp = {exponent}")
+    print(f"grad_E = {jac.exp}")
+
+    grad_E = np.array(jac.exp)
+
+    return grad_E
+
+def minimize_energy(n, exp_array=None):
+    # x0 = [0.5 * (n-i) for i in range(n)]
+    x0 = exp_array[:, 0]
+    bnds = ((1e-9, None) for _ in range(n))
+
+    res = optimize.minimize(
+        atomic_energy,
+        x0,
+        args=(exp_array),
+        method="L-BFGS-B",
+        jac=grad_atomic_energy,
+        hess=None,
+        hessp=None,
+        bounds=bnds,
+        tol=1e-9,
+        callback=None,
+        options={"maxfev": 10000, "ftol": 1e-9},
+    )
+    
+    print(res)
+    print(f"E = {atomic_energy(res.x)}")
+    print(f"exp = [{','.join(['{:.16e}'.format(x) for x in res.x])}]")
+    
+
+N = 2
+
+exps = np.zeros((N, 2))
+exps[:, 0] = np.array([1.0, 0.5])
+# exps[1:, 0] = exps_Be_3s[:]
+# exps[0, 0] = np.max(exps_Be_3s) * 10.0
+
+minimize_energy(N, exps)
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Mar  1 2023, 21:19:10) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Tue Mar  7 18:13:46 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] DEBUG = False
+[CONFIG] MAX_MEMORY = 4000
+[CONFIG] TMPDIR = /var/folders/v7/w4c0kx6d5bq1lvxw1rnqy7br0000gp/T/
+[CONFIG] UNIT = angstrom
+[CONFIG] VERBOSE = 3
+[CONFIG] conf_file = /Users/deyanmihaylov/.pyscf_conf.py
+[CONFIG] pyscf_numpy_backend = jax
+[CONFIG] pyscf_scipy_backend = jax
+[CONFIG] pyscf_scipy_linalg_backend = pyscfad
+[CONFIG] pyscfad = True
+[CONFIG] pyscfad_ccsd_implicit_diff = True
+[CONFIG] pyscfad_scf_implicit_diff = True
+[INPUT] verbose = 9
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 4
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 Be     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] Be
+[INPUT] 0    0    [1    /1   ]  3.94392003912        1
+[INPUT] 0    0    [1    /1   ]  0.103239746703       1
+
+nuclear repulsion = 0
+number of shells = 2
+number of NR pGTOs = 2
+number of NR cGTOs = 2
+basis = {'Be': [[0, [3.9439200391198734, 1.0]], [0, [0.10323974670262762, 1.0]]]}
+ecp = {}
+bas 0, expnt(s) = [3.94392004]
+bas 1, expnt(s) = [0.10323975]
+CPU time:        17.33
+arg.atm = [[ 4 20  1 23  0  0]]
+arg.bas = [[ 0  0  1  1  0 24 25  0]
+ [ 0  0  1  1  0 26 27  0]]
+arg.env = [0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 3.94392004 7.07067866 0.10323975 0.46015084]
+ecpbas  = []
+Set gradient conv threshold to 3.16228e-05
+Nelec from initial guess = 3.8936496325267203
+cond(S) = 1.4303472967742943
+E1 = -16.08706028826301  E_coul = 4.177404776078083
+init E= -11.9096555121849
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-3.74017566 -0.29836076]
+E1 = -16.73692098070859  E_coul = 4.487973938667882
+cycle= 1 E= -12.2489470420407  delta_E= -0.339  |g|=    0  |ddm|= 0.0979
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+diis-norm(errvec)=6.28037e-16
+diis-c [-3.94430453e-31  1.00000000e+00]
+  mo_energy =
+[-3.63029085 -0.2501957 ]
+E1 = -16.73692098070859  E_coul = 4.487973938667882
+cycle= 2 E= -12.2489470420407  delta_E=    0  |g|=    0  |ddm|= 7.85e-17
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -16.73692098070859  E_coul = 4.487973938667882
+  mo_energy =
+[-3.63029085 -0.2501957 ]
+E1 = -16.73692098070859  E_coul = 4.487973938667882
+Extra cycle  E= -12.2489470420407  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.04 sec, wall time      0.04 sec
+Set gradient conv threshold to 3.16228e-05
+cond(S) = 1.4303472967742943
+E1 = -16.73692098070859  E_coul = 4.487973938667882
+init E= -12.2489470420407
+    CPU time for initialize scf      0.03 sec, wall time      0.03 sec
+  mo_energy =
+[-3.63029085 -0.2501957 ]
+E1 = -16.73692098070859  E_coul = 4.487973938667882
+cycle= 1 E= -12.2489470420407  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for cycle= 1      0.00 sec, wall time      0.00 sec
+E1 = -16.73692098070859  E_coul = 4.487973938667882
+  mo_energy =
+[-3.63029085 -0.2501957 ]
+E1 = -16.73692098070859  E_coul = 4.487973938667882
+Extra cycle  E= -12.2489470420407  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.06 sec, wall time      0.06 sec
+exp = [3.94392004 0.10323975]
+grad_E = [0.02766167 0.1369473 ]
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/pyscf_basis_opt/Be_energies.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy import optimize
+
+def atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+
+    print(f"exp = {exponent}")
+    print(f"E = {e}")
+
+    return e
+
+def grad_atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+        
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+    
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    print(f"exp = {exponent}")
+    print(f"grad_E = {jac.exp}")
+
+    grad_E = np.array(jac.exp)
+
+    return grad_E
+
+def minimize_energy(n, exp_array=None):
+    # x0 = [0.5 * (n-i) for i in range(n)]
+    x0 = exp_array[:, 0]
+    bnds = ((1e-9, None) for _ in range(n))
+
+    res = optimize.minimize(
+        atomic_energy,
+        x0,
+        args=(exp_array),
+        method="L-BFGS-B",
+        jac=grad_atomic_energy,
+        hess=None,
+        hessp=None,
+        bounds=bnds,
+        tol=1e-9,
+        callback=None,
+        options={"maxfev": 10000, "ftol": 1e-9},
+    )
+    
+    print(res)
+    print(f"E = {atomic_energy(res.x)}")
+    print(f"exp = [{','.join(['{:.16e}'.format(x) for x in res.x])}]")
+    
+
+N = 2
+
+exps = np.zeros((N, 2))
+exps[:, 0] = np.array([1.0, 0.5])
+# exps[1:, 0] = exps_Be_3s[:]
+# exps[0, 0] = np.max(exps_Be_3s) * 10.0
+
+minimize_energy(N, exps)
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Mar  1 2023, 21:19:10) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Tue Mar  7 18:13:47 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] DEBUG = False
+[CONFIG] MAX_MEMORY = 4000
+[CONFIG] TMPDIR = /var/folders/v7/w4c0kx6d5bq1lvxw1rnqy7br0000gp/T/
+[CONFIG] UNIT = angstrom
+[CONFIG] VERBOSE = 3
+[CONFIG] conf_file = /Users/deyanmihaylov/.pyscf_conf.py
+[CONFIG] pyscf_numpy_backend = jax
+[CONFIG] pyscf_scipy_backend = jax
+[CONFIG] pyscf_scipy_linalg_backend = pyscfad
+[CONFIG] pyscfad = True
+[CONFIG] pyscfad_ccsd_implicit_diff = True
+[CONFIG] pyscfad_scf_implicit_diff = True
+[INPUT] verbose = 9
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 4
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 Be     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] Be
+[INPUT] 0    0    [1    /1   ]  3.85742095217        1
+[INPUT] 0    0    [1    /1   ]  0.098715347797       1
+
+nuclear repulsion = 0
+number of shells = 2
+number of NR pGTOs = 2
+number of NR cGTOs = 2
+basis = {'Be': [[0, [3.8574209521744023, 1.0]], [0, [0.09871534779703019, 1.0]]]}
+ecp = {}
+bas 0, expnt(s) = [3.85742095]
+bas 1, expnt(s) = [0.09871535]
+CPU time:        19.09
+arg.atm = [[ 4 20  1 23  0  0]]
+arg.bas = [[ 0  0  1  1  0 24 25  0]
+ [ 0  0  1  1  0 26 27  0]]
+arg.env = [0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 3.85742095 6.95404987 0.09871535 0.44494213]
+ecpbas  = []
+Set gradient conv threshold to 3.16228e-05
+Nelec from initial guess = 3.893759374330691
+cond(S) = 1.4220130604812313
+E1 = -16.020760269659057  E_coul = 4.11293607905307
+init E= -11.907824190606
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-3.76609561 -0.30518285]
+E1 = -16.666570766529276  E_coul = 4.416449097840199
+cycle= 1 E= -12.2501216686891  delta_E= -0.342  |g|=    0  |ddm|= 0.0951
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+diis-norm(errvec)=0
+diis-c [0. 1.]
+  mo_energy =
+[-3.65854499 -0.25829129]
+E1 = -16.666570766529276  E_coul = 4.416449097840198
+cycle= 2 E= -12.2501216686891  delta_E= -1.78e-15  |g|=    0  |ddm|= 5.44e-16
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -16.666570766529276  E_coul = 4.416449097840198
+  mo_energy =
+[-3.65854499 -0.25829129]
+E1 = -16.666570766529276  E_coul = 4.416449097840198
+Extra cycle  E= -12.2501216686891  delta_E=    0  |g|=    0  |ddm|= 1.57e-16
+    CPU time for scf_cycle      0.04 sec, wall time      0.04 sec
+exp = [3.85742095 0.09871535]
+E = -12.250121668689077
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/pyscf_basis_opt/Be_energies.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy import optimize
+
+def atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+
+    print(f"exp = {exponent}")
+    print(f"E = {e}")
+
+    return e
+
+def grad_atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+        
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+    
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    print(f"exp = {exponent}")
+    print(f"grad_E = {jac.exp}")
+
+    grad_E = np.array(jac.exp)
+
+    return grad_E
+
+def minimize_energy(n, exp_array=None):
+    # x0 = [0.5 * (n-i) for i in range(n)]
+    x0 = exp_array[:, 0]
+    bnds = ((1e-9, None) for _ in range(n))
+
+    res = optimize.minimize(
+        atomic_energy,
+        x0,
+        args=(exp_array),
+        method="L-BFGS-B",
+        jac=grad_atomic_energy,
+        hess=None,
+        hessp=None,
+        bounds=bnds,
+        tol=1e-9,
+        callback=None,
+        options={"maxfev": 10000, "ftol": 1e-9},
+    )
+    
+    print(res)
+    print(f"E = {atomic_energy(res.x)}")
+    print(f"exp = [{','.join(['{:.16e}'.format(x) for x in res.x])}]")
+    
+
+N = 2
+
+exps = np.zeros((N, 2))
+exps[:, 0] = np.array([1.0, 0.5])
+# exps[1:, 0] = exps_Be_3s[:]
+# exps[0, 0] = np.max(exps_Be_3s) * 10.0
+
+minimize_energy(N, exps)
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Mar  1 2023, 21:19:10) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Tue Mar  7 18:13:48 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] DEBUG = False
+[CONFIG] MAX_MEMORY = 4000
+[CONFIG] TMPDIR = /var/folders/v7/w4c0kx6d5bq1lvxw1rnqy7br0000gp/T/
+[CONFIG] UNIT = angstrom
+[CONFIG] VERBOSE = 3
+[CONFIG] conf_file = /Users/deyanmihaylov/.pyscf_conf.py
+[CONFIG] pyscf_numpy_backend = jax
+[CONFIG] pyscf_scipy_backend = jax
+[CONFIG] pyscf_scipy_linalg_backend = pyscfad
+[CONFIG] pyscfad = True
+[CONFIG] pyscfad_ccsd_implicit_diff = True
+[CONFIG] pyscfad_scf_implicit_diff = True
+[INPUT] verbose = 9
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 4
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 Be     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] Be
+[INPUT] 0    0    [1    /1   ]  3.85742095217        1
+[INPUT] 0    0    [1    /1   ]  0.098715347797       1
+
+nuclear repulsion = 0
+number of shells = 2
+number of NR pGTOs = 2
+number of NR cGTOs = 2
+basis = {'Be': [[0, [3.8574209521744023, 1.0]], [0, [0.09871534779703019, 1.0]]]}
+ecp = {}
+bas 0, expnt(s) = [3.85742095]
+bas 1, expnt(s) = [0.09871535]
+CPU time:        19.27
+arg.atm = [[ 4 20  1 23  0  0]]
+arg.bas = [[ 0  0  1  1  0 24 25  0]
+ [ 0  0  1  1  0 26 27  0]]
+arg.env = [0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 3.85742095 6.95404987 0.09871535 0.44494213]
+ecpbas  = []
+Set gradient conv threshold to 3.16228e-05
+Nelec from initial guess = 3.893759374330691
+cond(S) = 1.4220130604812313
+E1 = -16.020760269659057  E_coul = 4.11293607905307
+init E= -11.907824190606
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-3.76609561 -0.30518285]
+E1 = -16.666570766529276  E_coul = 4.416449097840199
+cycle= 1 E= -12.2501216686891  delta_E= -0.342  |g|=    0  |ddm|= 0.0951
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+diis-norm(errvec)=0
+diis-c [0. 1.]
+  mo_energy =
+[-3.65854499 -0.25829129]
+E1 = -16.666570766529276  E_coul = 4.416449097840198
+cycle= 2 E= -12.2501216686891  delta_E= -1.78e-15  |g|=    0  |ddm|= 5.44e-16
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -16.666570766529276  E_coul = 4.416449097840198
+  mo_energy =
+[-3.65854499 -0.25829129]
+E1 = -16.666570766529276  E_coul = 4.416449097840198
+Extra cycle  E= -12.2501216686891  delta_E=    0  |g|=    0  |ddm|= 1.57e-16
+    CPU time for scf_cycle      0.04 sec, wall time      0.04 sec
+Set gradient conv threshold to 3.16228e-05
+cond(S) = 1.4220130604812313
+E1 = -16.666570766529276  E_coul = 4.416449097840198
+init E= -12.2501216686891
+    CPU time for initialize scf      0.03 sec, wall time      0.03 sec
+  mo_energy =
+[-3.65854499 -0.25829129]
+E1 = -16.666570766529276  E_coul = 4.416449097840198
+cycle= 1 E= -12.2501216686891  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for cycle= 1      0.00 sec, wall time      0.00 sec
+E1 = -16.666570766529276  E_coul = 4.416449097840198
+  mo_energy =
+[-3.65854499 -0.25829129]
+E1 = -16.666570766529276  E_coul = 4.416449097840198
+Extra cycle  E= -12.2501216686891  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.06 sec, wall time      0.06 sec
+exp = [3.85742095 0.09871535]
+grad_E = [-0.00411359 -0.07363125]
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/pyscf_basis_opt/Be_energies.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy import optimize
+
+def atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+
+    print(f"exp = {exponent}")
+    print(f"E = {e}")
+
+    return e
+
+def grad_atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+        
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+    
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    print(f"exp = {exponent}")
+    print(f"grad_E = {jac.exp}")
+
+    grad_E = np.array(jac.exp)
+
+    return grad_E
+
+def minimize_energy(n, exp_array=None):
+    # x0 = [0.5 * (n-i) for i in range(n)]
+    x0 = exp_array[:, 0]
+    bnds = ((1e-9, None) for _ in range(n))
+
+    res = optimize.minimize(
+        atomic_energy,
+        x0,
+        args=(exp_array),
+        method="L-BFGS-B",
+        jac=grad_atomic_energy,
+        hess=None,
+        hessp=None,
+        bounds=bnds,
+        tol=1e-9,
+        callback=None,
+        options={"maxfev": 10000, "ftol": 1e-9},
+    )
+    
+    print(res)
+    print(f"E = {atomic_energy(res.x)}")
+    print(f"exp = [{','.join(['{:.16e}'.format(x) for x in res.x])}]")
+    
+
+N = 2
+
+exps = np.zeros((N, 2))
+exps[:, 0] = np.array([1.0, 0.5])
+# exps[1:, 0] = exps_Be_3s[:]
+# exps[0, 0] = np.max(exps_Be_3s) * 10.0
+
+minimize_energy(N, exps)
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Mar  1 2023, 21:19:10) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Tue Mar  7 18:13:49 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] DEBUG = False
+[CONFIG] MAX_MEMORY = 4000
+[CONFIG] TMPDIR = /var/folders/v7/w4c0kx6d5bq1lvxw1rnqy7br0000gp/T/
+[CONFIG] UNIT = angstrom
+[CONFIG] VERBOSE = 3
+[CONFIG] conf_file = /Users/deyanmihaylov/.pyscf_conf.py
+[CONFIG] pyscf_numpy_backend = jax
+[CONFIG] pyscf_scipy_backend = jax
+[CONFIG] pyscf_scipy_linalg_backend = pyscfad
+[CONFIG] pyscfad = True
+[CONFIG] pyscfad_ccsd_implicit_diff = True
+[CONFIG] pyscfad_scf_implicit_diff = True
+[INPUT] verbose = 9
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 4
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 Be     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] Be
+[INPUT] 0    0    [1    /1   ]  3.86891141562        1
+[INPUT] 0    0    [1    /1   ]  0.100253237567       1
+
+nuclear repulsion = 0
+number of shells = 2
+number of NR pGTOs = 2
+number of NR cGTOs = 2
+basis = {'Be': [[0, [3.8689114156207176, 1.0]], [0, [0.10025323756702956, 1.0]]]}
+ecp = {}
+bas 0, expnt(s) = [3.86891142]
+bas 1, expnt(s) = [0.10025324]
+CPU time:        21.06
+arg.atm = [[ 4 20  1 23  0  0]]
+arg.bas = [[ 0  0  1  1  0 24 25  0]
+ [ 0  0  1  1  0 26 27  0]]
+arg.env = [0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 3.86891142 6.9695801  0.10025324 0.4501309 ]
+ecpbas  = []
+Set gradient conv threshold to 3.16228e-05
+Nelec from initial guess = 3.894282798176663
+cond(S) = 1.4265869587630169
+E1 = -16.04045361327905  E_coul = 4.130901070979401
+init E= -11.9095525422996
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-3.75939246 -0.30294234]
+E1 = -16.68536979554995  E_coul = 4.435172367566145
+cycle= 1 E= -12.2501974279838  delta_E= -0.341  |g|=    0  |ddm|= 0.0957
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+diis-norm(errvec)=6.28037e-16
+diis-c [-3.94430453e-31  1.00000000e+00]
+  mo_energy =
+[-3.65169428 -0.25581825]
+E1 = -16.68536979554995  E_coul = 4.435172367566145
+cycle= 2 E= -12.2501974279838  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -16.68536979554995  E_coul = 4.435172367566145
+  mo_energy =
+[-3.65169428 -0.25581825]
+E1 = -16.68536979554995  E_coul = 4.435172367566145
+Extra cycle  E= -12.2501974279838  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.04 sec, wall time      0.04 sec
+exp = [3.86891142 0.10025324]
+E = -12.250197427983803
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/pyscf_basis_opt/Be_energies.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy import optimize
+
+def atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+
+    print(f"exp = {exponent}")
+    print(f"E = {e}")
+
+    return e
+
+def grad_atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+        
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+    
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    print(f"exp = {exponent}")
+    print(f"grad_E = {jac.exp}")
+
+    grad_E = np.array(jac.exp)
+
+    return grad_E
+
+def minimize_energy(n, exp_array=None):
+    # x0 = [0.5 * (n-i) for i in range(n)]
+    x0 = exp_array[:, 0]
+    bnds = ((1e-9, None) for _ in range(n))
+
+    res = optimize.minimize(
+        atomic_energy,
+        x0,
+        args=(exp_array),
+        method="L-BFGS-B",
+        jac=grad_atomic_energy,
+        hess=None,
+        hessp=None,
+        bounds=bnds,
+        tol=1e-9,
+        callback=None,
+        options={"maxfev": 10000, "ftol": 1e-9},
+    )
+    
+    print(res)
+    print(f"E = {atomic_energy(res.x)}")
+    print(f"exp = [{','.join(['{:.16e}'.format(x) for x in res.x])}]")
+    
+
+N = 2
+
+exps = np.zeros((N, 2))
+exps[:, 0] = np.array([1.0, 0.5])
+# exps[1:, 0] = exps_Be_3s[:]
+# exps[0, 0] = np.max(exps_Be_3s) * 10.0
+
+minimize_energy(N, exps)
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Mar  1 2023, 21:19:10) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Tue Mar  7 18:13:49 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] DEBUG = False
+[CONFIG] MAX_MEMORY = 4000
+[CONFIG] TMPDIR = /var/folders/v7/w4c0kx6d5bq1lvxw1rnqy7br0000gp/T/
+[CONFIG] UNIT = angstrom
+[CONFIG] VERBOSE = 3
+[CONFIG] conf_file = /Users/deyanmihaylov/.pyscf_conf.py
+[CONFIG] pyscf_numpy_backend = jax
+[CONFIG] pyscf_scipy_backend = jax
+[CONFIG] pyscf_scipy_linalg_backend = pyscfad
+[CONFIG] pyscfad = True
+[CONFIG] pyscfad_ccsd_implicit_diff = True
+[CONFIG] pyscfad_scf_implicit_diff = True
+[INPUT] verbose = 9
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 4
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 Be     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] Be
+[INPUT] 0    0    [1    /1   ]  3.86891141562        1
+[INPUT] 0    0    [1    /1   ]  0.100253237567       1
+
+nuclear repulsion = 0
+number of shells = 2
+number of NR pGTOs = 2
+number of NR cGTOs = 2
+basis = {'Be': [[0, [3.8689114156207176, 1.0]], [0, [0.10025323756702956, 1.0]]]}
+ecp = {}
+bas 0, expnt(s) = [3.86891142]
+bas 1, expnt(s) = [0.10025324]
+CPU time:        21.25
+arg.atm = [[ 4 20  1 23  0  0]]
+arg.bas = [[ 0  0  1  1  0 24 25  0]
+ [ 0  0  1  1  0 26 27  0]]
+arg.env = [0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 3.86891142 6.9695801  0.10025324 0.4501309 ]
+ecpbas  = []
+Set gradient conv threshold to 3.16228e-05
+Nelec from initial guess = 3.894282798176663
+cond(S) = 1.4265869587630169
+E1 = -16.04045361327905  E_coul = 4.130901070979401
+init E= -11.9095525422996
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-3.75939246 -0.30294234]
+E1 = -16.68536979554995  E_coul = 4.435172367566145
+cycle= 1 E= -12.2501974279838  delta_E= -0.341  |g|=    0  |ddm|= 0.0957
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+diis-norm(errvec)=6.28037e-16
+diis-c [-3.94430453e-31  1.00000000e+00]
+  mo_energy =
+[-3.65169428 -0.25581825]
+E1 = -16.68536979554995  E_coul = 4.435172367566145
+cycle= 2 E= -12.2501974279838  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -16.68536979554995  E_coul = 4.435172367566145
+  mo_energy =
+[-3.65169428 -0.25581825]
+E1 = -16.68536979554995  E_coul = 4.435172367566145
+Extra cycle  E= -12.2501974279838  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.04 sec, wall time      0.04 sec
+Set gradient conv threshold to 3.16228e-05
+cond(S) = 1.4265869587630169
+E1 = -16.68536979554995  E_coul = 4.435172367566145
+init E= -12.2501974279838
+    CPU time for initialize scf      0.03 sec, wall time      0.03 sec
+  mo_energy =
+[-3.65169428 -0.25581825]
+E1 = -16.68536979554995  E_coul = 4.435172367566145
+cycle= 1 E= -12.2501974279838  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for cycle= 1      0.00 sec, wall time      0.00 sec
+E1 = -16.68536979554995  E_coul = 4.435172367566145
+  mo_energy =
+[-3.65169428 -0.25581825]
+E1 = -16.68536979554995  E_coul = 4.435172367566145
+Extra cycle  E= -12.2501974279838  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.06 sec, wall time      0.07 sec
+exp = [3.86891142 0.10025324]
+grad_E = [-0.00023603  0.00727577]
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/pyscf_basis_opt/Be_energies.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy import optimize
+
+def atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+
+    print(f"exp = {exponent}")
+    print(f"E = {e}")
+
+    return e
+
+def grad_atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+        
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+    
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    print(f"exp = {exponent}")
+    print(f"grad_E = {jac.exp}")
+
+    grad_E = np.array(jac.exp)
+
+    return grad_E
+
+def minimize_energy(n, exp_array=None):
+    # x0 = [0.5 * (n-i) for i in range(n)]
+    x0 = exp_array[:, 0]
+    bnds = ((1e-9, None) for _ in range(n))
+
+    res = optimize.minimize(
+        atomic_energy,
+        x0,
+        args=(exp_array),
+        method="L-BFGS-B",
+        jac=grad_atomic_energy,
+        hess=None,
+        hessp=None,
+        bounds=bnds,
+        tol=1e-9,
+        callback=None,
+        options={"maxfev": 10000, "ftol": 1e-9},
+    )
+    
+    print(res)
+    print(f"E = {atomic_energy(res.x)}")
+    print(f"exp = [{','.join(['{:.16e}'.format(x) for x in res.x])}]")
+    
+
+N = 2
+
+exps = np.zeros((N, 2))
+exps[:, 0] = np.array([1.0, 0.5])
+# exps[1:, 0] = exps_Be_3s[:]
+# exps[0, 0] = np.max(exps_Be_3s) * 10.0
+
+minimize_energy(N, exps)
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Mar  1 2023, 21:19:10) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Tue Mar  7 18:13:51 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] DEBUG = False
+[CONFIG] MAX_MEMORY = 4000
+[CONFIG] TMPDIR = /var/folders/v7/w4c0kx6d5bq1lvxw1rnqy7br0000gp/T/
+[CONFIG] UNIT = angstrom
+[CONFIG] VERBOSE = 3
+[CONFIG] conf_file = /Users/deyanmihaylov/.pyscf_conf.py
+[CONFIG] pyscf_numpy_backend = jax
+[CONFIG] pyscf_scipy_backend = jax
+[CONFIG] pyscf_scipy_linalg_backend = pyscfad
+[CONFIG] pyscfad = True
+[CONFIG] pyscfad_ccsd_implicit_diff = True
+[CONFIG] pyscfad_scf_implicit_diff = True
+[INPUT] verbose = 9
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 4
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 Be     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] Be
+[INPUT] 0    0    [1    /1   ]  3.86951749868        1
+[INPUT] 0    0    [1    /1   ]  0.100119412309       1
+
+nuclear repulsion = 0
+number of shells = 2
+number of NR pGTOs = 2
+number of NR cGTOs = 2
+basis = {'Be': [[0, [3.8695174986775407, 1.0]], [0, [0.10011941230917687, 1.0]]]}
+ecp = {}
+bas 0, expnt(s) = [3.8695175]
+bas 1, expnt(s) = [0.10011941]
+CPU time:        23.05
+arg.atm = [[ 4 20  1 23  0  0]]
+arg.bas = [[ 0  0  1  1  0 24 25  0]
+ [ 0  0  1  1  0 26 27  0]]
+arg.env = [0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 3.8695175  6.97039895 0.10011941 0.44968018]
+ecpbas  = []
+Set gradient conv threshold to 3.16228e-05
+Nelec from initial guess = 3.894232584723776
+cond(S) = 1.4260372950569131
+E1 = -16.039153804932752  E_coul = 4.129778115597701
+init E= -11.9093756893351
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-3.75976549 -0.30313212]
+E1 = -16.684262415501202  E_coul = 4.434064472874527
+cycle= 1 E= -12.2501979426267  delta_E= -0.341  |g|=    0  |ddm|= 0.0957
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+diis-norm(errvec)=0
+diis-c [0. 1.]
+  mo_energy =
+[-3.65204743 -0.2560193 ]
+E1 = -16.684262415501205  E_coul = 4.43406447287453
+cycle= 2 E= -12.2501979426267  delta_E= -1.78e-15  |g|=    0  |ddm|= 1.02e-15
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -16.684262415501205  E_coul = 4.43406447287453
+  mo_energy =
+[-3.65204743 -0.2560193 ]
+E1 = -16.684262415501205  E_coul = 4.43406447287453
+Extra cycle  E= -12.2501979426267  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.04 sec, wall time      0.04 sec
+exp = [3.8695175  0.10011941]
+E = -12.250197942626675
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/pyscf_basis_opt/Be_energies.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy import optimize
+
+def atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+
+    print(f"exp = {exponent}")
+    print(f"E = {e}")
+
+    return e
+
+def grad_atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+        
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+    
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    print(f"exp = {exponent}")
+    print(f"grad_E = {jac.exp}")
+
+    grad_E = np.array(jac.exp)
+
+    return grad_E
+
+def minimize_energy(n, exp_array=None):
+    # x0 = [0.5 * (n-i) for i in range(n)]
+    x0 = exp_array[:, 0]
+    bnds = ((1e-9, None) for _ in range(n))
+
+    res = optimize.minimize(
+        atomic_energy,
+        x0,
+        args=(exp_array),
+        method="L-BFGS-B",
+        jac=grad_atomic_energy,
+        hess=None,
+        hessp=None,
+        bounds=bnds,
+        tol=1e-9,
+        callback=None,
+        options={"maxfev": 10000, "ftol": 1e-9},
+    )
+    
+    print(res)
+    print(f"E = {atomic_energy(res.x)}")
+    print(f"exp = [{','.join(['{:.16e}'.format(x) for x in res.x])}]")
+    
+
+N = 2
+
+exps = np.zeros((N, 2))
+exps[:, 0] = np.array([1.0, 0.5])
+# exps[1:, 0] = exps_Be_3s[:]
+# exps[0, 0] = np.max(exps_Be_3s) * 10.0
+
+minimize_energy(N, exps)
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Mar  1 2023, 21:19:10) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Tue Mar  7 18:13:51 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] DEBUG = False
+[CONFIG] MAX_MEMORY = 4000
+[CONFIG] TMPDIR = /var/folders/v7/w4c0kx6d5bq1lvxw1rnqy7br0000gp/T/
+[CONFIG] UNIT = angstrom
+[CONFIG] VERBOSE = 3
+[CONFIG] conf_file = /Users/deyanmihaylov/.pyscf_conf.py
+[CONFIG] pyscf_numpy_backend = jax
+[CONFIG] pyscf_scipy_backend = jax
+[CONFIG] pyscf_scipy_linalg_backend = pyscfad
+[CONFIG] pyscfad = True
+[CONFIG] pyscfad_ccsd_implicit_diff = True
+[CONFIG] pyscfad_scf_implicit_diff = True
+[INPUT] verbose = 9
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 4
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 Be     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] Be
+[INPUT] 0    0    [1    /1   ]  3.86951749868        1
+[INPUT] 0    0    [1    /1   ]  0.100119412309       1
+
+nuclear repulsion = 0
+number of shells = 2
+number of NR pGTOs = 2
+number of NR cGTOs = 2
+basis = {'Be': [[0, [3.8695174986775407, 1.0]], [0, [0.10011941230917687, 1.0]]]}
+ecp = {}
+bas 0, expnt(s) = [3.8695175]
+bas 1, expnt(s) = [0.10011941]
+CPU time:        23.25
+arg.atm = [[ 4 20  1 23  0  0]]
+arg.bas = [[ 0  0  1  1  0 24 25  0]
+ [ 0  0  1  1  0 26 27  0]]
+arg.env = [0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 3.8695175  6.97039895 0.10011941 0.44968018]
+ecpbas  = []
+Set gradient conv threshold to 3.16228e-05
+Nelec from initial guess = 3.894232584723776
+cond(S) = 1.4260372950569131
+E1 = -16.039153804932752  E_coul = 4.129778115597701
+init E= -11.9093756893351
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-3.75976549 -0.30313212]
+E1 = -16.684262415501202  E_coul = 4.434064472874527
+cycle= 1 E= -12.2501979426267  delta_E= -0.341  |g|=    0  |ddm|= 0.0957
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+diis-norm(errvec)=0
+diis-c [0. 1.]
+  mo_energy =
+[-3.65204743 -0.2560193 ]
+E1 = -16.684262415501205  E_coul = 4.43406447287453
+cycle= 2 E= -12.2501979426267  delta_E= -1.78e-15  |g|=    0  |ddm|= 1.02e-15
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -16.684262415501205  E_coul = 4.43406447287453
+  mo_energy =
+[-3.65204743 -0.2560193 ]
+E1 = -16.684262415501205  E_coul = 4.43406447287453
+Extra cycle  E= -12.2501979426267  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.04 sec, wall time      0.04 sec
+Set gradient conv threshold to 3.16228e-05
+cond(S) = 1.4260372950569131
+E1 = -16.684262415501205  E_coul = 4.43406447287453
+init E= -12.2501979426267
+    CPU time for initialize scf      0.03 sec, wall time      0.03 sec
+  mo_energy =
+[-3.65204743 -0.2560193 ]
+E1 = -16.684262415501205  E_coul = 4.43406447287453
+cycle= 1 E= -12.2501979426267  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for cycle= 1      0.00 sec, wall time      0.00 sec
+E1 = -16.684262415501205  E_coul = 4.43406447287453
+  mo_energy =
+[-3.65204743 -0.2560193 ]
+E1 = -16.684262415501205  E_coul = 4.43406447287453
+Extra cycle  E= -12.2501979426267  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.06 sec, wall time      0.06 sec
+exp = [3.8695175  0.10011941]
+grad_E = [ 6.05551525e-05 -3.81598051e-04]
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/pyscf_basis_opt/Be_energies.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy import optimize
+
+def atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+
+    print(f"exp = {exponent}")
+    print(f"E = {e}")
+
+    return e
+
+def grad_atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+        
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+    
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    print(f"exp = {exponent}")
+    print(f"grad_E = {jac.exp}")
+
+    grad_E = np.array(jac.exp)
+
+    return grad_E
+
+def minimize_energy(n, exp_array=None):
+    # x0 = [0.5 * (n-i) for i in range(n)]
+    x0 = exp_array[:, 0]
+    bnds = ((1e-9, None) for _ in range(n))
+
+    res = optimize.minimize(
+        atomic_energy,
+        x0,
+        args=(exp_array),
+        method="L-BFGS-B",
+        jac=grad_atomic_energy,
+        hess=None,
+        hessp=None,
+        bounds=bnds,
+        tol=1e-9,
+        callback=None,
+        options={"maxfev": 10000, "ftol": 1e-9},
+    )
+    
+    print(res)
+    print(f"E = {atomic_energy(res.x)}")
+    print(f"exp = [{','.join(['{:.16e}'.format(x) for x in res.x])}]")
+    
+
+N = 2
+
+exps = np.zeros((N, 2))
+exps[:, 0] = np.array([1.0, 0.5])
+# exps[1:, 0] = exps_Be_3s[:]
+# exps[0, 0] = np.max(exps_Be_3s) * 10.0
+
+minimize_energy(N, exps)
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Mar  1 2023, 21:19:10) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Tue Mar  7 18:13:53 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] DEBUG = False
+[CONFIG] MAX_MEMORY = 4000
+[CONFIG] TMPDIR = /var/folders/v7/w4c0kx6d5bq1lvxw1rnqy7br0000gp/T/
+[CONFIG] UNIT = angstrom
+[CONFIG] VERBOSE = 3
+[CONFIG] conf_file = /Users/deyanmihaylov/.pyscf_conf.py
+[CONFIG] pyscf_numpy_backend = jax
+[CONFIG] pyscf_scipy_backend = jax
+[CONFIG] pyscf_scipy_linalg_backend = pyscfad
+[CONFIG] pyscfad = True
+[CONFIG] pyscfad_ccsd_implicit_diff = True
+[CONFIG] pyscfad_scf_implicit_diff = True
+[INPUT] verbose = 9
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 4
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 Be     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] Be
+[INPUT] 0    0    [1    /1   ]  3.86936548066        1
+[INPUT] 0    0    [1    /1   ]  0.100124986448       1
+
+nuclear repulsion = 0
+number of shells = 2
+number of NR pGTOs = 2
+number of NR cGTOs = 2
+basis = {'Be': [[0, [3.8693654806627906, 1.0]], [0, [0.10012498644798325, 1.0]]]}
+ecp = {}
+bas 0, expnt(s) = [3.86936548]
+bas 1, expnt(s) = [0.10012499]
+CPU time:        25.06
+arg.atm = [[ 4 20  1 23  0  0]]
+arg.bas = [[ 0  0  1  1  0 24 25  0]
+ [ 0  0  1  1  0 26 27  0]]
+arg.env = [0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 3.86936548 6.97019357 0.10012499 0.44969895]
+ecpbas  = []
+Set gradient conv threshold to 3.16228e-05
+Nelec from initial guess = 3.894236122709409
+cond(S) = 1.4260722460016761
+E1 = -16.03917805036957  E_coul = 4.129791967472826
+init E= -11.9093860828967
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-3.75976585 -0.30312467]
+E1 = -16.684267895650947  E_coul = 4.434069947471965
+cycle= 1 E= -12.250197948179  delta_E= -0.341  |g|=    0  |ddm|= 0.0957
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+diis-norm(errvec)=6.28037e-16
+diis-c [-3.94430453e-31  1.00000000e+00]
+  mo_energy =
+[-3.65205173 -0.25601227]
+E1 = -16.684267895650944  E_coul = 4.434069947471963
+cycle= 2 E= -12.250197948179  delta_E= 1.78e-15  |g|=    0  |ddm|= 4.44e-16
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -16.684267895650944  E_coul = 4.434069947471963
+  mo_energy =
+[-3.65205173 -0.25601227]
+E1 = -16.684267895650944  E_coul = 4.434069947471961
+Extra cycle  E= -12.250197948179  delta_E= -1.78e-15  |g|=    0  |ddm|= 4.44e-16
+    CPU time for scf_cycle      0.04 sec, wall time      0.04 sec
+exp = [3.86936548 0.10012499]
+E = -12.250197948178982
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/pyscf_basis_opt/Be_energies.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy import optimize
+
+def atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+
+    print(f"exp = {exponent}")
+    print(f"E = {e}")
+
+    return e
+
+def grad_atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+        
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+    
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    print(f"exp = {exponent}")
+    print(f"grad_E = {jac.exp}")
+
+    grad_E = np.array(jac.exp)
+
+    return grad_E
+
+def minimize_energy(n, exp_array=None):
+    # x0 = [0.5 * (n-i) for i in range(n)]
+    x0 = exp_array[:, 0]
+    bnds = ((1e-9, None) for _ in range(n))
+
+    res = optimize.minimize(
+        atomic_energy,
+        x0,
+        args=(exp_array),
+        method="L-BFGS-B",
+        jac=grad_atomic_energy,
+        hess=None,
+        hessp=None,
+        bounds=bnds,
+        tol=1e-9,
+        callback=None,
+        options={"maxfev": 10000, "ftol": 1e-9},
+    )
+    
+    print(res)
+    print(f"E = {atomic_energy(res.x)}")
+    print(f"exp = [{','.join(['{:.16e}'.format(x) for x in res.x])}]")
+    
+
+N = 2
+
+exps = np.zeros((N, 2))
+exps[:, 0] = np.array([1.0, 0.5])
+# exps[1:, 0] = exps_Be_3s[:]
+# exps[0, 0] = np.max(exps_Be_3s) * 10.0
+
+minimize_energy(N, exps)
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Mar  1 2023, 21:19:10) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Tue Mar  7 18:13:54 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] DEBUG = False
+[CONFIG] MAX_MEMORY = 4000
+[CONFIG] TMPDIR = /var/folders/v7/w4c0kx6d5bq1lvxw1rnqy7br0000gp/T/
+[CONFIG] UNIT = angstrom
+[CONFIG] VERBOSE = 3
+[CONFIG] conf_file = /Users/deyanmihaylov/.pyscf_conf.py
+[CONFIG] pyscf_numpy_backend = jax
+[CONFIG] pyscf_scipy_backend = jax
+[CONFIG] pyscf_scipy_linalg_backend = pyscfad
+[CONFIG] pyscfad = True
+[CONFIG] pyscfad_ccsd_implicit_diff = True
+[CONFIG] pyscfad_scf_implicit_diff = True
+[INPUT] verbose = 9
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 4
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 Be     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] Be
+[INPUT] 0    0    [1    /1   ]  3.86936548066        1
+[INPUT] 0    0    [1    /1   ]  0.100124986448       1
+
+nuclear repulsion = 0
+number of shells = 2
+number of NR pGTOs = 2
+number of NR cGTOs = 2
+basis = {'Be': [[0, [3.8693654806627906, 1.0]], [0, [0.10012498644798325, 1.0]]]}
+ecp = {}
+bas 0, expnt(s) = [3.86936548]
+bas 1, expnt(s) = [0.10012499]
+CPU time:        25.27
+arg.atm = [[ 4 20  1 23  0  0]]
+arg.bas = [[ 0  0  1  1  0 24 25  0]
+ [ 0  0  1  1  0 26 27  0]]
+arg.env = [0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 3.86936548 6.97019357 0.10012499 0.44969895]
+ecpbas  = []
+Set gradient conv threshold to 3.16228e-05
+Nelec from initial guess = 3.894236122709409
+cond(S) = 1.4260722460016761
+E1 = -16.03917805036957  E_coul = 4.129791967472826
+init E= -11.9093860828967
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-3.75976585 -0.30312467]
+E1 = -16.684267895650947  E_coul = 4.434069947471965
+cycle= 1 E= -12.250197948179  delta_E= -0.341  |g|=    0  |ddm|= 0.0957
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+diis-norm(errvec)=6.28037e-16
+diis-c [-3.94430453e-31  1.00000000e+00]
+  mo_energy =
+[-3.65205173 -0.25601227]
+E1 = -16.684267895650944  E_coul = 4.434069947471963
+cycle= 2 E= -12.250197948179  delta_E= 1.78e-15  |g|=    0  |ddm|= 4.44e-16
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -16.684267895650944  E_coul = 4.434069947471963
+  mo_energy =
+[-3.65205173 -0.25601227]
+E1 = -16.684267895650944  E_coul = 4.434069947471961
+Extra cycle  E= -12.250197948179  delta_E= -1.78e-15  |g|=    0  |ddm|= 4.44e-16
+    CPU time for scf_cycle      0.04 sec, wall time      0.04 sec
+Set gradient conv threshold to 3.16228e-05
+cond(S) = 1.4260722460016761
+E1 = -16.684267895650944  E_coul = 4.434069947471961
+init E= -12.250197948179
+    CPU time for initialize scf      0.03 sec, wall time      0.03 sec
+  mo_energy =
+[-3.65205173 -0.25601227]
+E1 = -16.684267895650944  E_coul = 4.434069947471961
+cycle= 1 E= -12.250197948179  delta_E=    0  |g|=    0  |ddm|= 7.85e-17
+    CPU time for cycle= 1      0.00 sec, wall time      0.00 sec
+E1 = -16.684267895650944  E_coul = 4.434069947471961
+  mo_energy =
+[-3.65205173 -0.25601227]
+E1 = -16.684267895650944  E_coul = 4.434069947471961
+Extra cycle  E= -12.250197948179  delta_E=    0  |g|=    0  |ddm|=    0
+    CPU time for scf_cycle      0.07 sec, wall time      0.07 sec
+exp = [3.86936548 0.10012499]
+grad_E = [-1.78636946e-06 -7.81462362e-06]
+  message: CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH
+  success: True
+   status: 0
+      fun: -12.250197948178982
+        x: [ 3.869e+00  1.001e-01]
+      nit: 8
+      jac: [-1.786e-06 -7.815e-06]
+     nfev: 12
+     njev: 12
+ hess_inv: <2x2 LbfgsInvHessProduct with dtype=float64>
+#INFO: **** input file is /Users/deyanmihaylov/Documents/Work/pyscf_basis_opt/Be_energies.py ****
+import pyscf
+from pyscfad import gto, scf
+import numpy as np
+
+from scipy import optimize
+
+def atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    e = mf.kernel()
+
+    print(f"exp = {exponent}")
+    print(f"E = {e}")
+
+    return e
+
+def grad_atomic_energy(exponent, exp_array=None):
+    if exp_array is None:
+        exp_array = np.zeros((exponent.size, 2))
+        
+    mol = gto.Mole()
+    mol.atom = 'Be 0 0 0'  # in Angstrom
+
+    basis_string = '\n'.join([f'''
+    Be  S
+        {exp_array[i, 0] if exp_array[i, 1] == 1 else exponent[i]}              1.0'''
+        for i in range(exponent.shape[0])])
+    mol.basis = {'Be': pyscf.gto.basis.parse(basis_string)}
+    
+    mol.verbose = 9
+    mol.build()
+
+    mf = scf.RHF(mol)
+    mf.kernel()
+    jac = mf.energy_grad()
+
+    print(f"exp = {exponent}")
+    print(f"grad_E = {jac.exp}")
+
+    grad_E = np.array(jac.exp)
+
+    return grad_E
+
+def minimize_energy(n, exp_array=None):
+    # x0 = [0.5 * (n-i) for i in range(n)]
+    x0 = exp_array[:, 0]
+    bnds = ((1e-9, None) for _ in range(n))
+
+    res = optimize.minimize(
+        atomic_energy,
+        x0,
+        args=(exp_array),
+        method="L-BFGS-B",
+        jac=grad_atomic_energy,
+        hess=None,
+        hessp=None,
+        bounds=bnds,
+        tol=1e-9,
+        callback=None,
+        options={"maxfev": 10000, "ftol": 1e-9},
+    )
+    
+    print(res)
+    print(f"E = {atomic_energy(res.x)}")
+    print(f"exp = [{','.join(['{:.16e}'.format(x) for x in res.x])}]")
+    
+
+N = 2
+
+exps = np.zeros((N, 2))
+exps[:, 0] = np.array([1.0, 0.5])
+# exps[1:, 0] = exps_Be_3s[:]
+# exps[0, 0] = np.max(exps_Be_3s) * 10.0
+
+minimize_energy(N, exps)
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Darwin', node='Deyans-MacBook-Pro-Home.local', release='22.1.0', version='Darwin Kernel Version 22.1.0: Sun Oct  9 20:14:54 PDT 2022; root:xnu-8792.41.9~2/RELEASE_X86_64', machine='x86_64', processor='i386')  Threads 1
+Python 3.8.16 (default, Mar  1 2023, 21:19:10) 
+[Clang 14.0.6 ]
+numpy 1.24.2  scipy 1.10.1
+Date: Tue Mar  7 18:13:55 2023
+PySCF version 2.1.1
+PySCF path  /Users/deyanmihaylov/opt/anaconda3/envs/pyscfad_env/lib/python3.8/site-packages/pyscf
+
+[CONFIG] DEBUG = False
+[CONFIG] MAX_MEMORY = 4000
+[CONFIG] TMPDIR = /var/folders/v7/w4c0kx6d5bq1lvxw1rnqy7br0000gp/T/
+[CONFIG] UNIT = angstrom
+[CONFIG] VERBOSE = 3
+[CONFIG] conf_file = /Users/deyanmihaylov/.pyscf_conf.py
+[CONFIG] pyscf_numpy_backend = jax
+[CONFIG] pyscf_scipy_backend = jax
+[CONFIG] pyscf_scipy_linalg_backend = pyscfad
+[CONFIG] pyscfad = True
+[CONFIG] pyscfad_ccsd_implicit_diff = True
+[CONFIG] pyscfad_scf_implicit_diff = True
+[INPUT] verbose = 9
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 1
+[INPUT] num. electrons = 4
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 Be     0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] Be
+[INPUT] 0    0    [1    /1   ]  3.86936548066        1
+[INPUT] 0    0    [1    /1   ]  0.100124986448       1
+
+nuclear repulsion = 0
+number of shells = 2
+number of NR pGTOs = 2
+number of NR cGTOs = 2
+basis = {'Be': [[0, [3.8693654806627906, 1.0]], [0, [0.10012498644798325, 1.0]]]}
+ecp = {}
+bas 0, expnt(s) = [3.86936548]
+bas 1, expnt(s) = [0.10012499]
+CPU time:        27.10
+arg.atm = [[ 4 20  1 23  0  0]]
+arg.bas = [[ 0  0  1  1  0 24 25  0]
+ [ 0  0  1  1  0 26 27  0]]
+arg.env = [0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 3.86936548 6.97019357 0.10012499 0.44969895]
+ecpbas  = []
+Set gradient conv threshold to 3.16228e-05
+Nelec from initial guess = 3.894236122709409
+cond(S) = 1.4260722460016761
+E1 = -16.03917805036957  E_coul = 4.129791967472826
+init E= -11.9093860828967
+    CPU time for initialize scf      0.02 sec, wall time      0.02 sec
+  mo_energy =
+[-3.75976585 -0.30312467]
+E1 = -16.684267895650947  E_coul = 4.434069947471965
+cycle= 1 E= -12.250197948179  delta_E= -0.341  |g|=    0  |ddm|= 0.0957
+    CPU time for cycle= 1      0.01 sec, wall time      0.01 sec
+diis-norm(errvec)=6.28037e-16
+diis-c [-3.94430453e-31  1.00000000e+00]
+  mo_energy =
+[-3.65205173 -0.25601227]
+E1 = -16.684267895650944  E_coul = 4.434069947471963
+cycle= 2 E= -12.250197948179  delta_E= 1.78e-15  |g|=    0  |ddm|= 4.44e-16
+    CPU time for cycle= 2      0.01 sec, wall time      0.01 sec
+E1 = -16.684267895650944  E_coul = 4.434069947471963
+  mo_energy =
+[-3.65205173 -0.25601227]
+E1 = -16.684267895650944  E_coul = 4.434069947471961
+Extra cycle  E= -12.250197948179  delta_E= -1.78e-15  |g|=    0  |ddm|= 4.44e-16
+    CPU time for scf_cycle      0.04 sec, wall time      0.04 sec
+exp = [3.86936548 0.10012499]
+E = -12.250197948178982
+E = -12.250197948178982
+exp = [3.8693654806627906e+00,1.0012498644798325e-01]
