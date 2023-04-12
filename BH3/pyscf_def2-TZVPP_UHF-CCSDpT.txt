@@ -1,0 +1,395 @@
+#INFO: **** input file is /home/anant/hpqc/bh3.py ****
+import numpy as np
+import pyscf
+from pyscf import gto, scf, ao2mo, fci,ci
+
+dis_BH = 1.1900
+ang_BH = 120
+ang_di = 180
+
+molecule_z_mat = f"""
+B
+H   1   {dis_BH}
+H   1   {dis_BH}    2   {ang_BH}
+H   1   {dis_BH}    2   {ang_BH}   3    {ang_di}
+"""
+
+mol = pyscf.M(atom=molecule_z_mat, basis='cc-pvDz', verbose=9, output='out_cisd.txt')
+mhf = scf.RHF(mol).run()
+mci = ci.CISD(mhf).set(conv_tol=1e-5, nroots=3)
+e, civec = mci.kernel()
+#INFO: ******************** input file end ********************
+
+
+System: uname_result(system='Linux', node='DESKTOP-0EI41DP', release='5.15.90.1-microsoft-standard-WSL2', version='#1 SMP Fri Jan 27 02:56:13 UTC 2023', machine='x86_64')  Threads 12
+Python 3.10.6 (main, Mar 10 2023, 10:55:28) [GCC 11.3.0]
+numpy 1.24.2  scipy 1.10.1
+Date: Tue Mar 28 14:37:14 2023
+PySCF version 2.2.0
+PySCF path  /home/anant/.local/lib/python3.10/site-packages/pyscf
+
+[CONFIG] DEBUG = False
+[CONFIG] MAX_MEMORY = 4000
+[CONFIG] TMPDIR = .
+[CONFIG] UNIT = angstrom
+[CONFIG] VERBOSE = 3
+[CONFIG] conf_file = None
+[INPUT] verbose = 9
+[INPUT] max_memory = 4000 
+[INPUT] num. atoms = 4
+[INPUT] num. electrons = 8
+[INPUT] charge = 0
+[INPUT] spin (= nelec alpha-beta = 2S) = 0
+[INPUT] symmetry False subgroup None
+[INPUT] Mole.unit = angstrom
+[INPUT] Symbol           X                Y                Z      unit          X                Y                Z       unit  Magmom
+[INPUT]  1 B      0.000000000000   0.000000000000   0.000000000000 AA    0.000000000000   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT]  2 H      1.190000000000   0.000000000000   0.000000000000 AA    2.248774088232   0.000000000000   0.000000000000 Bohr   0.0
+[INPUT]  3 H     -0.595000000000   0.000000000000   1.030570230503 AA   -1.124387044116   0.000000000000   1.947495487781 Bohr   0.0
+[INPUT]  4 H     -0.595000000000   0.000000000000  -1.030570230503 AA   -1.124387044116   0.000000000000  -1.947495487781 Bohr   0.0
+[INPUT] ---------------- BASIS SET ---------------- 
+[INPUT] l, kappa, [nprim/nctr], expnt,             c_1 c_2 ...
+[INPUT] H
+[INPUT] 0    0    [3    /1   ]  13.01             0.019685
+                                1.962             0.137977
+                                0.4446            0.478148
+[INPUT] 0    0    [1    /1   ]  0.122                1
+[INPUT] 1    0    [1    /1   ]  0.727                1
+[INPUT] B
+[INPUT] 0    0    [8    /2   ]  4570              0.000696 -0.000139
+                                685.9             0.005353 -0.001097
+                                156.5             0.027134 -0.005444
+                                44.47             0.10138 -0.021916
+                                14.48             0.272055 -0.059751
+                                5.131             0.448403 -0.138732
+                                1.898             0.290123 -0.131482
+                                0.3329            0.014322 0.539526
+[INPUT] 0    0    [1    /1   ]  0.1043               1
+[INPUT] 1    0    [3    /1   ]  6.001             0.035481
+                                1.241             0.198072
+                                0.3364            0.50523
+[INPUT] 1    0    [1    /1   ]  0.09538              1
+[INPUT] 2    0    [1    /1   ]  0.343                1
+
+nuclear repulsion = 7.44052099102608
+number of shells = 14
+number of NR pGTOs = 47
+number of NR cGTOs = 29
+basis = cc-pvDz
+ecp = {}
+bas 0, expnt(s) = [4.570e+03 6.859e+02 1.565e+02 4.447e+01 1.448e+01 5.131e+00 1.898e+00
+ 3.329e-01]
+bas 1, expnt(s) = [0.1043]
+bas 2, expnt(s) = [6.001  1.241  0.3364]
+bas 3, expnt(s) = [0.09538]
+bas 4, expnt(s) = [0.343]
+bas 5, expnt(s) = [13.01    1.962   0.4446]
+bas 6, expnt(s) = [0.122]
+bas 7, expnt(s) = [0.727]
+bas 8, expnt(s) = [13.01    1.962   0.4446]
+bas 9, expnt(s) = [0.122]
+bas 10, expnt(s) = [0.727]
+bas 11, expnt(s) = [13.01    1.962   0.4446]
+bas 12, expnt(s) = [0.122]
+bas 13, expnt(s) = [0.727]
+CPU time:         1.70
+arg.atm = [[ 5 20  1 23  0  0]
+ [ 1 24  1 27  0  0]
+ [ 1 28  1 31  0  0]
+ [ 1 32  1 35  0  0]]
+arg.bas = [[ 0  0  8  2  0 46 54  0]
+ [ 0  0  1  1  0 70 71  0]
+ [ 0  1  3  1  0 72 75  0]
+ [ 0  1  1  1  0 78 79  0]
+ [ 0  2  1  1  0 80 81  0]
+ [ 1  0  3  1  0 36 39  0]
+ [ 1  0  1  1  0 42 43  0]
+ [ 1  1  1  1  0 44 45  0]
+ [ 2  0  3  1  0 36 39  0]
+ [ 2  0  1  1  0 42 43  0]
+ [ 2  1  1  1  0 44 45  0]
+ [ 3  0  3  1  0 36 39  0]
+ [ 3  0  1  1  0 42 43  0]
+ [ 3  1  1  1  0 44 45  0]]
+arg.env = [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+  0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+  0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+  0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+  0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+  0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+  2.24877409e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00
+ -1.12438704e+00  0.00000000e+00  1.94749549e+00  0.00000000e+00
+ -1.12438704e+00  2.38499412e-16 -1.94749549e+00  0.00000000e+00
+  1.30100000e+01  1.96200000e+00  4.44600000e-01  5.79764064e-01
+  9.83419580e-01  1.11930215e+00  1.22000000e-01  5.21536727e-01
+  7.27000000e-01  1.95840453e+00  4.57000000e+03  6.85900000e+02
+  1.56500000e+02  4.44700000e+01  1.44800000e+01  5.13100000e+00
+  1.89800000e+00  3.32900000e-01  9.76749703e-01  1.81146415e+00
+  3.03135274e+00  4.40797916e+00  5.09882412e+00  3.85972994e+00
+  1.18451677e+00  1.58480530e-02 -3.94994796e-01 -7.51694985e-01
+ -1.23152518e+00 -1.92952790e+00 -2.26757167e+00 -2.41806283e+00
+ -1.08699584e+00  1.20889101e+00  1.04300000e-01  4.63690561e-01
+  6.00100000e+00  1.24100000e+00  3.36400000e-01  1.48419032e+00
+  1.15545231e+00  5.76465506e-01  9.53800000e-02  1.54634374e-01
+  3.43000000e-01  4.01138269e-01]
+ecpbas  = []
+
+
+******** <class 'pyscf.scf.hf.RHF'> ********
+method = RHF
+initial guess = minao
+damping factor = 0
+level_shift factor = 0
+DIIS = <class 'pyscf.scf.diis.CDIIS'>
+diis_start_cycle = 1
+diis_space = 8
+SCF conv_tol = 1e-09
+SCF conv_tol_grad = None
+SCF max_cycles = 50
+direct_scf = True
+direct_scf_tol = 1e-13
+chkfile to save SCF result = /home/anant/hpqc/tmpiza3k9n7
+max_memory 4000 MB (current use 105 MB)
+Set gradient conv threshold to 3.16228e-05
+Nelec from initial guess = 7.997209309221739
+E1 = -48.46718588305053  E_coul = 14.90720296106871
+init E= -26.1194619309557
+cond(S) = 244.3669599068409
+    CPU time for initialize scf      0.17 sec, wall time      0.05 sec
+  HOMO = -0.379055619678895  LUMO = -0.0206626771518453
+  mo_energy =
+[-7.67534123 -0.88788192 -0.37905562 -0.37905562 -0.02066268  0.19776127
+  0.23430339  0.23430339  0.38796033  0.38796033  0.47170491  0.48444059
+  0.74820139  0.74820139  0.77939232  0.83037852  0.83037852  1.22258055
+  1.34564843  1.34564843  1.50888201  1.73664764  1.89372915  1.89372915
+  2.22017721  2.22017721  2.46108202  2.5628551   2.5628551 ]
+E1 = -48.748144378130185  E_coul = 14.932620491501307
+cycle= 1 E= -26.3750028956028  delta_E= -0.256  |g|= 0.183  |ddm|= 1.36
+    CPU time for cycle= 1      0.02 sec, wall time      0.00 sec
+diis-norm(errvec)=0.258731
+diis-c [-0.06694158  1.        ]
+  HOMO = -0.512188777410751  LUMO = 0.0490977908773403
+  mo_energy =
+[-7.68998195 -0.73366885 -0.51218878 -0.51218878  0.04909779  0.24021478
+  0.25271946  0.25271946  0.39246311  0.39246311  0.48577877  0.49346393
+  0.78117193  0.78117193  0.82327252  0.83677098  0.83677098  1.24451563
+  1.38579046  1.38579046  1.55269498  1.77370751  1.92622987  1.92622987
+  2.26429391  2.26429391  2.50843919  2.60263592  2.60263592]
+E1 = -49.04459248344344  E_coul = 15.214222314587252
+cycle= 2 E= -26.3898491778301  delta_E= -0.0148  |g|= 0.0414  |ddm|= 0.217
+    CPU time for cycle= 2      0.01 sec, wall time      0.00 sec
+diis-norm(errvec)=0.0585846
+diis-c [-0.00283201 -0.10711788  1.10711788]
+  HOMO = -0.492552175551849  LUMO = 0.0727445806216663
+  mo_energy =
+[-7.60591445 -0.7024512  -0.49255218 -0.49255218  0.07274458  0.25427332
+  0.26262181  0.26262181  0.40688058  0.40688058  0.50794118  0.51999203
+  0.8037354   0.8037354   0.84862156  0.86328448  0.86328448  1.26995106
+  1.41012299  1.41012299  1.57230745  1.7928275   1.94448622  1.94448622
+  2.28461746  2.28461746  2.5336033   2.6318173   2.6318173 ]
+E1 = -49.02064157536357  E_coul = 15.189452035050632
+cycle= 3 E= -26.3906685492869  delta_E= -0.000819  |g|= 0.00791  |ddm|= 0.0524
+    CPU time for cycle= 3      0.04 sec, wall time      0.00 sec
+diis-norm(errvec)=0.0111798
+diis-c [-1.69543171e-05 -3.04919805e-02 -8.58786530e-02  1.11637063e+00]
+  HOMO = -0.496314214570203  LUMO = 0.0695870178037939
+  mo_energy =
+[-7.62082295 -0.70464627 -0.49631421 -0.49631421  0.06958702  0.25411153
+  0.26181975  0.26181975  0.40460478  0.40460478  0.5056866   0.51448873
+  0.80113943  0.80113943  0.84643193  0.85929655  0.85929655  1.26671662
+  1.40766519  1.40766519  1.57144388  1.79154813  1.94324091  1.94324091
+  2.28339968  2.28339968  2.53173709  2.62880398  2.62880398]
+E1 = -49.026602829830246  E_coul = 15.195376576094539
+cycle= 4 E= -26.3907052627096  delta_E= -3.67e-05  |g|= 0.000681  |ddm|= 0.015
+    CPU time for cycle= 4      0.00 sec, wall time      0.00 sec
+diis-norm(errvec)=0.000963674
+diis-c [-1.79062779e-07  7.78517794e-03  1.22693616e-02 -2.64183606e-01
+  1.24412907e+00]
+  HOMO = -0.496374149390806  LUMO = 0.0695496976646685
+  mo_energy =
+[-7.62074272 -0.704544   -0.49637415 -0.49637415  0.0695497   0.25411218
+  0.2617742   0.2617742   0.40452178  0.40452178  0.50565761  0.51449108
+  0.80104965  0.80104965  0.84637795  0.85922103  0.85922103  1.26663164
+  1.40754095  1.40754095  1.57133597  1.79141808  1.9431208   1.9431208
+  2.28329009  2.28329009  2.53161402  2.62869307  2.62869307]
+E1 = -49.02649237503368  E_coul = 15.195265808019757
+cycle= 5 E= -26.3907055759878  delta_E= -3.13e-07  |g|= 8.24e-05  |ddm|= 0.00185
+    CPU time for cycle= 5      0.02 sec, wall time      0.00 sec
+diis-norm(errvec)=0.000116477
+diis-c [-3.95692696e-09 -1.66281470e-03 -3.01596104e-03  6.01059877e-02
+ -3.30730372e-01  1.27530316e+00]
+  HOMO = -0.496372227508107  LUMO = 0.0695627465476163
+  mo_energy =
+[-7.62069941 -0.70454293 -0.49637223 -0.49637223  0.06956275  0.25411944
+  0.26177384  0.26177384  0.40453197  0.40453197  0.50567133  0.51451565
+  0.80105422  0.80105422  0.84639231  0.85923569  0.85923569  1.26664399
+  1.40754704  1.40754704  1.57133393  1.79141384  1.94311803  1.94311803
+  2.28328789  2.28328789  2.53161152  2.62869469  2.62869469]
+E1 = -49.02649572695757  E_coul = 15.195269154775792
+cycle= 6 E= -26.3907055811557  delta_E= -5.17e-09  |g|= 1.12e-05  |ddm|= 0.000298
+    CPU time for cycle= 6      0.05 sec, wall time      0.00 sec
+diis-norm(errvec)=1.57895e-05
+diis-c [-2.03211066e-11  2.34135306e-04  4.14344280e-04 -8.28342348e-03
+  4.95936094e-02 -2.99224694e-01  1.25726603e+00]
+  HOMO = -0.496369768831581  LUMO = 0.069562925562989
+  mo_energy =
+[-7.6206967  -0.70454159 -0.49636977 -0.49636977  0.06956293  0.25411798
+  0.26177286  0.26177286  0.40453079  0.40453079  0.50567102  0.51451626
+  0.80105296  0.80105296  0.84639074  0.85923537  0.85923537  1.26664316
+  1.40754513  1.40754513  1.5713324   1.79141185  1.94311622  1.94311622
+  2.28328605  2.28328605  2.53160926  2.62869285  2.62869285]
+E1 = -49.02649627151231  E_coul = 15.195269699229067
+cycle= 7 E= -26.3907055812572  delta_E= -1.01e-10  |g|= 6.47e-07  |ddm|= 5.48e-05
+    CPU time for cycle= 7      0.01 sec, wall time      0.00 sec
+  HOMO = -0.496369920732723  LUMO = 0.0695630089040861
+  mo_energy =
+[-7.62069676 -0.70454184 -0.49636992 -0.49636992  0.06956301  0.25411816
+  0.26177293  0.26177293  0.40453101  0.40453101  0.5056711   0.51451629
+  0.80105309  0.80105309  0.84639092  0.85923545  0.85923545  1.26664328
+  1.40754535  1.40754535  1.57133258  1.79141199  1.94311636  1.94311636
+  2.28328623  2.28328623  2.53160944  2.62869302  2.62869302]
+E1 = -49.02649663947885  E_coul = 15.195270067195345
+Extra cycle  E= -26.3907055812574  delta_E= -2.63e-13  |g|= 1.62e-07  |ddm|= 2.18e-06
+    CPU time for scf_cycle      0.35 sec, wall time      0.07 sec
+    CPU time for SCF      0.35 sec, wall time      0.07 sec
+converged SCF energy = -26.3907055812574
+E1 = -49.02649663947885  E_coul = 15.195270067195345
+    CPU time for CCSD integral transformation      0.13 sec, wall time      0.01 sec
+
+******** <class 'pyscf.ci.cisd.RCISD'> ********
+CISD nocc = 4, nmo = 29
+max_cycle = 50
+direct = 0
+conv_tol = 1e-05
+max_cycle = 50
+max_space = 12
+lindep = 0
+nroots = 3
+max_memory 4000 MB (current use 146 MB)
+Init t2, MP2 energy = -0.0938351313650219
+tol 1e-05  toloose 0.00316228
+max_cycle 50  max_space 18  max_memory 2000  incore True
+    CPU time for vvvv [0:7]      0.34 sec, wall time      0.03 sec
+    CPU time for vvvv [7:14]      0.34 sec, wall time      0.03 sec
+    CPU time for vvvv [14:21]      0.52 sec, wall time      0.04 sec
+    CPU time for vvvv [21:25]      0.02 sec, wall time      0.00 sec
+    CPU time for vvvv      1.22 sec, wall time      0.10 sec
+max_memory 3848 MB,  nocc,nvir = 4,25  blksize = 25
+    CPU time for vvvv [0:7]      0.01 sec, wall time      0.00 sec
+    CPU time for vvvv [7:14]      0.01 sec, wall time      0.00 sec
+    CPU time for vvvv [14:21]      0.00 sec, wall time      0.00 sec
+    CPU time for vvvv [21:25]      0.01 sec, wall time      0.00 sec
+    CPU time for vvvv      0.03 sec, wall time      0.00 sec
+max_memory 3848 MB,  nocc,nvir = 4,25  blksize = 25
+    CPU time for vvvv [0:7]      0.02 sec, wall time      0.00 sec
+    CPU time for vvvv [7:14]      0.00 sec, wall time      0.00 sec
+    CPU time for vvvv [14:21]      0.00 sec, wall time      0.00 sec
+    CPU time for vvvv [21:25]      0.01 sec, wall time      0.00 sec
+    CPU time for vvvv      0.04 sec, wall time      0.00 sec
+max_memory 3846 MB,  nocc,nvir = 4,25  blksize = 25
+davidson 0 3  |r|= 0.323  e= [-0.07065808  0.25910409  0.25910409]  max|de|= 0.259  lindep= 0.43
+    CPU time for vvvv [0:7]      0.23 sec, wall time      0.02 sec
+    CPU time for vvvv [7:14]      0.55 sec, wall time      0.05 sec
+    CPU time for vvvv [14:21]      0.56 sec, wall time      0.05 sec
+    CPU time for vvvv [21:25]      0.30 sec, wall time      0.02 sec
+    CPU time for vvvv      1.64 sec, wall time      0.14 sec
+max_memory 3847 MB,  nocc,nvir = 4,25  blksize = 25
+    CPU time for vvvv [0:7]      0.04 sec, wall time      0.00 sec
+    CPU time for vvvv [7:14]      0.04 sec, wall time      0.00 sec
+    CPU time for vvvv [14:21]      0.10 sec, wall time      0.01 sec
+    CPU time for vvvv [21:25]      0.01 sec, wall time      0.00 sec
+    CPU time for vvvv      0.19 sec, wall time      0.02 sec
+max_memory 3847 MB,  nocc,nvir = 4,25  blksize = 25
+    CPU time for vvvv [0:7]      0.03 sec, wall time      0.00 sec
+    CPU time for vvvv [7:14]      0.01 sec, wall time      0.00 sec
+    CPU time for vvvv [14:21]      0.04 sec, wall time      0.00 sec
+    CPU time for vvvv [21:25]      0.01 sec, wall time      0.00 sec
+    CPU time for vvvv      0.12 sec, wall time      0.01 sec
+max_memory 3847 MB,  nocc,nvir = 4,25  blksize = 25
+davidson 1 6  |r|= 0.175  e= [-0.10078617  0.17972163  0.1797352 ]  max|de|= -0.0794  lindep= 0.523
+    CPU time for vvvv [0:7]      0.20 sec, wall time      0.02 sec
+    CPU time for vvvv [7:14]      0.57 sec, wall time      0.05 sec
+    CPU time for vvvv [14:21]      0.57 sec, wall time      0.05 sec
+    CPU time for vvvv [21:25]      0.34 sec, wall time      0.03 sec
+    CPU time for vvvv      1.68 sec, wall time      0.15 sec
+max_memory 3847 MB,  nocc,nvir = 4,25  blksize = 25
+    CPU time for vvvv [0:7]      0.01 sec, wall time      0.00 sec
+    CPU time for vvvv [7:14]      0.01 sec, wall time      0.00 sec
+    CPU time for vvvv [14:21]      0.02 sec, wall time      0.00 sec
+    CPU time for vvvv [21:25]      0.02 sec, wall time      0.00 sec
+    CPU time for vvvv      0.06 sec, wall time      0.00 sec
+max_memory 3846 MB,  nocc,nvir = 4,25  blksize = 25
+    CPU time for vvvv [0:7]      0.02 sec, wall time      0.00 sec
+    CPU time for vvvv [7:14]      0.00 sec, wall time      0.00 sec
+    CPU time for vvvv [14:21]      0.04 sec, wall time      0.00 sec
+    CPU time for vvvv [21:25]      0.01 sec, wall time      0.00 sec
+    CPU time for vvvv      0.09 sec, wall time      0.01 sec
+max_memory 3846 MB,  nocc,nvir = 4,25  blksize = 25
+Old state -> New state
+    2     ->     1 
+    1     ->     2 
+davidson 2 9  |r|= 0.0265  e= [-0.11392324  0.17361375  0.17363002]  max|de|= -0.0131  lindep= 0.965
+    CPU time for vvvv [0:7]      0.21 sec, wall time      0.02 sec
+    CPU time for vvvv [7:14]      0.53 sec, wall time      0.04 sec
+    CPU time for vvvv [14:21]      0.57 sec, wall time      0.05 sec
+    CPU time for vvvv [21:25]      0.01 sec, wall time      0.00 sec
+    CPU time for vvvv      1.32 sec, wall time      0.11 sec
+max_memory 3846 MB,  nocc,nvir = 4,25  blksize = 25
+    CPU time for vvvv [0:7]      0.02 sec, wall time      0.00 sec
+    CPU time for vvvv [7:14]      0.00 sec, wall time      0.00 sec
+    CPU time for vvvv [14:21]      0.02 sec, wall time      0.00 sec
+    CPU time for vvvv [21:25]      0.02 sec, wall time      0.00 sec
+    CPU time for vvvv      0.08 sec, wall time      0.01 sec
+max_memory 3846 MB,  nocc,nvir = 4,25  blksize = 25
+    CPU time for vvvv [0:7]      0.02 sec, wall time      0.00 sec
+    CPU time for vvvv [7:14]      0.00 sec, wall time      0.00 sec
+    CPU time for vvvv [14:21]      0.00 sec, wall time      0.00 sec
+    CPU time for vvvv [21:25]      0.01 sec, wall time      0.00 sec
+    CPU time for vvvv      0.04 sec, wall time      0.00 sec
+max_memory 3846 MB,  nocc,nvir = 4,25  blksize = 25
+davidson 3 12  |r|= 0.00607  e= [-0.11418754  0.17316642  0.17316764]  max|de|= -0.000462  lindep= 0.984
+    CPU time for vvvv [0:7]      0.22 sec, wall time      0.02 sec
+    CPU time for vvvv [7:14]      0.59 sec, wall time      0.05 sec
+    CPU time for vvvv [14:21]      0.52 sec, wall time      0.05 sec
+    CPU time for vvvv [21:25]      0.36 sec, wall time      0.03 sec
+    CPU time for vvvv      1.69 sec, wall time      0.15 sec
+max_memory 3846 MB,  nocc,nvir = 4,25  blksize = 25
+    CPU time for vvvv [0:7]      0.02 sec, wall time      0.00 sec
+    CPU time for vvvv [7:14]      0.01 sec, wall time      0.00 sec
+    CPU time for vvvv [14:21]      0.02 sec, wall time      0.00 sec
+    CPU time for vvvv [21:25]      0.01 sec, wall time      0.00 sec
+    CPU time for vvvv      0.06 sec, wall time      0.01 sec
+max_memory 3845 MB,  nocc,nvir = 4,25  blksize = 25
+    CPU time for vvvv [0:7]      0.02 sec, wall time      0.00 sec
+    CPU time for vvvv [7:14]      0.02 sec, wall time      0.00 sec
+    CPU time for vvvv [14:21]      0.03 sec, wall time      0.00 sec
+    CPU time for vvvv [21:25]      0.00 sec, wall time      0.00 sec
+    CPU time for vvvv      0.09 sec, wall time      0.01 sec
+max_memory 3845 MB,  nocc,nvir = 4,25  blksize = 25
+davidson 4 15  |r|= 0.00156  e= [-0.11419837  0.17314198  0.17314206]  max|de|= -2.56e-05  lindep= 0.96
+    CPU time for vvvv [0:7]      0.20 sec, wall time      0.02 sec
+    CPU time for vvvv [7:14]      0.52 sec, wall time      0.04 sec
+    CPU time for vvvv [14:21]      0.61 sec, wall time      0.06 sec
+    CPU time for vvvv [21:25]      0.08 sec, wall time      0.01 sec
+    CPU time for vvvv      1.41 sec, wall time      0.12 sec
+max_memory 3845 MB,  nocc,nvir = 4,25  blksize = 25
+    CPU time for vvvv [0:7]      0.02 sec, wall time      0.00 sec
+    CPU time for vvvv [7:14]      0.00 sec, wall time      0.00 sec
+    CPU time for vvvv [14:21]      0.02 sec, wall time      0.00 sec
+    CPU time for vvvv [21:25]      0.00 sec, wall time      0.00 sec
+    CPU time for vvvv      0.05 sec, wall time      0.00 sec
+max_memory 3845 MB,  nocc,nvir = 4,25  blksize = 25
+    CPU time for vvvv [0:7]      0.02 sec, wall time      0.00 sec
+    CPU time for vvvv [7:14]      0.01 sec, wall time      0.00 sec
+    CPU time for vvvv [14:21]      0.02 sec, wall time      0.00 sec
+    CPU time for vvvv [21:25]      0.01 sec, wall time      0.00 sec
+    CPU time for vvvv      0.09 sec, wall time      0.01 sec
+max_memory 3845 MB,  nocc,nvir = 4,25  blksize = 25
+root 0 converged  |r|= 0.000201  e= -0.11419885172124196  max|de|= -4.85e-07
+root 1 converged  |r|= 0.000383  e= 0.17314072579792275  max|de|= -1.25e-06
+root 2 converged  |r|= 0.000396  e= 0.17314073732452573  max|de|= -1.32e-06
+converged 5 18  |r|= 0.000396  e= [-0.11419885  0.17314073  0.17314074]  max|de|= -1.32e-06
+RCISD converged
+RCISD root 0  E = -26.50490443297867
+RCISD root 1  E = -26.2175648554595
+RCISD root 2  E = -26.2175648439329
