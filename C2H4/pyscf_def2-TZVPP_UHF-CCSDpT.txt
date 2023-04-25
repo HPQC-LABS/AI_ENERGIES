@@ -1,0 +1,74 @@
+import pyscf, numpy as np
+from pyscf import gto, scf, ao2mo, fci, ci, cc
+from pyscf.lib import logger
+
+# Z-matrix for ethylene, C2H4
+# units in Ang, dihedral angle in degrees
+
+def stable_opt_internal(mf):
+    log = logger.new_logger(mf)
+    mo1, _, stable, _ = mf.stability(return_status=True)
+    cyc = 0
+    while (not stable and cyc < 10):
+        log.note('Try to optimize orbitals until stable, attempt %d' % cyc)
+        dm1 = mf.make_rdm1(mo1, mf.mo_occ)
+        mf = mf.run(dm1)
+        mo1, _, stable, _ = mf.stability(return_status=True)
+        cyc += 1
+    if not stable:
+        log.note('Stability optimization failed after %d attempts' % cyc)
+    return mf
+
+# Z-matrix format
+#C2H4 = '''
+#H
+#C 1 1.082
+#H 2 1.082 1 117.2
+#C 2 1.329 3 117.2 1 120
+#H 4 1.082 2 117.2 1 120
+#H 4 1.082 2 117.2 1 0'''
+
+# XYZ coordinates, from: https://github.com/HPQC-LABS/goDatabase/blob/master/benchmark_sets/GW100.txt
+# check lines 771 - 777 for ethylene
+C2H4 = '''
+C  0.0000 0.0000  0.0000
+C  0.0000 0.0000  1.3290
+H  0.9235 0.0000 -0.5637
+H -0.9235 0.0000 -0.5637
+H  0.9235 0.0000  1.8927
+H -0.9235 0.0000  1.8927'''
+
+# energy calculation, neutral
+eth_mol = pyscf.M(atom = C2H4, basis = 'def2-TZVPP', verbose=9, spin=0, charge=0);
+eth_mhf = eth_mol.UHF().set(conv_tol=1e-10,max_cycle=999,direct_scf_tol=1e-14)
+eth_mhf = scf.UHF(eth_mol).run();
+eth_mhf = stable_opt_internal(eth_mhf);
+eth_mcc = cc.UCCSD(eth_mhf).set(conv_tol=1e-7, frozen=2);
+eth_tup = eth_mcc.kernel();
+eth_et = eth_mcc.ccsd_t();
+eth_E = eth_mcc.e_tot + eth_et;
+
+# energy calculation, ionised
+cat_mol = pyscf.M(atom = C2H4, basis = 'def2-TZVPP', verbose=9, spin=1, charge=1);
+cat_mhf = cat_mol.UHF().set(conv_tol=1e-10,max_cycle=999,direct_scf_tol=1e-14)
+cat_mhf = scf.UHF(cat_mol).run();
+cat_mhf = stable_opt_internal(cat_mhf);
+cat_mcc = cc.UCCSD(cat_mhf).set(conv_tol=1e-7, frozen=2);
+cat_tup = cat_mcc.kernel();
+cat_et = cat_mcc.ccsd_t();
+cat_E = cat_mcc.e_tot + cat_et;
+
+E_diff = cat_E - eth_E;
+
+#neutral UCCSD(T) print out
+#print("Neutral mol UCCSD energy (Hartrees) =", eth_mcc.e_tot)
+print("Neutral Harding UCCSD(T): ", -78.44008  , "(hartrees)" )
+print("Neutral HPQC    UCCSD(T): " , eth_E     , "(hartrees)")
+
+#cation UCCSD(T) print out
+#print("Cation mol UCCSD energy (Hartrees) =", cat_mcc.e_tot)
+print("Cation Harding UCCSD(T):  ", -78.0409    , "(hartrees)")
+print("Cation HPQC    UCCSD(T):  ", cat_E       , "(hartrees)")
+
+print("Ionization Harding:       ", 10.666           , "(eV)")
+print("Ionization HPQC: "        , 27.21138624598*E_diff, "(eV)")
