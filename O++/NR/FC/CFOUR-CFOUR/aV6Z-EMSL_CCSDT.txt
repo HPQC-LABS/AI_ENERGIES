@@ -1,0 +1,1694 @@
+Starting run at: Tue Mar 26 09:36:36 EDT 2024
+ --invoking executable--
+/cvmfs/restricted.computecanada.ca/easybuild/software/2020/avx2/Compiler/intel2020/cfour/2.1/bin/xjoda
+
+
+   *************************************************************************
+         <<<     CCCCCC     CCCCCC   |||     CCCCCC     CCCCCC   >>>
+       <<<      CCC        CCC       |||    CCC        CCC         >>>
+      <<<      CCC        CCC        |||   CCC        CCC            >>>
+    <<<        CCC        CCC        |||   CCC        CCC              >>>
+      <<<      CCC        CCC        |||   CCC        CCC            >>>
+       <<<      CCC        CCC       |||    CCC        CCC         >>>
+         <<<     CCCCCC     CCCCCC   |||     CCCCCC     CCCCCC   >>>
+   *************************************************************************
+
+     ****************************************************************
+     * CFOUR Coupled-Cluster techniques for Computational Chemistry *
+     ****************************************************************
+ 
+
+   Department of Chemistry                Institut fuer Physikalische Chemie
+   University of Florida                  Universitaet Mainz
+   Gainesville, FL 32611, USA             D-55099 Mainz, Germany
+
+   Department of Chemistry                Fakultaet fuer Chemie und Biowiss.
+   Johns Hopkins University               Karlsruher Institut fuer Technologie
+   Baltimore, MD 21218, USA               D-76131 Karlsruhe, Germany
+
+   Department of Chemistry                Department of Physical Chemistry
+   Southern Methodist University          Eotvos Lorand University
+   Dallas, TX 75275, USA                  H-1053 Budapest, Hungary
+
+ 
+                       Version 2.1
+ 
+                     gra129                                            
+                     Tue Mar 26 09:36:38 EDT 2024                      
+                     integer*8 version is running
+ 
+********************************************************************************
+*                          Input from ZMAT file                                *
+********************************************************************************
+TITLE                                                                           
+O                                                                               
+                                                                                
+*ACES2(CALC=CCSDT                                                               
+FROZEN_CORE=ON                                                                  
+#DROPMO=1                                                                       
+#INPUT_MRCC=OFF                                                                 
+#CC_PROG=MRCC                                                                   
+XFORM_TOL=18                                                                    
+SAVE_INTS=ON                                                                    
+SCF_EXPORDER=6                                                                  
+SCF_EXPSTART=5                                                                  
+#SCF_DAMPING=1000                                                               
+SCF_EXTRAPOLATION=ON                                                            
+SCF_CONV=10                                                                     
+SCF_MAXCYC=9999                                                                 
+CC_CONV=10                                                                      
+CC_MAXCYC=999                                                                   
+T3_EXTRAPOL=ON                                                                  
+REFERENCE=ROHF                                                                  
+CHARGE=+2                                                                       
+MULT=3                                                                          
+ABCDTYPE=STANDARD                                                               
+OCCUPATION=2-1-1-0-0-0-0-0/2-0-0-0-0-0-0-0                                      
+MEM=20                                                                          
+MEM_UNIT=GB                                                                     
+BASIS=SPECIAL)                                                                  
+                                                                                
+O:aV6Z-EMSL                                                                     
+                                                                                
+********************************************************************************
+  @GTFLGS-W, Keyword #DROPMO not known and is ignored.
+  @GTFLGS-W, Keyword #INPUT_MRCC not known and is ignored.
+  @GTFLGS-W, Keyword #CC_PROG not known and is ignored.
+  @GTFLGS-W, Keyword #SCF_DAMPING not known and is ignored.
+    -------------------------------------------------------------------
+                    CFOUR Control Parameters 
+    -------------------------------------------------------------------
+        External           Internal           Value            Units
+          Name               Name
+    -------------------------------------------------------------------
+       ABCDTYPE             IABCDT         STANDARD    [  0]    ***   
+       ANHARMONIC           IANHAR         OFF         [  0]    ***   
+       ANH_ALGORIT          IANALG         STANDARD    [  0]    ***   
+       ANH_DERIVAT          IANDER         SECOND      [  1]    ***   
+       ANH_MODE             ANHMOD         VIBRATION   [  0]    ***   
+       ANH_STEPSIZ          ICUBST             50000          x 10-6  
+       ANH_SYMMETR          IANHSM         ABELIAN     [  0]    ***   
+       AO_LADDERS           IAOLAD         SINGLEPASS  [  1]    ***   
+       AV_SCF               IAVSCF         OFF         [  0]    ***   
+       BASIS                IBASIS         SPECIAL     [  0]    ***   
+       BOTHVECTORS          BOTHVC         OFF         [  0]    ***   
+       BOX_POTENT           IPIAB          OFF         [  0]    ***   
+       BREIT                IBREIT         OFF         [  0]    ***   
+       BRUCK_CONV           IBRTOL          10D-  4             ***   
+       BRUECKNER            IBRKNR         OFF         [  0]    ***   
+       BUFFERSIZE           IBUFFS              4096            ***   
+       CACHE_RECS           ICHREC             10               ***   
+       CALCLEVEL            ICLLVL         CCSDT       [ 18]    ***   
+       CCORBOPT             ICCORB         OFF         [  0]  x 0.01  
+       CC_CONV              ICCCNV          10D- 10             ***   
+       CC_EXPORDER          ICCEOR              5               ***   
+       CC_EXTRAPOL          ICCEXT         DIIS        [  1]    ***   
+       CC_GUESS             ICCGES         MP2         [  0]    ***   
+       CC_MAXCYC            ICCCYC            999              cycles 
+       CC_PROGRAM           ICCPRO         VCC         [  0]    ***   
+       CHARGE               ICHRGE              2               ***   
+       CHOLESKY             ICHOLE         OFF         [  0]    ***   
+       CIS_CONV             ICISTL              5               ***   
+       COMM_SIZE            IPSIZE            ***               ***   
+       CONSTANT             ICONST         OLD         [  1]    ***   
+       CONTINUUM            ICONTU         NONE        [  0]    ***   
+       CONTRACTION          ICNTYP         GENERAL     [  1]    ***   
+       COORDINATES          ICOORD         INTERNAL    [  0]    ***   
+       CPHF_CONVER          ICPHFT          10D- 16             ***   
+       CPHF_MAXCYC          ICPHFC             64              cycles 
+       CUBIC                ICUBIC         OFF         [  0]    ***   
+       CURVILINEAR          ICURVY         OFF         [  0]    ***   
+       DBOC                 IDBOC          OFF         [  0]    ***   
+       DCT                  IDCT           OFF         [  0]    ***   
+       DERIV_LEV            IDRLVL         ZERO        [  0]    ***   
+       DEVMEM_SIZE          IDVMEM         *********           MByte  
+       DIAG_MRCC            IEOMST          10D-  0             ***   
+       DIFF_TYPE            IDIFTY         RELAXED     [  0]    ***   
+       DIRECT               IDIRCT         OFF         [  0]    ***   
+       DROPMO               IDRPMO      NONE         
+       ECP                  IECP           OFF         [  0]    ***   
+       EIGENVECTOR          IVEC                1               ***   
+       EL_ANHARM            IELANH         OFF         [  0]    ***   
+       EOMFOLLOW            IEOMSR         ENERGY      [  0]    ***   
+       EOMIP                IEOMIP         OFF         [  0]    ***   
+       EOMLEVEL             HBARFM         SAME        [  0]    ***   
+       EOM_MRCC             IMRCCE         NEW         [  1]    ***   
+       EOM_NONIT            EOMNON         OFF         [  0]    ***   
+       EOM_NSING            IEOMSI          10D-  0             ***   
+       EOM_NSTATES          IMRCCD         DAVIDSON    [  0]    ***   
+       EOM_NTRIP            IEOMTR          10D-  0             ***   
+       EOM_ORDER            IEXORD         ENERGY      [  0]    ***   
+       EOM_PROPSTA          IEOMST              0               ***   
+       ESTATE_CONV          IEXTOL          10D-  5             ***   
+       ESTATE_DIAG          IEXDIG         ITERATIVE   [  0]    ***   
+       ESTATE_LOCK          IESLOC         ON          [  1]    ***   
+       ESTATE_MAXC          IEXMXC             40               ***   
+       ESTATE_PROP          IEXPRP         OFF         [  0]    ***   
+       EVAL_HESS            IRECAL              0            # of cyc.
+       EXCITATION           IEXCIT              0               ***   
+       EXCITE               IEXCIT         NONE        [  0]    ***   
+       EXTERN_POT           IEXPOT         OFF         [  0]    ***   
+       FCGRADNEW            IFCGNW         OFF         [  0]    ***   
+       FC_FIELD             IFINFC              0             x 10-6  
+       FD_CALTYPE           IFDCAL         GRADONLY    [  0]    ***   
+       FD_PROJECT           IFDPRJ         OFF         [  1]    ***   
+       FD_STEPSIZE          IDISFD              0            10-4 bohr
+       FD_USEGROUP          IFDGRP         FULL        [  0]    ***   
+       FILE_RECSIZ          IFLREC              4096           words  
+       FINITE_PERT          IFIPER              0             x 10-6  
+       FIXGEOM              IFIXGM         OFF         [  0]    ***   
+       FOCK                 IFOCK          AO          [  1]    ***   
+       FREQ_ALGORI          IVIALG         STANDARD    [  0]    ***   
+       FROZEN_CORE          IFROCO         ON          [  1]    ***   
+       GAMMA_ABCD           IGABCD         STORE       [  0]    ***   
+       GAMMA_ABCI           IGABCI         STORE       [  0]    ***   
+       GENBAS_1             IGNBS1              0               ***   
+       GENBAS_2             IGNBS2              0               ***   
+       GENBAS_3             IGNBS3              0               ***   
+       GENBAS_4             IGNBS4              0               ***   
+       GEO_CONV             ICONTL              5              H/bohr 
+       GEO_MAXCYC           IOPTCY             50               ***   
+       GEO_MAXSTEP          IMXSTP            300            millibohr
+       GEO_METHOD           INR            SINGLE_POINT[  5]    ***   
+       GIAO                 IGIAO          OFF         [  1]    ***   
+       GIMIC                IGIMIC         OFF         [  0]    ***   
+       GRID                 IGRID          OFF         [  0]    ***   
+       GRID_ALGO            IGALGO         SERIAL      [  0]    ***   
+       GUESS                IGUESS         MOREAD      [  0]    ***   
+       HBAR                 IHBAR          OFF         [  0]    ***   
+       HESS_TYPE            IHESTP         SCF         [  0]    ***   
+       HF2_FILE             IHF2Fl         USE         [  1]    ***   
+       HFSTABILITY          ISTABL         OFF         [  0]    ***   
+       INCORE               INCORE         OFF         [  0]    ***   
+       INPUT_MRCC           IMRCC          ON          [  1]    ***   
+       INTEGRALS            INTTYP         VMOL        [  1]    ***   
+       JODA_PRINT           IJPRNT              0               ***   
+       KEYWORD_OUT          IDMPKW         NO          [  0]    ***   
+       LINDEP_TOL           ILINDP              8               ***   
+       LINEQ_CONV           IZTACN          10D-  7           cycles  
+       LINEQ_EXPOR          ILMAXD              5               ***   
+       LINEQ_MAXCY          ILMAXC            100               ***   
+       LINEQ_TYPE           ILTYPE         DIIS        [  1]    ***   
+       LOCK_ORBOCC          ILOCOC         OFF         [  0]    ***   
+       MEMORY_SIZE          IMEMSZ         *********           words  
+       MEM_UNIT             IMEMU          GB          [  3]    ***   
+       MRCC                 IMRCCC         OFF         [  0]    ***   
+       MULTIPLICTY          IMULTP              3               ***   
+       NACOUPLING           IVCOUP         OFF         [  0]    ***   
+       NEGEVAL              IDIE           ABORT       [  0]    ***   
+       NEWNORM              INEWNO         OFF         [  0]    ***   
+       NON-HF               INONHF         ON          [  1]    ***   
+       NTOP_TAMP            ITOPT2             15               ***   
+       NUC_MODEL            INUCMO         POINT       [  0]    ***   
+       OCCUPATION           IOCCU  A   2,  1,  1,  0,  0,  0,  0,  0,
+                                   B   2,  0,  0,  0,  0,  0,  0,  0,
+       OPEN-SHELL           IOPEN          SPIN-ORBITAL[  0]    ***   
+       OPTVIB               IOPTVB         OFF         [  0]    ***   
+       ORBITALS             IORBTP         SEMICANONICA[  1]    ***   
+       PARALLEL             IPARAL         ON          [  1]    ***   
+       PARA_INT             IPINTS         ON          [  1]    ***   
+       PARA_PRINT           IPPRIN              0               ***   
+       PERT_ORB             IPTORB         STANDARD    [  0]    ***   
+       POINTS               IGRDFD              0               ***   
+       PRINT                IPRNT               0               ***   
+       PROPS                IPROPS         OFF         [  0]    ***   
+       PROP_INTEGR          IINTYP         INTERNAL    [  0]    ***   
+       PSI                  IPSI           OFF         [  0]    ***   
+       QC_ALG               IQCALG         FLM         [  0]    ***   
+       QC_LINALG            IQCLIN         TRIDIAG     [  2]    ***   
+       QC_MAXCYC            IQCMAX          10D-100           cycles  
+       QC_MAXSCFCY          IQCMSC          10D- 15           cycles  
+       QC_RTRUST            IQCRTR          10D-  0           x 10-3  
+       QC_SKIPSCF           IQCSKI         OFF         [  0]    ***   
+       QC_START             IQCSTA          10D-  1             ***   
+       QRHFGUESS            IQGUES         OFF         [  0]    ***   
+       QUARTIC              IQUART         OFF         [  0]    ***   
+       RAMAN_INT            IRAMIN         OFF         [  0]    ***   
+       RAMAN_ORB            IRAMRE         UNRELAXED   [  0]    ***   
+       RDO                  IRDOFM         OFF         [  0]    ***   
+       REDUCE_REPR          REDREP         Ir          [  0]    ***   
+       REFERENCE            IREFNC         ROHF        [  2]    ***   
+       RELATIVIST           IRELAT         OFF         [  0]    ***   
+       RELAX_DENS           IRDENS         OFF         [  0]    ***   
+       RESET_FLAGS          IRESET         OFF         [  0]    ***   
+       RESTART_CC           ICCRES         OFF         [  0]    ***   
+       ROT_EVEC             ROTVEC              0               ***   
+       SAVE_INTS            ISVINT         ON          [  1]    ***   
+       SCALE_ON             ISTCRT              0               ***   
+       SCF_CONV             ISCFCV          10D- 10             ***   
+       SCF_DAMPING          IDAMP               0             x 10-3  
+       SCF_EXPORDE          IRPPOR              6               ***   
+       SCF_EXPSTAR          IRPPLS              5               ***   
+       SCF_EXTRAPO          IRPP           ON          [  1]    ***   
+       SCF_MAXCYC           ISCFCY            ***              cycles 
+       SCF_NOSTOP           ISCFST         OFF         [  0]    ***   
+       SCF_PRINT            ISCFPR              0               ***   
+       SCF_PROG             ISCFPR         SCF         [  0]    ***   
+       SD_FIELD             IFINSD              0             x 10-6  
+       SOPERT               IPERSO         OFF         [  0]    ***   
+       SPHERICAL            IDFGHI         ON          [  1]    ***   
+       SPINORBIT            ISOCAL         OFF         [  0]    ***   
+       SPINROTATIO          ISRCON         OFF         [  0]    ***   
+       SPIN_FLIP            ISPFLP         OFF         [  0]    ***   
+       SPIN_ORBIT           ISPORB         OFF         [  0]    ***   
+       SPIN_SCAL            ISCSMP         OFF         [  0]    ***   
+       STEEPSCALE           ISTPSC              1000          x 10-3  
+       SUBGROUP             ISUBGP         DEFAULT     [  0]    ***   
+       SUBGRPAXIS           ISBXYZ         X           [  0]    ***   
+       SYMMETRY             ISYM           ON          [  0]    ***   
+       SYM_CHECK            ISYMCK         OVERRIDE    [  1]    ***   
+       T3_EXTRAPOL          IT3EXT         ON          [  1]    ***   
+       T4_EXTRAPOL          IT4EXP         OFF         [  0]    ***   
+       TAMP_SUM             IEVERY              5               ***   
+       TESTSUITE            ITESTS         OFF         [  0]    ***   
+       THERMOCH             ITHERM         OFF         [  0]    ***   
+       TOL_CHOLESK          ITOLCH          10D-  4             ***   
+       TRANGRAD             IRESRM         OFF         [  0]    ***   
+       TRANS_INV            ITRAIN         USE         [  0]    ***   
+       TREAT_PERT           ITREAT         SIMULTANEOUS[  0]    ***   
+       TRIP_ALGORI          ITRALG         NORMAL      [  0]    ***   
+       UIJ_THRESHO          IUIJTH              1               ***   
+       UNITS                IUNITS         ANGSTROM    [  0]    ***   
+       UNOS                 IUNOS          OFF         [  0]    ***   
+       UPDATE_HESS          IHUPDT         ON          [  1]    ***   
+       VIBPHASE             ISETPH         STANDARD    [  0]    ***   
+       VIBRATION            IVIB           NO          [  0]    ***   
+       VIB_ALGORIT          IGEALG         STANDARD    [  0]    ***   
+       VNATORB              IVNORB         OFF         [  0]    ***   
+       VTRAN                IVTRAN         FULL/PARTIAL[  0]    ***   
+       XFIELD               IXEFLD              0             x 10-6  
+       XFORM_TOL            IXFTOL          10D- 18             ***   
+       YFIELD               IYEFLD              0             x 10-6  
+       ZFIELD               IZEFLD              0             x 10-6  
+       ZSCALE_EXP           IZEXPS         OFF         [  0]    ***   
+    -------------------------------------------------------------------
+   1 entries found in Z-matrix 
+   Job Title : TITLE                                                                           
+   Rotational constants (in cm-1): 
+
+   Rotational constants (in MHz): 
+
+********************************************************************************
+   The full molecular point group is I h .
+   The largest Abelian subgroup of the full molecular point group is D2h .
+   The computational point group is D2h .
+********************************************************************************
+  ECPDATA file not present.   Using default ECPDATA. 
+  @GTFLGS-W, Keyword #DROPMO not known and is ignored.
+  @GTFLGS-W, Keyword #INPUT_MRCC not known and is ignored.
+  @GTFLGS-W, Keyword #CC_PROG not known and is ignored.
+  @GTFLGS-W, Keyword #SCF_DAMPING not known and is ignored.
+  There is   1 frozen-core orbital.
+  There is   1 frozen-core orbital.
+  There are  189 basis functions.
+ @GEOPT-W, Archive file not created for single-point calculation.
+ @CHECKOUT-I, Total execution time (CPU/WALL):        0.33/       2.47 seconds.
+--executable xjoda finished with status     0 in        2.53 seconds (walltime).
+ --invoking executable--
+/cvmfs/restricted.computecanada.ca/easybuild/software/2020/avx2/Compiler/intel2020/cfour/2.1/bin/xvmol
+ SERIAL VERSION OF MOLECULE STARTED
+********************************************************************************
+                    INPUT FROM MOL FILE
+********************************************************************************
+INTGRL        1    0    1    0    0    0    0    0    0                         
+         *** CFOUR Program System (Release V0.1) ***                            
+TITLE                                                                           
+    1    3 X  Y   Z   0.10E-08              0    0                              
+   9999.00      3.00                                                            
+          8.00000000    1    7    1    1    1    1    1    1    1               
+O #1   0.000000000000000   0.000000000000000   0.000000000000000                
+   17    8                                                                      
+   570800.000000000       5.500000000000000E-006 -1.200000000000000E-006        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+   85480.0000000000       4.310000000000000E-005 -9.700000000000000E-006        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+   19460.0000000000       2.266000000000000E-004 -5.140000000000000E-005        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+   5512.00000000000       9.563000000000000E-004 -2.169000000000000E-004        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+   1798.00000000000       3.473200000000000E-003 -7.916000000000001E-004        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+   648.900000000000       1.119770000000000E-002 -2.559000000000000E-003        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+   253.100000000000       3.238760000000000E-002 -7.533100000000000E-003        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+   104.900000000000       8.285969999999999E-002 -1.978890000000000E-002        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+   45.6500000000000       0.179583800000000      -4.606280000000000E-002        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+   20.6200000000000       0.305221100000000      -8.919560000000000E-002        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+   9.58700000000000       0.340893400000000      -0.137542100000000             
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+   4.49300000000000       0.177426100000000      -0.105119400000000             
+   1.00000000000000       0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+   1.83700000000000       2.049100000000000E-002  0.144771400000000             
+  0.000000000000000E+000   1.00000000000000       0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+  0.834900000000000      -9.680000000000000E-004  0.441463300000000             
+  0.000000000000000E+000  0.000000000000000E+000   1.00000000000000             
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+  0.365800000000000       1.057100000000000E-003  0.444681400000000             
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+   1.00000000000000       0.000000000000000E+000  0.000000000000000E+000        
+  0.157000000000000      -9.720000000000000E-005  0.128242500000000             
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000   1.00000000000000       0.000000000000000E+000        
+  5.935000000000000E-002  0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000   1.00000000000000             
+   11    7                                                                      
+   525.600000000000       1.666000000000000E-004  0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000                                
+   124.600000000000       1.433300000000000E-003  0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000                                
+   40.3400000000000       7.547600000000000E-003  0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000                                
+   15.1800000000000       2.859450000000000E-002  0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000                                
+   6.24500000000000       8.438850000000001E-002  0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000                                
+   2.73200000000000       0.187483400000000        1.00000000000000             
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000                                
+   1.22700000000000       0.297905700000000       0.000000000000000E+000        
+   1.00000000000000       0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000                                
+  0.549200000000000       0.338557500000000       0.000000000000000E+000        
+  0.000000000000000E+000   1.00000000000000       0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000                                
+  0.241800000000000       0.247260900000000       0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000   1.00000000000000             
+  0.000000000000000E+000  0.000000000000000E+000                                
+  0.102500000000000       7.003350000000000E-002  0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+   1.00000000000000       0.000000000000000E+000                                
+  3.380000000000000E-002  0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000   1.00000000000000                                     
+    6    6                                                                      
+   8.25300000000000        1.00000000000000       0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000                                                        
+   3.59700000000000       0.000000000000000E+000   1.00000000000000             
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000                                                        
+   1.56800000000000       0.000000000000000E+000  0.000000000000000E+000        
+   1.00000000000000       0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000                                                        
+  0.684000000000000       0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000   1.00000000000000       0.000000000000000E+000        
+  0.000000000000000E+000                                                        
+  0.298000000000000       0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000   1.00000000000000             
+  0.000000000000000E+000                                                        
+  0.115000000000000       0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+   1.00000000000000                                                             
+    5    5                                                                      
+   5.43000000000000        1.00000000000000       0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+   2.41600000000000       0.000000000000000E+000   1.00000000000000             
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000        
+   1.07500000000000       0.000000000000000E+000  0.000000000000000E+000        
+   1.00000000000000       0.000000000000000E+000  0.000000000000000E+000        
+  0.478000000000000       0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000   1.00000000000000       0.000000000000000E+000        
+  0.195000000000000       0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000   1.00000000000000             
+    4    4                                                                      
+   5.21100000000000        1.00000000000000       0.000000000000000E+000        
+  0.000000000000000E+000  0.000000000000000E+000                                
+   2.19000000000000       0.000000000000000E+000   1.00000000000000             
+  0.000000000000000E+000  0.000000000000000E+000                                
+  0.920000000000000       0.000000000000000E+000  0.000000000000000E+000        
+   1.00000000000000       0.000000000000000E+000                                
+  0.406000000000000       0.000000000000000E+000  0.000000000000000E+000        
+  0.000000000000000E+000   1.00000000000000                                     
+    3    3                                                                      
+   3.87200000000000        1.00000000000000       0.000000000000000E+000        
+  0.000000000000000E+000                                                        
+   1.50500000000000       0.000000000000000E+000   1.00000000000000             
+  0.000000000000000E+000                                                        
+  0.748000000000000       0.000000000000000E+000  0.000000000000000E+000        
+   1.00000000000000                                                             
+    2    2                                                                      
+   2.77300000000000        1.00000000000000       0.000000000000000E+000        
+   1.34500000000000       0.000000000000000E+000   1.00000000000000             
+FINISH                                                                          
+ 
+********************************************************************************
+OMP: Info #274: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.
+ ONE- AND TWO-ELECTRON INTEGRALS OVER SYMMETRY-ADAPTED AOS ARE CALCULATED.
+
+  SPHERICAL HARMONICS ARE USED.
+  
+  INTEGRALS LESS THAN  0.10E-13 ARE NEGLECTED.
+
+  NUCLEAR REPULSION ENERGY :    0.0000000000 A.U.
+  @MOLECU-I, ONE ELECTRON INTEGRALS (CPU/WALL):        0.13/       0.13 SECONDS.
+  @TWOEL-I,     482321 INTEGRALS OF SYMMETRY TYPE  I I I I
+  @TWOEL-I,    4119775 INTEGRALS OF SYMMETRY TYPE  I J I J
+  @TWOEL-I,    2366897 INTEGRALS OF SYMMETRY TYPE  I I J J
+  @TWOEL-I,   10122549 INTEGRALS OF SYMMETRY TYPE  I J K L
+  @TWOEL-I, TOTAL NUMBER OF 2-E INTEGRALS   17091542.
+  @MOLECU-I, TWO ELECTRON INTEGRALS (CPU/WALL):       66.36/      66.46 SECONDS.
+ @CHECKOUT-I, Total execution time (CPU/WALL):       66.52/      66.97 seconds.
+
+OMP_NUM_THREADS not specified; defaulting to 1
+Running with 1 threads/proc
+
+--executable xvmol finished with status     0 in       67.01 seconds (walltime).
+ --invoking executable--
+/cvmfs/restricted.computecanada.ca/easybuild/software/2020/avx2/Compiler/intel2020/cfour/2.1/bin/xvmol2ja
+ @GETMEM-I,  Allocated   19073 MB of main memory.
+ @CHECKOUT-I, Total execution time (CPU/WALL):        0.07/       0.06 seconds.
+--executable xvmol2ja finished with status     0 in        0.10 seconds (walltime).
+ --invoking executable--
+/cvmfs/restricted.computecanada.ca/easybuild/software/2020/avx2/Compiler/intel2020/cfour/2.1/bin/xvscf
+  There are  189 functions in the AO basis.
+
+  There are 8 irreducible representations.
+
+       Irrep        # of functions
+         1                 40
+         2                 26
+         3                 26
+         4                 20
+         5                 26
+         6                 20
+         7                 20
+         8                 11
+
+
+  Parameters for SCF calculation: 
+        SCF reference function: ROHF  
+  Maximum number of iterations: 9999
+     Full symmetry point group: I h 
+     Computational point group: D2h 
+        Initial density matrix: MOREAD                 
+     SCF convergence tolerance: 10**(-10)
+  DIIS convergence acceleration:  ON
+          Latest start for DIIS:   5
+                     DIIS order:   6
+
+     Alpha population by irrep:   2    1    1    0    0    0    0    0
+      Beta population by irrep:   2    0    0    0    0    0    0    0
+
+
+  Memory information:    2725225 words required.
+  Fock matrices are constructed from AO integral file.
+ @GETMEM-I,  Allocated      20 MB of main memory.
+  Initialization and symmetry analysis required      0.004 seconds.
+
+ total no. of electrons in initial guess :  0.000000000000000E+000
+ total no. of electrons in initial guess :  0.000000000000000E+000
+  --------------------------------------------------------------------
+  Iteration         Total Energy            Largest Density Difference
+  --------------------------------------------------------------------
+       0             0.000000000000000              0.0000000000D+00
+   current occupation vector 
+     2  1  1  0  0  0  0  0
+     2  0  0  0  0  0  0  0
+       1           -69.908530102826958              0.9132525258D+01
+   current occupation vector 
+     2  1  1  0  0  0  0  0
+     2  0  0  0  0  0  0  0
+       2           -72.830498855604972              0.8259250265D+01
+   current occupation vector 
+     2  1  1  0  0  0  0  0
+     2  0  0  0  0  0  0  0
+       3           -73.096652922720594              0.7080290810D+00
+   current occupation vector 
+     2  1  1  0  0  0  0  0
+     2  0  0  0  0  0  0  0
+       4           -73.100127713397086              0.9782951086D-01
+   current occupation vector 
+     2  1  1  0  0  0  0  0
+     2  0  0  0  0  0  0  0
+       5           -73.100225397689485              0.1669425131D-01
+   current occupation vector 
+     2  1  1  0  0  0  0  0
+     2  0  0  0  0  0  0  0
+       6           -73.100226964316818              0.1233316992D-02
+   current occupation vector 
+     2  1  1  0  0  0  0  0
+     2  0  0  0  0  0  0  0
+       7           -73.100227013149578              0.1885300918D-03
+   current occupation vector 
+     2  1  1  0  0  0  0  0
+     2  0  0  0  0  0  0  0
+       8           -73.100227013604552              0.2512117731D-04
+   current occupation vector 
+     2  1  1  0  0  0  0  0
+     2  0  0  0  0  0  0  0
+       9           -73.100227013614671              0.4835802846D-05
+   current occupation vector 
+     2  1  1  0  0  0  0  0
+     2  0  0  0  0  0  0  0
+      10           -73.100227013613960              0.2638138131D-06
+   current occupation vector 
+     2  1  1  0  0  0  0  0
+     2  0  0  0  0  0  0  0
+      11           -73.100227013614074              0.7884479278D-08
+   current occupation vector 
+     2  1  1  0  0  0  0  0
+     2  0  0  0  0  0  0  0
+      12           -73.100227013613960              0.7666831059D-09
+   current occupation vector 
+     2  1  1  0  0  0  0  0
+     2  0  0  0  0  0  0  0
+      13           -73.100227013614159              0.1153993567D-09
+   current occupation vector 
+     2  1  1  0  0  0  0  0
+     2  0  0  0  0  0  0  0
+
+  SCF has converged.
+
+ Density matrix saved to file den.dat
+ total alpha spin electron number:   4.00000000000000     
+ total  beta spin electron number:   2.00000000000000     
+     E(ROHF)=       -73.100227013614173              0.6351141835D-11
+
+  Eigenvector printing suppressed.
+
+
+       The average multiplicity is    3.0000000
+  The expectation value of S**2 is    2.0000000
+
+ @PUTMOS-I, Writing converged MOs to NEWMOS. 
+ @PUTMOS-I, Symmetry   1 Full Blocks 10 Partial Blocksize   0
+ @PUTMOS-I, Symmetry   2 Full Blocks  6 Partial Blocksize   2
+ @PUTMOS-I, Symmetry   3 Full Blocks  6 Partial Blocksize   2
+ @PUTMOS-I, Symmetry   4 Full Blocks  5 Partial Blocksize   0
+ @PUTMOS-I, Symmetry   5 Full Blocks  6 Partial Blocksize   2
+ @PUTMOS-I, Symmetry   6 Full Blocks  5 Partial Blocksize   0
+ @PUTMOS-I, Symmetry   7 Full Blocks  5 Partial Blocksize   0
+ @PUTMOS-I, Symmetry   8 Full Blocks  2 Partial Blocksize   3
+ @PUTFOCK-I, Writing converged Fock matrix to NEWFOCK. 
+ @PUTFOCK-I, Symmetry   1 Full Blocks 10 Partial Blocksize   0
+ @PUTFOCK-I, Symmetry   2 Full Blocks  6 Partial Blocksize   2
+ @PUTFOCK-I, Symmetry   3 Full Blocks  6 Partial Blocksize   2
+ @PUTFOCK-I, Symmetry   4 Full Blocks  5 Partial Blocksize   0
+ @PUTFOCK-I, Symmetry   5 Full Blocks  6 Partial Blocksize   2
+ @PUTFOCK-I, Symmetry   6 Full Blocks  5 Partial Blocksize   0
+ @PUTFOCK-I, Symmetry   7 Full Blocks  5 Partial Blocksize   0
+ @PUTFOCK-I, Symmetry   8 Full Blocks  2 Partial Blocksize   3
+  @DMPJOB-I, Rotating orbitals to semicanonical basis.
+             *** Eigenvalues correspond to new basis. ***
+
+  @PRJDEN-I, Basis set contains h and/or higher angular momentum functions.
+             Analysis of density matrix symmetry not available.
+             Check irreps of the molecular orbitals in the full point group
+             for presence of an asymmetric solution.
+
+ 
+  ORBITAL EIGENVALUES (ALPHA)  (1H = 27.2113834 eV)
+
+       MO #        E(hartree)               E(eV)           FULLSYM    COMPSYM
+       ----   --------------------   --------------------   -------   ---------
+    1     1         -22.3128625833        -607.1638585046      Ag        Ag (1)
+    2     2          -2.6628894915         -72.4609069037      Ag        Ag (1)
+    3    67          -2.0438903292         -55.6170833761       u       B3u (3)
+    4    41          -2.0438903292         -55.6170833761       u       B2u (2)
+  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    5   113          -1.2237788842         -33.3007164142      Au       B1u (5)
+    6     3          -0.4342435543         -11.8163678437      Ag        Ag (1)
+    7    68          -0.3364144665          -9.1543030281       u       B3u (3)
+    8    42          -0.3364144665          -9.1543030281       u       B2u (2)
+    9   114          -0.3264398299          -8.8828793692      Au       B1u (5)
+   10     4          -0.1959638566          -5.3324476354      Ag        Ag (1)
+   11   159          -0.1951762372          -5.3110154215       g       B2g (7)
+   12   139          -0.1951762372          -5.3110154215       g       B3g (6)
+   13     5          -0.1925797741          -5.2403620679       g        Ag (1)
+   14    93          -0.1925797741          -5.2403620679       g       B1g (4)
+   15    69          -0.1416304690          -3.8539609921       u       B3u (3)
+   16    43          -0.1416304690          -3.8539609921       u       B2u (2)
+   17   115          -0.1339598011          -3.6452315091      Au       B1u (5)
+   18     6          -0.0608541105          -1.6559245335      Ag        Ag (1)
+   19   116           0.2014353966           5.4813358084      Au       B1u (5)
+   20    44           0.2023356047           5.5058317145       u       B2u (2)
+   21    70           0.2023356047           5.5058317145       u       B3u (3)
+   22   117           0.2050414060           5.5794603114       u       B1u (5)
+   23   179           0.2050414060           5.5794603114       u        Au (8)
+   24    45           0.2095736152           5.7027879948       u       B2u (2)
+   25    71           0.2095736152           5.7027879948       u       B3u (3)
+   26    94           0.2825378097           7.6882446650       g       B1g (4)
+   27     7           0.2825378097           7.6882446650       g        Ag (1)
+   28   140           0.2856437803           7.7727624219       g       B3g (6)
+   29   160           0.2856437803           7.7727624219       g       B2g (7)
+   30     8           0.2868522479           7.8056464957      Ag        Ag (1)
+   31    72           0.3406510894           9.2695873997       u       B3u (3)
+   32    46           0.3406510894           9.2695873997       u       B2u (2)
+   33   118           0.3667688782           9.9802885644      Au       B1u (5)
+   34     9           1.1131105572          30.2892781384      Ag        Ag (1)
+   35    10           1.2842467965          34.9461319609      Ag        Ag (1)
+   36   161           1.2852454485          34.9733066619       g       B2g (7)
+   37   141           1.2852454485          34.9733066619       g       B3g (6)
+   38    95           1.2882486864          35.0550289206       g       B1g (4)
+   39    11           1.2882486864          35.0550289206       g        Ag (1)
+   40   142           1.2932730598          35.1917490724       g       B3g (6)
+   41   162           1.2932730598          35.1917490724       g       B2g (7)
+   42    96           1.3003329359          35.3838580659       g       B1g (4)
+   43    12           1.3003329359          35.3838580659       g        Ag (1)
+   44   119           1.4052623118          38.2391315441      Au       B1u (5)
+   45    73           1.4073429111          38.2957475299       u       B3u (3)
+   46    47           1.4073429111          38.2957475299       u       B2u (2)
+   47   180           1.4135806502          38.4654850390       u        Au (8)
+   48   120           1.4135806502          38.4654850390       u       B1u (5)
+   49    48           1.4239843550          38.7485842386       u       B2u (2)
+   50    74           1.4239843550          38.7485842386       u       B3u (3)
+   51    97           1.5532788359          42.2668659299       g       B1g (4)
+   52    13           1.5532788359          42.2668659299       g        Ag (1)
+   53   163           1.5646717718          42.5768834769       g       B2g (7)
+   54   143           1.5646717718          42.5768834769       g       B3g (6)
+   55    14           1.5689562472          42.6934699801      Ag        Ag (1)
+   56    49           1.9375599872          52.7236876713       u       B2u (2)
+   57    75           1.9375599872          52.7236876713       u       B3u (3)
+   58   121           1.9697984924          53.6009419984      Au       B1u (5)
+   59   122           3.5074133718          95.4415700033      Au       B1u (5)
+   60    76           3.5085260724          95.4718481261       u       B3u (3)
+   61    50           3.5085260724          95.4718481261       u       B2u (2)
+   62   181           3.5118672156          95.5627652526       u        Au (8)
+   63   123           3.5118672156          95.5627652526       u       B1u (5)
+   64    77           3.5174459740          95.7145709876       u       B3u (3)
+   65    51           3.5174459740          95.7145709876       u       B2u (2)
+   66   182           3.5252778021          95.9276858646                Au (8)
+   67   124           3.5252778021          95.9276858646               B1u (5)
+   68    78           3.5353846885          96.2027082247       u       B3u (3)
+   69    52           3.5353846885          96.2027082247       u       B2u (2)
+   70   125           4.2354558775         115.2526137573      Au       B1u (5)
+   71    53           4.2388903122         115.3460694762       u       B2u (2)
+   72    79           4.2388903122         115.3460694762       u       B3u (3)
+   73   126           4.2491907174         115.6263577499       u       B1u (5)
+   74   183           4.2491907174         115.6263577499       u        Au (8)
+   75    80           4.2663598420         116.0935533821       u       B3u (3)
+   76    54           4.2663598420         116.0935533821       u       B2u (2)
+   77    15           4.3523828682         118.4343589296      Ag        Ag (1)
+   78   144           4.3547817400         118.4996355514       g       B3g (6)
+   79   164           4.3547817400         118.4996355514       g       B2g (7)
+   80    16           4.3619798744         118.6955067445       g        Ag (1)
+   81    98           4.3619798744         118.6955067445       g       B1g (4)
+   82   165           4.3739726359         119.0218463757       g       B2g (7)
+   83   145           4.3739726359         119.0218463757       g       B3g (6)
+   84    17           4.3907130608         119.4773764975       g        Ag (1)
+   85    99           4.3907130608         119.4773764975       g       B1g (4)
+   86   100           4.7605798816         129.5419643657       g       B1g (4)
+   87    18           4.7605798816         129.5419643657       g        Ag (1)
+   88   166           4.7629868246         129.6074606121       g       B2g (7)
+   89   146           4.7629868246         129.6074606121       g       B3g (6)
+   90    19           4.7631735111         129.6125406120      Ag        Ag (1)
+   91    20           5.0334273881         136.9665224735      Ag        Ag (1)
+   92    55           6.3355082917         172.3979451599       u       B2u (2)
+   93    81           6.3355082917         172.3979451599       u       B3u (3)
+   94   127           6.3397956788         172.5146108931      Au       B1u (5)
+   95    21           8.2592042509         224.7443734488      Ag        Ag (1)
+   96   167           8.2605430083         224.7808028899       g       B2g (7)
+   97   147           8.2605430083         224.7808028899       g       B3g (6)
+   98   101           8.2645615373         224.8901526243       g       B1g (4)
+   99    22           8.2645615373         224.8901526243       g        Ag (1)
+  100   168           8.2712666261         225.0726073666       g       B2g (7)
+  101   148           8.2712666261         225.0726073666       g       B3g (6)
+  102   102           8.2806696477         225.3284765917       g       B1g (4)
+  103    23           8.2806696477         225.3284765917       g        Ag (1)
+  104   169           8.2927866511         225.6581970170    XXXX      XXXX (7)
+  105   149           8.2927866511         225.6581970170    XXXX      XXXX (6)
+  106   103           8.3076384935         226.0623361948    XXXX      XXXX (4)
+  107    24           8.3076384935         226.0623361948    XXXX      XXXX (1)
+  108   128           9.5724545171         260.4797299443      Au       B1u (5)
+  109    82           9.5748313249         260.5444061727       u       B3u (3)
+  110    56           9.5748313249         260.5444061727       u       B2u (2)
+  111   129           9.5819674509         260.7385900335       u       B1u (5)
+  112   184           9.5819674509         260.7385900335       u        Au (8)
+  113    83           9.5938800374         261.0627479909       u       B3u (3)
+  114    57           9.5938800374         261.0627479909       u       B2u (2)
+  115   185           9.6105977695         261.5176606094                Au (8)
+  116   130           9.6105977695         261.5176606094               B1u (5)
+  117    58           9.6321610457         262.1044271844       u       B2u (2)
+  118    84           9.6321610457         262.1044271844       u       B3u (3)
+  119   131          10.8344487709         294.8203394316      Au       B1u (5)
+  120    85          10.8402365557         294.9778330642       u       B3u (3)
+  121    59          10.8402365557         294.9778330642       u       B2u (2)
+  122   186          10.8576130019         295.4506702032       u        Au (8)
+  123   132          10.8576130019         295.4506702032       u       B1u (5)
+  124    86          10.8866219867         296.2400448108       u       B3u (3)
+  125    60          10.8866219867         296.2400448108       u       B2u (2)
+  126    25          11.6056084287         315.8046605432      Ag        Ag (1)
+  127   170          11.6098554992         315.9202292078       g       B2g (7)
+  128   150          11.6098554992         315.9202292079       g       B3g (6)
+  129   104          11.6225910560         316.2667813274       g       B1g (4)
+  130    26          11.6225910560         316.2667813274       g        Ag (1)
+  131   151          11.6437957763         316.8437911013       g       B3g (6)
+  132   171          11.6437957763         316.8437911013       g       B2g (7)
+  133   105          11.6734308171         317.6502015562       g       B1g (4)
+  134    27          11.6734308171         317.6502015562       g        Ag (1)
+  135    28          12.7504402219         346.9571173980      Ag        Ag (1)
+  136   172          12.7580239922         347.1634822787       g       B2g (7)
+  137   152          12.7580239922         347.1634822787       g       B3g (6)
+  138    29          12.7811699255         347.7933151444       g        Ag (1)
+  139   106          12.7811699255         347.7933151444       g       B1g (4)
+  140    30          18.2000865672         495.2495334945      Ag        Ag (1)
+  141   133          20.8444714527         567.2069044685      Au       B1u (5)
+  142    61          20.8652773983         567.7730630318       u       B2u (2)
+  143    87          20.8652773983         567.7730630318       u       B3u (3)
+  144    31          21.3226563012         580.2189757172      Ag        Ag (1)
+  145   153          21.3251580293         580.2870512004       g       B3g (6)
+  146   173          21.3251580293         580.2870512004       g       B2g (7)
+  147   107          21.3326665716         580.4913690242       g       B1g (4)
+  148    32          21.3326665716         580.4913690242       g        Ag (1)
+  149   174          21.3451920200         580.8322038023       g       B2g (7)
+  150   154          21.3451920200         580.8322038023       g       B3g (6)
+  151   108          21.3627512547         581.3100148710       g       B1g (4)
+  152    33          21.3627512547         581.3100148710       g        Ag (1)
+  153   155          21.3853680368         581.9254487989    XXXX      XXXX (6)
+  154   175          21.3853680368         581.9254487989    XXXX      XXXX (7)
+  155   109          21.4130731398         582.6793429805    XXXX      XXXX (4)
+  156    34          21.4130731398         582.6793429805    XXXX      XXXX (1)
+  157   134          25.2894782787         688.1616894289      Au       B1u (5)
+  158    88          25.2933624750         688.2673837825       u       B3u (3)
+  159    62          25.2933624750         688.2673837825       u       B2u (2)
+  160   135          25.3050194399         688.5845859246       u       B1u (5)
+  161   187          25.3050194399         688.5845859246       u        Au (8)
+  162    63          25.3244624288         689.1136565479       u       B2u (2)
+  163    89          25.3244624288         689.1136565479       u       B3u (3)
+  164   188          25.3517139435         689.8552079649                Au (8)
+  165   136          25.3517139435         689.8552079649               B1u (5)
+  166    90          25.3868063074         690.8101197335       u       B3u (3)
+  167    64          25.3868063074         690.8101197335       u       B2u (2)
+  168   137          26.8506275698         730.6427213315      Au       B1u (5)
+  169    91          26.8584160909         730.8546577656       u       B3u (3)
+  170    65          26.8584160909         730.8546577656       u       B2u (2)
+  171   138          26.8818091553         731.4912154104       u       B1u (5)
+  172   189          26.8818091553         731.4912154104       u        Au (8)
+  173    92          26.9208916877         732.5547051849       u       B3u (3)
+  174    66          26.9208916877         732.5547051849       u       B2u (2)
+  175    35          29.8814772661         813.1163344460      Ag        Ag (1)
+  176   176          29.8871342454         813.2702686778       g       B2g (7)
+  177   156          29.8871342454         813.2702686778       g       B3g (6)
+  178   110          29.9041110234         813.7322302927       g       B1g (4)
+  179    36          29.9041110234         813.7322302927       g        Ag (1)
+  180   177          29.9324250229         814.5026933906       g       B2g (7)
+  181   157          29.9324250229         814.5026933906       g       B3g (6)
+  182   111          29.9721050311         815.5824413070       g       B1g (4)
+  183    37          29.9721050311         815.5824413070       g        Ag (1)
+  184    38          32.8598777719         894.1627325286      Ag        Ag (1)
+  185   178          32.8726920710         894.5114273347       g       B2g (7)
+  186   158          32.8726920710         894.5114273348       g       B3g (6)
+  187    39          32.9114320675         895.5655962320       g        Ag (1)
+  188   112          32.9114320675         895.5655962320       g       B1g (4)
+  189    40          97.8203177577        2661.8261708147      Ag        Ag (1)
+
+
+ 
+  ORBITAL EIGENVALUES ( BETA)  (1H = 27.2113834 eV)
+
+       MO #        E(hartree)               E(eV)           FULLSYM    COMPSYM
+       ----   --------------------   --------------------   -------   ---------
+    1     1         -22.2100310395        -604.3656699404      Ag        Ag (1)
+    2     2          -2.2961011710         -62.4800892895      Ag        Ag (1)
+  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    3   113          -1.1297360885         -30.7416818457      Au       B1u (5)
+    4    67          -1.0368016702         -28.2128077577       u       B3u (3)
+    5    41          -1.0368016702         -28.2128077577       u       B2u (2)
+    6     3          -0.4205409498         -11.4435010215      Ag        Ag (1)
+    7   114          -0.3210538467          -8.7363193134      Au       B1u (5)
+    8    68          -0.3097484192          -8.4286829916       u       B3u (3)
+    9    42          -0.3097484192          -8.4286829916       u       B2u (2)
+   10     4          -0.1909505302          -5.1960280882      Ag        Ag (1)
+   11   139          -0.1883729043          -5.1258873222       g       B3g (6)
+   12   159          -0.1883729043          -5.1258873222       g       B2g (7)
+   13     5          -0.1808144258          -4.9202106653       g        Ag (1)
+   14    93          -0.1808144258          -4.9202106653       g       B1g (4)
+   15   115          -0.1297155282          -3.5297389716      Au       B1u (5)
+   16    69          -0.1206072813          -3.2818909716       u       B3u (3)
+   17    43          -0.1206072813          -3.2818909716       u       B2u (2)
+   18     6          -0.0434103832          -1.1812565808      Ag        Ag (1)
+   19   116           0.2026141141           5.5134103401      Au       B1u (5)
+   20    70           0.2036535267           5.5416941958       u       B3u (3)
+   21    44           0.2036535267           5.5416941958       u       B2u (2)
+   22   117           0.2067601576           5.6262299216       u       B1u (5)
+   23   179           0.2067601576           5.6262299216       u        Au (8)
+   24    71           0.2119524407           5.7675191253       u       B3u (3)
+   25    45           0.2119524407           5.7675191253       u       B2u (2)
+   26     7           0.3084458684           8.3932387825      Ag        Ag (1)
+   27   140           0.3150852925           8.5739066979       g       B3g (6)
+   28   160           0.3150852925           8.5739066979       g       B2g (7)
+   29    94           0.3346553631           9.1064353915       g       B1g (4)
+   30     8           0.3346553631           9.1064353915       g        Ag (1)
+   31   118           0.3810254835          10.3682305180      Au       B1u (5)
+   32    72           0.4093600955          11.1392545079       u       B3u (3)
+   33    46           0.4093600955          11.1392545079       u       B2u (2)
+   34     9           1.1637339217          31.6668099184      Ag        Ag (1)
+   35    10           1.2863551913          35.0035042985      Ag        Ag (1)
+   36   161           1.2874674951          35.0337716246       g       B2g (7)
+   37   141           1.2874674951          35.0337716246       g       B3g (6)
+   38    95           1.2908133756          35.1248176616       g       B1g (4)
+   39    11           1.2908133756          35.1248176616       g        Ag (1)
+   40   162           1.2964212200          35.2774148663       g       B2g (7)
+   41   142           1.2964212200          35.2774148663       g       B3g (6)
+   42    12           1.3043446850          35.4930233096       g        Ag (1)
+   43    96           1.3043446850          35.4930233096       g       B1g (4)
+   44   119           1.4164467778          38.5434763362      Au       B1u (5)
+   45    73           1.4198588079          38.6363223968       u       B3u (3)
+   46    47           1.4198588079          38.6363223968       u       B2u (2)
+   47   180           1.4300432867          38.9134561522       u        Au (8)
+   48   120           1.4300432867          38.9134561522       u       B1u (5)
+   49    48           1.4470168605          39.3753305762       u       B2u (2)
+   50    74           1.4470168605          39.3753305762       u       B3u (3)
+   51    13           1.6203745231          44.0926323996      Ag        Ag (1)
+   52   143           1.6339786878          44.4628205417       g       B3g (6)
+   53   163           1.6339786878          44.4628205417       g       B2g (7)
+   54    97           1.6745794220          45.5676226850       g       B1g (4)
+   55    14           1.6745794220          45.5676226850       g        Ag (1)
+   56   121           1.9971582585          54.3454390824      Au       B1u (5)
+   57    49           2.0539669961          55.8912834208       u       B2u (2)
+   58    75           2.0539669961          55.8912834208       u       B3u (3)
+   59   122           3.5111726747          95.5438658358      Au       B1u (5)
+   60    76           3.5124259009          95.5779678541       u       B3u (3)
+   61    50           3.5124259009          95.5779678541       u       B2u (2)
+   62   181           3.5161891319          95.6803705756       u        Au (8)
+   63   123           3.5161891319          95.6803705756       u       B1u (5)
+   64    77           3.5224731862          95.8513683861       u       B3u (3)
+   65    51           3.5224731862          95.8513683861       u       B2u (2)
+   66   182           3.5312966053          96.0914658268                Au (8)
+   67   124           3.5312966053          96.0914658268               B1u (5)
+   68    78           3.5426863708          96.4013971026       u       B3u (3)
+   69    52           3.5426863708          96.4013971026       u       B2u (2)
+   70   125           4.2699614686         116.1915586263      Au       B1u (5)
+   71    53           4.2774070472         116.3941631187       u       B2u (2)
+   72    79           4.2774070472         116.3941631187       u       B3u (3)
+   73   183           4.2997725352         117.0027589880       u        Au (8)
+   74   126           4.2997725352         117.0027589880       u       B1u (5)
+   75    80           4.3372515077         118.0226136770       u       B3u (3)
+   76    54           4.3372515077         118.0226136770       u       B2u (2)
+   77    15           4.3671555625         118.8363443790      Ag        Ag (1)
+   78   144           4.3703913406         118.9243943759       g       B3g (6)
+   79   164           4.3703913406         118.9243943759       g       B2g (7)
+   80    98           4.3801179843         119.1890698077       g       B1g (4)
+   81    16           4.3801179843         119.1890698077       g        Ag (1)
+   82   165           4.3964040704         119.6322367401       g       B2g (7)
+   83   145           4.3964040704         119.6322367401       g       B3g (6)
+   84    17           4.4193900471         120.2577169658       g        Ag (1)
+   85    99           4.4193900471         120.2577169658       g       B1g (4)
+   86    18           4.8333225103         131.5213919226      Ag        Ag (1)
+   87   146           4.8541796828         132.0889444420       g       B3g (6)
+   88   166           4.8541796828         132.0889444420       g       B2g (7)
+   89   100           4.9175310559         133.8128229427       g       B1g (4)
+   90    19           4.9175310559         133.8128229427       g        Ag (1)
+   91    20           5.1129287872         139.1298655247      Ag        Ag (1)
+   92   127           6.3762535876         173.5066810289      Au       B1u (5)
+   93    55           6.4633720392         175.8772946166       u       B2u (2)
+   94    81           6.4633720392         175.8772946166       u       B3u (3)
+   95    21           8.2664284435         224.9409537261      Ag        Ag (1)
+   96   147           8.2679516000         224.9824009197       g       B3g (6)
+   97   167           8.2679516000         224.9824009197       g       B2g (7)
+   98   101           8.2725241559         225.1068264932       g       B1g (4)
+   99    22           8.2725241559         225.1068264932       g        Ag (1)
+  100   168           8.2801554093         225.3144834545       g       B2g (7)
+  101   148           8.2801554093         225.3144834545       g       B3g (6)
+  102   102           8.2908609846         225.6057969668       g       B1g (4)
+  103    23           8.2908609846         225.6057969668       g        Ag (1)
+  104   169           8.3046630315         225.9813697573    XXXX      XXXX (7)
+  105   149           8.3046630315         225.9813697573    XXXX      XXXX (6)
+  106   103           8.3215905183         226.4419900913    XXXX      XXXX (4)
+  107    24           8.3215905183         226.4419900913    XXXX      XXXX (1)
+  108   128           9.5888718057         260.9264670777      Au       B1u (5)
+  109    82           9.5918601829         261.0077849570       u       B3u (3)
+  110    56           9.5918601829         261.0077849570       u       B2u (2)
+  111   129           9.6008348470         261.2519979821       u       B1u (5)
+  112   184           9.6008348470         261.2519979821       u        Au (8)
+  113    83           9.6158246986         261.6598925797       u       B3u (3)
+  114    57           9.6158246986         261.6598925797       u       B2u (2)
+  115   185           9.6368789120         262.2328068544                Au (8)
+  116   130           9.6368789120         262.2328068544               B1u (5)
+  117    58           9.6640684564         262.9726719710       u       B2u (2)
+  118    84           9.6640684564         262.9726719710       u       B3u (3)
+  119   131          10.8864781799         296.2361316283      Au       B1u (5)
+  120    59          10.8981508290         296.5537605599       u       B2u (2)
+  121    85          10.8981508290         296.5537605599       u       B3u (3)
+  122   186          10.9332783458         297.5096288869       u        Au (8)
+  123   132          10.9332783458         297.5096288869       u       B1u (5)
+  124    86          10.9922312682         299.1138194600       u       B3u (3)
+  125    60          10.9922312682         299.1138194600       u       B2u (2)
+  126    25          11.6403066582         316.7488473688      Ag        Ag (1)
+  127   170          11.6466118877         316.9204213861       g       B2g (7)
+  128   150          11.6466118877         316.9204213861       g       B3g (6)
+  129   104          11.6655472569         317.4356789773       g       B1g (4)
+  130    26          11.6655472569         317.4356789773       g        Ag (1)
+  131   151          11.6971832957         318.2965393590       g       B3g (6)
+  132   171          11.6971832957         318.2965393590       g       B2g (7)
+  133   105          11.7416726294         319.5071556765       g       B1g (4)
+  134    27          11.7416726294         319.5071556765       g        Ag (1)
+  135    28          12.8139430366         348.6851168337      Ag        Ag (1)
+  136   172          12.8397366451         349.3869966052       g       B2g (7)
+  137   152          12.8397366451         349.3869966053       g       B3g (6)
+  138    29          12.9188507298         351.5398002973       g        Ag (1)
+  139   106          12.9188507298         351.5398002973       g       B1g (4)
+  140    30          18.2691706945         497.1294081668      Ag        Ag (1)
+  141   133          20.8730218054         567.9837990639      Au       B1u (5)
+  142    61          20.9574826919         570.2820966293       u       B2u (2)
+  143    87          20.9574826919         570.2820966293       u       B3u (3)
+  144    31          21.3425518312         580.7603606134      Ag        Ag (1)
+  145   153          21.3455657750         580.8423741928       g       B3g (6)
+  146   173          21.3455657750         580.8423741928       g       B2g (7)
+  147   107          21.3546129271         581.0885597168       g       B1g (4)
+  148    32          21.3546129271         581.0885597168       g        Ag (1)
+  149   174          21.3697093039         581.4993530153       g       B2g (7)
+  150   154          21.3697093039         581.4993530153       g       B3g (6)
+  151   108          21.3908817822         582.0754854395       g       B1g (4)
+  152    33          21.3908817822         582.0754854395       g        Ag (1)
+  153   155          21.4181683805         582.8179915262    XXXX      XXXX (6)
+  154   175          21.4181683805         582.8179915262    XXXX      XXXX (7)
+  155   109          21.4516186702         583.7282201863    XXXX      XXXX (4)
+  156    34          21.4516186702         583.7282201863    XXXX      XXXX (1)
+  157   134          25.3210593935         689.0210552499      Au       B1u (5)
+  158    62          25.3261457227         689.1594613046       u       B2u (2)
+  159    88          25.3261457227         689.1594613046       u       B3u (3)
+  160   135          25.3414112992         689.5748587605       u       B1u (5)
+  161   187          25.3414112992         689.5748587605       u        Au (8)
+  162    63          25.3668765802         690.2678042833       u       B2u (2)
+  163    89          25.3668765802         690.2678042833       u       B3u (3)
+  164   188          25.4025778454         691.2392850983                Au (8)
+  165   136          25.4025778454         691.2392850983               B1u (5)
+  166    90          25.4485701185         692.4907984762       u       B3u (3)
+  167    64          25.4485701185         692.4907984762       u       B2u (2)
+  168   137          26.8993583544         731.9687533947      Au       B1u (5)
+  169    65          26.9125683722         732.3282162542       u       B2u (2)
+  170    91          26.9125683722         732.3282162542       u       B3u (3)
+  171   138          26.9522924213         733.4091625861       u       B1u (5)
+  172   189          26.9522924213         733.4091625861       u        Au (8)
+  173    92          27.0188314416         735.2197813765       u       B3u (3)
+  174    66          27.0188314416         735.2197813765       u       B2u (2)
+  175    35          29.9225819051         814.2348485372      Ag        Ag (1)
+  176   176          29.9307040348         814.4558629237       g       B2g (7)
+  177   156          29.9307040348         814.4558629237       g       B3g (6)
+  178   110          29.9550930523         815.1195218282       g       B1g (4)
+  179    36          29.9550930523         815.1195218282       g        Ag (1)
+  180   177          29.9958185853         816.2277199222       g       B2g (7)
+  181   157          29.9958185853         816.2277199222       g       B3g (6)
+  182    37          30.0530026818         817.7837782949       g        Ag (1)
+  183   111          30.0530026818         817.7837782949       g       B1g (4)
+  184    38          32.9021614324         895.3133294257      Ag        Ag (1)
+  185   178          32.9266098639         895.9786050697       g       B2g (7)
+  186   158          32.9266098639         895.9786050697       g       B3g (6)
+  187   112          33.0008873238         897.9997975083       g       B1g (4)
+  188    39          33.0008873238         897.9997975083       g        Ag (1)
+  189    40          97.8449815324        2662.4973062446      Ag        Ag (1)
+
+
+  VSCF finished.
+
+ @CHECKOUT-I, Total execution time (CPU/WALL):        6.28/       3.64 seconds.
+--executable xvscf finished with status     0 in        3.68 seconds (walltime).
+ --invoking executable--
+/cvmfs/restricted.computecanada.ca/easybuild/software/2020/avx2/Compiler/intel2020/cfour/2.1/bin/xvtran
+ @GETMEM-I,  Allocated   19073 MB of main memory.
+  Full UHF integral transformation
+  The following   1 alpha MOs will be dropped.
+    1
+  There are 188 active alpha molecular orbitals.
+  The following   1 beta MOs will be dropped.
+    1
+  There are 188 active beta molecular orbitals.
+  Transformation of IIII integrals :
+  2 passes through the AO integral file were required.
+      482321 AO integrals were read.
+      558594 MO integrals (Spin case AAAA) were written to HF2AA.
+      558594 MO integrals (Spin case BBBB) were written to HF2BB.
+     1114659 MO integrals (Spin case AABB) were written to HF2AB.
+  Transformation of IIJJ integrals :
+  2 passes through the AO integral file were required.
+     2366897 AO integrals were read.
+     2640591 MO integrals (Spin case AAAA) were written to HF2AA.
+     2640591 MO integrals (Spin case BBBB) were written to HF2BB.
+     5281182 MO integrals (Spin case AABB) were written to HF2AB.
+  Transformation of IJIJ integrals :
+  2 passes through the AO integral file were required.
+     4119775 AO integrals were read.
+     4892091 MO integrals (Spin case AAAA) were written to HF2AA.
+     4892091 MO integrals (Spin case BBBB) were written to HF2BB.
+     9768945 MO integrals (Spin case AABB) were written to HF2AB.
+  Transformation of IJKL integrals :
+  2 passes through the AO integral file were required.
+    10122549 AO integrals were read.
+    11732448 MO integrals (Spin case AAAA) were written to HF2AA.
+    11732448 MO integrals (Spin case BBBB) were written to HF2BB.
+    23464896 MO integrals (Spin case AABB) were written to HF2AB.
+  Summary of active molecular orbitals: 
+------------------------------------------------------------------------
+                         * Spin case alpha *
+ 
+  Index      Eigenvalue    Symmetry    Index      Eigenvalue    Symmetry
+------------------------------------------------------------------------
+     1        -2.6628895        1        95         1.3003329        4
+     2        -2.0438903        2        96         1.5532788        4
+     3        -2.0438903        3        97         4.3619799        4
+     4        -0.4342436        1        98         4.3907131        4
+     5        -0.1959639        1        99         4.7605799        4
+     6        -0.1925798        1       100         8.2645615        4
+     7        -0.0608541        1       101         8.2806696        4
+     8         0.2825378        1       102         8.3076385        4
+     9         0.2868522        1       103        11.6225911        4
+    10         1.1131106        1       104        11.6734308        4
+    11         1.2842468        1       105        12.7811699        4
+    12         1.2882487        1       106        21.3326666        4
+    13         1.3003329        1       107        21.3627513        4
+    14         1.5532788        1       108        21.4130731        4
+    15         1.5689562        1       109        29.9041110        4
+    16         4.3523829        1       110        29.9721050        4
+    17         4.3619799        1       111        32.9114321        4
+    18         4.3907131        1       112        -1.2237789        5
+    19         4.7605799        1       113        -0.3264398        5
+    20         4.7631735        1       114        -0.1339598        5
+    21         5.0334274        1       115         0.2014354        5
+    22         8.2592043        1       116         0.2050414        5
+    23         8.2645615        1       117         0.3667689        5
+    24         8.2806696        1       118         1.4052623        5
+    25         8.3076385        1       119         1.4135807        5
+    26        11.6056084        1       120         1.9697985        5
+    27        11.6225911        1       121         3.5074134        5
+    28        11.6734308        1       122         3.5118672        5
+    29        12.7504402        1       123         3.5252778        5
+    30        12.7811699        1       124         4.2354559        5
+    31        18.2000866        1       125         4.2491907        5
+    32        21.3226563        1       126         6.3397957        5
+    33        21.3326666        1       127         9.5724545        5
+    34        21.3627513        1       128         9.5819675        5
+    35        21.4130731        1       129         9.6105978        5
+    36        29.8814773        1       130        10.8344488        5
+    37        29.9041110        1       131        10.8576130        5
+    38        29.9721050        1       132        20.8444715        5
+    39        32.8598778        1       133        25.2894783        5
+    40        32.9114321        1       134        25.3050194        5
+    41        97.8203178        1       135        25.3517139        5
+    42        -0.3364145        2       136        26.8506276        5
+    43        -0.1416305        2       137        26.8818092        5
+    44         0.2023356        2       138        -0.1951762        6
+    45         0.2095736        2       139         0.2856438        6
+    46         0.3406511        2       140         1.2852454        6
+    47         1.4073429        2       141         1.2932731        6
+    48         1.4239844        2       142         1.5646718        6
+    49         1.9375600        2       143         4.3547817        6
+    50         3.5085261        2       144         4.3739726        6
+    51         3.5174460        2       145         4.7629868        6
+    52         3.5353847        2       146         8.2605430        6
+    53         4.2388903        2       147         8.2712666        6
+    54         4.2663598        2       148         8.2927867        6
+    55         6.3355083        2       149        11.6098555        6
+    56         9.5748313        2       150        11.6437958        6
+    57         9.5938800        2       151        12.7580240        6
+    58         9.6321610        2       152        21.3251580        6
+    59        10.8402366        2       153        21.3451920        6
+    60        10.8866220        2       154        21.3853680        6
+    61        20.8652774        2       155        29.8871342        6
+    62        25.2933625        2       156        29.9324250        6
+    63        25.3244624        2       157        32.8726921        6
+    64        25.3868063        2       158        -0.1951762        7
+    65        26.8584161        2       159         0.2856438        7
+    66        26.9208917        2       160         1.2852454        7
+    67        -0.3364145        3       161         1.2932731        7
+    68        -0.1416305        3       162         1.5646718        7
+    69         0.2023356        3       163         4.3547817        7
+    70         0.2095736        3       164         4.3739726        7
+    71         0.3406511        3       165         4.7629868        7
+    72         1.4073429        3       166         8.2605430        7
+    73         1.4239844        3       167         8.2712666        7
+    74         1.9375600        3       168         8.2927867        7
+    75         3.5085261        3       169        11.6098555        7
+    76         3.5174460        3       170        11.6437958        7
+    77         3.5353847        3       171        12.7580240        7
+    78         4.2388903        3       172        21.3251580        7
+    79         4.2663598        3       173        21.3451920        7
+    80         6.3355083        3       174        21.3853680        7
+    81         9.5748313        3       175        29.8871342        7
+    82         9.5938800        3       176        29.9324250        7
+    83         9.6321610        3       177        32.8726921        7
+    84        10.8402366        3       178         0.2050414        8
+    85        10.8866220        3       179         1.4135807        8
+    86        20.8652774        3       180         3.5118672        8
+    87        25.2933625        3       181         3.5252778        8
+    88        25.3244624        3       182         4.2491907        8
+    89        25.3868063        3       183         9.5819675        8
+    90        26.8584161        3       184         9.6105978        8
+    91        26.9208917        3       185        10.8576130        8
+    92        -0.1925798        4       186        25.3050194        8
+    93         0.2825378        4       187        25.3517139        8
+    94         1.2882487        4       188        26.8818092        8
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+                         * Spin case beta *
+ 
+  Index      Eigenvalue    Symmetry    Index      Eigenvalue    Symmetry
+------------------------------------------------------------------------
+     1        -2.2961012        1        95         1.3043447        4
+     2        -0.4205409        1        96         1.6745794        4
+     3        -0.1909505        1        97         4.3801180        4
+     4        -0.1808144        1        98         4.4193900        4
+     5        -0.0434104        1        99         4.9175311        4
+     6         0.3084459        1       100         8.2725242        4
+     7         0.3346554        1       101         8.2908610        4
+     8         1.1637339        1       102         8.3215905        4
+     9         1.2863552        1       103        11.6655473        4
+    10         1.2908134        1       104        11.7416726        4
+    11         1.3043447        1       105        12.9188507        4
+    12         1.6203745        1       106        21.3546129        4
+    13         1.6745794        1       107        21.3908818        4
+    14         4.3671556        1       108        21.4516187        4
+    15         4.3801180        1       109        29.9550931        4
+    16         4.4193900        1       110        30.0530027        4
+    17         4.8333225        1       111        33.0008873        4
+    18         4.9175311        1       112        -1.1297361        5
+    19         5.1129288        1       113        -0.3210538        5
+    20         8.2664284        1       114        -0.1297155        5
+    21         8.2725242        1       115         0.2026141        5
+    22         8.2908610        1       116         0.2067602        5
+    23         8.3215905        1       117         0.3810255        5
+    24        11.6403067        1       118         1.4164468        5
+    25        11.6655473        1       119         1.4300433        5
+    26        11.7416726        1       120         1.9971583        5
+    27        12.8139430        1       121         3.5111727        5
+    28        12.9188507        1       122         3.5161891        5
+    29        18.2691707        1       123         3.5312966        5
+    30        21.3425518        1       124         4.2699615        5
+    31        21.3546129        1       125         4.2997725        5
+    32        21.3908818        1       126         6.3762536        5
+    33        21.4516187        1       127         9.5888718        5
+    34        29.9225819        1       128         9.6008348        5
+    35        29.9550931        1       129         9.6368789        5
+    36        30.0530027        1       130        10.8864782        5
+    37        32.9021614        1       131        10.9332783        5
+    38        33.0008873        1       132        20.8730218        5
+    39        97.8449815        1       133        25.3210594        5
+    40        -1.0368017        2       134        25.3414113        5
+    41        -0.3097484        2       135        25.4025778        5
+    42        -0.1206073        2       136        26.8993584        5
+    43         0.2036535        2       137        26.9522924        5
+    44         0.2119524        2       138        -0.1883729        6
+    45         0.4093601        2       139         0.3150853        6
+    46         1.4198588        2       140         1.2874675        6
+    47         1.4470169        2       141         1.2964212        6
+    48         2.0539670        2       142         1.6339787        6
+    49         3.5124259        2       143         4.3703913        6
+    50         3.5224732        2       144         4.3964041        6
+    51         3.5426864        2       145         4.8541797        6
+    52         4.2774070        2       146         8.2679516        6
+    53         4.3372515        2       147         8.2801554        6
+    54         6.4633720        2       148         8.3046630        6
+    55         9.5918602        2       149        11.6466119        6
+    56         9.6158247        2       150        11.6971833        6
+    57         9.6640685        2       151        12.8397366        6
+    58        10.8981508        2       152        21.3455658        6
+    59        10.9922313        2       153        21.3697093        6
+    60        20.9574827        2       154        21.4181684        6
+    61        25.3261457        2       155        29.9307040        6
+    62        25.3668766        2       156        29.9958186        6
+    63        25.4485701        2       157        32.9266099        6
+    64        26.9125684        2       158        -0.1883729        7
+    65        27.0188314        2       159         0.3150853        7
+    66        -1.0368017        3       160         1.2874675        7
+    67        -0.3097484        3       161         1.2964212        7
+    68        -0.1206073        3       162         1.6339787        7
+    69         0.2036535        3       163         4.3703913        7
+    70         0.2119524        3       164         4.3964041        7
+    71         0.4093601        3       165         4.8541797        7
+    72         1.4198588        3       166         8.2679516        7
+    73         1.4470169        3       167         8.2801554        7
+    74         2.0539670        3       168         8.3046630        7
+    75         3.5124259        3       169        11.6466119        7
+    76         3.5224732        3       170        11.6971833        7
+    77         3.5426864        3       171        12.8397366        7
+    78         4.2774070        3       172        21.3455658        7
+    79         4.3372515        3       173        21.3697093        7
+    80         6.4633720        3       174        21.4181684        7
+    81         9.5918602        3       175        29.9307040        7
+    82         9.6158247        3       176        29.9958186        7
+    83         9.6640685        3       177        32.9266099        7
+    84        10.8981508        3       178         0.2067602        8
+    85        10.9922313        3       179         1.4300433        8
+    86        20.9574827        3       180         3.5161891        8
+    87        25.3261457        3       181         3.5312966        8
+    88        25.3668766        3       182         4.2997725        8
+    89        25.4485701        3       183         9.6008348        8
+    90        26.9125684        3       184         9.6368789        8
+    91        27.0188314        3       185        10.9332783        8
+    92        -0.1808144        4       186        25.3414113        8
+    93         0.3346554        4       187        25.4025778        8
+    94         1.2908134        4       188        26.9522924        8
+------------------------------------------------------------------------
+  -2.66288949145169       -2.04389032922527       -2.04389032922528     
+ -0.434243554252558      -0.195963856633508      -0.192579774093240     
+ -6.085411054547889E-002  0.282537809708596       0.286852247860534     
+   1.11311055719375        1.28424679654107        1.28824868641388     
+   1.30033293588197        1.55327883586824        1.56895624718871     
+   4.35238286817810        4.36197987436883        4.39071306082430     
+   4.76057988164368        4.76317351112629        5.03342738809267     
+   8.25920425085157        8.26456153729670        8.28066964767834     
+   8.30763849348259        11.6056084286848        11.6225910560425     
+   11.6734308170522        12.7504402219386        12.7811699255407     
+   18.2000865672452        21.3226563011573        21.3326665716008     
+   21.3627512547190        21.4130731398423        29.8814772660915     
+   29.9041110233571        29.9721050311238        32.8598777719090     
+   32.9114320675090        97.8203177577039      -0.336414466459261     
+ -0.141630468965313       0.202335604683849       0.209573615238579     
+  0.340651089413367        1.40734291112508        1.42398435496623     
+   1.93755998716555        3.50852607244055        3.51744597401257     
+   3.53538468848023        4.23889031221261        4.26635984196542     
+   6.33550829172086        9.57483132491745        9.59388003738571     
+   9.63216104567361        10.8402365557133        10.8866219866930     
+   20.8652773982727        25.2933624750042        25.3244624287617     
+   25.3868063074478        26.8584160908791        26.9208916877368     
+ -0.336414466459268      -0.141630468965319       0.202335604683851     
+  0.209573615238586       0.340651089413340        1.40734291112507     
+   1.42398435496623        1.93755998716556        3.50852607244055     
+   3.51744597401256        3.53538468848022        4.23889031221265     
+   4.26635984196540        6.33550829172087        9.57483132491739     
+   9.59388003738566        9.63216104567367        10.8402365557133     
+   10.8866219866930        20.8652773982731        25.2933624750042     
+   25.3244624287617        25.3868063074478        26.8584160908791     
+   26.9208916877368      -0.192579774093239       0.282537809708593     
+   1.28824868641388        1.30033293588197        1.55327883586818     
+   4.36197987436885        4.39071306082432        4.76057988164361     
+   8.26456153729663        8.28066964767830        8.30763849348248     
+   11.6225910560423        11.6734308170522        12.7811699255409     
+   21.3326665716007        21.3627512547188        21.4130731398420     
+   29.9041110233567        29.9721050311238        32.9114320675090     
+  -1.22377888417957      -0.326439829928582      -0.133959801143738     
+  0.201435396645186       0.205041405994272       0.366768878217985     
+   1.40526231180543        1.41358065018508        1.96979849243693     
+   3.50741337183617        3.51186721556343        3.52527780210672     
+   4.23545587753084        4.24919071736323        6.33979567878422     
+   9.57245451711428        9.58196745092622        9.61059776951344     
+   10.8344487708623        10.8576130018892        20.8444714526533     
+   25.2894782787457        25.3050194399392        25.3517139435455     
+   26.8506275697671        26.8818091552975      -0.195176237218395     
+  0.285643780311641        1.28524544848787        1.29327305984585     
+   1.56467177177425        4.35478174003482        4.37397263586660     
+   4.76298682455356        8.26054300825660        8.27126662610593     
+   8.29278665108079        11.6098554992191        11.6437957763396     
+   12.7580239922199        21.3251580292822        21.3451920199785     
+   21.3853680367793        29.8871342453630        29.9324250229280     
+   32.8726920710231      -0.195176237218411       0.285643780311645     
+   1.28524544848787        1.29327305984585        1.56467177177425     
+   4.35478174003482        4.37397263586659        4.76298682455354     
+   8.26054300825660        8.27126662610593        8.29278665108075     
+   11.6098554992191        11.6437957763397        12.7580239922198     
+   21.3251580292823        21.3451920199785        21.3853680367794     
+   29.8871342453629        29.9324250229279        32.8726920710231     
+  0.205041405994282        1.41358065018508        3.51186721556341     
+   3.52527780210671        4.24919071736323        9.58196745092626     
+   9.61059776951343        10.8576130018892        25.3050194399392     
+   25.3517139435453        26.8818091552976     
+  -2.29610117100922      -0.420540949838432      -0.190950530218925     
+ -0.180814425820824      -4.341038320114585E-002  0.308445868373437     
+  0.334655363073701        1.16373392168044        1.28635519127965     
+   1.29081337561202        1.30434468501108        1.62037452309678     
+   1.67457942197220        4.36715556251240        4.38011798428976     
+   4.41939004710180        4.83332251026422        4.91753105587219     
+   5.11292878717437        8.26642844354976        8.27252415594468     
+   8.29086098455478        8.32159051830185        11.6403066581605     
+   11.6655472568607        11.7416726294216        12.8139430365648     
+   12.9188507298492        18.2691706944543        21.3425518312104     
+   21.3546129270581        21.3908817821978        21.4516186702327     
+   29.9225819050847        29.9550930522762        30.0530026817709     
+   32.9021614323999        33.0008873238083        97.8449815324206     
+  -1.03680167020533      -0.309748419170916      -0.120607281276398     
+  0.203653526699835       0.211952440657437       0.409360095521877     
+   1.41985880794333        1.44701686045821        2.05396699606062     
+   3.51242590092284        3.52247318620673        3.54268637082844     
+   4.27740704717955        4.33725150765431        6.46337203924082     
+   9.59186018293303        9.61582469855828        9.66406845640098     
+   10.8981508290343        10.9922312681836        20.9574826919412     
+   25.3261457226994        25.3668765801626        25.4485701184976     
+   26.9125683721822        27.0188314415693       -1.03680167020534     
+ -0.309748419170918      -0.120607281276398       0.203653526699834     
+  0.211952440657434       0.409360095521864        1.41985880794332     
+   1.44701686045821        2.05396699606067        3.51242590092283     
+   3.52247318620672        3.54268637082843        4.27740704717959     
+   4.33725150765430        6.46337203924085        9.59186018293299     
+   9.61582469855824        9.66406845640106        10.8981508290343     
+   10.9922312681835        20.9574826919413        25.3261457226995     
+   25.3668765801627        25.4485701184975        26.9125683721822     
+   27.0188314415693      -0.180814425820813       0.334655363073696     
+   1.29081337561202        1.30434468501108        1.67457942197215     
+   4.38011798428976        4.41939004710181        4.91753105587211     
+   8.27252415594459        8.29086098455473        8.32159051830172     
+   11.6655472568606        11.7416726294216        12.9188507298494     
+   21.3546129270580        21.3908817821976        21.4516186702325     
+   29.9550930522758        30.0530026817709        33.0008873238083     
+  -1.12973608852568      -0.321053846657677      -0.129715528228873     
+  0.202614114065220       0.206760157647554       0.381025483546671     
+   1.41644677779086        1.43004328667172        1.99715825849465     
+   3.51117267473544        3.51618913192150        3.53129660533096     
+   4.26996146863488        4.29977253519603        6.37625358763992     
+   9.58887180567497        9.60083484701140        9.63687891202214     
+   10.8864781798754        10.9332783458161        20.8730218054234     
+   25.3210593934711        25.3414112992304        25.4025778453567     
+   26.8993583543692        26.9522924213444      -0.188372904339572     
+  0.315085292499986        1.28746749511442        1.29642122003722     
+   1.63397868781960        4.37039134055464        4.39640407036966     
+   4.85417968282904        8.26795159997946        8.28015540931764     
+   8.30466303147631        11.6466118876600        11.6971832956864     
+   12.8397366451150        21.3455657749771        21.3697093039122     
+   21.4181683804522        29.9307040348292        29.9958185853293     
+   32.9266098639323      -0.188372904339560       0.315085292499987     
+   1.28746749511442        1.29642122003721        1.63397868781963     
+   4.37039134055466        4.39640407036965        4.85417968282905     
+   8.26795159997948        8.28015540931763        8.30466303147628     
+   11.6466118876600        11.6971832956865        12.8397366451148     
+   21.3455657749771        21.3697093039121        21.4181683804522     
+   29.9307040348291        29.9958185853291        32.9266098639323     
+  0.206760157647558        1.43004328667171        3.51618913192149     
+   3.53129660533095        4.29977253519602        9.60083484701143     
+   9.63687891202211        10.9332783458160        25.3414112992305     
+   25.4025778453565        26.9522924213444     
+ @CHECKOUT-I, Total execution time (CPU/WALL):       34.24/     238.88 seconds.
+--executable xvtran finished with status     0 in      238.93 seconds (walltime).
+ --invoking executable--
+/cvmfs/restricted.computecanada.ca/easybuild/software/2020/avx2/Compiler/intel2020/cfour/2.1/bin/xintprc
+ @GETMEM-I,  Allocated   19073 MB of main memory.
+  @GMOIAA-I, Processing MO integrals for spin case AA.
+  @GMOIAA-I, Generation of integral list completed.
+                      TYPE                NUMBER
+                      ----               --------
+                      PPPP              18583924
+                      PPPH               1205310
+                      PPHH                 20216
+                      PHPH                 13765
+                      PHHH                   500
+                      HHHH                     9
+
+                     TOTAL              19823724
+  @GMOIAA-I, Processing MO integrals for spin case BB.
+  @GMOIAA-I, Generation of integral list completed.
+                      TYPE                NUMBER
+                      ----               --------
+                      PPPP              19399663
+                      PPPH                419042
+                      PPHH                  2490
+                      PHPH                  2490
+                      PHHH                    38
+                      HHHH                     1
+
+                     TOTAL              19823724
+  @GMOIAB-I, Processing MO integrals for spin case AB.
+                      TYPE                NUMBER
+                      ----               --------
+                      PPPP              37957210
+                      PPPH1H             1231982
+                      PPPH2H              410070
+                      PPHH                 13617
+                      PHPH1P                2438
+                      PHPH2P               14088
+                      PHHH1P                  88
+                      PHHH2P                 186
+                      HHHH                     3
+
+                     TOTAL              39629682
+
+  @FORMT2-I, Second-order MP correlation energies:
+  @FORMT2-I, Singles contribution will be calculated.
+            ------------------------------------------------
+            E(SCF)                  =    -73.100227013614 a.u.
+            E2(AA)                  =     -0.015155024884 a.u.
+            E2(BB)                  =      0.000000000000 a.u.
+            E2(AB)                  =     -0.073071223385 a.u.
+            E2(SINGLE)              =     -0.004599308294 a.u.
+            E2(TOT)                 =     -0.088226248269 a.u.
+            Total MP2 energy        =    -73.193052570177 a.u.
+            ------------------------------------------------
+            ----------------------------------------------
+                     Projected spin multiplicities: 
+            ----------------------------------------------
+             <0|S^2|0>                  =    2.0000000000.
+             <0|S^2 T2|0>               =    0.0000000000.
+             Projected <0|S^2 exp(T)|0> =    2.0000000000.
+             Approximate spin mult.     =    3.0000000000.
+            ----------------------------------------------
+   Largest T2 amplitudes for spin case AA:
+   i   j   a   b             i   j   a   b             i   j   a   b
+-----------------------------------------------------------------------------
+[  3   2  96  14]-0.00931 [  2   1 142 112] 0.00926 [  3   1 162 112] 0.00926
+[  3   1 159 112]-0.00823 [  2   1 139 112]-0.00823 [  3   2  96   8] 0.00749
+[  3   2  93  14] 0.00749 [  3   2  93   8]-0.00700 [  3   2  74  49]-0.00692
+[  3   2  71  46]-0.00654 [  3   2  71  49]-0.00625 [  3   2  74  46]-0.00625
+[  3   2  99  14] 0.00606 [  3   2  96  19] 0.00606 [  3   2  99  19]-0.00570
+-----------------------------------------------------------------------------
+   Norm of T2AA vector (     6451 symmetry allowed elements):  0.0441487181.
+-----------------------------------------------------------------------------
+   Largest T2 amplitudes for spin case AB:
+       _       _                 _       _                 _       _
+   i   j   a   b             i   j   a   b             i   j   a   b
+-----------------------------------------------------------------------------
+[  1   1 112 112]-0.06573 [  3   1 162 112] 0.01817 [  2   1 142 112] 0.01817
+[  2   1  14  40] 0.01774 [  2   1  96  66] 0.01774 [  3   1  96  40] 0.01774
+[  3   1  14  66]-0.01774 [  3   1 159 112]-0.01568 [  2   1 139 112]-0.01568
+[  3   1   8  66] 0.01558 [  2   1   8  40]-0.01558 [  2   1  93  66]-0.01558
+[  3   1  93  40]-0.01558 [  3   1 165 112]-0.01094 [  2   1 145 112]-0.01094
+-----------------------------------------------------------------------------
+   Norm of T2AB vector (    13617 symmetry allowed elements):  0.1172899402.
+-----------------------------------------------------------------------------
+ @CHECKOUT-I, Total execution time (CPU/WALL):       16.94/      78.03 seconds.
+--executable xintprc finished with status     0 in       78.22 seconds (walltime).
+  calling xvcc 
+ --invoking executable--
+/cvmfs/restricted.computecanada.ca/easybuild/software/2020/avx2/Compiler/intel2020/cfour/2.1/bin/xvcc
+ @GETMEM-I,  Allocated   19073 MB of main memory.
+   CCSDT   energy will be calculated.
+   The reference state is a ROHF wave function.
+   The total correlation energy is -0.092882177844 a.u.
+  transposing abij 
+   The total correlation energy is -0.105947566290 a.u.
+  Convergence information after     1 iterations: 
+  Largest element of residual vector : -0.28348964E-01.
+  Largest element of DIIS residual   : -0.28348964E-01.
+  transposing abij 
+   The total correlation energy is -0.110308411469 a.u.
+  Convergence information after     2 iterations: 
+  Largest element of residual vector : -0.14687075E-01.
+  Largest element of DIIS residual   : -0.49824628E-02.
+  transposing abij 
+   The total correlation energy is -0.113283038105 a.u.
+  Convergence information after     3 iterations: 
+  Largest element of residual vector : -0.26392376E-02.
+  Largest element of DIIS residual   : -0.30873375E-03.
+  transposing abij 
+   The total correlation energy is -0.113659412255 a.u.
+  Convergence information after     4 iterations: 
+  Largest element of residual vector : -0.32165370E-03.
+  Largest element of DIIS residual   : -0.80525272E-04.
+  transposing abij 
+   The total correlation energy is -0.113709056665 a.u.
+  Convergence information after     5 iterations: 
+  Largest element of residual vector :  0.18112358E-04.
+  Largest element of DIIS residual   :  0.10811257E-04.
+  transposing abij 
+   The total correlation energy is -0.113707104904 a.u.
+  Convergence information after     6 iterations: 
+  Largest element of residual vector : -0.70315611E-05.
+  Largest element of DIIS residual   :  0.27398542E-05.
+  transposing abij 
+   The total correlation energy is -0.113709104994 a.u.
+  Convergence information after     7 iterations: 
+  Largest element of residual vector :  0.13300773E-05.
+  Largest element of DIIS residual   : -0.80233754E-06.
+  transposing abij 
+   The total correlation energy is -0.113709417247 a.u.
+  Convergence information after     8 iterations: 
+  Largest element of residual vector : -0.45913079E-06.
+  Largest element of DIIS residual   : -0.23517686E-06.
+  transposing abij 
+   The total correlation energy is -0.113709550722 a.u.
+  Convergence information after     9 iterations: 
+  Largest element of residual vector :  0.13134880E-06.
+  Largest element of DIIS residual   :  0.86343178E-07.
+  transposing abij 
+   The total correlation energy is -0.113709562197 a.u.
+  Convergence information after    10 iterations: 
+  Largest element of residual vector : -0.10192489E-06.
+  Largest element of DIIS residual   : -0.54205324E-07.
+  transposing abij 
+   The total correlation energy is -0.113709588534 a.u.
+  Convergence information after    11 iterations: 
+  Largest element of residual vector : -0.23068249E-07.
+  Largest element of DIIS residual   : -0.96734500E-08.
+  transposing abij 
+   The total correlation energy is -0.113709592642 a.u.
+  Convergence information after    12 iterations: 
+  Largest element of residual vector : -0.12023878E-07.
+  Largest element of DIIS residual   :  0.33373690E-08.
+  transposing abij 
+   The total correlation energy is -0.113709596121 a.u.
+  Convergence information after    13 iterations: 
+  Largest element of residual vector :  0.29758112E-08.
+  Largest element of DIIS residual   : -0.13715831E-08.
+  transposing abij 
+   The total correlation energy is -0.113709596373 a.u.
+  Convergence information after    14 iterations: 
+  Largest element of residual vector : -0.51599072E-08.
+  Largest element of DIIS residual   : -0.12677631E-08.
+  transposing abij 
+   The total correlation energy is -0.113709596978 a.u.
+  Convergence information after    15 iterations: 
+  Largest element of residual vector : -0.49323885E-08.
+  Largest element of DIIS residual   : -0.17602727E-08.
+  transposing abij 
+   The total correlation energy is -0.113709595995 a.u.
+  Convergence information after    16 iterations: 
+  Largest element of residual vector : -0.22042297E-07.
+  Largest element of DIIS residual   :  0.32229358E-09.
+  transposing abij 
+   The total correlation energy is -0.113709597291 a.u.
+  Convergence information after    17 iterations: 
+  Largest element of residual vector : -0.45047566E-08.
+  Largest element of DIIS residual   :  0.14546158E-09.
+  transposing abij 
+   The total correlation energy is -0.113709597487 a.u.
+  Convergence information after    18 iterations: 
+  Largest element of residual vector : -0.22687303E-08.
+  Largest element of DIIS residual   :  0.28475847E-10.
+  transposing abij 
+   The total correlation energy is -0.113709597614 a.u.
+  Convergence information after    19 iterations: 
+  Largest element of residual vector : -0.59249007E-09.
+  Largest element of DIIS residual   :  0.19448309E-10.
+  transposing abij 
+   The total correlation energy is -0.113709597657 a.u.
+  Convergence information after    20 iterations: 
+  Largest element of residual vector : -0.14443896E-09.
+  Largest element of DIIS residual   :  0.18415408E-10.
+  transposing abij 
+   The total correlation energy is -0.113709597662 a.u.
+  Convergence information after    21 iterations: 
+  Largest element of residual vector : -0.16578326E-09.
+  Largest element of DIIS residual   :  0.11695803E-10.
+  transposing abij 
+   The total correlation energy is -0.113709597657 a.u.
+  Convergence information after    22 iterations: 
+  Largest element of residual vector : -0.37986805E-09.
+  Largest element of DIIS residual   :  0.12261566E-10.
+  transposing abij 
+   The total correlation energy is -0.113709597667 a.u.
+  Convergence information after    23 iterations: 
+  Largest element of residual vector : -0.14080774E-09.
+  Largest element of DIIS residual   :  0.37139852E-11.
+  transposing abij 
+   The total correlation energy is -0.113709597673 a.u.
+  Convergence information after    24 iterations: 
+  Largest element of residual vector :  0.10157150E-10.
+  Largest element of DIIS residual   :  0.83398181E-12.
+  Amplitude equations converged in    24iterations.
+   The total correlation energy is -0.113709597674 a.u.
+   The CC iterations have converged.
+
+            ----------------------------------------------
+                     Projected spin multiplicities: 
+            ----------------------------------------------
+             <0|S^2|0>                  =    2.0000000000.
+             <0|S^2 (T2+T1**2) |0>      =    0.0000000000.
+             <0|S^2 T1|0>               =    0.0000000000.
+             Projected <0|S^2 exp(T)|0> =    2.0000000000.
+             Approximate spin mult.     =    3.0000000000.
+            ----------------------------------------------
+   Largest T1 amplitudes for spin case AA:
+   i       a                 i       a                 i       a    
+-----------------------------------------------------------------------------
+[  1       4    ] 0.01339 [  1       7    ]-0.01190 [  1      10    ] 0.01160
+[  1      15    ]-0.00939 [  1       9    ] 0.00799 [  1      20    ] 0.00599
+[  1       5    ]-0.00433 [  1      21    ]-0.00291 [  1      29    ]-0.00144
+[  2      49    ] 0.00070 [  3      74    ] 0.00070 [  3      71    ] 0.00066
+[  2      46    ] 0.00066 [  2      43    ] 0.00024 [  3      68    ] 0.00024
+-----------------------------------------------------------------------------
+   Norm of T1AA vector (       88 symmetry allowed elements):  0.0259756630.
+-----------------------------------------------------------------------------
+   Largest T2 amplitudes for spin case AA:
+   i   j   a   b             i   j   a   b             i   j   a   b
+-----------------------------------------------------------------------------
+[  3   2  96  14]-0.00990 [  3   1 162 112] 0.00912 [  2   1 142 112] 0.00912
+[  2   1 139 112]-0.00861 [  3   1 159 112]-0.00861 [  3   2  74  49]-0.00813
+[  3   2  71  46]-0.00796 [  3   2  96   8] 0.00795 [  3   2  93  14] 0.00795
+[  3   2  74  46]-0.00754 [  3   2  71  49]-0.00754 [  3   2  93   8]-0.00736
+[  3   2  99  14] 0.00641 [  3   2  96  19] 0.00641 [  3   2  99  19]-0.00595
+-----------------------------------------------------------------------------
+   Norm of T2AA vector (     6451 symmetry allowed elements):  0.0484040910.
+-----------------------------------------------------------------------------
+   Largest T1 amplitudes for spin case BB:
+   i       a                 i       a                 i       a    
+-----------------------------------------------------------------------------
+[  1      12    ] 0.01842 [  1       6    ]-0.01683 [  1      17    ]-0.01019
+[  1       2    ]-0.00960 [  1       3    ] 0.00933 [  1       5    ] 0.00827
+[  1       8    ]-0.00674 [  1      27    ] 0.00240 [  1      19    ] 0.00148
+[  1      14    ] 0.00034 [  1      29    ] 0.00032 [  1       9    ] 0.00020
+[  1      24    ] 0.00018 [  1      37    ]-0.00015 [  1      39    ]-0.00003
+-----------------------------------------------------------------------------
+   Norm of T1BB vector (       38 symmetry allowed elements):  0.0320602357.
+-----------------------------------------------------------------------------
+   Largest T2 amplitudes for spin case AB:
+       _       _                 _       _                 _       _
+   i   j   a   b             i   j   a   b             i   j   a   b
+-----------------------------------------------------------------------------
+[  1   1 112 112]-0.12512 [  3   1 162 112] 0.02303 [  2   1 142 112] 0.02303
+[  2   1  96  66] 0.02223 [  2   1  14  40] 0.02223 [  3   1  96  40] 0.02223
+[  3   1  14  66]-0.02223 [  2   1 139 112]-0.02138 [  3   1 159 112]-0.02138
+[  3   1   8  66] 0.02105 [  2   1   8  40]-0.02105 [  2   1  93  66]-0.02105
+[  3   1  93  40]-0.02105 [  1   1 112 113]-0.01657 [  1   1 112 117]-0.01538
+-----------------------------------------------------------------------------
+   Norm of T2AB vector (    13617 symmetry allowed elements):  0.1760967381.
+-----------------------------------------------------------------------------
+       Summary of iterative solution of CC equations 
+      -----------------------------------------------------------
+                       Correlation           Total
+       Iteration         Energy              Energy
+      -----------------------------------------------------------
+            0        -0.092882177844     -73.193109191458  DIIS 
+            1        -0.105947566290     -73.206174579905  DIIS 
+            2        -0.110308411469     -73.210535425083  DIIS 
+            3        -0.113283038105     -73.213510051720  DIIS 
+            4        -0.113659412255     -73.213886425869  DIIS 
+            5        -0.113709056665     -73.213936070279  DIIS 
+            6        -0.113707104904     -73.213934118518  DIIS 
+            7        -0.113709104994     -73.213936118608  DIIS 
+            8        -0.113709417247     -73.213936430861  DIIS 
+            9        -0.113709550722     -73.213936564336  DIIS 
+           10        -0.113709562197     -73.213936575811  DIIS 
+           11        -0.113709588534     -73.213936602148  DIIS 
+           12        -0.113709592642     -73.213936606256  DIIS 
+           13        -0.113709596121     -73.213936609736  DIIS 
+           14        -0.113709596373     -73.213936609987  DIIS 
+           15        -0.113709596978     -73.213936610592  DIIS 
+           16        -0.113709595995     -73.213936609609  DIIS 
+           17        -0.113709597291     -73.213936610905  DIIS 
+           18        -0.113709597487     -73.213936611101  DIIS 
+           19        -0.113709597614     -73.213936611228  DIIS 
+           20        -0.113709597657     -73.213936611271  DIIS 
+           21        -0.113709597662     -73.213936611277  DIIS 
+           22        -0.113709597657     -73.213936611271  DIIS 
+           23        -0.113709597667     -73.213936611281  DIIS 
+           24        -0.113709597674     -73.213936611288  DIIS 
+      -----------------------------------------------------------
+      A miracle has come to pass. The CC iterations have converged.
+      The reference energy is       -73.10022701361417 a.u.
+      The correlation energy is      -0.11370959767403 a.u.
+      The total energy is           -73.21393661128820 a.u.
+ @CHECKOUT-I, Total execution time (CPU/WALL):     1683.18/     760.60 seconds.
+--executable xvcc finished with status     0 in      760.66 seconds (walltime).
+  The final electronic energy is       -73.213936611288204 a.u. 
+  This computation required                         1151.19 seconds (walltime).
+Program finished with exit code 0 at: Tue Mar 26 09:55:48 EDT 2024
+
