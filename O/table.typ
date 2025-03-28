@@ -11,11 +11,11 @@
   table.hline(stroke: 1pt),
   table.header(
   [#box(height: 2em, [])],
-  [#box(height: 2em, [aug-cc-pV2Z])],
-  [#box(height: 2em, [aug-cc-pV3Z])],
-  [#box(height: 2em, [aug-cc-pV4Z])],
-  [#box(height: 2em, [aug-cc-pV5Z])],
-  [#box(height: 2em, [aug-cc-pV6Z])],
+  [#box(height: 2em, [aug-cc-pCV2Z])],
+  [#box(height: 2em, [aug-cc-pCV3Z])],
+  [#box(height: 2em, [aug-cc-pCV4Z])],
+  [#box(height: 2em, [aug-cc-pCV5Z])],
+  [#box(height: 2em, [aug-cc-pCV6Z])],
 ),
   table.hline(stroke: 1pt),
   pad(top: 1em, [UHF]), pad(top: 1em, [*-74.796 718 39*]), pad(top: 1em, [*-74.813 095 62*]), pad(top: 1em, [*-74.817 689 84*]), pad(top: 1em, [*-74.818 844 59*]), pad(top: 1em, [*-74.818 949 07*]),
@@ -35,4 +35,4 @@
   table.hline(stroke: 1pt),
 )]
 
-#text(size: 1em)[Note: The results for aug-cc-pV3Z were taken from CFOUR-MRCC with cctol=10]
+#text(size: 1em)[Note: The results for aug-cc-pCV3Z were taken from CFOUR-MRCC with cctol=10]
