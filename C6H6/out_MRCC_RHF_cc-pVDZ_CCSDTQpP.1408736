@@ -1,19 +1,24 @@
+Starting run at: Thu Sep  4 14:15:17 EDT 2025
  **********************************************************************
                           MRCC program system
  **********************************************************************
  
                               Written by
-    Mihaly Kallay, Zoltan Rolik, Jozsef Csontos, Istvan Ladjanszki,
-       Lorant Szegedy, Bence Ladoczki, Gyula Samu, Klara Petrov,
-        Mate Farkas, Peter Nagy, David Mester, and Bence Hegely
+     Mihaly Kallay, Peter R. Nagy, David Mester, Laszlo Gyevi-Nagy,
+        Jozsef Csoka, P. Bernat Szabo, Zoltan Rolik, Gyula Samu,
+     Jozsef Csontos, Bence Hegely, Adam Ganyecz, Istvan Ladjanszki,
+       Lorant Szegedy, Bence Ladoczki, Klara Petrov, Mate Farkas,
+                    Pal D. Mezei, and Reka A. Horvath
  
         Department of Physical Chemistry and Materials Science
             Budapest University of Technology and Economics
                   Budapest P.O.Box 91, H-1521 Hungary
  
                               www.mrcc.hu
+ 
+                     Release date: August 28, 2023
 
- ************************ 2017-11-27 16:20:13 *************************
+ ************************ 2025-09-04 14:15:17 *************************
  Executing minp...
 
  Reading input from MINP...
@@ -28,7 +33,8 @@ itol=18
 scftol=14
 cctol=7
 calc=CC(4)(5)
-mem=490GB
+#mem=5920GB
+mem=745GB
 core=frozen
 ccmaxit=999
 scfmaxit=9999
@@ -38,7 +44,7 @@ scfiguess=ao
 rohftype=standard
 mult=1
 charge=+0
-rest=1
+#rest=1
 
 # in Angstroms, Herzberg 1966
 unit=angs
@@ -69,8 +75,15 @@ D2=0
  
  active=none
  agrid=ld0006-ld0590
+ agrid_pssp=ld0006-ld0194
+ agrid_pssp_sm=ld0006-ld0074
  basis=vdz-emsl
+ basis_sm=none
  basopt=off
+ bfbasis=none
+ bfgsmem=10
+ bfgstol=1.0d-3
+ boysalg=jacobi
  bpcompo=0.985
  bpcompv=0.98
  bpdfo=0.985
@@ -82,115 +95,209 @@ D2=0
  calc=cc(4)(5)
  ccmaxit=999
  ccprog=mrcc
+ ccsdalg=disk
+ ccsdmkl=seq
+ ccsdrest=off
+ ccsdthreads=2
  cctol=7
  charge=+0
  cialg=disk
  ciguess=off
  cmpgrp=auto
+ comprest=off
+ coord_sys=ric
  core=frozen
  corembed=off
+ csapprox=off
+ cvs=off
  dboc=off
+ delocsomofact=
  dendec=cholesky
  dens=0
- dfalg=invsqrt
+ denscorr=0
+ dfalg=lineq
+ dfbasis_cab=none
  dfbasis_cor=none
  dfbasis_scf=none
+ dfbasis_scf_sm=none
  dfintran=ovirt
  dft=off
+ dhexc=adc(2)
  diag=david
+ docc=
  domrad=10.d0
  drpaalg=fit
+ dual=off
+ dual_df=off
  ecp=auto
  edisp=off
+ edisp_embed=off
  embed=off
+ epairestfact=off
+ epairscale=1.d0
+ etemp=300
  epert=none
- eps=0.975
+ eps=
+ espcharge=off
  excrad=0.d0
  excrad_fin=0.000000000D+00
+ fitting=coulomb
+ fmm=off
+ fmmord=8
+ fnonorb=
  freq=off
+ gamma=1.d0
  gauss=spher
  geom=zmat
  gopt=off
  ghost=none
  gtol=7
+ grdens=off
+ grid=auto
+ grid_sm=auto
+ gridbatch_cos=2000
  grtol=10
+ guido_ct=off
  hamilton=dc
  iface=cfour
  intalg=auto
+ ip_ea=off
  itol=18
- lcorthr=loose
+ laptol=1.d-2
+ lccoporder=trffirst
+ lcorthr=normal
  lccrest=off
+ ldfgrad_tol=8
  lmp2dens=on
- lnoepso=3e-5
+ lnoepso=0.d0
  lnoepsv=1e-6
  localcc=off
+ localcorrsymm=off
  locintrf=disk
+ mact=
  maxact=off
+ maxdim=200
  maxex=0
- bfbasis=none
- mem=490gb
+ maxmicroit=100
+ mcscfiguess=hf
+ mem=745gb
+ mmprog=
  molden=on
+ mpitasks=1
  mulmet=0
  mult=1
+ nab=off
  nacto=0
  nactv=0
+ naf_amp=3.16d-3
  naf_cor=off
+ naf_f12=off
  naf_scf=off
  nafalg=albe
+ nafdens=off
  naftyp=
  nchol=auto
  ndeps=1e-3
  nstate=1
  nsing=0
+ nto=off
  ntrip=0
+ num_grad=off
  occ=
+ occri=off
+ oniom=off
+ oniom_eechg=off
+ oniom_pcm=off
+ oniom_qcorr=off
  optalg=
  optmaxit=50
  optetol=1e-6
+ optex=0
  optgtol=1e-4
  optstol=1e-3
  orblocc=off
+ orbloce=off
  orbloco=off
  orblocv=off
+ orblocguess=cholesky
  osveps=1e-3
  ovirt=off
+ ovltol=1e-7
  ovosnorb=80.0
- ptfreq=0.0
+ pao_subsys_tol=1e-3
+ pcm=off
  popul=off
  pressure=100000
+ pssp=off
+ ptfreq=0.0
+ ptthreads=2
+ qmreg=
  qmmm=off
+ qro=off
+ qscf=off
+ redcost_exc=off
+ redcost_tddft=off
  refdet=none
- rest=1
+ rest=0
  rgrid=log3
+ rism=off
+ rohfcore=semicanonical
  rohftype=standard
- scspe=1.d0
- scsps=1.2d0
- scspt=0.33333333333333
  scfalg=auto
- scfdamp=off
+ scf_conv=auto
+ scfdamp=0.0d0
+ scfdamp_mode=off
+ scfdamp_end=9999
+ scfdamp_dampstep=0.d0
+ scfdamp_dtol=0.0d0
+ scfdamp_maxfact=0.0d0
+ scfdamp_minfact=0.0d0
  scfdiis=on
+ scfdiis_dtol=0.0d0
  scfdiis_end=9999
- scfdiis_start=1
+ scfdiis_start=2
  scfdiis_step=1
- scfdtol=18
+ scfdiis_watch=off
+ scfdiis_wrange=10
+ scfdiis_wlimit=5
+ scfdiis_delmax=2
+ scfdtol=15
  scfext=10
+ scfguessdens=
  scfiguess=ao
- scflshift=off
+ scfloc=off
+ scflshift=0.20
+ scflshift_end=8
+ scflshift_dtol=0.0
+ scflshift_gaptol=0.20
  scfmaxit=9999
  scftype=rhf
  scftol=14
+ scspe=1.d0
+ scsph=1.d0
+ scsps=1.2d0
+ scsps_t=1.2d0
+ scspt=0.33333333333333
+ scspt_t=0.33333333333333
+ scspv=1.d0
  spairtol=1e-4
+ sqmprog=
+ subminp=top
  symm=
  talg=occ
  temp=298.15
  test=off
+ theodore=off
+ tlmo=0.999
+ tpao=0.94
  tprint=off
  uncontract=off
  unit=angs
+ usedisk=2
  verbosity=2
  wpairtol=0.100000000E-05
 
- ************************ 2017-11-27 16:20:19 *************************
+ ************************ 2025-09-04 14:15:23 *************************
  Executing goldstone...
 
  Generation of CC equations in terms of H and T...
@@ -209,7 +316,7 @@ D2=0
  Number of intermediates to be stored:                     51
  Length of intermediate file (Mbytes): 1053413.2
 
- ************************ 2017-11-27 16:20:23 *************************
+ ************************ 2025-09-04 14:15:32 *************************
  Executing xmrcc...
 
  **********************************************************************
@@ -246,12 +353,12 @@ D2=0
  
  Memory requirements /Mbyte/: 
                Minimal        Optimal
- Real*8:   10536277.5857  10536277.5857
+ Real*8:    6943356.1574   6943356.1574
  Integer:      1125.1707
- Total:    10537402.7564  10537402.7564
+ Total:     6944481.3281   6944481.3281
  
 
- ************************ 2017-11-27 16:24:05 *************************
+ ************************ 2025-09-04 14:16:12 *************************
  Executing goldstone...
 
  Generation of CC equations in terms of H and T...
@@ -270,7 +377,7 @@ D2=0
  Number of intermediates to be stored:                     51
  Length of intermediate file (Mbytes): 1053413.2
 
- ************************ 2017-11-27 16:24:09 *************************
+ ************************ 2025-09-04 14:16:16 *************************
  Executing xmrcc...
 
  **********************************************************************
@@ -307,12 +414,12 @@ D2=0
  
  Memory requirements /Mbyte/: 
                Minimal        Optimal
- Real*8:   10253213.2441  10253213.2441
+ Real*8:    6660291.8158   6660291.8158
  Integer:      1125.1707
- Total:    10254338.4148  10254338.4148
+ Total:     6661416.9865   6661416.9865
  
 
- ************************ 2017-11-27 16:28:12 *************************
+ ************************ 2025-09-04 14:16:58 *************************
  Executing goldstone...
 
  Generation of MRCC equations in terms of H and T...
@@ -336,7 +443,7 @@ D2=0
  Number of intermediates to be stored:                    433
  Length of intermediate file (Mbytes): 5877720.8
 
- ************************ 2017-11-27 16:28:37 *************************
+ ************************ 2025-09-04 14:17:34 *************************
  Executing xmrcc...
 
  **********************************************************************
@@ -425,12 +532,12 @@ D2=0
  
  Memory requirements /Mbyte/: 
                Minimal        Optimal
- Real*8:   10109597.9925  10109597.9925
+ Real*8:    6516676.5642   6516676.5642
  Integer:     32778.3489
- Total:    10142376.3414  10142376.3414
+ Total:     6549454.9131   6549454.9131
  
 
- ************************ 2017-11-27 16:56:45 *************************
+ ************************ 2025-09-04 14:32:49 *************************
  Executing goldstone...
 
  Generation of MRCC equations in terms of H and T...
@@ -454,7 +561,7 @@ D2=0
  Number of intermediates to be stored:                    433
  Length of intermediate file (Mbytes): 5877665.2
 
- ************************ 2017-11-27 16:57:09 *************************
+ ************************ 2025-09-04 14:33:26 *************************
  Executing xmrcc...
 
  **********************************************************************
@@ -543,12 +650,12 @@ D2=0
  
  Memory requirements /Mbyte/: 
                Minimal        Optimal
- Real*8:   10109597.9337  10109597.9337
+ Real*8:    6516676.5054   6516676.5054
  Integer:     32676.7636
- Total:    10142274.6973  10142274.6973
+ Total:     6549353.2690   6549353.2690
  
 
- ************************ 2017-11-27 17:25:40 *************************
+ ************************ 2025-09-04 14:48:37 *************************
  Executing goldstone...
 
  Generation of MRCC equations in terms of H and T...
@@ -572,7 +679,7 @@ D2=0
  Number of intermediates to be stored:                    427
  Length of intermediate file (Mbytes): 4509963.0
 
- ************************ 2017-11-27 17:26:10 *************************
+ ************************ 2025-09-04 14:48:50 *************************
  Executing xmrcc...
 
  **********************************************************************
@@ -661,12 +768,12 @@ D2=0
  
  Memory requirements /Mbyte/: 
                Minimal        Optimal
- Real*8:   10109507.0357  10109507.0357
+ Real*8:    6516585.6073   6516585.6073
  Integer:     32565.7865
- Total:    10142072.8222  10142072.8222
+ Total:     6549151.3939   6549151.3939
  
 
- ************************ 2017-11-27 17:54:25 *************************
+ ************************ 2025-09-04 15:04:03 *************************
  Executing goldstone...
 
  Generation of MRCC equations in terms of H and T...
@@ -690,7 +797,7 @@ D2=0
  Number of intermediates to be stored:                    426
  Length of intermediate file (Mbytes): 4529035.3
 
- ************************ 2017-11-27 17:54:51 *************************
+ ************************ 2025-09-04 15:04:39 *************************
  Executing xmrcc...
 
  **********************************************************************
@@ -779,12 +886,12 @@ D2=0
  
  Memory requirements /Mbyte/: 
                Minimal        Optimal
- Real*8:   10109325.4863  10109325.4863
+ Real*8:    6516404.0580   6516404.0580
  Integer:     32444.7720
- Total:    10141770.2584  10141770.2584
+ Total:     6548848.8300   6548848.8300
  
 
- ************************ 2017-11-27 18:21:42 *************************
+ ************************ 2025-09-04 15:20:03 *************************
  Executing goldstone...
 
  Generation of MRCC equations in terms of H and T...
@@ -808,7 +915,7 @@ D2=0
  Number of intermediates to be stored:                    426
  Length of intermediate file (Mbytes): 4546073.8
 
- ************************ 2017-11-27 18:22:06 *************************
+ ************************ 2025-09-04 15:20:44 *************************
  Executing xmrcc...
 
  **********************************************************************
@@ -897,12 +1004,12 @@ D2=0
  
  Memory requirements /Mbyte/: 
                Minimal        Optimal
- Real*8:   10109052.2340  10109052.2340
+ Real*8:    6516130.8057   6516130.8057
  Integer:     32313.0545
- Total:    10141365.2885  10141365.2885
+ Total:     6548443.8602   6548443.8602
  
 
- ************************ 2017-11-27 18:48:50 *************************
+ ************************ 2025-09-04 15:35:57 *************************
  Executing goldstone...
 
  Generation of MRCC equations in terms of H and T...
@@ -926,7 +1033,7 @@ D2=0
  Number of intermediates to be stored:                    423
  Length of intermediate file (Mbytes): 4550958.8
 
- ************************ 2017-11-27 18:49:14 *************************
+ ************************ 2025-09-04 15:36:52 *************************
  Executing xmrcc...
 
  **********************************************************************
@@ -1015,12 +1122,12 @@ D2=0
  
  Memory requirements /Mbyte/: 
                Minimal        Optimal
- Real*8:   10108692.7663  10108692.7663
+ Real*8:    6515771.3379   6515771.3379
  Integer:     32169.9477
- Total:    10140862.7139  10140862.7139
+ Total:     6547941.2856   6547941.2856
  
 
- ************************ 2017-11-27 19:15:58 *************************
+ ************************ 2025-09-04 15:52:15 *************************
  Executing goldstone...
 
  Generation of MRCC equations in terms of H and T...
@@ -1044,7 +1151,7 @@ D2=0
  Number of intermediates to be stored:                    423
  Length of intermediate file (Mbytes): 4563016.2
 
- ************************ 2017-11-27 19:16:22 *************************
+ ************************ 2025-09-04 15:52:55 *************************
  Executing xmrcc...
 
  **********************************************************************
@@ -1133,12 +1240,12 @@ D2=0
  
  Memory requirements /Mbyte/: 
                Minimal        Optimal
- Real*8:   10108243.3576  10108243.3576
+ Real*8:    6515321.9293   6515321.9293
  Integer:     32014.7195
- Total:    10140258.0771  10140258.0771
+ Total:     6547336.6487   6547336.6487
  
 
- ************************ 2017-11-27 19:43:17 *************************
+ ************************ 2025-09-04 16:08:18 *************************
  Executing goldstone...
 
  Generation of MRCC equations in terms of H and T...
@@ -1162,7 +1269,7 @@ D2=0
  Number of intermediates to be stored:                    423
  Length of intermediate file (Mbytes): 4572803.6
 
- ************************ 2017-11-27 19:43:42 *************************
+ ************************ 2025-09-04 16:08:46 *************************
  Executing xmrcc...
 
  **********************************************************************
@@ -1251,12 +1358,12 @@ D2=0
  
  Memory requirements /Mbyte/: 
                Minimal        Optimal
- Real*8:   10107705.2670  10107705.2670
+ Real*8:    6514783.8386   6514783.8386
  Integer:     31846.6160
- Total:    10139551.8829  10139551.8829
+ Total:     6546630.4546   6546630.4546
  
 
- ************************ 2017-11-27 20:10:06 *************************
+ ************************ 2025-09-04 16:24:04 *************************
  Executing goldstone...
 
  Generation of MRCC equations in terms of H and T...
@@ -1280,7 +1387,7 @@ D2=0
  Number of intermediates to be stored:                    423
  Length of intermediate file (Mbytes): 4580254.7
 
- ************************ 2017-11-27 20:10:30 *************************
+ ************************ 2025-09-04 16:24:50 *************************
  Executing xmrcc...
 
  **********************************************************************
@@ -1369,12 +1476,12 @@ D2=0
  
  Memory requirements /Mbyte/: 
                Minimal        Optimal
- Real*8:   10107080.0394  10107080.0394
+ Real*8:    6514158.6110   6514158.6110
  Integer:     31664.8553
- Total:    10138744.8947  10138744.8947
+ Total:     6545823.4664   6545823.4664
  
 
- ************************ 2017-11-27 20:36:40 *************************
+ ************************ 2025-09-04 16:40:11 *************************
  Executing goldstone...
 
  Generation of MRCC equations in terms of H and T...
@@ -1398,7 +1505,7 @@ D2=0
  Number of intermediates to be stored:                    423
  Length of intermediate file (Mbytes): 4585153.4
 
- ************************ 2017-11-27 20:37:04 *************************
+ ************************ 2025-09-04 16:40:44 *************************
  Executing xmrcc...
 
  **********************************************************************
@@ -1487,12 +1594,12 @@ D2=0
  
  Memory requirements /Mbyte/: 
                Minimal        Optimal
- Real*8:   10106377.2254  10106377.2254
+ Real*8:    6513455.7970   6513455.7970
  Integer:     31468.6163
- Total:    10137845.8417  10137845.8417
+ Total:     6544924.4134   6544924.4134
  
 
- ************************ 2017-11-27 21:03:11 *************************
+ ************************ 2025-09-04 16:55:56 *************************
  Executing goldstone...
 
  Generation of MRCC equations in terms of H and T...
@@ -1516,7 +1623,7 @@ D2=0
  Number of intermediates to be stored:                    423
  Length of intermediate file (Mbytes): 4551252.8
 
- ************************ 2017-11-27 21:03:34 *************************
+ ************************ 2025-09-04 16:56:27 *************************
  Executing xmrcc...
 
  **********************************************************************
@@ -1605,12 +1712,12 @@ D2=0
  
  Memory requirements /Mbyte/: 
                Minimal        Optimal
- Real*8:   10105586.4756  10105586.4756
+ Real*8:    6512665.0473   6512665.0473
  Integer:     31257.0568
- Total:    10136843.5324  10136843.5324
+ Total:     6543922.1041   6543922.1041
  
 
- ************************ 2017-11-27 21:29:38 *************************
+ ************************ 2025-09-04 17:11:23 *************************
  Executing goldstone...
 
  Generation of MRCC equations in terms of H and T...
@@ -1634,7 +1741,7 @@ D2=0
  Number of intermediates to be stored:                    423
  Length of intermediate file (Mbytes): 4553486.0
 
- ************************ 2017-11-27 21:30:02 *************************
+ ************************ 2025-09-04 17:11:42 *************************
  Executing xmrcc...
 
  **********************************************************************
@@ -1723,12 +1830,12 @@ D2=0
  
  Memory requirements /Mbyte/: 
                Minimal        Optimal
- Real*8:   10104714.9217  10104714.9217
+ Real*8:    6511793.4933   6511793.4933
  Integer:     31029.2993
- Total:    10135744.2210  10135744.2210
+ Total:     6542822.7926   6542822.7926
  
 
- ************************ 2017-11-27 21:55:36 *************************
+ ************************ 2025-09-04 17:26:27 *************************
  Executing goldstone...
 
  Generation of MRCC equations in terms of H and T...
@@ -1752,7 +1859,7 @@ D2=0
  Number of intermediates to be stored:                    424
  Length of intermediate file (Mbytes): 4556518.2
 
- ************************ 2017-11-27 21:56:00 *************************
+ ************************ 2025-09-04 17:27:06 *************************
  Executing xmrcc...
 
  **********************************************************************
@@ -1841,12 +1948,12 @@ D2=0
  
  Memory requirements /Mbyte/: 
                Minimal        Optimal
- Real*8:   10103764.9274  10103764.9274
+ Real*8:    6510843.4990   6510843.4990
  Integer:     30784.4361
- Total:    10134549.3635  10134549.3635
+ Total:     6541627.9351   6541627.9351
  
 
- ************************ 2017-11-27 22:21:45 *************************
+ ************************ 2025-09-04 17:41:45 *************************
  Executing goldstone...
 
  Generation of MRCC equations in terms of H and T...
@@ -1870,7 +1977,7 @@ D2=0
  Number of intermediates to be stored:                    424
  Length of intermediate file (Mbytes): 4547170.8
 
- ************************ 2017-11-27 22:22:09 *************************
+ ************************ 2025-09-04 17:42:07 *************************
  Executing xmrcc...
 
  **********************************************************************
@@ -1959,12 +2066,12 @@ D2=0
  
  Memory requirements /Mbyte/: 
                Minimal        Optimal
- Real*8:   10102752.7567  10102752.7567
+ Real*8:    6509831.3284   6509831.3284
  Integer:     30521.4984
- Total:    10133274.2552  10133274.2552
+ Total:     6540352.8269   6540352.8269
  
 
- ************************ 2017-11-27 22:48:29 *************************
+ ************************ 2025-09-04 17:57:55 *************************
  Executing goldstone...
 
  Generation of MRCC equations in terms of H and T...
@@ -1988,7 +2095,7 @@ D2=0
  Number of intermediates to be stored:                    426
  Length of intermediate file (Mbytes): 4651435.4
 
- ************************ 2017-11-27 22:48:53 *************************
+ ************************ 2025-09-04 17:58:08 *************************
  Executing xmrcc...
 
  **********************************************************************
@@ -2077,12 +2184,12 @@ D2=0
  
  Memory requirements /Mbyte/: 
                Minimal        Optimal
- Real*8:   10101657.3292  10101657.3292
+ Real*8:    6508735.9008   6508735.9008
  Integer:     30239.5270
- Total:    10131896.8562  10131896.8562
+ Total:     6538975.4279   6538975.4279
  
 
- ************************ 2017-11-27 23:14:43 *************************
+ ************************ 2025-09-04 18:12:58 *************************
  Executing goldstone...
 
  Generation of MRCC equations in terms of H and T...
@@ -2106,7 +2213,7 @@ D2=0
  Number of intermediates to be stored:                    424
  Length of intermediate file (Mbytes): 4638091.5
 
- ************************ 2017-11-27 23:15:07 *************************
+ ************************ 2025-09-04 18:13:14 *************************
  Executing xmrcc...
 
  **********************************************************************
@@ -2195,12 +2302,12 @@ D2=0
  
  Memory requirements /Mbyte/: 
                Minimal        Optimal
- Real*8:   10100492.6549  10100492.6549
+ Real*8:    6507571.2265   6507571.2265
  Integer:     29937.4893
- Total:    10130430.1441  10130430.1441
+ Total:     6537508.7158   6537508.7158
  
 
- ************************ 2017-11-27 23:39:59 *************************
+ ************************ 2025-09-04 18:27:37 *************************
  Executing goldstone...
 
  Generation of MRCC equations in terms of H and T...
@@ -2224,7 +2331,7 @@ D2=0
  Number of intermediates to be stored:                    429
  Length of intermediate file (Mbytes): 5471845.9
 
- ************************ 2017-11-27 23:40:22 *************************
+ ************************ 2025-09-04 18:28:12 *************************
  Executing xmrcc...
 
  **********************************************************************
@@ -2313,12 +2420,12 @@ D2=0
  
  Memory requirements /Mbyte/: 
                Minimal        Optimal
- Real*8:   10099278.2847  10099278.2847
+ Real*8:    6506356.8563   6506356.8563
  Integer:     29614.3390
- Total:    10128892.6237  10128892.6237
+ Total:     6535971.1954   6535971.1954
  
 
- ************************ 2017-11-28 00:05:02 *************************
+ ************************ 2025-09-04 18:42:17 *************************
  Executing goldstone...
 
  Generation of MRCC equations in terms of H and T...
@@ -2342,7 +2449,7 @@ D2=0
  Number of intermediates to be stored:                    429
  Length of intermediate file (Mbytes): 4013632.4
 
- ************************ 2017-11-28 00:05:25 *************************
+ ************************ 2025-09-04 18:42:50 *************************
  Executing xmrcc...
 
  **********************************************************************
@@ -2431,12 +2538,12 @@ D2=0
  
  Memory requirements /Mbyte/: 
                Minimal        Optimal
- Real*8:   10100486.2874  10100486.2874
+ Real*8:    6507564.8591   6507564.8591
  Integer:     29269.0241
- Total:    10129755.3115  10129755.3115
+ Total:     6536833.8832   6536833.8832
  
 
- ************************ 2017-11-28 00:29:41 *************************
+ ************************ 2025-09-04 18:56:46 *************************
  Executing goldstone...
 
  Generation of MRCC equations in terms of H and T...
@@ -2456,11 +2563,11 @@ D2=0
  Number of floating-point operations per iteration step:   9.6263E+16
  Probable CPU time per iteration step (hours): 962629.45
  Required memory (Mbytes): *********
- Number of intermediates:                               10224
- Number of intermediates to be stored:                   4005
+ Number of intermediates:                               10226
+ Number of intermediates to be stored:                   4007
  Length of intermediate file (Mbytes): *********
 
- ************************ 2017-11-28 00:33:41 *************************
+ ************************ 2025-09-04 19:00:01 *************************
  Executing xmrcc...
 
  **********************************************************************
@@ -2485,7 +2592,7 @@ D2=0
  Number of                     4 -fold excitations:            46919535942
  Total number of configurations:            47093511436
  Calculation of coupling coefficients...
- Length of intermediate file (Mbytes): 6997731.2
+ Length of intermediate file (Mbytes): 6997731.3
  
  ======================================================================
  
@@ -3053,12 +3160,12 @@ D2=0
  
  Memory requirements /Mbyte/: 
                Minimal        Optimal
- Real*8:   10071540.0334  10071540.0334
- Integer:     29683.1991
- Total:    10101223.2325  10101223.2325
+ Real*8:    6478618.9689   6478618.9689
+ Integer:     29683.2126
+ Total:     6508302.1815   6508302.1815
  
 
- ************************ 2017-11-28 03:15:19 *************************
+ ************************ 2025-09-04 20:34:06 *************************
  Executing goldstone...
 
  Generation of MRCC equations in terms of H and T...
@@ -3082,7 +3189,7 @@ D2=0
  Number of intermediates to be stored:                   4068
  Length of intermediate file (Mbytes): *********
 
- ************************ 2017-11-28 03:19:14 *************************
+ ************************ 2025-09-04 20:36:32 *************************
  Executing xmrcc...
 
  **********************************************************************
@@ -3675,12 +3782,12 @@ D2=0
  
  Memory requirements /Mbyte/: 
                Minimal        Optimal
- Real*8:   10071523.4170  10071523.4170
+ Real*8:    6478602.3666   6478602.3666
  Integer:     29682.9013
- Total:    10101206.3183  10101206.3183
+ Total:     6508285.2679   6508285.2679
  
 
- ************************ 2017-11-28 05:58:06 *************************
+ ************************ 2025-09-04 22:13:28 *************************
  Executing goldstone...
 
  Generation of MRCC equations in terms of H and T...
@@ -3704,7 +3811,7 @@ D2=0
  Number of intermediates to be stored:                   4040
  Length of intermediate file (Mbytes): *********
 
- ************************ 2017-11-28 06:02:02 *************************
+ ************************ 2025-09-04 22:15:42 *************************
  Executing xmrcc...
 
  **********************************************************************
@@ -4297,12 +4404,12 @@ D2=0
  
  Memory requirements /Mbyte/: 
                Minimal        Optimal
- Real*8:   10070740.1218  10070740.1218
+ Real*8:    6477819.0924   6477819.0924
  Integer:     29682.8337
- Total:    10100422.9554  10100422.9554
+ Total:     6507501.9261   6507501.9261
  
 
- ************************ 2017-11-28 08:34:25 *************************
+ ************************ 2025-09-04 23:45:20 *************************
  Executing goldstone...
 
  Generation of MRCC equations in terms of H and T...
@@ -4326,7 +4433,7 @@ D2=0
  Number of intermediates to be stored:                   4058
  Length of intermediate file (Mbytes): *********
 
- ************************ 2017-11-28 08:38:16 *************************
+ ************************ 2025-09-04 23:47:56 *************************
  Executing xmrcc...
 
  **********************************************************************
@@ -4919,12 +5026,12 @@ D2=0
  
  Memory requirements /Mbyte/: 
                Minimal        Optimal
- Real*8:   10069286.5953  10069286.5953
+ Real*8:    6476365.5847   6476365.5847
  Integer:     29682.3735
- Total:    10098968.9688  10098968.9688
+ Total:     6506047.9582   6506047.9582
  
 
- ************************ 2017-11-28 11:06:33 *************************
+ ************************ 2025-09-05 01:14:47 *************************
  Executing goldstone...
 
  Generation of MRCC equations in terms of H and T...
@@ -4948,7 +5055,7 @@ D2=0
  Number of intermediates to be stored:                   4038
  Length of intermediate file (Mbytes): *********
 
- ************************ 2017-11-28 11:10:33 *************************
+ ************************ 2025-09-05 01:20:05 *************************
  Executing xmrcc...
 
  **********************************************************************
@@ -5529,12 +5636,12 @@ D2=0
  
  Memory requirements /Mbyte/: 
                Minimal        Optimal
- Real*8:   10071270.2641  10071270.2641
+ Real*8:    6478349.2131   6478349.2131
  Integer:     29683.3521
- Total:    10100953.6162  10100953.6162
+ Total:     6508032.5651   6508032.5651
  
 
- ************************ 2017-11-28 13:38:43 *************************
+ ************************ 2025-09-05 02:47:15 *************************
  Executing goldstone...
 
  Generation of MRCC equations in terms of H and T...
@@ -5558,7 +5665,7 @@ D2=0
  Number of intermediates to be stored:                   4058
  Length of intermediate file (Mbytes): *********
 
- ************************ 2017-11-28 13:42:37 *************************
+ ************************ 2025-09-05 02:51:24 *************************
  Executing xmrcc...
 
  **********************************************************************
@@ -5587,586 +5694,297 @@ D2=0
  
  ======================================================================
  
- Spin case  1   Alpha:  0   Beta:  5
- Number of excitations:                  21331
- Spin case  2   Alpha:  1   Beta:  4
- Number of excitations:                3047229
- Spin case  3   Alpha:  2   Beta:  3
- Number of excitations:               26111248
- Spin case  4   Alpha:  0   Beta:  5
- Number of excitations:                1061673
- Spin case  5   Alpha:  1   Beta:  4
- Number of excitations:                6106617
- Spin case  6   Alpha:  1   Beta:  4
- Number of excitations:               60942576
- Spin case  7   Alpha:  2   Beta:  3
- Number of excitations:              130554168
- Spin case  8   Alpha:  2   Beta:  3
- Number of excitations:              261434964
- Spin case  9   Alpha:  0   Beta:  5
- Number of excitations:                9555285
- Spin case 10   Alpha:  1   Beta:  4
- Number of excitations:              122134548
- Spin case 11   Alpha:  1   Beta:  4
- Number of excitations:              274428879
- Spin case 12   Alpha:  2   Beta:  3
- Number of excitations:              117938037
- Spin case 13   Alpha:  2   Beta:  3
- Number of excitations:             1307170684
- Spin case 14   Alpha:  2   Beta:  3
- Number of excitations:              588228087
- Spin case 15   Alpha:  0   Beta:  5
- Number of excitations:               25493584
- Spin case 16   Alpha:  1   Beta:  4
- Number of excitations:              547737492
- Spin case 17   Alpha:  1   Beta:  4
- Number of excitations:              365904172
- Spin case 18   Alpha:  2   Beta:  3
- Number of excitations:             1172067996
- Spin case 19   Alpha:  2   Beta:  3
- Number of excitations:             2941134627
- Spin case 20   Alpha:  2   Beta:  3
- Number of excitations:              312551728
- Spin case 21   Alpha:  0   Beta:  5
- Number of excitations:               22306540
- Spin case 22   Alpha:  1   Beta:  4
- Number of excitations:              730318016
- Spin case 23   Alpha:  1   Beta:  4
- Number of excitations:              127805348
- Spin case 24   Alpha:  2   Beta:  3
- Number of excitations:             2637152118
- Spin case 25   Alpha:  2   Beta:  3
- Number of excitations:             1562757568
- Spin case 26   Alpha:  0   Beta:  5
- Number of excitations:                5345994
- Spin case 27   Alpha:  1   Beta:  4
- Number of excitations:              258223894
- Spin case 28   Alpha:  2   Beta:  3
- Number of excitations:             1432804092
- Spin case 29   Alpha:  0   Beta:  5
- Number of excitations:                 242083
- Spin case 30   Alpha:  1   Beta:  4
- Number of excitations:                6094573
- Spin case 31   Alpha:  1   Beta:  4
- Number of excitations:               26982782
- Spin case 32   Alpha:  2   Beta:  3
- Number of excitations:              107931128
- Spin case 33   Alpha:  2   Beta:  3
- Number of excitations:              167460932
- Spin case 34   Alpha:  0   Beta:  5
- Number of excitations:               12209103
- Spin case 35   Alpha:  1   Beta:  4
- Number of excitations:               12209103
- Spin case 36   Alpha:  1   Beta:  4
- Number of excitations:              121894044
- Spin case 37   Alpha:  1   Beta:  4
- Number of excitations:               54146341
- Spin case 38   Alpha:  1   Beta:  4
- Number of excitations:              539661568
- Spin case 39   Alpha:  2   Beta:  3
- Number of excitations:              539661568
- Spin case 40   Alpha:  2   Beta:  3
- Number of excitations:             1080524364
- Spin case 41   Alpha:  2   Beta:  3
- Number of excitations:              837307628
- Spin case 42   Alpha:  2   Beta:  3
- Number of excitations:             1676872244
- Spin case 43   Alpha:  0   Beta:  5
- Number of excitations:              109882827
- Spin case 44   Alpha:  1   Beta:  4
- Number of excitations:              244186444
- Spin case 45   Alpha:  1   Beta:  4
- Number of excitations:              548819577
- Spin case 46   Alpha:  1   Beta:  4
- Number of excitations:             1082940644
- Spin case 47   Alpha:  1   Beta:  4
- Number of excitations:             2431183767
- Spin case 48   Alpha:  2   Beta:  3
- Number of excitations:              487321017
- Spin case 49   Alpha:  2   Beta:  3
- Number of excitations:             5402635644
- Spin case 50   Alpha:  2   Beta:  3
- Number of excitations:             2431183767
- Spin case 51   Alpha:  2   Beta:  3
- Number of excitations:              756624315
- Spin case 52   Alpha:  2   Beta:  3
- Number of excitations:             8384365220
- Spin case 53   Alpha:  2   Beta:  3
- Number of excitations:             3772963065
- Spin case 54   Alpha:  0   Beta:  5
- Number of excitations:              292224944
- Spin case 55   Alpha:  1   Beta:  4
- Number of excitations:             1095847728
- Spin case 56   Alpha:  1   Beta:  4
- Number of excitations:              731761028
- Spin case 57   Alpha:  1   Beta:  4
- Number of excitations:             4846085796
- Spin case 58   Alpha:  1   Beta:  4
- Number of excitations:             3241582636
- Spin case 59   Alpha:  2   Beta:  3
- Number of excitations:             4846085796
- Spin case 60   Alpha:  2   Beta:  3
- Number of excitations:            12155927727
- Spin case 61   Alpha:  2   Beta:  3
- Number of excitations:             1292285728
- Spin case 62   Alpha:  2   Beta:  3
- Number of excitations:             7515441696
- Spin case 63   Alpha:  2   Beta:  3
- Number of excitations:            18864819777
- Spin case 64   Alpha:  2   Beta:  3
- Number of excitations:             2004116848
- Spin case 65   Alpha:  0   Beta:  5
- Number of excitations:              255697824
- Spin case 66   Alpha:  1   Beta:  4
- Number of excitations:             1461133488
- Spin case 67   Alpha:  1   Beta:  4
- Number of excitations:              255697824
- Spin case 68   Alpha:  1   Beta:  4
- Number of excitations:             6461456288
- Spin case 69   Alpha:  1   Beta:  4
- Number of excitations:             1130753714
- Spin case 70   Alpha:  2   Beta:  3
- Number of excitations:            10903698963
- Spin case 71   Alpha:  2   Beta:  3
- Number of excitations:             6461456288
- Spin case 72   Alpha:  2   Beta:  3
- Number of excitations:            16909744590
- Spin case 73   Alpha:  2   Beta:  3
- Number of excitations:            10020592240
- Spin case 74   Alpha:  0   Beta:  5
- Number of excitations:               61868166
- Spin case 75   Alpha:  1   Beta:  4
- Number of excitations:              515576426
- Spin case 76   Alpha:  1   Beta:  4
- Number of excitations:             2299496182
- Spin case 77   Alpha:  2   Beta:  3
- Number of excitations:             5912986092
- Spin case 78   Alpha:  2   Beta:  3
- Number of excitations:             9201440292
- Spin case 79   Alpha:  0   Beta:  5
- Number of excitations:                1051878
- Spin case 80   Alpha:  1   Beta:  4
- Number of excitations:               53971592
- Spin case 81   Alpha:  1   Beta:  4
- Number of excitations:               85137474
- Spin case 82   Alpha:  2   Beta:  3
- Number of excitations:              106208052
- Spin case 83   Alpha:  2   Beta:  3
- Number of excitations:              692221104
- Spin case 84   Alpha:  2   Beta:  3
- Number of excitations:              340548036
- Spin case 85   Alpha:  0   Beta:  5
- Number of excitations:               53232544
- Spin case 86   Alpha:  1   Beta:  4
- Number of excitations:              108232646
- Spin case 87   Alpha:  1   Beta:  4
- Number of excitations:             1079443208
- Spin case 88   Alpha:  1   Beta:  4
- Number of excitations:              170834412
- Spin case 89   Alpha:  1   Beta:  4
- Number of excitations:             1702737156
- Spin case 90   Alpha:  2   Beta:  3
- Number of excitations:              531036892
- Spin case 91   Alpha:  2   Beta:  3
- Number of excitations:             1062936536
- Spin case 92   Alpha:  2   Beta:  3
- Number of excitations:             3461109144
- Spin case 93   Alpha:  2   Beta:  3
- Number of excitations:             6930596712
- Spin case 94   Alpha:  2   Beta:  3
- Number of excitations:             1702737156
- Spin case 95   Alpha:  2   Beta:  3
- Number of excitations:             3409216008
- Spin case 96   Alpha:  0   Beta:  5
- Number of excitations:              479096208
- Spin case 97   Alpha:  1   Beta:  4
- Number of excitations:             2164675304
- Spin case 98   Alpha:  1   Beta:  4
- Number of excitations:             4861824822
- Spin case 99   Alpha:  1   Beta:  4
- Number of excitations:             3416694048
- Spin case100   Alpha:  1   Beta:  4
- Number of excitations:             7670735784
- Spin case101   Alpha:  2   Beta:  3
- Number of excitations:              479096208
- Spin case102   Alpha:  2   Beta:  3
- Number of excitations:             5314678496
- Spin case103   Alpha:  2   Beta:  3
- Number of excitations:             2391607728
- Spin case104   Alpha:  2   Beta:  3
- Number of excitations:             3126310866
- Spin case105   Alpha:  2   Beta:  3
- Number of excitations:            34652990712
- Spin case106   Alpha:  2   Beta:  3
- Number of excitations:            15593844366
- Spin case107   Alpha:  2   Beta:  3
- Number of excitations:             1537512264
- Spin case108   Alpha:  2   Beta:  3
- Number of excitations:            17046074688
- Spin case109   Alpha:  2   Beta:  3
- Number of excitations:             7670735784
- Spin case110   Alpha:  0   Beta:  5
- Number of excitations:             1272422912
- Spin case111   Alpha:  1   Beta:  4
- Number of excitations:             9697600176
- Spin case112   Alpha:  1   Beta:  4
- Number of excitations:             6482440616
- Spin case113   Alpha:  1   Beta:  4
- Number of excitations:            15290987292
- Spin case114   Alpha:  1   Beta:  4
- Number of excitations:            10227641472
- Spin case115   Alpha:  2   Beta:  3
- Number of excitations:             4771588884
- Spin case116   Alpha:  2   Beta:  3
- Number of excitations:            11958028008
- Spin case117   Alpha:  2   Beta:  3
- Number of excitations:             1272422912
- Spin case118   Alpha:  2   Beta:  3
- Number of excitations:            31074547968
- Spin case119   Alpha:  2   Beta:  3
- Number of excitations:            77969227266
- Spin case120   Alpha:  2   Beta:  3
- Number of excitations:             8286544224
- Spin case121   Alpha:  2   Beta:  3
- Number of excitations:            15290987292
- Spin case122   Alpha:  2   Beta:  3
- Number of excitations:            38353668804
- Spin case123   Alpha:  2   Beta:  3
- Number of excitations:             4077596256
- Spin case124   Alpha:  0   Beta:  5
- Number of excitations:             1113370716
- Spin case125   Alpha:  1   Beta:  4
- Number of excitations:            12930148608
- Spin case126   Alpha:  1   Beta:  4
- Number of excitations:             2262773724
- Spin case127   Alpha:  1   Beta:  4
- Number of excitations:            20387985456
- Spin case128   Alpha:  1   Beta:  4
- Number of excitations:             3567896868
- Spin case129   Alpha:  2   Beta:  3
- Number of excitations:            10736075772
- Spin case130   Alpha:  2   Beta:  3
- Number of excitations:             6362121072
- Spin case131   Alpha:  2   Beta:  3
- Number of excitations:            69917735574
- Spin case132   Alpha:  2   Beta:  3
- Number of excitations:            41432735424
- Spin case133   Alpha:  2   Beta:  3
- Number of excitations:            34404721056
- Spin case134   Alpha:  2   Beta:  3
- Number of excitations:            20387985456
- Spin case135   Alpha:  0   Beta:  5
- Number of excitations:              270464064
- Spin case136   Alpha:  1   Beta:  4
- Number of excitations:             4586329892
- Spin case137   Alpha:  1   Beta:  4
- Number of excitations:             7253584104
- Spin case138   Alpha:  2   Beta:  3
- Number of excitations:             5795645808
- Spin case139   Alpha:  2   Beta:  3
- Number of excitations:            37968300936
- Spin case140   Alpha:  2   Beta:  3
- Number of excitations:            18652074624
- Spin case141   Alpha:  0   Beta:  5
- Number of excitations:                2179043
- Spin case142   Alpha:  1   Beta:  4
- Number of excitations:              170292239
- Spin case143   Alpha:  1   Beta:  4
- Number of excitations:              113533669
- Spin case144   Alpha:  2   Beta:  3
- Number of excitations:              681168956
- Spin case145   Alpha:  2   Beta:  3
- Number of excitations:             1407676032
- Spin case146   Alpha:  2   Beta:  3
- Number of excitations:              219751772
- Spin case147   Alpha:  0   Beta:  5
- Number of excitations:              110104360
- Spin case148   Alpha:  1   Beta:  4
- Number of excitations:              341482241
- Spin case149   Alpha:  1   Beta:  4
- Number of excitations:             3405850268
- Spin case150   Alpha:  1   Beta:  4
- Number of excitations:              227596268
- Spin case151   Alpha:  1   Beta:  4
- Number of excitations:             2270683964
- Spin case152   Alpha:  2   Beta:  3
- Number of excitations:             3405850268
- Spin case153   Alpha:  2   Beta:  3
- Number of excitations:             6817681964
- Spin case154   Alpha:  2   Beta:  3
- Number of excitations:             7038378240
- Spin case155   Alpha:  2   Beta:  3
- Number of excitations:            14090634020
- Spin case156   Alpha:  2   Beta:  3
- Number of excitations:             1098763780
- Spin case157   Alpha:  2   Beta:  3
- Number of excitations:             2199047440
- Spin case158   Alpha:  0   Beta:  5
- Number of excitations:              990939060
- Spin case159   Alpha:  1   Beta:  4
- Number of excitations:             6829650692
- Spin case160   Alpha:  1   Beta:  4
- Number of excitations:            15339784611
- Spin case161   Alpha:  1   Beta:  4
- Number of excitations:             4551950848
- Spin case162   Alpha:  1   Beta:  4
- Number of excitations:            10226003364
- Spin case163   Alpha:  2   Beta:  3
- Number of excitations:             3073340361
- Spin case164   Alpha:  2   Beta:  3
- Number of excitations:            34088415692
- Spin case165   Alpha:  2   Beta:  3
- Number of excitations:            15339784611
- Spin case166   Alpha:  2   Beta:  3
- Number of excitations:             6353276223
- Spin case167   Alpha:  2   Beta:  3
- Number of excitations:            70453170436
- Spin case168   Alpha:  2   Beta:  3
- Number of excitations:            31703927673
- Spin case169   Alpha:  2   Beta:  3
- Number of excitations:              990939060
- Spin case170   Alpha:  2   Beta:  3
- Number of excitations:            10995241760
- Spin case171   Alpha:  2   Beta:  3
- Number of excitations:             4947856560
- Spin case172   Alpha:  0   Beta:  5
- Number of excitations:             2633381040
- Spin case173   Alpha:  1   Beta:  4
- Number of excitations:            30598801176
- Spin case174   Alpha:  1   Beta:  4
- Number of excitations:            20453048956
- Spin case175   Alpha:  1   Beta:  4
- Number of excitations:            20404377108
- Spin case176   Alpha:  1   Beta:  4
- Number of excitations:            13634678928
- Spin case177   Alpha:  2   Beta:  3
- Number of excitations:            30598801176
- Spin case178   Alpha:  2   Beta:  3
- Number of excitations:            76698931287
- Spin case179   Alpha:  2   Beta:  3
- Number of excitations:             8159679088
- Spin case180   Alpha:  2   Beta:  3
- Number of excitations:            63220500780
- Spin case181   Alpha:  2   Beta:  3
- Number of excitations:           158519635485
- Spin case182   Alpha:  2   Beta:  3
- Number of excitations:            16858799840
- Spin case183   Alpha:  2   Beta:  3
- Number of excitations:             9875182140
- Spin case184   Alpha:  2   Beta:  3
- Number of excitations:            24739290180
- Spin case185   Alpha:  2   Beta:  3
- Number of excitations:             2633381040
- Spin case186   Alpha:  0   Beta:  5
- Number of excitations:             2304208890
- Spin case187   Alpha:  1   Beta:  4
- Number of excitations:            40798407184
- Spin case188   Alpha:  1   Beta:  4
- Number of excitations:             7139720032
- Spin case189   Alpha:  1   Beta:  4
- Number of excitations:            27205851696
- Spin case190   Alpha:  1   Beta:  4
- Number of excitations:             4761022038
- Spin case191   Alpha:  2   Beta:  3
- Number of excitations:            68847302934
- Spin case192   Alpha:  2   Beta:  3
- Number of excitations:            40798407184
- Spin case193   Alpha:  2   Beta:  3
- Number of excitations:           142246128447
- Spin case194   Alpha:  2   Beta:  3
- Number of excitations:            84293999872
- Spin case195   Alpha:  2   Beta:  3
- Number of excitations:            22219159545
- Spin case196   Alpha:  2   Beta:  3
- Number of excitations:            13166914320
- Spin case197   Alpha:  0   Beta:  5
- Number of excitations:              558758664
- Spin case198   Alpha:  1   Beta:  4
- Number of excitations:            14467903942
- Spin case199   Alpha:  1   Beta:  4
- Number of excitations:             9633175536
- Spin case200   Alpha:  2   Beta:  3
- Number of excitations:            37203180252
- Spin case201   Alpha:  2   Beta:  3
- Number of excitations:            76988718660
- Spin case202   Alpha:  2   Beta:  3
- Number of excitations:            11973415680
- Spin case203   Alpha:  0   Beta:  5
- Number of excitations:                2151166
- Spin case204   Alpha:  1   Beta:  4
- Number of excitations:              227084944
- Spin case205   Alpha:  1   Beta:  4
- Number of excitations:               54031216
- Spin case206   Alpha:  2   Beta:  3
- Number of excitations:             1385159688
- Spin case207   Alpha:  2   Beta:  3
- Number of excitations:              908339776
- Spin case208   Alpha:  0   Beta:  5
- Number of excitations:              108185777
- Spin case209   Alpha:  1   Beta:  4
- Number of excitations:              455016668
- Spin case210   Alpha:  1   Beta:  4
- Number of excitations:             4541719664
- Spin case211   Alpha:  1   Beta:  4
- Number of excitations:              108185777
- Spin case212   Alpha:  1   Beta:  4
- Number of excitations:             1080616676
- Spin case213   Alpha:  2   Beta:  3
- Number of excitations:             6925791312
- Spin case214   Alpha:  2   Beta:  3
- Number of excitations:            13861493204
- Spin case215   Alpha:  2   Beta:  3
- Number of excitations:             4541719664
- Spin case216   Alpha:  2   Beta:  3
- Number of excitations:             9089070672
- Spin case217   Alpha:  0   Beta:  5
- Number of excitations:              973678161
- Spin case218   Alpha:  1   Beta:  4
- Number of excitations:             9100373968
- Spin case219   Alpha:  1   Beta:  4
- Number of excitations:            20450418924
- Spin case220   Alpha:  1   Beta:  4
- Number of excitations:             2163733252
- Spin case221   Alpha:  1   Beta:  4
- Number of excitations:             4864648431
- Spin case222   Alpha:  2   Beta:  3
- Number of excitations:             6246588573
- Spin case223   Alpha:  2   Beta:  3
- Number of excitations:            69307458492
- Spin case224   Alpha:  2   Beta:  3
- Number of excitations:            31188361431
- Spin case225   Alpha:  2   Beta:  3
- Number of excitations:             4095159924
- Spin case226   Alpha:  2   Beta:  3
- Number of excitations:            45445393968
- Spin case227   Alpha:  2   Beta:  3
- Number of excitations:            20450418924
- Spin case228   Alpha:  0   Beta:  5
- Number of excitations:             2591475776
- Spin case229   Alpha:  1   Beta:  4
- Number of excitations:            40824633408
- Spin case230   Alpha:  1   Beta:  4
- Number of excitations:            27267238928
- Spin case231   Alpha:  1   Beta:  4
- Number of excitations:             9718048032
- Spin case232   Alpha:  1   Beta:  4
- Number of excitations:             6486195212
- Spin case233   Alpha:  2   Beta:  3
- Number of excitations:            62242965348
- Spin case234   Alpha:  2   Beta:  3
- Number of excitations:           155941784931
- Spin case235   Alpha:  2   Beta:  3
- Number of excitations:            16598122064
- Spin case236   Alpha:  2   Beta:  3
- Number of excitations:            40824633408
- Spin case237   Alpha:  2   Beta:  3
- Number of excitations:           102252125796
- Spin case238   Alpha:  2   Beta:  3
- Number of excitations:            10886558144
- Spin case239   Alpha:  0   Beta:  5
- Number of excitations:             2267544742
- Spin case240   Alpha:  1   Beta:  4
- Number of excitations:            54432871936
- Spin case241   Alpha:  1   Beta:  4
- Number of excitations:             9525748408
- Spin case242   Alpha:  1   Beta:  4
- Number of excitations:            12957406864
- Spin case243   Alpha:  1   Beta:  4
- Number of excitations:             2267544742
- Spin case244   Alpha:  2   Beta:  3
- Number of excitations:           140046674616
- Spin case245   Alpha:  2   Beta:  3
- Number of excitations:            82990626016
- Spin case246   Alpha:  2   Beta:  3
- Number of excitations:            91855440036
- Spin case247   Alpha:  2   Beta:  3
- Number of excitations:            54432871936
- Spin case248   Alpha:  0   Beta:  5
- Number of excitations:              547357362
- Spin case249   Alpha:  1   Beta:  4
- Number of excitations:            19229308136
- Spin case250   Alpha:  1   Beta:  4
- Number of excitations:             4561327934
- Spin case251   Alpha:  2   Beta:  3
- Number of excitations:            75494058012
- Spin case252   Alpha:  2   Beta:  3
- Number of excitations:            49446780816
- Spin case253   Alpha:  0   Beta:  5
- Number of excitations:                 807728
- Spin case254   Alpha:  1   Beta:  4
- Number of excitations:              108065257
- Spin case255   Alpha:  2   Beta:  3
- Number of excitations:              893766524
- Spin case256   Alpha:  0   Beta:  5
- Number of excitations:               40454131
- Spin case257   Alpha:  1   Beta:  4
- Number of excitations:              216330827
- Spin case258   Alpha:  1   Beta:  4
- Number of excitations:             2161317596
- Spin case259   Alpha:  2   Beta:  3
- Number of excitations:             4468844308
- Spin case260   Alpha:  2   Beta:  3
- Number of excitations:             8941716384
- Spin case261   Alpha:  0   Beta:  5
- Number of excitations:              364084803
- Spin case262   Alpha:  1   Beta:  4
- Number of excitations:             4326634972
- Spin case263   Alpha:  1   Beta:  4
- Number of excitations:             9728918181
- Spin case264   Alpha:  2   Beta:  3
- Number of excitations:             4027396248
- Spin case265   Alpha:  2   Beta:  3
- Number of excitations:            44708591376
- Spin case266   Alpha:  2   Beta:  3
- Number of excitations:            20118860748
- Spin case267   Alpha:  0   Beta:  5
- Number of excitations:              970407168
- Spin case268   Alpha:  1   Beta:  4
- Number of excitations:            19439847072
- Spin case269   Alpha:  1   Beta:  4
- Number of excitations:            12971898132
- Spin case270   Alpha:  2   Beta:  3
- Number of excitations:            40183324956
- Spin case271   Alpha:  2   Beta:  3
- Number of excitations:           100594321272
- Spin case272   Alpha:  2   Beta:  3
- Number of excitations:            10715551728
- Spin case273   Alpha:  0   Beta:  5
- Number of excitations:              849104766
- Spin case274   Alpha:  1   Beta:  4
- Number of excitations:            25919810544
- Spin case275   Alpha:  1   Beta:  4
- Number of excitations:             4535964192
- Spin case276   Alpha:  2   Beta:  3
- Number of excitations:            90412479477
- Spin case277   Alpha:  2   Beta:  3
- Number of excitations:            53577777552
- Spin case278   Alpha:  0   Beta:  5
- Number of excitations:              204094422
- Spin case279   Alpha:  1   Beta:  4
- Number of excitations:             9113909874
- Spin case280   Alpha:  2   Beta:  3
- Number of excitations:            48546399312
+ Spin case  1   Alpha:  0 Beta:  5 Number of excitations:         21331
+ Spin case  2   Alpha:  1 Beta:  4 Number of excitations:       3047229
+ Spin case  3   Alpha:  2 Beta:  3 Number of excitations:      26111248
+ Spin case  4   Alpha:  0 Beta:  5 Number of excitations:       1061673
+ Spin case  5   Alpha:  1 Beta:  4 Number of excitations:       6106617
+ Spin case  6   Alpha:  1 Beta:  4 Number of excitations:      60942576
+ Spin case  7   Alpha:  2 Beta:  3 Number of excitations:     130554168
+ Spin case  8   Alpha:  2 Beta:  3 Number of excitations:     261434964
+ Spin case  9   Alpha:  0 Beta:  5 Number of excitations:       9555285
+ Spin case 10   Alpha:  1 Beta:  4 Number of excitations:     122134548
+ Spin case 11   Alpha:  1 Beta:  4 Number of excitations:     274428879
+ Spin case 12   Alpha:  2 Beta:  3 Number of excitations:     117938037
+ Spin case 13   Alpha:  2 Beta:  3 Number of excitations:    1307170684
+ Spin case 14   Alpha:  2 Beta:  3 Number of excitations:     588228087
+ Spin case 15   Alpha:  0 Beta:  5 Number of excitations:      25493584
+ Spin case 16   Alpha:  1 Beta:  4 Number of excitations:     547737492
+ Spin case 17   Alpha:  1 Beta:  4 Number of excitations:     365904172
+ Spin case 18   Alpha:  2 Beta:  3 Number of excitations:    1172067996
+ Spin case 19   Alpha:  2 Beta:  3 Number of excitations:    2941134627
+ Spin case 20   Alpha:  2 Beta:  3 Number of excitations:     312551728
+ Spin case 21   Alpha:  0 Beta:  5 Number of excitations:      22306540
+ Spin case 22   Alpha:  1 Beta:  4 Number of excitations:     730318016
+ Spin case 23   Alpha:  1 Beta:  4 Number of excitations:     127805348
+ Spin case 24   Alpha:  2 Beta:  3 Number of excitations:    2637152118
+ Spin case 25   Alpha:  2 Beta:  3 Number of excitations:    1562757568
+ Spin case 26   Alpha:  0 Beta:  5 Number of excitations:       5345994
+ Spin case 27   Alpha:  1 Beta:  4 Number of excitations:     258223894
+ Spin case 28   Alpha:  2 Beta:  3 Number of excitations:    1432804092
+ Spin case 29   Alpha:  0 Beta:  5 Number of excitations:        242083
+ Spin case 30   Alpha:  1 Beta:  4 Number of excitations:       6094573
+ Spin case 31   Alpha:  1 Beta:  4 Number of excitations:      26982782
+ Spin case 32   Alpha:  2 Beta:  3 Number of excitations:     107931128
+ Spin case 33   Alpha:  2 Beta:  3 Number of excitations:     167460932
+ Spin case 34   Alpha:  0 Beta:  5 Number of excitations:      12209103
+ Spin case 35   Alpha:  1 Beta:  4 Number of excitations:      12209103
+ Spin case 36   Alpha:  1 Beta:  4 Number of excitations:     121894044
+ Spin case 37   Alpha:  1 Beta:  4 Number of excitations:      54146341
+ Spin case 38   Alpha:  1 Beta:  4 Number of excitations:     539661568
+ Spin case 39   Alpha:  2 Beta:  3 Number of excitations:     539661568
+ Spin case 40   Alpha:  2 Beta:  3 Number of excitations:    1080524364
+ Spin case 41   Alpha:  2 Beta:  3 Number of excitations:     837307628
+ Spin case 42   Alpha:  2 Beta:  3 Number of excitations:    1676872244
+ Spin case 43   Alpha:  0 Beta:  5 Number of excitations:     109882827
+ Spin case 44   Alpha:  1 Beta:  4 Number of excitations:     244186444
+ Spin case 45   Alpha:  1 Beta:  4 Number of excitations:     548819577
+ Spin case 46   Alpha:  1 Beta:  4 Number of excitations:    1082940644
+ Spin case 47   Alpha:  1 Beta:  4 Number of excitations:    2431183767
+ Spin case 48   Alpha:  2 Beta:  3 Number of excitations:     487321017
+ Spin case 49   Alpha:  2 Beta:  3 Number of excitations:    5402635644
+ Spin case 50   Alpha:  2 Beta:  3 Number of excitations:    2431183767
+ Spin case 51   Alpha:  2 Beta:  3 Number of excitations:     756624315
+ Spin case 52   Alpha:  2 Beta:  3 Number of excitations:    8384365220
+ Spin case 53   Alpha:  2 Beta:  3 Number of excitations:    3772963065
+ Spin case 54   Alpha:  0 Beta:  5 Number of excitations:     292224944
+ Spin case 55   Alpha:  1 Beta:  4 Number of excitations:    1095847728
+ Spin case 56   Alpha:  1 Beta:  4 Number of excitations:     731761028
+ Spin case 57   Alpha:  1 Beta:  4 Number of excitations:    4846085796
+ Spin case 58   Alpha:  1 Beta:  4 Number of excitations:    3241582636
+ Spin case 59   Alpha:  2 Beta:  3 Number of excitations:    4846085796
+ Spin case 60   Alpha:  2 Beta:  3 Number of excitations:   12155927727
+ Spin case 61   Alpha:  2 Beta:  3 Number of excitations:    1292285728
+ Spin case 62   Alpha:  2 Beta:  3 Number of excitations:    7515441696
+ Spin case 63   Alpha:  2 Beta:  3 Number of excitations:   18864819777
+ Spin case 64   Alpha:  2 Beta:  3 Number of excitations:    2004116848
+ Spin case 65   Alpha:  0 Beta:  5 Number of excitations:     255697824
+ Spin case 66   Alpha:  1 Beta:  4 Number of excitations:    1461133488
+ Spin case 67   Alpha:  1 Beta:  4 Number of excitations:     255697824
+ Spin case 68   Alpha:  1 Beta:  4 Number of excitations:    6461456288
+ Spin case 69   Alpha:  1 Beta:  4 Number of excitations:    1130753714
+ Spin case 70   Alpha:  2 Beta:  3 Number of excitations:   10903698963
+ Spin case 71   Alpha:  2 Beta:  3 Number of excitations:    6461456288
+ Spin case 72   Alpha:  2 Beta:  3 Number of excitations:   16909744590
+ Spin case 73   Alpha:  2 Beta:  3 Number of excitations:   10020592240
+ Spin case 74   Alpha:  0 Beta:  5 Number of excitations:      61868166
+ Spin case 75   Alpha:  1 Beta:  4 Number of excitations:     515576426
+ Spin case 76   Alpha:  1 Beta:  4 Number of excitations:    2299496182
+ Spin case 77   Alpha:  2 Beta:  3 Number of excitations:    5912986092
+ Spin case 78   Alpha:  2 Beta:  3 Number of excitations:    9201440292
+ Spin case 79   Alpha:  0 Beta:  5 Number of excitations:       1051878
+ Spin case 80   Alpha:  1 Beta:  4 Number of excitations:      53971592
+ Spin case 81   Alpha:  1 Beta:  4 Number of excitations:      85137474
+ Spin case 82   Alpha:  2 Beta:  3 Number of excitations:     106208052
+ Spin case 83   Alpha:  2 Beta:  3 Number of excitations:     692221104
+ Spin case 84   Alpha:  2 Beta:  3 Number of excitations:     340548036
+ Spin case 85   Alpha:  0 Beta:  5 Number of excitations:      53232544
+ Spin case 86   Alpha:  1 Beta:  4 Number of excitations:     108232646
+ Spin case 87   Alpha:  1 Beta:  4 Number of excitations:    1079443208
+ Spin case 88   Alpha:  1 Beta:  4 Number of excitations:     170834412
+ Spin case 89   Alpha:  1 Beta:  4 Number of excitations:    1702737156
+ Spin case 90   Alpha:  2 Beta:  3 Number of excitations:     531036892
+ Spin case 91   Alpha:  2 Beta:  3 Number of excitations:    1062936536
+ Spin case 92   Alpha:  2 Beta:  3 Number of excitations:    3461109144
+ Spin case 93   Alpha:  2 Beta:  3 Number of excitations:    6930596712
+ Spin case 94   Alpha:  2 Beta:  3 Number of excitations:    1702737156
+ Spin case 95   Alpha:  2 Beta:  3 Number of excitations:    3409216008
+ Spin case 96   Alpha:  0 Beta:  5 Number of excitations:     479096208
+ Spin case 97   Alpha:  1 Beta:  4 Number of excitations:    2164675304
+ Spin case 98   Alpha:  1 Beta:  4 Number of excitations:    4861824822
+ Spin case 99   Alpha:  1 Beta:  4 Number of excitations:    3416694048
+ Spin case100   Alpha:  1 Beta:  4 Number of excitations:    7670735784
+ Spin case101   Alpha:  2 Beta:  3 Number of excitations:     479096208
+ Spin case102   Alpha:  2 Beta:  3 Number of excitations:    5314678496
+ Spin case103   Alpha:  2 Beta:  3 Number of excitations:    2391607728
+ Spin case104   Alpha:  2 Beta:  3 Number of excitations:    3126310866
+ Spin case105   Alpha:  2 Beta:  3 Number of excitations:   34652990712
+ Spin case106   Alpha:  2 Beta:  3 Number of excitations:   15593844366
+ Spin case107   Alpha:  2 Beta:  3 Number of excitations:    1537512264
+ Spin case108   Alpha:  2 Beta:  3 Number of excitations:   17046074688
+ Spin case109   Alpha:  2 Beta:  3 Number of excitations:    7670735784
+ Spin case110   Alpha:  0 Beta:  5 Number of excitations:    1272422912
+ Spin case111   Alpha:  1 Beta:  4 Number of excitations:    9697600176
+ Spin case112   Alpha:  1 Beta:  4 Number of excitations:    6482440616
+ Spin case113   Alpha:  1 Beta:  4 Number of excitations:   15290987292
+ Spin case114   Alpha:  1 Beta:  4 Number of excitations:   10227641472
+ Spin case115   Alpha:  2 Beta:  3 Number of excitations:    4771588884
+ Spin case116   Alpha:  2 Beta:  3 Number of excitations:   11958028008
+ Spin case117   Alpha:  2 Beta:  3 Number of excitations:    1272422912
+ Spin case118   Alpha:  2 Beta:  3 Number of excitations:   31074547968
+ Spin case119   Alpha:  2 Beta:  3 Number of excitations:   77969227266
+ Spin case120   Alpha:  2 Beta:  3 Number of excitations:    8286544224
+ Spin case121   Alpha:  2 Beta:  3 Number of excitations:   15290987292
+ Spin case122   Alpha:  2 Beta:  3 Number of excitations:   38353668804
+ Spin case123   Alpha:  2 Beta:  3 Number of excitations:    4077596256
+ Spin case124   Alpha:  0 Beta:  5 Number of excitations:    1113370716
+ Spin case125   Alpha:  1 Beta:  4 Number of excitations:   12930148608
+ Spin case126   Alpha:  1 Beta:  4 Number of excitations:    2262773724
+ Spin case127   Alpha:  1 Beta:  4 Number of excitations:   20387985456
+ Spin case128   Alpha:  1 Beta:  4 Number of excitations:    3567896868
+ Spin case129   Alpha:  2 Beta:  3 Number of excitations:   10736075772
+ Spin case130   Alpha:  2 Beta:  3 Number of excitations:    6362121072
+ Spin case131   Alpha:  2 Beta:  3 Number of excitations:   69917735574
+ Spin case132   Alpha:  2 Beta:  3 Number of excitations:   41432735424
+ Spin case133   Alpha:  2 Beta:  3 Number of excitations:   34404721056
+ Spin case134   Alpha:  2 Beta:  3 Number of excitations:   20387985456
+ Spin case135   Alpha:  0 Beta:  5 Number of excitations:     270464064
+ Spin case136   Alpha:  1 Beta:  4 Number of excitations:    4586329892
+ Spin case137   Alpha:  1 Beta:  4 Number of excitations:    7253584104
+ Spin case138   Alpha:  2 Beta:  3 Number of excitations:    5795645808
+ Spin case139   Alpha:  2 Beta:  3 Number of excitations:   37968300936
+ Spin case140   Alpha:  2 Beta:  3 Number of excitations:   18652074624
+ Spin case141   Alpha:  0 Beta:  5 Number of excitations:       2179043
+ Spin case142   Alpha:  1 Beta:  4 Number of excitations:     170292239
+ Spin case143   Alpha:  1 Beta:  4 Number of excitations:     113533669
+ Spin case144   Alpha:  2 Beta:  3 Number of excitations:     681168956
+ Spin case145   Alpha:  2 Beta:  3 Number of excitations:    1407676032
+ Spin case146   Alpha:  2 Beta:  3 Number of excitations:     219751772
+ Spin case147   Alpha:  0 Beta:  5 Number of excitations:     110104360
+ Spin case148   Alpha:  1 Beta:  4 Number of excitations:     341482241
+ Spin case149   Alpha:  1 Beta:  4 Number of excitations:    3405850268
+ Spin case150   Alpha:  1 Beta:  4 Number of excitations:     227596268
+ Spin case151   Alpha:  1 Beta:  4 Number of excitations:    2270683964
+ Spin case152   Alpha:  2 Beta:  3 Number of excitations:    3405850268
+ Spin case153   Alpha:  2 Beta:  3 Number of excitations:    6817681964
+ Spin case154   Alpha:  2 Beta:  3 Number of excitations:    7038378240
+ Spin case155   Alpha:  2 Beta:  3 Number of excitations:   14090634020
+ Spin case156   Alpha:  2 Beta:  3 Number of excitations:    1098763780
+ Spin case157   Alpha:  2 Beta:  3 Number of excitations:    2199047440
+ Spin case158   Alpha:  0 Beta:  5 Number of excitations:     990939060
+ Spin case159   Alpha:  1 Beta:  4 Number of excitations:    6829650692
+ Spin case160   Alpha:  1 Beta:  4 Number of excitations:   15339784611
+ Spin case161   Alpha:  1 Beta:  4 Number of excitations:    4551950848
+ Spin case162   Alpha:  1 Beta:  4 Number of excitations:   10226003364
+ Spin case163   Alpha:  2 Beta:  3 Number of excitations:    3073340361
+ Spin case164   Alpha:  2 Beta:  3 Number of excitations:   34088415692
+ Spin case165   Alpha:  2 Beta:  3 Number of excitations:   15339784611
+ Spin case166   Alpha:  2 Beta:  3 Number of excitations:    6353276223
+ Spin case167   Alpha:  2 Beta:  3 Number of excitations:   70453170436
+ Spin case168   Alpha:  2 Beta:  3 Number of excitations:   31703927673
+ Spin case169   Alpha:  2 Beta:  3 Number of excitations:     990939060
+ Spin case170   Alpha:  2 Beta:  3 Number of excitations:   10995241760
+ Spin case171   Alpha:  2 Beta:  3 Number of excitations:    4947856560
+ Spin case172   Alpha:  0 Beta:  5 Number of excitations:    2633381040
+ Spin case173   Alpha:  1 Beta:  4 Number of excitations:   30598801176
+ Spin case174   Alpha:  1 Beta:  4 Number of excitations:   20453048956
+ Spin case175   Alpha:  1 Beta:  4 Number of excitations:   20404377108
+ Spin case176   Alpha:  1 Beta:  4 Number of excitations:   13634678928
+ Spin case177   Alpha:  2 Beta:  3 Number of excitations:   30598801176
+ Spin case178   Alpha:  2 Beta:  3 Number of excitations:   76698931287
+ Spin case179   Alpha:  2 Beta:  3 Number of excitations:    8159679088
+ Spin case180   Alpha:  2 Beta:  3 Number of excitations:   63220500780
+ Spin case181   Alpha:  2 Beta:  3 Number of excitations:  158519635485
+ Spin case182   Alpha:  2 Beta:  3 Number of excitations:   16858799840
+ Spin case183   Alpha:  2 Beta:  3 Number of excitations:    9875182140
+ Spin case184   Alpha:  2 Beta:  3 Number of excitations:   24739290180
+ Spin case185   Alpha:  2 Beta:  3 Number of excitations:    2633381040
+ Spin case186   Alpha:  0 Beta:  5 Number of excitations:    2304208890
+ Spin case187   Alpha:  1 Beta:  4 Number of excitations:   40798407184
+ Spin case188   Alpha:  1 Beta:  4 Number of excitations:    7139720032
+ Spin case189   Alpha:  1 Beta:  4 Number of excitations:   27205851696
+ Spin case190   Alpha:  1 Beta:  4 Number of excitations:    4761022038
+ Spin case191   Alpha:  2 Beta:  3 Number of excitations:   68847302934
+ Spin case192   Alpha:  2 Beta:  3 Number of excitations:   40798407184
+ Spin case193   Alpha:  2 Beta:  3 Number of excitations:  142246128447
+ Spin case194   Alpha:  2 Beta:  3 Number of excitations:   84293999872
+ Spin case195   Alpha:  2 Beta:  3 Number of excitations:   22219159545
+ Spin case196   Alpha:  2 Beta:  3 Number of excitations:   13166914320
+ Spin case197   Alpha:  0 Beta:  5 Number of excitations:     558758664
+ Spin case198   Alpha:  1 Beta:  4 Number of excitations:   14467903942
+ Spin case199   Alpha:  1 Beta:  4 Number of excitations:    9633175536
+ Spin case200   Alpha:  2 Beta:  3 Number of excitations:   37203180252
+ Spin case201   Alpha:  2 Beta:  3 Number of excitations:   76988718660
+ Spin case202   Alpha:  2 Beta:  3 Number of excitations:   11973415680
+ Spin case203   Alpha:  0 Beta:  5 Number of excitations:       2151166
+ Spin case204   Alpha:  1 Beta:  4 Number of excitations:     227084944
+ Spin case205   Alpha:  1 Beta:  4 Number of excitations:      54031216
+ Spin case206   Alpha:  2 Beta:  3 Number of excitations:    1385159688
+ Spin case207   Alpha:  2 Beta:  3 Number of excitations:     908339776
+ Spin case208   Alpha:  0 Beta:  5 Number of excitations:     108185777
+ Spin case209   Alpha:  1 Beta:  4 Number of excitations:     455016668
+ Spin case210   Alpha:  1 Beta:  4 Number of excitations:    4541719664
+ Spin case211   Alpha:  1 Beta:  4 Number of excitations:     108185777
+ Spin case212   Alpha:  1 Beta:  4 Number of excitations:    1080616676
+ Spin case213   Alpha:  2 Beta:  3 Number of excitations:    6925791312
+ Spin case214   Alpha:  2 Beta:  3 Number of excitations:   13861493204
+ Spin case215   Alpha:  2 Beta:  3 Number of excitations:    4541719664
+ Spin case216   Alpha:  2 Beta:  3 Number of excitations:    9089070672
+ Spin case217   Alpha:  0 Beta:  5 Number of excitations:     973678161
+ Spin case218   Alpha:  1 Beta:  4 Number of excitations:    9100373968
+ Spin case219   Alpha:  1 Beta:  4 Number of excitations:   20450418924
+ Spin case220   Alpha:  1 Beta:  4 Number of excitations:    2163733252
+ Spin case221   Alpha:  1 Beta:  4 Number of excitations:    4864648431
+ Spin case222   Alpha:  2 Beta:  3 Number of excitations:    6246588573
+ Spin case223   Alpha:  2 Beta:  3 Number of excitations:   69307458492
+ Spin case224   Alpha:  2 Beta:  3 Number of excitations:   31188361431
+ Spin case225   Alpha:  2 Beta:  3 Number of excitations:    4095159924
+ Spin case226   Alpha:  2 Beta:  3 Number of excitations:   45445393968
+ Spin case227   Alpha:  2 Beta:  3 Number of excitations:   20450418924
+ Spin case228   Alpha:  0 Beta:  5 Number of excitations:    2591475776
+ Spin case229   Alpha:  1 Beta:  4 Number of excitations:   40824633408
+ Spin case230   Alpha:  1 Beta:  4 Number of excitations:   27267238928
+ Spin case231   Alpha:  1 Beta:  4 Number of excitations:    9718048032
+ Spin case232   Alpha:  1 Beta:  4 Number of excitations:    6486195212
+ Spin case233   Alpha:  2 Beta:  3 Number of excitations:   62242965348
+ Spin case234   Alpha:  2 Beta:  3 Number of excitations:  155941784931
+ Spin case235   Alpha:  2 Beta:  3 Number of excitations:   16598122064
+ Spin case236   Alpha:  2 Beta:  3 Number of excitations:   40824633408
+ Spin case237   Alpha:  2 Beta:  3 Number of excitations:  102252125796
+ Spin case238   Alpha:  2 Beta:  3 Number of excitations:   10886558144
+ Spin case239   Alpha:  0 Beta:  5 Number of excitations:    2267544742
+ Spin case240   Alpha:  1 Beta:  4 Number of excitations:   54432871936
+ Spin case241   Alpha:  1 Beta:  4 Number of excitations:    9525748408
+ Spin case242   Alpha:  1 Beta:  4 Number of excitations:   12957406864
+ Spin case243   Alpha:  1 Beta:  4 Number of excitations:    2267544742
+ Spin case244   Alpha:  2 Beta:  3 Number of excitations:  140046674616
+ Spin case245   Alpha:  2 Beta:  3 Number of excitations:   82990626016
+ Spin case246   Alpha:  2 Beta:  3 Number of excitations:   91855440036
+ Spin case247   Alpha:  2 Beta:  3 Number of excitations:   54432871936
+ Spin case248   Alpha:  0 Beta:  5 Number of excitations:     547357362
+ Spin case249   Alpha:  1 Beta:  4 Number of excitations:   19229308136
+ Spin case250   Alpha:  1 Beta:  4 Number of excitations:    4561327934
+ Spin case251   Alpha:  2 Beta:  3 Number of excitations:   75494058012
+ Spin case252   Alpha:  2 Beta:  3 Number of excitations:   49446780816
+ Spin case253   Alpha:  0 Beta:  5 Number of excitations:        807728
+ Spin case254   Alpha:  1 Beta:  4 Number of excitations:     108065257
+ Spin case255   Alpha:  2 Beta:  3 Number of excitations:     893766524
+ Spin case256   Alpha:  0 Beta:  5 Number of excitations:      40454131
+ Spin case257   Alpha:  1 Beta:  4 Number of excitations:     216330827
+ Spin case258   Alpha:  1 Beta:  4 Number of excitations:    2161317596
+ Spin case259   Alpha:  2 Beta:  3 Number of excitations:    4468844308
+ Spin case260   Alpha:  2 Beta:  3 Number of excitations:    8941716384
+ Spin case261   Alpha:  0 Beta:  5 Number of excitations:     364084803
+ Spin case262   Alpha:  1 Beta:  4 Number of excitations:    4326634972
+ Spin case263   Alpha:  1 Beta:  4 Number of excitations:    9728918181
+ Spin case264   Alpha:  2 Beta:  3 Number of excitations:    4027396248
+ Spin case265   Alpha:  2 Beta:  3 Number of excitations:   44708591376
+ Spin case266   Alpha:  2 Beta:  3 Number of excitations:   20118860748
+ Spin case267   Alpha:  0 Beta:  5 Number of excitations:     970407168
+ Spin case268   Alpha:  1 Beta:  4 Number of excitations:   19439847072
+ Spin case269   Alpha:  1 Beta:  4 Number of excitations:   12971898132
+ Spin case270   Alpha:  2 Beta:  3 Number of excitations:   40183324956
+ Spin case271   Alpha:  2 Beta:  3 Number of excitations:  100594321272
+ Spin case272   Alpha:  2 Beta:  3 Number of excitations:   10715551728
+ Spin case273   Alpha:  0 Beta:  5 Number of excitations:     849104766
+ Spin case274   Alpha:  1 Beta:  4 Number of excitations:   25919810544
+ Spin case275   Alpha:  1 Beta:  4 Number of excitations:    4535964192
+ Spin case276   Alpha:  2 Beta:  3 Number of excitations:   90412479477
+ Spin case277   Alpha:  2 Beta:  3 Number of excitations:   53577777552
+ Spin case278   Alpha:  0 Beta:  5 Number of excitations:     204094422
+ Spin case279   Alpha:  1 Beta:  4 Number of excitations:    9113909874
+ Spin case280   Alpha:  2 Beta:  3 Number of excitations:    48546399312
  Number of                     5 -fold excitations:          8062201484736
  
  Memory requirements /Mbyte/: 
                Minimal        Optimal
- Real*8:   10069286.5953  10069286.5953
+ Real*8:    6476365.5847   6476365.5847
  Integer:     29682.3735
- Total:    10098968.9688  10098968.9688
+ Total:     6506047.9582   6506047.9582
  
  Unable to optimize memory usage: Insufficient memory!
  
- ************************ 2017-11-28 16:10:17 *************************
+ ************************ 2025-09-05 04:18:21 *************************
                    Error at the termination of mrcc.
  **********************************************************************
---- SharcNET Job Epilogue ---
-Job returned with status 1.
-               jobid: 1491580
-               resid: 2972834
-         exit status: 1
-      allocated time: 85805.5
-           user time: 75474
-         system time: 5575.82
-peak rss=38593732608; peak vsz=38593732608 (bytes)
-atime=85805.5; utime=75474; stime=5575.82; exit=1
+Program finished with exit code 1 at: Fri Sep  5 04:18:21 EDT 2025
